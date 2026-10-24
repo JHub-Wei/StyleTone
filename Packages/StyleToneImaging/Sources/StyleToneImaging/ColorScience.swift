@@ -187,8 +187,8 @@ enum ColorScience {
             )
         }
 
-        let xyz = toXYZMatrix(for: space).apply(linear)
-        let lab = oklab(fromXYZ: xyz)
+        let xyzValue = toXYZMatrix(for: space).apply(linear)
+        let lab = oklab(fromXYZ: xyzValue)
         let lightness = min(max(lab.x, 0), 1)
         let chroma = (lab.y * lab.y + lab.z * lab.z).squareRoot()
         guard chroma > 1e-9 else {
