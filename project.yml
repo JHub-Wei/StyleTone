@@ -1,0 +1,103 @@
+name: StyleTone
+options:
+  bundleIdPrefix: com.styletone
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+packages:
+  StyleTone:
+    path: .
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    MARKETING_VERSION: 0.1.0
+    CURRENT_PROJECT_VERSION: 1
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    SWIFT_EMIT_LOC_STRINGS: YES
+
+targets:
+  StyleTone:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+        excludes:
+          - Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.styletone.app
+        INFOPLIST_FILE: App/Info.plist
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+        ENABLE_PREVIEWS: YES
+    dependencies:
+      - package: StyleTone
+        product: StyleToneCore
+      - package: StyleTone
+        product: StyleToneImaging
+      - package: StyleTone
+        product: StyleToneVision
+      - package: StyleTone
+        product: StyleToneGeometry
+      - package: StyleTone
+        product: StyleToneRetouch
+      - package: StyleTone
+        product: StyleToneLearning
+      - package: StyleTone
+        product: StyleTonePersistence
+      - package: StyleTone
+        product: StyleToneCommerce
+      - package: StyleTone
+        product: StyleToneUI
+
+  StyleToneTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests/AppTests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.styletone.app.tests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/StyleTone.app/StyleTone"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+    dependencies:
+      - target: StyleTone
+      - package: StyleTone
+        product: StyleToneCore
+      - package: StyleTone
+        product: StyleToneImaging
+      - package: StyleTone
+        product: StyleToneVision
+      - package: StyleTone
+        product: StyleToneGeometry
+      - package: StyleTone
+        product: StyleToneRetouch
+      - package: StyleTone
+        product: StyleToneLearning
+      - package: StyleTone
+        product: StyleTonePersistence
+      - package: StyleTone
+        product: StyleToneCommerce
+      - package: StyleTone
+        product: StyleToneUI
+
+schemes:
+  StyleTone:
+    build:
+      targets:
+        StyleTone: all
+        StyleToneTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - name: StyleToneTests
