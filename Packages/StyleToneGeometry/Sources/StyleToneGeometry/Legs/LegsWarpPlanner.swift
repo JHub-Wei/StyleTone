@@ -121,10 +121,8 @@ struct LegsWarpPlanner: Sendable {
         let largestHalfWidth = [left, right]
             .flatMap { $0.widthStations }
             .max() ?? configuration.minimumHalfWidth
-        if effectiveSlim > 0,
-           configuration.lateralReduction * largestHalfWidth
-               > configuration.maximumLateralDisplacement
-        {
+        let requestedLateral = effectiveSlim * configuration.lateralReduction * largestHalfWidth
+        if requestedLateral > configuration.maximumLateralDisplacement {
             append(.strengthLimited, to: &warnings)
         }
 
@@ -311,8 +309,8 @@ struct LegsWarpPlanner: Sendable {
                 return .skipped(reason: .degeneratePose, warning: .degeneratePose)
             }
             guard leg.ankle.y <= 1 - configuration.minimumAnkleMargin,
-                  leg.ankle.x >= 0,
-                  leg.ankle.x <= 1,
+                  leg.ankle.x >= configuration.minimumAnkleMargin,
+                  leg.ankle.x <= 1 - configuration.minimumAnkleMargin,
                   leg.hip.x >= 0,
                   leg.hip.x <= 1
             else {

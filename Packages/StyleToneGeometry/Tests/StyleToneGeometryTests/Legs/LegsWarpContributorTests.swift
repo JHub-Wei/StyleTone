@@ -102,6 +102,17 @@ final class LegsWarpContributorTests: XCTestCase {
         XCTAssertEqual(plan.skipReason, .feetOutsideFrame)
         XCTAssertTrue(plan.warnings.contains(.feetOutsideFrame))
         XCTAssertTrue(plan.isEmpty)
+
+        let sideCroppedBody = LegsTestSupport.bodyObservation(
+            leftHipX: 0.005,
+            leftKneeX: 0.005,
+            leftAnkleX: 0.005
+        )
+        let sideCropped = try makePlan(
+            analysis: LegsTestSupport.analysis(body: sideCroppedBody),
+            leg: 1
+        )
+        XCTAssertEqual(sideCropped.skipReason, .feetOutsideFrame)
     }
 
     func testInvertedPoseIsSkipped() throws {
