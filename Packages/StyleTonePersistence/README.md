@@ -127,8 +127,10 @@ are reset by the same operation (allowed by the product contract).
 
 ## File protection and privacy
 
-- Every profile, backup and thumbnail file is written with
-  `PersistenceFileProtection.complete` (default; configurable).
+- Every profile and backup file is written with
+  `PersistenceFileProtection.complete` (default; configurable). Thumbnail
+  files, when the UI/Imaging layers add them under `style-thumbnails/`, are
+  deleted by `deleteAll()` and should use the same class.
 - On iOS/tvOS/watchOS/visionOS the file system applies
   `FileAttributeKey.protectionKey` to files and directories. macOS has no
   per-file protection classes, so the local implementation is a no-op there;
@@ -171,11 +173,17 @@ Coverage:
 - file-protection propagation and no main-thread file operations;
 - source audit for network/account/photo APIs.
 
+## Verification
+
+- Branch: `wp-08-persistence`
+- CI: **success** on `macos-15` —
+  [run 40103647926](https://github.com/JHub-Wei/StyleTone/actions/runs/40103647926)
+  (`swift test`: 342 tests, 0 failures; app build and app tests also passed).
+- The package tests ran on macOS. The iOS-only protection-attribute test is
+  compiled by the iOS app build but only executed on an iOS test destination.
+
 ## Known risks / open items
 
-- **CI verification is pending.** The Windows session has no Swift/Xcode
-  toolchain; `swift test` and the iOS simulator build must run on the macOS CI
-  branch (`CI_PENDING`).
 - SwiftData's on-disk schema is not versioned yet. The JSON schema is versioned
   (contract §6); a future SwiftData model change should add a `VersionedSchema`
   plus `SchemaMigrationPlan`. Index data is disposable and can be rebuilt.

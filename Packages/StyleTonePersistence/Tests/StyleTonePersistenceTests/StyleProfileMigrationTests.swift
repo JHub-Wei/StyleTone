@@ -51,6 +51,41 @@ final class StyleProfileMigrationTests: XCTestCase {
         }
     }
 
+    func testMigratesLegacyActiveProfileAndRefreshesIndex() async throws {
+        try await TemporaryDirectory.withTemporaryDirectoryAsync { directory -> Void in
+            let base = PersistenceTestSupport.baseDirectory(in: directory)
+            let id: UUID
+            do {
+                let store = PersistenceTestSupport.makeStore(in: directory)
+                try await store.save(PersistenceTestSupport.profile())
+                let storedID = try await store.activeProfileID()
+                id = try XCTUnwrap(storedID)
+            }
+
+            let profileURL = PersistenceTestSupport.profileFileURL(id: id, in: base)
+            let legacy = Data(PersistenceTestSupport.legacySchemaTwoJSON().utf8)
+            try legacy.write(to: profileURL)
+
+            let reopened = PersistenceTestSupport.makeStore(in: directory)
+            let loadedOptional = try await reopened.loadActive()
+            let loaded = try XCTUnwrap(loadedOptional)
+
+            XCTAssertEqual(loaded.tone.temperature, 0.25)
+            XCTAssertEqual(try PersistenceTestSupport.schemaVersion(of: profileURL), 3)
+
+            let metadataOptional = try await reopened.activeProfileMetadata()
+            let metadata = try XCTUnwrap(metadataOptional)
+            XCTAssertEqual(metadata.id, id)
+            XCTAssertEqual(metadata.schemaVersion, 3)
+
+            let backups = PersistenceTestSupport.files(
+                in: base.appendingPathComponent("style-profile-migration-backups")
+            )
+            XCTAssertEqual(backups.count, 1)
+            XCTAssertEqual(try Data(contentsOf: backups[0]), legacy)
+        }
+    }
+
     func testMigratesSchemaOneDocumentWithDefaults() async throws {
         try await TemporaryDirectory.withTemporaryDirectoryAsync { directory -> Void in
             let base = PersistenceTestSupport.baseDirectory(in: directory)
