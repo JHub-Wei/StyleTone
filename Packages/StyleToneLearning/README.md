@@ -177,10 +177,11 @@ profiles.
 
 ## Performance
 
-The proxy caps work at 256 px per image. Five synthetic 160×160 pairs complete
-in well under a second on the macOS CI runner; the acceptance budget is 90 s for
-five pairs and 150 s for eight. The test suite records both durations as
-attachments and asserts the budget.
+The proxy caps work at 256 px per image. On the project's `macos-15` CI runner
+(Debug test build), five synthetic 160×160 pairs took **4.98 s** end-to-end and
+eight pairs took **7.81 s**; fixture generation is outside the timed section.
+The acceptance budgets are 90 s for five pairs and 150 s for eight. The test
+suite records both durations as attachments and asserts the budget.
 
 ## Tests
 
