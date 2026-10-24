@@ -127,3 +127,11 @@
 - 18+ 是定位与营销边界，不等于技术上绝对阻止未成年人下载；年龄提示/隐私政策按法律意见执行。
 - “学习风格”在 UI 中描述为“根据原图/成片和选择校准参数”，避免暗示训练大模型或复制某位博主。
 - 形变与美颜涉及身体形象，默认自然、可关闭、禁止“颜值评分/皮肤诊断/美白”。
+
+---
+
+## 7. 工程状态
+
+- **WP-00 工程骨架已完成，状态 `review / CI_PENDING`**：XcodeGen 工程源、9 个 SwiftPM target、占位 App、CI、Makefile、模块占位测试均已提交。
+- 构建说明见 [BUILD.md](BUILD.md)；当前 Windows 环境无法运行 `xcodebuild`，需 macOS 或 GitHub Actions macOS runner 验证。
+- 下一步：在 macOS 上执行 `xcodegen generate` → `make build` / `make test`，CI 绿灯后标记 WP-00 `done`，再启动 WP-01（Core 契约）。
