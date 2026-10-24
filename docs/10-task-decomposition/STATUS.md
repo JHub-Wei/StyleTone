@@ -25,8 +25,9 @@
   - 未运行 `swift test`（本机无 Swift/Xcode）。
 - 远程状态：
   - `origin` 已配置为 `https://github.com/JHub-Wei/StyleTone.git`。
-  - `git ls-remote` 返回 `Failed to connect to github.com port 443: Timed out`；当前网络无法直连 GitHub，**尚未 push**。
-  - 需要代理/VPN 或换一台可访问 GitHub 的机器执行 `git push -u origin main`。
+  - 已通过本地代理 `127.0.0.1:7890` 成功 `git push -u origin main`；远程 `main` 存在。
+  - 最新已推送提交：`378332c`（文档）；工程骨架提交 `7f4666a` 也在远程历史中。
+  - GitHub Actions 结果待查看：`https://github.com/JHub-Wei/StyleTone/actions`。
 - 下一步：
   1. 在 macOS 上执行 `brew install xcodegen` → `xcodegen generate` → `make build` / `make test`。
   2. 或推送到 GitHub，让 `.github/workflows/ios.yml` 跑 macOS CI（无需 Mac，见 [CI-SETUP.md](../../CI-SETUP.md)）。

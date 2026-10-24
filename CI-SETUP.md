@@ -4,7 +4,7 @@
 - 适用：当前 WP-00 工程骨架
 - 目标：没有 Mac 实机，也能在云端 macOS 上运行 `xcodegen` / `xcodebuild` / `swift test`，拿到构建与测试结果。
 
-> **当前环境实测（2026-10-24）**：远程已配置为 `origin https://github.com/JHub-Wei/StyleTone.git`，但 `git ls-remote` 返回 `Failed to connect to github.com port 443: Timed out`。当前 Windows 主机无法直连 GitHub，需要代理/VPN，或在另一台能访问 GitHub 的机器上执行 `git push`。这不是认证问题。
+> **当前环境实测（2026-10-24）**：Edge 使用本地代理 `127.0.0.1:7890`；Git 直连会超时，配置 `http.proxy/https.proxy` 后已成功执行 `git push -u origin main`。远程 `main` 已存在；CI 结果请在 GitHub Actions 查看。
 
 ---
 
