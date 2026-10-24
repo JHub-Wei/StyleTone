@@ -304,7 +304,7 @@ public struct StyleLearningConfiguration: Sendable, Equatable {
         safety: StyleSafetyRanges = .standard,
         skinProtection: SkinProtectionConfiguration = .standard,
         stableHoldoutError: Double = 0.30,
-        standardHoldoutError: Double = 0.55,
+        standardHoldoutError: Double = 0.50,
         stablePairCount: Int = 8,
         standardPairCount: Int = 5,
         fullInfluenceAnswerCount: Int = 6
@@ -314,7 +314,7 @@ public struct StyleLearningConfiguration: Sendable, Equatable {
         self.skinProtection = skinProtection
 
         let stable = Self.threshold(stableHoldoutError, fallback: 0.30)
-        let standard = Self.threshold(standardHoldoutError, fallback: 0.55)
+        let standard = Self.threshold(standardHoldoutError, fallback: 0.50)
         self.stableHoldoutError = stable
         self.standardHoldoutError = max(stable, standard)
 

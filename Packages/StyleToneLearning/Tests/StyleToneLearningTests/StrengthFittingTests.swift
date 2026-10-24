@@ -1,3 +1,4 @@
+import Foundation
 import StyleToneCore
 import TestShared
 import XCTest
@@ -82,8 +83,8 @@ final class StrengthFittingTests: XCTestCase {
             count: 8,
             edit: SyntheticEdit()
         )
-        let weak = PairStrengthSignals(faceSlim: 0.20, jaw: 0.10)
-        let strong = PairStrengthSignals(faceSlim: 0.60, jaw: 0.30)
+        let weak = PairStrengthSignals(faceSlim: 0.10, jaw: 0.05)
+        let strong = PairStrengthSignals(faceSlim: 0.30, jaw: 0.15)
         var signals: [UUID: PairStrengthSignals] = [:]
         for (index, pair) in pairs.enumerated() {
             signals[pair.id] = index < 4 ? weak : strong
@@ -92,9 +93,43 @@ final class StrengthFittingTests: XCTestCase {
             StyleLearningRequest(samples: pairs, strengthSignals: signals)
         )
 
-        // Mean face slim is 0.40 before safety and shrink; eight pairs keep
-        // almost all of it.
-        XCTAssertEqual(result.profile.face.slim, 0.40, accuracy: 0.05)
-        XCTAssertEqual(result.profile.face.jaw, 0.20, accuracy: 0.03)
+        // Mean before shrink is 0.20 slim / 0.10 jaw. The engine also applies
+        // hold-out shrink, so assert the averaged range instead of an exact
+        // value; summing would saturate at the 0.35 safety cap.
+        XCTAssertGreaterThan(result.profile.face.slim, 0.12)
+        XCTAssertLessThan(result.profile.face.slim, 0.26)
+        XCTAssertGreaterThan(result.profile.face.jaw, 0.05)
+        XCTAssertLessThan(result.profile.face.jaw, 0.15)
+    }
+
+    func testPairAggregatorAveragesSymmetricPairs() {
+        var fits: [PairFit] = []
+        for index in 0..<8 {
+            let value = index < 4 ? 0.10 : 0.30
+            fits.append(
+                PairFit(
+                    id: UUID(),
+                    tone: .neutral,
+                    skin: .neutral,
+                    face: FaceParameters(slim: value, jaw: value / 2),
+                    body: .neutral,
+                    finish: .neutral,
+                    toneWeight: 1,
+                    strengthWeight: 1,
+                    skinFraction: 0.2,
+                    skinProtectionApplied: false,
+                    issues: []
+                )
+            )
+        }
+
+        let aggregate = PairAggregator.aggregate(
+            fits,
+            safety: .standard
+        )
+
+        XCTAssertEqual(aggregate.face.slim, 0.20, accuracy: 0.01)
+        XCTAssertEqual(aggregate.face.jaw, 0.10, accuracy: 0.01)
+        XCTAssertEqual(aggregate.outlierCount, 0)
     }
 }

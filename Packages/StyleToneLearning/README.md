@@ -101,7 +101,7 @@ Shrinkage toward the natural default:
 Quality and hold-out error scale the shrink further down:
 `base × (0.65 + 0.35 × meanQuality) × (1 − 0.45 × holdoutError)`.
 `stable` additionally requires mean quality ≥ 0.75; `standard` requires ≥ 0.5
-and hold-out ≤ 0.55.
+and hold-out ≤ 0.50.
 
 ### 5. AB preferences
 
@@ -213,7 +213,7 @@ Coverage:
   shape.
 - Hold-out validation is parameter-space consistency, not a rendered-image
   metric. A future WP-25 golden set can replace it with perceptual error.
-- Confidence thresholds (0.30 / 0.55) are calibrated on synthetic pairs and
+- Confidence thresholds (0.30 / 0.50) are calibrated on synthetic pairs and
   need validation with authorised real pairs before Phase B.
 - `StyleProfile` has no field for recommended global strength or max strength;
   the editor's natural default (70 %) remains WP-17's responsibility.
