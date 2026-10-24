@@ -1,4 +1,5 @@
 import Foundation
+import StyleToneCore
 
 /// Timing samples for one geometry operation.
 ///
