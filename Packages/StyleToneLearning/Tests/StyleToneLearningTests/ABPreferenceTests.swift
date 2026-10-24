@@ -72,8 +72,8 @@ final class ABPreferenceTests: XCTestCase {
             evenness: 0.4,
             faceSlim: 0.5,
             jaw: 0.3,
-            waist: 0.4,
-            arm: 0.3
+            arm: 0.3,
+            waist: 0.4
         )
         let signalsByPair = Dictionary(
             uniqueKeysWithValues: pairs.map { ($0.id, signals) }
