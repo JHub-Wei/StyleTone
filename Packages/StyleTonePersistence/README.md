@@ -177,8 +177,9 @@ Coverage:
 
 - Branch: `wp-08-persistence`
 - CI: **success** on `macos-15` —
-  [run 40103647926](https://github.com/JHub-Wei/StyleTone/actions/runs/40103647926)
-  (`swift test`: 342 tests, 0 failures; app build and app tests also passed).
+  [run 40103926060](https://github.com/JHub-Wei/StyleTone/actions/runs/40103926060)
+  (`swift test`: 343 tests, 0 failures, including 55 persistence tests; app
+  build and app tests also passed).
 - The package tests ran on macOS. The iOS-only protection-attribute test is
   compiled by the iOS app build but only executed on an iOS test destination.
 
