@@ -109,6 +109,9 @@ above the ankle, and is gated by the person mask.
   centreline and the frame edge (lateral edge extension), so a leg cut by the
   frame is slimmed within the visible part rather than pulling clamp-to-edge
   pixels inward.
+- If a person-mask scan is cut by the left/right frame on one side, the visible
+  run is mirrored to estimate the missing half-width instead of averaging a
+  truncated run with a full one (mask-level mirror extension).
 - Residual sub-pixel sampling at the frame is handled by WP-06's
   `clampToEdge` Metal sampler / `BilinearSampler`; this is the pixel-level edge
   fill. The leg pass must not and does not implement image resampling itself.
@@ -169,6 +172,19 @@ protection; occlusion scaling; frame-edge pinning; person-mask gating;
 `plan.applying` compatibility; a synthetic pixel test for black borders and
 intact shoes; and a 64×64 1080p planning performance probe
 (`ST_LEGS_PERF_STRICT=1` enables the 0.5 s threshold).
+
+### Measured CI baseline
+
+macOS 15 CI, run
+[`40114221111`](https://github.com/JHub-Wei/StyleTone/actions/runs/40114221111),
+commit `e1d3ab7`, debug build:
+
+- `LegsWarpContributorTests`: **24 tests, 0 failures**.
+- `legs.plan.1080p backend=legs.cpu grid=64x64 size=1080x1440 n=8`:
+  mean 4.2 ms, p50 4.0 ms, **p95 4.4 ms** (227 fps planning throughput).
+- Full `swift test` and the iOS Simulator app test pass on the same run.
+- This measures plan construction only; the WP-06 Metal render is the frame
+  budget owner. The result still shows the pass is far below its 33.3 ms share.
 
 ## Known limitations / risks
 
