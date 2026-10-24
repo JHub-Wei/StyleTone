@@ -111,7 +111,7 @@ struct ImageStatistics: Sendable {
                 skinPixelCount += 1
                 skinLuma.append(Double(encoded))
                 skinWeights.append(skinWeight)
-                let lab = LearningColor.lab(linear: LinearRGB(linear))
+                let lab = LearningColor.lab(linear: linear)
                 skinChroma.append(lab.chroma)
                 skinHue.append(lab.hueDegrees)
             } else if encoded > 0.05, encoded < 0.96 {

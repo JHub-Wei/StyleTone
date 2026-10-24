@@ -229,9 +229,9 @@ enum ToneFitter {
         var count = 0
         for index in 0..<image.pixelCount where image.skin[index] <= 0.5 {
             let pixel = image.linear[index]
-            let red = Double(pixel.x) / redGain
-            let green = Double(pixel.y) / greenGain
-            let blue = Double(pixel.z) / blueGain
+            let red = Double(pixel.red) / redGain
+            let green = Double(pixel.green) / greenGain
+            let blue = Double(pixel.blue) / blueGain
             let luma = 0.2126 * red + 0.7152 * green + 0.0722 * blue
             guard luma > 0.01 else { continue }
             let maximum = max(red, green, blue)

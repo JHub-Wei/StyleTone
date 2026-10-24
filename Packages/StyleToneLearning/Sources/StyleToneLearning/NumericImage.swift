@@ -12,7 +12,7 @@ struct NumericImage: Sendable {
     let width: Int
     let height: Int
     /// Row-major linear-light sRGB.
-    let linear: [SIMD3<Float>]
+    let linear: [LinearRGB]
     /// Colour-based skin likelihood, `0...1`, row-major.
     let skin: [Float]
     /// Encoded Rec. 709 luma, row-major, used for high-frequency texture.
@@ -70,13 +70,14 @@ enum NumericImageLoader {
         }
 
         let count = targetWidth * targetHeight
-        var linear = [SIMD3<Float>](repeating: .zero, count: count)
+        var linear = [LinearRGB](repeating: LinearRGB(red: 0, green: 0, blue: 0), count: count)
         var skin = [Float](repeating: 0, count: count)
         var encodedLuma = [Float](repeating: 0, count: count)
         let rowBytes = context.bytesPerRow
+        let bytes = data.assumingMemoryBound(to: UInt8.self)
 
         for y in 0..<targetHeight {
-            let row = data + y * rowBytes
+            let row = bytes + y * rowBytes
             let destinationRow = y * targetWidth
             for x in 0..<targetWidth {
                 let offset = x * 4
@@ -90,10 +91,11 @@ enum NumericImageLoader {
                 let green = unpremultiply(row[offset + 1], alpha: alpha)
                 let blue = unpremultiply(row[offset + 2], alpha: alpha)
 
-                let linearRed = Float(LearningColor.srgbToLinear(red))
-                let linearGreen = Float(LearningColor.srgbToLinear(green))
-                let linearBlue = Float(LearningColor.srgbToLinear(blue))
-                linear[index] = SIMD3(linearRed, linearGreen, linearBlue)
+                linear[index] = LinearRGB(
+                    red: Float(LearningColor.srgbToLinear(red)),
+                    green: Float(LearningColor.srgbToLinear(green)),
+                    blue: Float(LearningColor.srgbToLinear(blue))
+                )
                 skin[index] = SkinToneModel.weight(
                     encodedRed: red,
                     green: green,
