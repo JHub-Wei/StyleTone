@@ -200,7 +200,7 @@ enum PairingTestFactory {
         target: PairingTarget = .three,
         availability: PairingPickerAvailability = .available
     ) async -> PairingViewModel {
-        let viewModel = viewModel(
+        let model = viewModel(
             analyzer: analyzer,
             importer: importer,
             store: store,
@@ -208,8 +208,8 @@ enum PairingTestFactory {
             target: target,
             availability: availability
         )
-        await viewModel.start()
-        return viewModel
+        await model.start()
+        return model
     }
 
     /// Adds a pair and imports both photos, awaiting the quality check.
@@ -248,7 +248,7 @@ enum PairingTestFactory {
     static func session(
         grades: [PairQualityGrade?],
         target: PairingTarget,
-        startedAt: Date = referenceDate
+        startedAt: Date = PairingTestFactory.referenceDate
     ) -> PairingSessionState {
         var session = PairingSessionState(target: target, startedAt: startedAt)
         for grade in grades {

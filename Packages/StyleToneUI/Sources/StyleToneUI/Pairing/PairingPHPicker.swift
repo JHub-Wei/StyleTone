@@ -92,6 +92,10 @@ struct PairingSystemPhotoPicker: View {
 }
 
 /// Reads the file data behind one picked item.
+///
+/// Main-actor bound because `NSItemProvider` is not `Sendable` and the value is
+/// only ever produced and consumed on the main actor.
+@MainActor
 enum PairingPhotoDataLoader {
     /// Loads the image payload for a picked item.
     ///

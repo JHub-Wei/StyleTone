@@ -139,12 +139,12 @@ public enum PairingAccessibilityID {
             retryButton(pair: number),
             importingIndicator(pair: number),
         ]
-        for slot in PairingSlot.allCases {
-            identifiers.append(slot(slot, pair: number))
-            identifiers.append(photo(slot, pair: number))
-            identifiers.append(pickButton(slot, pair: number))
-            identifiers.append(removeButton(slot, pair: number))
-            identifiers.append(slotNote(slot, pair: number))
+        for pairSlot in PairingSlot.allCases {
+            identifiers.append(slot(pairSlot, pair: number))
+            identifiers.append(photo(pairSlot, pair: number))
+            identifiers.append(pickButton(pairSlot, pair: number))
+            identifiers.append(removeButton(pairSlot, pair: number))
+            identifiers.append(slotNote(pairSlot, pair: number))
         }
         return identifiers
     }

@@ -1,4 +1,5 @@
 import Foundation
+import StyleToneCore
 
 /// The visual and spoken summary of one pair's quality state.
 public struct PairingQualityPresentation: Sendable, Equatable {

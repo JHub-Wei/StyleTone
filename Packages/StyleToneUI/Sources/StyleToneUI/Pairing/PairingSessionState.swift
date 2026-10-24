@@ -387,7 +387,7 @@ public struct PairingSessionState: Sendable, Equatable {
 
     /// Whether both slots reference the same library asset.
     public func hasIdenticalSelection(_ pairID: UUID) -> Bool {
-        guard let pair = pair(withID: pairID),
+        guard let pair = self.pair(withID: pairID),
               let originalIdentifier = pair.original?.sourceIdentifier,
               let editedIdentifier = pair.edited?.sourceIdentifier
         else {

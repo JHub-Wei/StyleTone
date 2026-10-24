@@ -1,3 +1,4 @@
+import Foundation
 import StyleToneCore
 import StyleToneUI
 import XCTest
@@ -244,17 +245,17 @@ final class PairingSessionStateTests: XCTestCase {
 
     func testSummaryCountsAndStage() {
         var session = PairingTestFactory.session(
-            grades: [.good, .warning, .rejected],
+            grades: [.good, .warning, .good, .rejected],
             target: .five
         )
-        session.complete(at: date)
+        XCTAssertTrue(session.complete(at: date))
         let summary = session.summary(at: date)
         XCTAssertEqual(summary.stage, .completed)
         XCTAssertEqual(summary.target, 5)
-        XCTAssertEqual(summary.goodCount, 1)
+        XCTAssertEqual(summary.goodCount, 2)
         XCTAssertEqual(summary.warningCount, 1)
         XCTAssertEqual(summary.rejectedCount, 1)
-        XCTAssertEqual(summary.learnableCount, 2)
+        XCTAssertEqual(summary.learnableCount, 3)
     }
 
     func testSkippingSetsStage() {

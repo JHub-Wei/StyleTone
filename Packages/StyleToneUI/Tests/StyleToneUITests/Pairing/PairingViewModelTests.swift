@@ -217,25 +217,27 @@ final class PairingViewModelTests: XCTestCase {
     // MARK: - Learning hand-off
 
     func testFinishExcludesRejectedPairs() async throws {
-        let analyzer = ScriptedQualityAnalyzer(grades: [.good, .warning, .rejected])
+        let analyzer = ScriptedQualityAnalyzer(
+            grades: [.good, .warning, .good, .rejected]
+        )
         let store = InMemoryPairingSessionStore()
         let viewModel = await PairingTestFactory.startedViewModel(
             analyzer: analyzer,
             store: store
         )
-        for _ in 0..<3 {
+        for _ in 0..<4 {
             _ = await PairingTestFactory.addPair(to: viewModel)
         }
 
         let samples = try XCTUnwrap(viewModel.finish())
-        XCTAssertEqual(samples.count, 2)
+        XCTAssertEqual(samples.count, 3)
         XCTAssertEqual(Set(samples.map(\.quality.grade)), [.good, .warning])
         XCTAssertFalse(samples.contains { $0.quality.grade == .rejected })
 
         let summary = viewModel.summary
         XCTAssertEqual(summary.stage, .completed)
         XCTAssertEqual(summary.rejectedCount, 1)
-        XCTAssertEqual(summary.learnableCount, 2)
+        XCTAssertEqual(summary.learnableCount, 3)
         XCTAssertEqual(viewModel.session.stage, .completed)
 
         await viewModel.flushPersistence()

@@ -37,7 +37,10 @@ final class PairingSessionSnapshotTests: XCTestCase {
         XCTAssertEqual(restored.target, .eight)
         XCTAssertEqual(restored.stage, .editing)
         XCTAssertEqual(restored.pairs.count, 3)
-        XCTAssertEqual(restored.pairs.map(\.quality?.grade), [.good, .warning, .rejected])
+        XCTAssertEqual(
+            restored.pairs.map { $0.quality?.grade },
+            [.good, .warning, .rejected]
+        )
 
         for pair in restored.pairs {
             XCTAssertNil(pair.original)
