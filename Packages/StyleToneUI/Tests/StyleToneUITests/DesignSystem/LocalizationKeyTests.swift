@@ -63,11 +63,11 @@ final class LocalizationKeyTests: XCTestCase {
 
     func testResolveUsesFallbackWithoutStringCatalog() {
         XCTAssertEqual(
-            L10n.resolve(.editorTitle, fallback: "Editor"),
+            L10n.resolve(L10n.editorTitle, fallback: "Editor"),
             "Editor"
         )
         XCTAssertEqual(
-            L10n.resolve(.paywallSubscribeButton, fallback: "Subscribe"),
+            L10n.resolve(L10n.paywallSubscribeButton, fallback: "Subscribe"),
             "Subscribe"
         )
     }
