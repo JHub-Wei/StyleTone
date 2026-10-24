@@ -4,6 +4,8 @@
 - 适用：当前 WP-00 工程骨架
 - 目标：没有 Mac 实机，也能在云端 macOS 上运行 `xcodegen` / `xcodebuild` / `swift test`，拿到构建与测试结果。
 
+> **当前环境实测（2026-10-24）**：远程已配置为 `origin https://github.com/JHub-Wei/StyleTone.git`，但 `git ls-remote` 返回 `Failed to connect to github.com port 443: Timed out`。当前 Windows 主机无法直连 GitHub，需要代理/VPN，或在另一台能访问 GitHub 的机器上执行 `git push`。这不是认证问题。
+
 ---
 
 ## 1. 推荐方案：GitHub Actions macOS Runner
@@ -43,6 +45,37 @@ git push -u origin main
    - `Build app`
    - `Run app tests`
 6. 失败时下载 **xcresult** artifact（保留 7 天），或在日志里看具体错误。
+
+### 如果 `git push` 超时
+
+当前机器实测报错：
+
+```text
+fatal: unable to access 'https://github.com/JHub-Wei/StyleTone.git/':
+Failed to connect to github.com port 443: Timed out
+```
+
+处理顺序：
+
+1. **确认代理/VPN**：浏览器能打开 `https://github.com/JHub-Wei/StyleTone` 不代表 Git 能直连；给 Git 配置代理：
+
+   ```bash
+   git config --global http.proxy http://127.0.0.1:<端口>
+   git config --global https.proxy http://127.0.0.1:<端口>
+   ```
+
+   或只对当前仓库：
+
+   ```bash
+   git config http.proxy http://127.0.0.1:<端口>
+   git config https.proxy http://127.0.0.1:<端口>
+   ```
+
+2. **换网络**：在能访问 GitHub 的电脑/网络执行 `git push -u origin main`。
+3. **用 GitHub Web 上传**：私有仓库可以在网页端上传文件，但 47 个文件不推荐；优先命令行。
+4. **临时使用其他可达的 Git 托管**：如 Gitee/GitLab，再镜像到 GitHub；会增加同步成本，不推荐作为长期方案。
+
+> 不要在 `git remote` URL 里写 token；使用 Credential Manager/SSH key。私有仓库不要把 token 提交到仓库。
 
 ### 这个 workflow 做了什么
 
