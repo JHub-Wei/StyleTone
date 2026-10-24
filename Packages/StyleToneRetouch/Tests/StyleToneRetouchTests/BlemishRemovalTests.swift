@@ -1,5 +1,6 @@
 import GoldenSupport
 import StyleToneCore
+import TestShared
 import XCTest
 @testable import StyleToneRetouch
 
@@ -12,7 +13,7 @@ final class BlemishRemovalTests: XCTestCase {
             point: NormalizedPoint(x: 0.5, y: 0.5),
             radius: 0.055
         )
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[2].color,
             blemishes: [point]
@@ -70,7 +71,7 @@ final class BlemishRemovalTests: XCTestCase {
             BlemishPoint(point: NormalizedPoint(x: 0.70, y: 0.48), radius: 0.04),
             BlemishPoint(point: NormalizedPoint(x: 0.48, y: 0.75), radius: 0.04)
         ]
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[3].color,
             blemishes: points
@@ -118,7 +119,7 @@ final class BlemishRemovalTests: XCTestCase {
             point: NormalizedPoint(x: 0.4, y: 0.55),
             radius: 0.05
         )
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[4].color,
             blemishes: [point]
@@ -151,7 +152,7 @@ final class BlemishRemovalTests: XCTestCase {
 
     func testInvalidAndEmptyPointsReturnOriginalAsset() async throws {
         let size = PixelSize(width: 96, height: 96)
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[2].color
         )
@@ -204,7 +205,7 @@ final class BlemishRemovalTests: XCTestCase {
         XCTAssertEqual(tiny.pixelSize, onePixel.pixelSize)
 
         let size = PixelSize(width: 64, height: 64)
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[3].color
         )

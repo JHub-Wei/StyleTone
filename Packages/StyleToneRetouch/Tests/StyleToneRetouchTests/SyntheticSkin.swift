@@ -96,6 +96,22 @@ enum SyntheticSkin {
         return buffer
     }
 
+    static func asset(
+        size: PixelSize,
+        tone: RGB8,
+        blemishes: [BlemishPoint] = [],
+        stepEdge: Bool = false,
+        seed: UInt64 = 1
+    ) throws -> ImageAsset {
+        try image(
+            size: size,
+            tone: tone,
+            blemishes: blemishes,
+            stepEdge: stepEdge,
+            seed: seed
+        ).makeImageAsset()
+    }
+
     static func analysis(
         size: PixelSize,
         mask: MaskBuffer?,

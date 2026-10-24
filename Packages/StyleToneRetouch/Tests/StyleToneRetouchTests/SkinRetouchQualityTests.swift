@@ -1,5 +1,6 @@
 import GoldenSupport
 import StyleToneCore
+import TestShared
 import XCTest
 @testable import StyleToneRetouch
 
@@ -8,7 +9,7 @@ final class SkinRetouchQualityTests: XCTestCase {
 
     func testZeroStrengthReturnsOriginalAsset() async throws {
         let size = PixelSize(width: 64, height: 64)
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[2].color
         )
@@ -26,7 +27,7 @@ final class SkinRetouchQualityTests: XCTestCase {
 
     func testMissingEmptyAndWrongSizeMasksReturnOriginalAsset() async throws {
         let size = PixelSize(width: 64, height: 64)
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[2].color
         )
@@ -63,7 +64,7 @@ final class SkinRetouchQualityTests: XCTestCase {
 
     func testMaximumSmoothingRetainsTextureAndBrightness() async throws {
         let size = PixelSize(width: 192, height: 192)
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[2].color
         )
@@ -95,7 +96,7 @@ final class SkinRetouchQualityTests: XCTestCase {
         let mask = try SyntheticSkin.fullMask(size: size)
 
         for tone in SyntheticSkin.tones {
-            let input = try SyntheticSkin.image(size: size, tone: tone.color)
+            let input = try SyntheticSkin.asset(size: size, tone: tone.color)
             let analysis = SyntheticSkin.analysis(size: size, mask: mask)
             let output = try await retoucher.retouch(
                 input,
@@ -142,7 +143,7 @@ final class SkinRetouchQualityTests: XCTestCase {
 
     func testEvennessReducesRegionalBlotches() async throws {
         let size = PixelSize(width: 192, height: 192)
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[2].color,
             seed: 7
@@ -177,7 +178,7 @@ final class SkinRetouchQualityTests: XCTestCase {
 
     func testStrongEdgeContrastIsPreserved() async throws {
         let size = PixelSize(width: 160, height: 160)
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[2].color,
             stepEdge: true
@@ -206,7 +207,7 @@ final class SkinRetouchQualityTests: XCTestCase {
 
     func testFeatureGuardKeepsEyePixelsUntouched() async throws {
         let size = PixelSize(width: 128, height: 128)
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[2].color
         )
@@ -247,7 +248,7 @@ final class SkinRetouchQualityTests: XCTestCase {
 
     func testNaNAndOutOfRangeParametersAreSafe() async throws {
         let size = PixelSize(width: 64, height: 64)
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[2].color
         )

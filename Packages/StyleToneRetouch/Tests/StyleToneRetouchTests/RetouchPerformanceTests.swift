@@ -1,13 +1,14 @@
 import Foundation
 import GoldenSupport
 import StyleToneCore
+import TestShared
 import XCTest
 @testable import StyleToneRetouch
 
 final class RetouchPerformanceTests: XCTestCase {
     func testPreviewSizedRetouchIsInteractive() async throws {
         let size = PixelSize(width: 512, height: 512)
-        let input = try SyntheticSkin.image(
+        let input = try SyntheticSkin.asset(
             size: size,
             tone: SyntheticSkin.tones[2].color
         )
