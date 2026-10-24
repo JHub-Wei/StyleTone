@@ -149,12 +149,12 @@ private struct PairingPHPickerViewController: UIViewControllerRepresentable {
 
     /// Delegate bridge.
     ///
-    /// `PHPickerViewControllerDelegate` is an Objective-C delegate; its
-    /// callback is delivered on the main thread but the protocol itself is not
-    /// actor annotated. `MainActor.assumeIsolated` states that guarantee
-    /// instead of hopping through a `Task`, which would have to send the
-    /// non-`Sendable` `PHPickerResult` across an isolation boundary.
-    final class Coordinator: NSObject, @preconcurrency PHPickerViewControllerDelegate {
+    /// `PHPickerViewControllerDelegate` is `@MainActor @preconcurrency` in the
+    /// current SDK, so the coordinator is main-actor bound and can forward the
+    /// results directly. No `Task` hop is needed, which matters because
+    /// `PHPickerResult` is not `Sendable`.
+    @MainActor
+    final class Coordinator: NSObject, PHPickerViewControllerDelegate {
         var onResults: @MainActor ([PHPickerResult]) -> Void
 
         init(onResults: @escaping @MainActor ([PHPickerResult]) -> Void) {
@@ -165,9 +165,7 @@ private struct PairingPHPickerViewController: UIViewControllerRepresentable {
             _ picker: PHPickerViewController,
             didFinishPicking results: [PHPickerResult]
         ) {
-            MainActor.assumeIsolated {
-                onResults(results)
-            }
+            onResults(results)
         }
     }
 }

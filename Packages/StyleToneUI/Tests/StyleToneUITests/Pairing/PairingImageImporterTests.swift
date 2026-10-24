@@ -12,12 +12,12 @@ final class PairingImageImporterTests: XCTestCase {
 
     func testImportBoundsTheProxyAndKeepsSourceSize() async throws {
         let source = try MockImageAssetFactory.solid(
-            size: PixelSize(width: 64, height: 48)
+            size: PixelSize(width: 256, height: 192)
         )
         let data = try Self.pngData(from: source)
         let importer = PairingImageImporter(
             configuration: PairingImportConfiguration(
-                maximumLongEdge: 32,
+                maximumLongEdge: 128,
                 minimumLongEdge: 1
             )
         )
@@ -28,8 +28,9 @@ final class PairingImageImporterTests: XCTestCase {
             importedAt: date
         )
 
-        XCTAssertEqual(photo.sourcePixelSize, PixelSize(width: 64, height: 48))
-        XCTAssertEqual(photo.displayPixelSize.longEdge, 32)
+        XCTAssertEqual(photo.sourcePixelSize, PixelSize(width: 256, height: 192))
+        XCTAssertEqual(photo.displayPixelSize.longEdge, 128)
+        XCTAssertEqual(photo.displayPixelSize.shortEdge, 96)
         XCTAssertEqual(photo.sourceIdentifier, "asset-1")
         XCTAssertEqual(photo.byteCount, data.count)
         XCTAssertEqual(photo.importedAt, date)

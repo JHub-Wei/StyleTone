@@ -101,8 +101,8 @@ final class PairingPrivacyAuditTests: XCTestCase {
 
     private func sourceDirectory() throws -> URL {
         let testDirectory = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
+        // Pairing -> StyleToneUITests -> Tests -> StyleToneUI
         let packageRoot = testDirectory
-            .deletingLastPathComponent()
             .deletingLastPathComponent()
             .deletingLastPathComponent()
             .deletingLastPathComponent()

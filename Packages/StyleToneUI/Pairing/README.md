@@ -186,7 +186,8 @@ swift test --filter PairingSessionSnapshotTests
 
 1. **CI 未跑**：本会话为 Windows，没有 Swift/Xcode；`swift test`、`xcodebuild` 均未执行。需要在 macOS
    runner 上跑 `swift test` + App build，重点确认 `PairingPHPicker.swift` 的 Swift 6 并发桥接
-   （`MainActor.assumeIsolated` + `@preconcurrency` conformance）与 `@Bindable` 本地绑定。
+   （SDK 的 `PHPickerViewControllerDelegate` 为 `@MainActor @preconcurrency`，Coordinator 已标
+   `@MainActor`）与 `@Bindable` 本地绑定。
 2. **质量分析使用 1600px 代理**：`PairQualityAnalyzing` 只接收 `ImageAsset`，WP-05 的分辨率比值用
    `pixelSize` 计算。两端都大于 1600px 时比值恒为 1，`resolutionReduced/TooLow` 可能不触发。
    建议 CCR：给协议加源尺寸 hint，或由 UI 对分辨率单独做一次全尺寸读取。
