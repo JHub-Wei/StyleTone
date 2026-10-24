@@ -42,12 +42,12 @@ and validates that it is vertical, non-crossing and inside the frame.
 
 ### Lengthening
 
-The **ankle is the fixed anchor**: content at and below the ankle has exactly
-zero displacement, so feet and shoes cannot be stretched, compressed or cropped
-by the lengthening field. Let
+The **higher of the two ankles is the fixed anchor**: content at and below it has
+exactly zero displacement, so both feet and shoes cannot be stretched, compressed
+or cropped by the lengthening field when the pose is slightly asymmetric. Let
 
 ```
-L  = ankle.y - hip.y
+L  = anchorAnkle.y - meanHip.y
 s  = effective body.legLength (1.00...1.15)
 d  = (s - 1) * L                      // hip content shift, capped
 q  = (ankle.y - y) / L                // output coordinate, 0 at ankle
@@ -91,12 +91,13 @@ above the ankle, and is gated by the person mask.
 
 ### Foot / shoe protection
 
-- Lengthening displacement is exactly zero for `y >= ankle.y`.
-- Slimming is exactly zero at and below `ankle.y`, after a fade over
-  `footGuardHeight` above the ankle.
-- An ankle within `minimumAnkleMargin` of the bottom frame edge makes the whole
-  pass a safe no-op (`.feetOutsideFrame`), because a cropped foot cannot be
-  guaranteed complete.
+- Lengthening displacement is zero for `y >= anchorAnkle.y`; a lower second
+  ankle is also below the anchor, so both feet stay fixed.
+- Slimming is exactly zero at and below each leg's own ankle, after a fade over
+  `footGuardHeight` above it.
+- An ankle within `minimumAnkleMargin` of the bottom or left/right frame edge
+  makes the whole pass a safe no-op (`.feetOutsideFrame`), because a cropped
+  foot cannot be guaranteed complete.
 - A colour/pixel test renders a synthetic shoe block and checks that the red
   foot pixels survive the warp and the frame has no black/transparent border.
 

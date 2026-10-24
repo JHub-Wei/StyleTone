@@ -100,21 +100,21 @@ struct LegsWarpPlanner: Sendable {
             append(.noPersonMask, to: &warnings)
         }
 
-        let averageLegLength = (left.length + right.length) / 2
+        let averageHipY = (left.hip.y + right.hip.y) / 2
+        let anchorAnkleY = min(left.ankle.y, right.ankle.y)
+        let anchorLegLength = max(anchorAnkleY - averageHipY, 1e-9)
         var effectiveLength = min(
             1 + (requestedLength - 1) * strengthScale,
             configuration.maximumLengthening
         )
-        var maximumShift = max(0, (effectiveLength - 1) * averageLegLength)
-        if maximumShift > configuration.maximumVerticalDisplacement {
+        let requestedShift = max(0, (effectiveLength - 1) * anchorLegLength)
+        if requestedShift > configuration.maximumVerticalDisplacement {
             effectiveLength = 1
-                + configuration.maximumVerticalDisplacement / averageLegLength
-            maximumShift = configuration.maximumVerticalDisplacement
+                + configuration.maximumVerticalDisplacement / anchorLegLength
             append(.strengthLimited, to: &warnings)
         }
         if effectiveLength <= 1.000_001 {
             effectiveLength = 1
-            maximumShift = 0
         }
 
         var effectiveSlim = LegsMath.clamp(requestedSlim * strengthScale, 0, 1)
@@ -150,8 +150,7 @@ struct LegsWarpPlanner: Sendable {
             slimStrength: effectiveSlim,
             legLengthScale: effectiveLength,
             faces: faces,
-            mask: usableMask,
-            imageSize: analysis.imageSize
+            mask: usableMask
         )
 
         var offsets = [SIMD2<Float>](
@@ -402,7 +401,6 @@ private struct LegsPlanContext {
     let legLengthScale: Double
     let faces: [NormalizedRect]
     let mask: MaskBuffer?
-    let imageSize: PixelSize
 
     let hipY: Double
     let ankleY: Double
@@ -418,8 +416,7 @@ private struct LegsPlanContext {
         slimStrength: Double,
         legLengthScale: Double,
         faces: [NormalizedRect],
-        mask: MaskBuffer?,
-        imageSize: PixelSize
+        mask: MaskBuffer?
     ) {
         self.configuration = configuration
         self.legs = legs
@@ -427,11 +424,13 @@ private struct LegsPlanContext {
         self.legLengthScale = legLengthScale
         self.faces = faces
         self.mask = mask
-        self.imageSize = imageSize
 
         let count = Double(max(legs.count, 1))
         hipY = legs.map(\.hip.y).reduce(0, +) / count
-        ankleY = legs.map(\.ankle.y).reduce(0, +) / count
+        // Use the higher of the two ankles as the fixed anchor. Both feet then
+        // sit at or below the anchor, so neither shoe is pulled upward when the
+        // pose is slightly asymmetric.
+        ankleY = legs.map(\.ankle.y).min() ?? hipY
         legLength = max(ankleY - hipY, 1e-9)
         maximumShift = max(0, (legLengthScale - 1) * legLength)
         if legLengthScale > 1.000_001 {

@@ -207,6 +207,23 @@ final class LegsWarpContributorTests: XCTestCase {
         }
     }
 
+    func testAsymmetricAnklesBothStayFixed() throws {
+        let body = LegsTestSupport.bodyObservation(
+            leftAnkleY: 0.88,
+            rightAnkleY: 0.90
+        )
+        let plan = try makePlan(
+            analysis: LegsTestSupport.analysis(body: body),
+            legLength: 1.15
+        )
+        let leftFoot = try LegsTestSupport.offset(plan, x: 0.42, y: 0.88)
+        let rightFoot = try LegsTestSupport.offset(plan, x: 0.58, y: 0.90)
+        let leftShin = try LegsTestSupport.offset(plan, x: 0.42, y: 0.84)
+        XCTAssertEqual(Double(leftFoot.y), 0, accuracy: 0.0002)
+        XCTAssertEqual(Double(rightFoot.y), 0, accuracy: 0.0002)
+        XCTAssertLessThan(leftShin.y, -0.001)
+    }
+
     func testHipMovesMoreThanKneeAndAnkleStaysFixed() throws {
         let plan = try makePlan(
             analysis: LegsTestSupport.analysis(),

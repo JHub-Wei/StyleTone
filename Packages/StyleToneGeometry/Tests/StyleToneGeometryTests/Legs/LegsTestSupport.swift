@@ -15,6 +15,8 @@ enum LegsTestSupport {
         rightKneeX: Double? = nil,
         leftAnkleX: Double? = nil,
         rightAnkleX: Double? = nil,
+        leftAnkleY: Double? = nil,
+        rightAnkleY: Double? = nil,
         omitted: Set<BodyJointKind> = [],
         confidence: Float = 0.9
     ) -> BodyObservation {
@@ -24,8 +26,8 @@ enum LegsTestSupport {
             (.rightHip, rightHipX, hipY),
             (.leftKnee, leftKneeX ?? leftHipX, kneeY),
             (.rightKnee, rightKneeX ?? rightHipX, kneeY),
-            (.leftAnkle, leftAnkleX ?? leftHipX, ankleY),
-            (.rightAnkle, rightAnkleX ?? rightHipX, ankleY)
+            (.leftAnkle, leftAnkleX ?? leftHipX, leftAnkleY ?? ankleY),
+            (.rightAnkle, rightAnkleX ?? rightHipX, rightAnkleY ?? ankleY)
         ]
         for (kind, x, y) in values where !omitted.contains(kind) {
             joints[kind] = NormalizedPoint(x: x, y: y)
