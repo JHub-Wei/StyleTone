@@ -169,6 +169,45 @@ final class CPUGeometryWarpTests: XCTestCase {
         XCTAssertEqual(ImageColorSpace.detect(output.colorSpace), .displayP3)
     }
 
+    func test1080pCPUFallbackFrameTimeRecord() throws {
+        let size = PixelSize(width: 1920, height: 1080)
+        let image = try GeometryTestSupport.makeImage(
+            width: size.width,
+            height: size.height
+        ) { x, y in
+            RGBA8(
+                red: UInt8((x * 255) / max(size.width - 1, 1)),
+                green: UInt8((y * 255) / max(size.height - 1, 1)),
+                blue: 128
+            )
+        }
+        let field = try GeometryTestSupport.featheredField(
+            width: 32,
+            height: 32,
+            offset: SIMD2<Float>(0.02, 0.015)
+        )
+        let sample = try GeometryPerformanceProbe.measure(
+            operation: "geometry.cpu.fallback.1080p",
+            backend: backend.identifier,
+            gridDimension: 32,
+            pixelSize: size,
+            iterations: 1,
+            warmUpIterations: 0
+        ) {
+            _ = try backend.warp(
+                image,
+                field: field,
+                configuration: GeometryWarpConfiguration(
+                    quality: .preview,
+                    allowsIdentityShortcut: false
+                )
+            )
+        }
+        print("GEOMETRY_PERF \(sample.summary)")
+        XCTAssertEqual(sample.pixelWidth, 1920)
+        XCTAssertEqual(sample.pixelHeight, 1080)
+    }
+
     func testCancellationPropagates() async throws {
         let image = try GeometryTestSupport.gradientWithBorder(width: 64, height: 64)
         let field = try GeometryTestSupport.constantField(

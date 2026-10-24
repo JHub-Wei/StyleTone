@@ -20,6 +20,18 @@ final class MetalGeometryWarpTests: XCTestCase {
         allowsIdentityShortcut: false
     )
 
+    func testBackendInitializesWhenADeviceExists() throws {
+        guard MTLCreateSystemDefaultDevice() != nil else {
+            throw XCTSkip("Metal device unavailable on this runner")
+        }
+        // If the device exists but the embedded shader or a pipeline fails,
+        // this test fails instead of silently skipping the whole Metal suite.
+        let backend = try MetalGeometryWarp()
+        XCTAssertFalse(backend.deviceName.isEmpty)
+        XCTAssertEqual(backend.identifier, "geometry.metal")
+        XCTAssertTrue(backend.isGPUAccelerated)
+    }
+
     func testIdentityMeshIsNearExact() throws {
         let backend = try makeBackend()
         let image = try GeometryTestSupport.gradientWithBorder(width: 64, height: 48)

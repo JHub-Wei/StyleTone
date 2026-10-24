@@ -417,7 +417,7 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
         var uv: SIMD2<Float>
     }
 
-    private static let shaderSource = #"""
+    static let shaderSource = #"""
     #include <metal_stdlib>
     using namespace metal;
 

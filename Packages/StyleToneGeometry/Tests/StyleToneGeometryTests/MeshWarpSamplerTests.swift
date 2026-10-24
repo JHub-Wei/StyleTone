@@ -84,9 +84,11 @@ final class MeshWarpSamplerTests: XCTestCase {
             for: SIMD2<Float>(0.5, 0.5),
             field: field
         )
-        // Weights are 0.5 * topLeft + 0.25 * topRight + 0.25 * bottomLeft.
-        XCTAssertEqual(source.x, 0.5 - 0.075, accuracy: 1e-6)
-        XCTAssertEqual(source.y, 0.5 - 0.1, accuracy: 1e-6)
+        // On the diagonal the first triangle has weight 0 for the top-left
+        // vertex and 0.5 for the other two vertices; the second triangle
+        // evaluates to the same UV.
+        XCTAssertEqual(source.x, 0.5 - 0.15, accuracy: 1e-6)
+        XCTAssertEqual(source.y, 0.5 - 0.2, accuracy: 1e-6)
     }
 
     func testSourcePositionCanLeaveTheImageForClamping() throws {
