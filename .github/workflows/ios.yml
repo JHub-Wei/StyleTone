@@ -1,10 +1,14 @@
 name: iOS CI
 
 on:
+  workflow_dispatch:
   push:
     branches: ["**"]
   pull_request:
     branches: ["**"]
+
+permissions:
+  contents: read
 
 concurrency:
   group: ios-ci-${{ github.ref }}
@@ -34,20 +38,64 @@ jobs:
       - name: Swift package tests
         run: swift test
 
-      - name: Build app for iOS Simulator
+      - name: Select available iPhone simulator
+        id: simulator
+        run: |
+          UDID=$(python3 - <<'PY'
+          import json
+          import subprocess
+          import sys
+
+          data = json.loads(subprocess.check_output(["xcrun", "simctl", "list", "devices", "available", "-j"]))
+          for runtime, devices in data.get("devices", {}).items():
+              if "iOS-" not in runtime:
+                  continue
+              try:
+                  major = int(runtime.split("iOS-")[1].split("-")[0])
+              except (IndexError, ValueError):
+                  continue
+              if major < 17:
+                  continue
+              for device in devices:
+                  if device.get("isAvailable", True) and device.get("name", "").startswith("iPhone"):
+                      print(device["udid"])
+                      sys.exit(0)
+          sys.exit(1)
+          PY
+          )
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+          echo "Selected simulator: $UDID"
+
+      - name: Build app
+        env:
+          SIMULATOR_UDID: ${{ steps.simulator.outputs.udid }}
         run: |
           xcodebuild \
             -project StyleTone.xcodeproj \
             -scheme StyleTone \
-            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" \
+            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
             CODE_SIGNING_ALLOWED=NO \
             build
 
       - name: Run app tests
+        env:
+          SIMULATOR_UDID: ${{ steps.simulator.outputs.udid }}
         run: |
           xcodebuild \
             -project StyleTone.xcodeproj \
             -scheme StyleTone \
-            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" \
+            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -resultBundlePath "$RUNNER_TEMP/StyleTone-${{ github.run_id }}.xcresult" \
             CODE_SIGNING_ALLOWED=NO \
             test
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcresult-${{ github.run_id }}
+          path: ${{ runner.temp }}/StyleTone-${{ github.run_id }}.xcresult
+          if-no-files-found: ignore
+          retention-days: 7

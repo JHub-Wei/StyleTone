@@ -44,6 +44,8 @@ xcodebuild -project StyleTone.xcodeproj -scheme StyleTone \
 
 Windows 不能运行 `xcodebuild`。可以在 Windows 写代码并推送到 GitHub，由 `.github/workflows/ios.yml` 在 macOS runner 上构建/测试。没有 Mac 时，TestFlight 也需要 macOS CI 先产出构建。
 
+完整的 Windows→macOS CI 方案见 [CI-SETUP.md](CI-SETUP.md)。
+
 ## 当前骨架
 
 - 9 个 SwiftPM library target：Core / Imaging / Vision / Geometry / Retouch / Learning / Persistence / Commerce / UI。

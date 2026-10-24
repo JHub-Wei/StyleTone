@@ -25,7 +25,7 @@
   - 未运行 `swift test`（本机无 Swift/Xcode）。
 - 下一步：
   1. 在 macOS 上执行 `brew install xcodegen` → `xcodegen generate` → `make build` / `make test`。
-  2. 或推送到 GitHub，让 `.github/workflows/ios.yml` 跑 macOS CI。
+  2. 或推送到 GitHub，让 `.github/workflows/ios.yml` 跑 macOS CI（无需 Mac，见 [CI-SETUP.md](../../CI-SETUP.md)）。
   3. CI 绿灯后把 WP-00 标记为 `done`，再启动 WP-01（Core 契约）。
 - 已知风险：
   - XcodeGen 的本地 package 路径 `path: .` 需在 macOS 实机验证。

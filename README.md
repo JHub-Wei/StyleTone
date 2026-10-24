@@ -133,5 +133,5 @@
 ## 7. 工程状态
 
 - **WP-00 工程骨架已完成，状态 `review / CI_PENDING`**：XcodeGen 工程源、9 个 SwiftPM target、占位 App、CI、Makefile、模块占位测试均已提交。
-- 构建说明见 [BUILD.md](BUILD.md)；当前 Windows 环境无法运行 `xcodebuild`，需 macOS 或 GitHub Actions macOS runner 验证。
+- 构建说明见 [BUILD.md](BUILD.md)；Windows 上获取 macOS CI 结果见 [CI-SETUP.md](CI-SETUP.md)；当前 Windows 环境无法运行 `xcodebuild`，需 macOS 或 GitHub Actions macOS runner 验证。
 - 下一步：在 macOS 上执行 `xcodegen generate` → `make build` / `make test`，CI 绿灯后标记 WP-00 `done`，再启动 WP-01（Core 契约）。
