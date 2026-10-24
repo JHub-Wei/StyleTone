@@ -16,12 +16,26 @@ let package = Package(
         .library(name: "StyleToneLearning", targets: ["StyleToneLearning"]),
         .library(name: "StyleTonePersistence", targets: ["StyleTonePersistence"]),
         .library(name: "StyleToneCommerce", targets: ["StyleToneCommerce"]),
-        .library(name: "StyleToneUI", targets: ["StyleToneUI"])
+        .library(name: "StyleToneUI", targets: ["StyleToneUI"]),
+        // WP-04 test infrastructure. Library products let XcodeGen/App test
+        // targets link them later; SwiftPM test targets use the targets directly.
+        .library(name: "GoldenSupport", targets: ["GoldenSupport"]),
+        .library(name: "TestShared", targets: ["TestShared"])
     ],
     targets: [
         .target(
             name: "StyleToneCore",
             path: "Packages/StyleToneCore/Sources/StyleToneCore"
+        ),
+        .target(
+            name: "GoldenSupport",
+            dependencies: ["StyleToneCore"],
+            path: "Tests/GoldenSupport/Sources/GoldenSupport"
+        ),
+        .target(
+            name: "TestShared",
+            dependencies: ["StyleToneCore", "GoldenSupport"],
+            path: "Tests/Shared/Sources/TestShared"
         ),
         .target(
             name: "StyleToneImaging",
@@ -63,50 +77,62 @@ let package = Package(
             dependencies: ["StyleToneCore", "StyleToneImaging"],
             path: "Packages/StyleToneUI/Sources/StyleToneUI"
         ),
+        // Every module test target can `import GoldenSupport` for image
+        // comparison and `import TestShared` for the shared mocks.
         .testTarget(
             name: "StyleToneCoreTests",
-            dependencies: ["StyleToneCore"],
+            dependencies: ["StyleToneCore", "GoldenSupport", "TestShared"],
             path: "Packages/StyleToneCore/Tests/StyleToneCoreTests"
         ),
         .testTarget(
             name: "StyleToneImagingTests",
-            dependencies: ["StyleToneImaging"],
+            dependencies: ["StyleToneImaging", "GoldenSupport", "TestShared"],
             path: "Packages/StyleToneImaging/Tests/StyleToneImagingTests"
         ),
         .testTarget(
             name: "StyleToneVisionTests",
-            dependencies: ["StyleToneVision"],
+            dependencies: ["StyleToneVision", "GoldenSupport", "TestShared"],
             path: "Packages/StyleToneVision/Tests/StyleToneVisionTests"
         ),
         .testTarget(
             name: "StyleToneGeometryTests",
-            dependencies: ["StyleToneGeometry"],
+            dependencies: ["StyleToneGeometry", "GoldenSupport", "TestShared"],
             path: "Packages/StyleToneGeometry/Tests/StyleToneGeometryTests"
         ),
         .testTarget(
             name: "StyleToneRetouchTests",
-            dependencies: ["StyleToneRetouch"],
+            dependencies: ["StyleToneRetouch", "GoldenSupport", "TestShared"],
             path: "Packages/StyleToneRetouch/Tests/StyleToneRetouchTests"
         ),
         .testTarget(
             name: "StyleToneLearningTests",
-            dependencies: ["StyleToneLearning"],
+            dependencies: ["StyleToneLearning", "GoldenSupport", "TestShared"],
             path: "Packages/StyleToneLearning/Tests/StyleToneLearningTests"
         ),
         .testTarget(
             name: "StyleTonePersistenceTests",
-            dependencies: ["StyleTonePersistence"],
+            dependencies: ["StyleTonePersistence", "GoldenSupport", "TestShared"],
             path: "Packages/StyleTonePersistence/Tests/StyleTonePersistenceTests"
         ),
         .testTarget(
             name: "StyleToneCommerceTests",
-            dependencies: ["StyleToneCommerce"],
+            dependencies: ["StyleToneCommerce", "GoldenSupport", "TestShared"],
             path: "Packages/StyleToneCommerce/Tests/StyleToneCommerceTests"
         ),
         .testTarget(
             name: "StyleToneUITests",
-            dependencies: ["StyleToneUI"],
+            dependencies: ["StyleToneUI", "GoldenSupport", "TestShared"],
             path: "Packages/StyleToneUI/Tests/StyleToneUITests"
+        ),
+        .testTarget(
+            name: "GoldenSupportTests",
+            dependencies: ["GoldenSupport", "TestShared", "StyleToneCore"],
+            path: "Tests/GoldenSupport/Tests/GoldenSupportTests"
+        ),
+        .testTarget(
+            name: "TestSharedTests",
+            dependencies: ["TestShared", "StyleToneCore"],
+            path: "Tests/Shared/Tests/TestSharedTests"
         )
     ],
     swiftLanguageModes: [.v6]

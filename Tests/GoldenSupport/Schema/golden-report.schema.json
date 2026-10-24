@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://styletone.local/schemas/golden-report.schema.json",
+  "title": "GoldenSupport CI report",
+  "description": "Machine-readable report written by GoldenSupport for a CI artifact.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "tool",
+    "toolVersion",
+    "suite",
+    "generatedAt",
+    "environment",
+    "entries",
+    "summary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "tool": {
+      "type": "string",
+      "const": "GoldenSupport"
+    },
+    "toolVersion": {
+      "type": "string"
+    },
+    "suite": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "description": "ISO-8601 timestamp with time zone."
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["isCI"],
+      "properties": {
+        "isCI": { "type": "boolean" },
+        "provider": { "type": ["string", "null"] },
+        "runID": { "type": ["string", "null"] },
+        "runnerOS": { "type": ["string", "null"] },
+        "osVersion": { "type": ["string", "null"] }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "name", "status", "metrics", "thresholdFailures"],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": ["imageComparison", "performance", "fixtureSelfCheck", "custom"]
+          },
+          "name": { "type": "string", "minLength": 1 },
+          "status": { "type": "string", "enum": ["passed", "failed", "skipped"] },
+          "message": { "type": ["string", "null"] },
+          "metrics": {
+            "type": "object",
+            "additionalProperties": { "type": "number" }
+          },
+          "thresholdFailures": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "passed", "failed", "skipped"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "passed": { "type": "integer", "minimum": 0 },
+        "failed": { "type": "integer", "minimum": 0 },
+        "skipped": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

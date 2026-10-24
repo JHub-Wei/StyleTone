@@ -1,0 +1,4 @@
+# Real photos must never be committed. Keep this directory metadata-only.
+*
+!.gitignore
+!manifest.json
