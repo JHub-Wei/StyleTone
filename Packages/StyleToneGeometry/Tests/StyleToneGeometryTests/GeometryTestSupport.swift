@@ -4,6 +4,7 @@ import GoldenSupport
 import StyleToneCore
 import StyleToneImaging
 import XCTest
+@testable import StyleToneGeometry
 
 enum GeometryTestSupport {
     static let sRGB = CGColorSpace(name: CGColorSpace.sRGB)!

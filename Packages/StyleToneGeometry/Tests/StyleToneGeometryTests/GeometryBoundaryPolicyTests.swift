@@ -19,7 +19,11 @@ final class GeometryBoundaryPolicyTests: XCTestCase {
             for x in 0 ..< 8 {
                 let edgeDistance = min(min(x, y), min(7 - x, 7 - y))
                 if edgeDistance <= 1 {
-                    XCTAssertEqual(field.offsets[y * 8 + x], .zero, "vertex (\(x),\(y))")
+                    XCTAssertEqual(
+                        field.offsets[y * 8 + x],
+                        SIMD2<Float>(0, 0),
+                        "vertex (\(x),\(y))"
+                    )
                 }
             }
         }
@@ -103,12 +107,16 @@ final class GeometryBoundaryPolicyTests: XCTestCase {
         )
         try policy.apply(to: &field)
 
-        XCTAssertEqual(field.offsets[0], .zero)
+        XCTAssertEqual(field.offsets[0], SIMD2<Float>(0, 0))
         XCTAssertEqual(field.offsets[2 * 6 + 2], SIMD2<Float>(0.02, 0))
     }
 
     func testApplyRejectsCorruptField() throws {
-        var field = try GeometryTestSupport.constantField(width: 4, height: 4, offset: .zero)
+        var field = try GeometryTestSupport.constantField(
+            width: 4,
+            height: 4,
+            offset: SIMD2<Float>(0, 0)
+        )
         field.offsets.removeLast()
         XCTAssertThrowsError(try GeometryBoundaryPolicy.standard.apply(to: &field)) { error in
             XCTAssertEqual(
