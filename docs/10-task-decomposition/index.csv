@@ -1,5 +1,5 @@
 ﻿"id","title","wave","phase","estimate_pd","owner","dependencies","owns","test_target","parallel_safe","status","fr"
-"WP-00","仓库/XcodeGen/模块骨架/CI","0","A","8","iOS-A","-","project.yml; Package.swift; App/StyleToneApp.swift; .github; Makefile; 模块空壳","CI build + module tests","no","ready","ALL"
+"WP-00","仓库/XcodeGen/模块骨架/CI","0","A","8","iOS-A","-","project.yml; Package.swift; App/StyleToneApp.swift; .github; Makefile; 模块空壳","CI build + module tests","no","review","ALL"
 "WP-01","Core 契约与 JSON schema","0","A","9","iOS-A","WP-00","Packages/StyleToneCore","StyleToneCoreTests","no","blocked","ALL"
 "WP-02","图像 I/O/方向/色彩/编码","0","A","9","iOS-A/IMG","WP-00; WP-01","Packages/StyleToneImaging","StyleToneImagingTests","yes","blocked","FR-07"
 "WP-03","设计系统/App Shell/路由","0","A","9","iOS-B/PD","WP-00; WP-01","Packages/StyleToneUI/DesignSystem; App/AppShell","StyleToneUITests","yes","blocked","FR-01; FR-24"
