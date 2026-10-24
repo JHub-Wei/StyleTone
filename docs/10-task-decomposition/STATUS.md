@@ -57,6 +57,8 @@
   - `swift test` 通过。
   - Xcode App build/test 通过。
   - 无网络/照片上传代码。
+- 说明：
+  - 当前 Mock 位于 Core 的测试 target，供契约测试使用；跨 Package 共享的 TestSupport target 由 WP-04 统一补齐，在那之前各 WP 可写自己的本地 mock。
 - 下一步：
   1. 并行启动 WP-02（图像）、WP-03（设计/Shell）、WP-04（测试 Harness）。
   2. 三者完成后进入 WP-05/06/07/08/09/10/11。
