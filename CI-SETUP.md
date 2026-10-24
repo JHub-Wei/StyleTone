@@ -4,7 +4,7 @@
 - 适用：当前 WP-00 工程骨架
 - 目标：没有 Mac 实机，也能在云端 macOS 上运行 `xcodegen` / `xcodebuild` / `swift test`，拿到构建与测试结果。
 
-> **当前环境实测（2026-10-24）**：Edge 使用本地代理 `127.0.0.1:7890`；Git 直连会超时，配置 `http.proxy/https.proxy` 后已成功执行 `git push -u origin main`。GitHub Actions 已跑通：https://github.com/JHub-Wei/StyleTone/actions/runs/40090394824 。
+> **当前环境实测（2026-10-24）**：Edge 使用本地代理 `127.0.0.1:7890`；Git 直连会超时，配置 `http.proxy/https.proxy` 后已成功执行 `git push -u origin main`。GitHub Actions 已跑通：https://github.com/JHub-Wei/StyleTone/actions/runs/40090672908 。
 
 ---
 
