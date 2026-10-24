@@ -63,3 +63,37 @@
   1. 并行启动 WP-02（图像）、WP-03（设计/Shell）、WP-04（测试 Harness）。
   2. 三者完成后进入 WP-05/06/07/08/09/10/11。
 
+---
+
+## WP-02 ~ WP-11 · done（2026-10-25 拉取）
+
+- 本地已切回 `main` 并拉取到 `9901a0c`（Merge PR #9，WP-11）。
+- 远程 `main` CI：https://github.com/JHub-Wei/StyleTone/actions/runs/40110565858 （success）。
+- 已完成并合并：
+  - WP-02 图像 I/O / 色彩 / 编码
+  - WP-03 设计系统 / App Shell / 路由
+  - WP-04 测试 Harness / TestShared / GoldenSupport
+  - WP-05 人像分析 + 配对质量
+  - WP-06 网格形变 Core
+  - WP-07 磨皮/匀肤/去瑕疵 Core
+  - WP-08 SwiftData 持久化与迁移
+  - WP-09 配对导入 / 质量 UI
+  - WP-10 3/5/8 校准 + AB UI
+  - WP-11 风格学习（tone/WB/saturation/strength/AB/confidence）
+- WP-11 实测：
+  - CI Debug、合成 160×160 样本：5 组约 **4.98 s**，8 组约 **7.81 s**。
+  - 预算：5 组 ≤90 s，8 组 ≤150 s；当前远低于预算。
+- 本地状态：
+  - `main` 与 `origin/main` 同步，工作区干净。
+  - 拉取前把 WP-09/10/11 的未跟踪本地产物存入 `stash@{0}`；远程已有对应源码，暂不恢复，待人工确认后可删除。
+- 下一步可并行：
+  - WP-12 瘦脸/下颌
+  - WP-13 瘦手臂/腰
+  - WP-14 瘦腿/拉长
+  - WP-15 背景保护
+  - WP-16 皮肤工具 UI
+  - WP-17 编辑器
+  - WP-19 导出
+  - WP-21 设置
+
+
