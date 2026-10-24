@@ -39,7 +39,8 @@ public enum ImageColorSpace: String, Sendable, CaseIterable {
         if let p3 = CGColorSpace(name: CGColorSpace.displayP3), CFEqual(colorSpace, p3) {
             return .displayP3
         }
-        if let name = colorSpace.name {
+        if let cfName = colorSpace.name {
+            let name = cfName as String
             if name.localizedCaseInsensitiveContains("P3") {
                 return .displayP3
             }

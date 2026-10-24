@@ -47,6 +47,7 @@ public struct ColorPipeline: Sendable {
     /// Only the requested region is drawn, which keeps memory bounded for
     /// export tiles.
     public func linearize(_ image: ImageAsset, region: PixelRegion) throws -> LinearImage {
+        try Task.checkCancellation()
         let imageWidth = image.cgImage.width
         let imageHeight = image.cgImage.height
         guard region.width > 0,
@@ -156,6 +157,7 @@ public struct ColorPipeline: Sendable {
         }
         var y = 0
         while y < image.cgImage.height {
+            try Task.checkCancellation()
             let height = min(tileHeight, image.cgImage.height - y)
             let region = PixelRegion(
                 x: 0,
@@ -179,6 +181,7 @@ public struct ColorPipeline: Sendable {
         from linear: LinearImage,
         colorSpace: ImageColorSpace = .sRGB
     ) throws -> ImageAsset {
+        try Task.checkCancellation()
         let targetSpace = colorSpace.cgColorSpace
         let count = linear.pixelCount
         var bytes = [UInt8](repeating: 0, count: count * 4)
