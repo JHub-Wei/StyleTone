@@ -247,6 +247,7 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
         )
         renderEncoder.endEncoding()
 
+        #if os(macOS)
         if outputTexture.storageMode == .managed {
             guard let blitEncoder = commandBuffer.makeBlitCommandEncoder() else {
                 throw GeometryError.commandEncodingFailed
@@ -254,6 +255,7 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
             blitEncoder.synchronize(resource: outputTexture)
             blitEncoder.endEncoding()
         }
+        #endif
 
         commandBuffer.commit()
         commandBuffer.waitUntilCompleted()
@@ -264,6 +266,18 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
     }
 
     // MARK: - Resource creation
+
+    /// CPU-readable storage mode.
+    ///
+    /// iOS only exposes shared/private textures; macOS on discrete GPUs needs
+    /// managed textures plus an explicit blit synchronisation.
+    private var textureStorageMode: MTLStorageMode {
+        #if os(macOS)
+        return device.hasUnifiedMemory ? .shared : .managed
+        #else
+        return .shared
+        #endif
+    }
 
     private func makeSourceTexture(from image: ImageAsset) throws -> MTLTexture {
         let width = image.pixelSize.width
@@ -302,7 +316,7 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
             mipmapped: false
         )
         descriptor.usage = [.shaderRead]
-        descriptor.storageMode = device.hasUnifiedMemory ? .shared : .managed
+        descriptor.storageMode = textureStorageMode
         guard let texture = device.makeTexture(descriptor: descriptor) else {
             throw GeometryError.resourceCreationFailed
         }
@@ -327,7 +341,7 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
             mipmapped: false
         )
         descriptor.usage = [.renderTarget, .shaderRead]
-        descriptor.storageMode = device.hasUnifiedMemory ? .shared : .managed
+        descriptor.storageMode = textureStorageMode
         guard let texture = device.makeTexture(descriptor: descriptor) else {
             throw GeometryError.resourceCreationFailed
         }
