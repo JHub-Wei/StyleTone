@@ -23,11 +23,12 @@ public enum LocalizationPrefix: String, CaseIterable, Sendable {
     }
 
     /// The prefix of a key, when it is one of the allowed prefixes.
+    ///
+    /// A bare prefix such as `"editor"` is not a key and returns `nil`.
     public static func of(_ key: String) -> LocalizationPrefix? {
-        guard let first = key.split(separator: ".", maxSplits: 1).first else {
-            return nil
-        }
-        return LocalizationPrefix(rawValue: String(first))
+        let parts = key.split(separator: ".", maxSplits: 1, omittingEmptySubsequences: false)
+        guard parts.count == 2, !parts[1].isEmpty else { return nil }
+        return LocalizationPrefix(rawValue: String(parts[0]))
     }
 }
 
@@ -163,15 +164,16 @@ public enum L10n {
 
     // MARK: Export
 
-    public static let exportTitle = LocalizationKey("export.title")
-    public static let exportSubtitle = LocalizationKey("export.subtitle")
-    public static let exportNote = LocalizationKey("export.note")
-    public static let exportPreviewTitle = LocalizationKey("export.previewTitle")
-    public static let exportButton = LocalizationKey("export.exportButton")
-    public static let exportCloseButton = LocalizationKey("export.closeButton")
-    public static let exportLoading = LocalizationKey("export.loading")
-    public static let exportLoadingToggle = LocalizationKey("export.loadingToggle")
-    public static let exportToastPlaceholder = LocalizationKey("export.toast.placeholder")
+    // Export is launched from the editor, and §8 freezes the prefix list, so
+    // its copy stays under `editor.export.*`.
+    public static let exportTitle = LocalizationKey("editor.export.title")
+    public static let exportSubtitle = LocalizationKey("editor.export.subtitle")
+    public static let exportNote = LocalizationKey("editor.export.note")
+    public static let exportPreviewTitle = LocalizationKey("editor.export.previewTitle")
+    public static let exportButton = LocalizationKey("editor.export.button")
+    public static let exportLoading = LocalizationKey("editor.export.loading")
+    public static let exportLoadingToggle = LocalizationKey("editor.export.loadingToggle")
+    public static let exportToastPlaceholder = LocalizationKey("editor.export.toast.placeholder")
 
     /// Every key defined above.
     public static let allKeys: [LocalizationKey] = [
@@ -243,7 +245,6 @@ public enum L10n {
         exportNote,
         exportPreviewTitle,
         exportButton,
-        exportCloseButton,
         exportLoading,
         exportLoadingToggle,
         exportToastPlaceholder,

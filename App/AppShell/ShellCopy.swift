@@ -208,7 +208,7 @@ enum ShellCopy {
     )
     static let exportPreviewTitle = L10n.resolve(.exportPreviewTitle, fallback: "Preview")
     static let exportButton = L10n.resolve(.exportButton, fallback: "Export now")
-    static let exportCloseButton = L10n.resolve(.exportCloseButton, fallback: "Close")
+    static let exportCloseButton = L10n.resolve(.commonCloseButton, fallback: "Close")
     static let exportLoading = L10n.resolve(
         .exportLoading,
         fallback: "Rendering at full resolution…"
