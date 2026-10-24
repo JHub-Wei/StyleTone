@@ -133,6 +133,9 @@
 ## 7. 工程状态
 
 - **WP-00 工程骨架已完成，状态 `done`**：XcodeGen 工程源、9 个 SwiftPM target、占位 App、CI、Makefile、模块占位测试均已提交。
-- **macOS CI 已通过**：https://github.com/JHub-Wei/StyleTone/actions/runs/40090672908
+- **WP-01 Core 契约已完成，状态 `done`**：类型/协议/错误/JSON 编解码/测试与 Mock 已落地；Tag `core-v1`。
+- **macOS CI 已通过**：
+  - WP-00：https://github.com/JHub-Wei/StyleTone/actions/runs/40090672908
+  - WP-01：https://github.com/JHub-Wei/StyleTone/actions/runs/40091414979
 - 构建说明见 [BUILD.md](BUILD.md)；Windows 上获取 macOS CI 结果见 [CI-SETUP.md](CI-SETUP.md)。
-- 下一步：启动 **WP-01 Core 契约**（`docs/12-session-prompts.md` 的 S-A1），完成后打 `core-v1` tag，再并行 WP-02/03/04。
+- 下一步：并行启动 **WP-02 图像 I/O**、**WP-03 设计系统/Shell**、**WP-04 测试 Harness**；完成后进入 WP-05~11。
