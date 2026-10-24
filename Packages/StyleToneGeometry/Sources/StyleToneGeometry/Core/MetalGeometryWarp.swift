@@ -448,10 +448,10 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
             / float2(float(gridWidth - 1), float(gridHeight - 1));
         float2 offset = offsets[index];
 
-        MeshVertex vertex;
-        vertex.position = grid;
-        vertex.uv = grid - offset;
-        vertices[index] = vertex;
+        MeshVertex meshVertex;
+        meshVertex.position = grid;
+        meshVertex.uv = grid - offset;
+        vertices[index] = meshVertex;
     }
 
     struct MeshVertexOut {
@@ -462,13 +462,13 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
     vertex MeshVertexOut geometryMeshVertex(uint vertexID [[vertex_id]],
                                             device const MeshVertex *vertices [[buffer(0)]])
     {
-        MeshVertex vertex = vertices[vertexID];
+        MeshVertex meshVertex = vertices[vertexID];
         MeshVertexOut output;
-        output.position = float4(vertex.position.x * 2.0 - 1.0,
-                                 1.0 - vertex.position.y * 2.0,
+        output.position = float4(meshVertex.position.x * 2.0 - 1.0,
+                                 1.0 - meshVertex.position.y * 2.0,
                                  0.0,
                                  1.0);
-        output.uv = vertex.uv;
+        output.uv = meshVertex.uv;
         return output;
     }
 
