@@ -90,5 +90,6 @@ swift test --filter StyleToneGeometryTests
 
 The performance test renders 1920×1080 frames, prints a
 `GEOMETRY_PERF` line and only asserts the 33.3 ms preview budget when
-`ST_GEOMETRY_PERF_STRICT=1` (CI runners are not reference devices). See
-`PERFORMANCE.md` for the recorded baseline and method.
+`ST_GEOMETRY_PERF_STRICT=1` (CI runners are not reference devices). Current CI
+baseline: 25.3 ms p95 / 39.6 fps for the 32×32 preview path; see
+`PERFORMANCE.md` for method and caveats.
