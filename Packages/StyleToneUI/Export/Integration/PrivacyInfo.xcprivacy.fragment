@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  WP-19 / App integration fragment: PrivacyInfo.xcprivacy.
+
+  `ExportTemporaryFileStore.removeStaleFiles` reads file modification dates
+  inside the app's own temporary container to delete abandoned exports. That is
+  the "file timestamp" required-reason API; merge this dictionary into the app's
+  single PrivacyInfo.xcprivacy (WP-21 may already own one — merge the arrays, do
+  not overwrite).
+
+  Reason C617.1: access timestamps of files inside the app container, app group
+  container, or the app's CloudKit container.
+-->
+<plist version="1.0">
+<dict>
+	<key>NSPrivacyAccessedAPITypes</key>
+	<array>
+		<dict>
+			<key>NSPrivacyAccessedAPIType</key>
+			<string>NSPrivacyAccessedAPICategoryFileTimestamp</string>
+			<key>NSPrivacyAccessedAPITypeReasons</key>
+			<array>
+				<string>C617.1</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
