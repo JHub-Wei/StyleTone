@@ -96,4 +96,26 @@
   - WP-19 导出
   - WP-21 设置
 
+---
+
+## WP-12 ~ WP-14 · done（2026-10-25 拉取）
+
+- 本地 `main` 已从 `b27420b` 快进到 `d574799`（Merge PR #12，WP-14）。
+- 工作区干净；`stash@{0}` 仍保留，未恢复。
+- 已完成并合并：
+  - WP-12 瘦脸/下颌
+  - WP-13 瘦手臂/腰
+  - WP-14 瘦腿/拉长
+- CI 结果：
+  - `d574799` 的 push run 曾因 GitHub Actions 账单问题未启动；手动 `workflow_dispatch` 已成功。
+  - Run：https://github.com/JHub-Wei/StyleTone/actions/runs/40159268015
+  - 所有步骤 success：XcodeGen、SwiftPM 测试、模拟器构建、App 测试。
+- 下一步可并行：
+  - WP-15 背景保护
+  - WP-16 皮肤工具 UI
+  - WP-17 编辑器
+  - WP-19 导出
+  - WP-21 设置
+
+
 
