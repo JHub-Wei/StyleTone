@@ -1,6 +1,8 @@
 # WP-17 · 编辑器状态 / 预览 / 撤销
 
-- 状态：**review**（实现与单测完成；iOS 构建/测试需 macOS CI）
+- 状态：**done**（实现与单测完成；macOS CI 全绿）
+- 分支：`wp-17-editor`（独立 worktree `.build/wp17-worktree`）
+- CI：[run 40162682525](https://github.com/JHub-Wei/StyleTone/actions/runs/40162682525)（success，commit `7fc6497`）
 - 范围：`Packages/StyleToneUI/Sources/StyleToneUI/Editor/`（SwiftPM target 源码）
 - 文档：`Packages/StyleToneUI/Editor/`（任务卡目录）
 - 依赖：WP-03 设计系统、WP-06 形变、WP-07 修饰、WP-11 风格（Phase A 用静态 `StyleProfile` / mock）
@@ -160,7 +162,8 @@ export: preparing → exporting → completed | failed(idle after cancel)
 `EditorViewModel.export(options:)`：
 
 1. `guard` 有图、可编辑、无并发 export。
-2. `pipeline.cancelAll()` + `waitForIdle()`，避免预览与导出争用。
+2. `pipeline.cancelAll()` + `waitForIdle()`，避免预览与导出争用；导出期间 `canEdit == false`，
+   防止用户在 exporter 持有全分辨率渲染时再触发 preview/full。
 3. 计算 plan：
    - no-op → 直接使用原图（保证预览/导出一致）；
    - 已有匹配的 full-quality committed image → 复用（避免重复 12MP 渲染）；
@@ -217,8 +220,14 @@ EditorView(
 | `EditorViewModelTests` | 首帧原图、导出原图一致、拖 proxy→松 full、最新优先、全质量取消、失败保留、20+ 撤销、自然档/reset、背景确认、points、无脸/无身、缩放/分屏、性能降级 |
 | `EditorCopyTests` | 71 个本地化 key + 8 个复用 key、fallback、ID 唯一/合法、每区 ≤5 滑杆、范围 |
 
-本地（Windows）只做 tree-sitter 语法检查与静态 key/ID 校验；`swift test` 需 macOS CI。
-当前会话的 CI 结果记录在交付报告中；若未跑完则报告 `CI_PENDING`。
+### 9.1 CI 结果
+
+- Run：[40162682525](https://github.com/JHub-Wei/StyleTone/actions/runs/40162682525)（success，commit `7fc6497`）
+- `swift test`：686 tests，4 skipped，0 failures；7 个 Editor suite 的 65 个测试全部通过。
+- `xcodegen generate`、Xcode App build、模拟器 app tests、xcresult 上传全部 success。
+- 前一轮 CI 只失败了 1 个测试断言（背景风险测试错误地假设 tone 不是最后阶段），已在 `7d87e95` 修正；
+  代码编译、其余 64 个 Editor 测试与全仓测试当时已通过。
+- 本地（Windows）只能做 tree-sitter 语法检查与静态 key/ID 校验；编译/测试以上述 macOS CI 为准。
 
 ---
 
@@ -232,7 +241,8 @@ EditorView(
 | 12MP 导出 | p95 ≤6s | 复用已 committed full image；否则单次全质量 render；export 前取消预览 |
 | 预览内存 | ≤300MB | 最多一个缓存代理 + 当前显示图；旧 pending 被替换 |
 
-> 真实 12MP 数据需 WP-24 在 macOS/iPhone 上测量；本会话无设备，不声称实测。
+> 真实 12MP 数据需 WP-24 在 macOS/iPhone 上测量；本会话无设备，不声称实测。CI 中 65 个 Editor
+> 单测合计约 1.5–2 s（mock 引擎），只证明逻辑/并发正确性，不代表真机帧率。
 
 ---
 
