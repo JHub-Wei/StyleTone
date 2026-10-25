@@ -97,7 +97,8 @@ public struct BackgroundProtectionConfiguration: Sendable, Equatable {
     public var lineRetention: Float
 
     /// Fraction of displacement retained on generic (non-line) edges such as
-    /// text, window mouldings or curved architecture.
+    /// text, window mouldings or curved architecture. Kept low so signage and
+    /// texture stay almost static even when the whole background shifts.
     public var edgeRetention: Float
 
     /// Fraction of displacement retained inside a detected rectangle
@@ -195,7 +196,7 @@ public struct BackgroundProtectionConfiguration: Sendable, Equatable {
         subjectMaskSamplingStride: Int = 8,
         backgroundRetention: Float = 0.60,
         lineRetention: Float = 0.05,
-        edgeRetention: Float = 0.35,
+        edgeRetention: Float = 0.20,
         rectangleRetention: Float = 0.55,
         lineRigidity: Float = 1.0,
         lineCoreRadius: Float = 0.006,

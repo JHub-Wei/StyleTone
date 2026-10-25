@@ -740,6 +740,17 @@ struct BackgroundProtectionPlanner: Sendable {
                 at: point
             )
             guard supportAtPoint < 0.5 else { continue }
+            // Samples whose bilinear cell touches a subject vertex are in the
+            // silhouette transition band: they are dominated by subject motion,
+            // not by background straightness. Exclude the whole cell so the
+            // metric measures visible background structure only.
+            let cornerSupport = bilinearCornerMaximum(
+                support,
+                gridWidth: gridWidth,
+                gridHeight: gridHeight,
+                at: point
+            )
+            guard cornerSupport < 0.5 else { continue }
             let offset = interpolatedOffset(
                 offsets,
                 gridWidth: gridWidth,
@@ -777,6 +788,30 @@ struct BackgroundProtectionPlanner: Sendable {
         let bottom = values[y1 * gridWidth + x0] * (1 - tx) +
             values[y1 * gridWidth + x1] * tx
         return top * (1 - ty) + bottom * ty
+    }
+
+    /// Maximum support of the four grid vertices around a normalized position.
+    /// Used to exclude the silhouette transition band from line-straightness
+    /// measurements.
+    private func bilinearCornerMaximum(
+        _ values: [Float],
+        gridWidth: Int,
+        gridHeight: Int,
+        at point: SIMD2<Float>
+    ) -> Float {
+        guard gridWidth >= 2, gridHeight >= 2,
+              values.count == gridWidth * gridHeight else {
+            return 0
+        }
+        let x = min(max(point.x, 0), 1) * Float(gridWidth - 1)
+        let y = min(max(point.y, 0), 1) * Float(gridHeight - 1)
+        let x0 = min(Int(x), gridWidth - 2)
+        let y0 = min(Int(y), gridHeight - 2)
+        let x1 = x0 + 1
+        let y1 = y0 + 1
+        let top = max(values[y0 * gridWidth + x0], values[y0 * gridWidth + x1])
+        let bottom = max(values[y1 * gridWidth + x0], values[y1 * gridWidth + x1])
+        return max(top, bottom)
     }
 
     /// Bilinear field interpolation at a normalized position, matching the

@@ -118,7 +118,7 @@ factors. A factor of `1` keeps the displacement; `0` pins it.
 |---|---|---|
 | Subject support (`support = 1`) | `1` | 1.00 |
 | Generic background | `backgroundRetention` | 0.60 |
-| Generic edge (text, curved architecture) | `edgeRetention` | 0.35 |
+| Generic edge (text, curved architecture) | `edgeRetention` | 0.20 |
 | Straight line core | `lineRetention` | 0.05 |
 | Rectangle interior | `rectangleRetention` | 0.55 |
 
@@ -133,8 +133,11 @@ Damping alone would still let a line bend because different vertices would be
 damped differently. The rigid-line step computes, for every detected line, the
 weighted mean source displacement of its core and replaces each core vertex with
 that single displacement (multiplied by `lineRetention`). A 20 px line at a
-frame edge therefore moves at most ~1 px but cannot become crooked. Blending
-with the damped field uses `lineRigidity` and the line falloff.
+frame edge therefore moves at most ~1 px but cannot become crooked. Rigidity
+uses the ungated line falloff, so the visible background side stays rigid even
+where the subject-support gate is already tapering off at the silhouette; the
+inside of the subject still follows the subject. Blending with the damped field
+uses `lineRigidity` and the line falloff.
 
 ### Falloff
 
@@ -142,6 +145,11 @@ Line protection is full within `lineCoreRadius` and falls off with smoothstep
 over `lineFeather`. Rectangle fill ramps in over `rectangleFillRamp` from the
 boundary. Generic edge evidence is spread one cell onto its 4-neighbours
 (`edgeSpreadWeight`) to avoid a one-vertex damping spike.
+
+Line-straightness metrics skip samples whose bilinear cell touches a subject
+vertex (`support ≥ 0.5`): the silhouette transition band is dominated by subject
+motion, not by background structure. The residual displacement metrics are
+measured on structure-core vertices only.
 
 ## Warnings and risk
 
