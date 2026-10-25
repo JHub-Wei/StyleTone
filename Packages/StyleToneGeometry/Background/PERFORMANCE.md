@@ -30,13 +30,32 @@ line. Smaller masks (≤ 2 MP) are read every pixel for exact test geometry.
 
 ## Baseline
 
-Run: `TBD_CI_RUN` (fill after the first green CI run).
+Run: [40162439838](https://github.com/JHub-Wei/StyleTone/actions/runs/40162439838),
+2026-10-25, commit `bf51ab2`, macOS 15 arm64 runner, debug build (4 measured
+runs, 1 warm-up).
 
 | Path | Grid | Mask | p50 | p95 |
 |---|---|---|---|---|
-| `BackgroundWarpConstraint` | 64 × 64 | 4032 × 3024 | `TBD` | `TBD` |
+| `BackgroundWarpConstraint` | 64 × 64 | 4032 × 3024 | **91.76 ms** | **92.56 ms** |
 
-Interpretation: `TBD`.
+Interpretation:
+
+- The CI number is a **debug** build. The hot loop is simple scalar mask
+  sampling; release builds typically remove most of the debug overhead, so the
+  expected on-device cost is in the single-digit-to-low-tens-of-milliseconds
+  range. A release-mode measurement on a reference iPhone is still recommended
+  (WP-24) before locking the preview budget.
+- The 12 MP mask is the worst case. The preview warp uses a 32 × 32 grid, but
+  the cost is dominated by mask sampling rather than the per-vertex loops, so
+  preview and export are expected to be close. The analysis can be reused across
+  frames; the constraint itself caches nothing.
+- The 2 s hang guard is far above the measured value. The strict 400 ms debug
+  budget passes with ~4× headroom (`p95 = 92.56 ms`).
+
+Possible optimization if a device measurement shows a problem: raise
+`maskSamplingStride` from 4 to 8 (halves mask reads; the WP-05 mask is ≥ 20 px
+wide at 12 MP, so detection remains safe) or cache the sampled structure grid
+for an unchanged analysis.
 
 ## Reproduce
 

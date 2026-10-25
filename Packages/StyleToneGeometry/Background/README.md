@@ -191,8 +191,8 @@ visible".
 
 ## Acceptance
 
-- Automated 100-case synthetic proxy: `0 %` obvious distortion, subject
-  retention `1.0`; see `ACCEPTANCE.md`.
+- Automated 100-case synthetic proxy: `0 %` obvious distortion, minimum subject
+  retention `0.998`; see `ACCEPTANCE.md`.
 - Manual review of 100 authorized real photos is **pending** because the
   repository intentionally contains no real photos. The review protocol and
   sign-off template are in `ACCEPTANCE.md`.

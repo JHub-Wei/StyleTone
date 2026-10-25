@@ -14,7 +14,7 @@ Acceptance from `task-cards.md`:
 |---|---|---|
 | Obvious background distortion | `< 5 %` of samples | automated synthetic proxy: see results table |
 | Switch effective | on/off changes the result | `BackgroundWarpConstraintTests/testPipelineToggleRunsConstraintOnlyWhenEnabled`, `testRiskAssessmentReportsDisabledSwitch` |
-| Slimming effect not significantly reduced | subject retention ≈ 1 | `subjectRetention = 1.0` in the synthetic corpus and the face-pass test |
+| Slimming effect not significantly reduced | subject retention ≈ 1 | `subjectRetention ≥ 0.9979` in the synthetic corpus; exactly `1.0` on face-pass vertices |
 | Performance acceptable | no frame-budget regression | `PERFORMANCE.md` |
 | Analysis module unchanged | no edits | `StyleToneVision` untouched |
 
@@ -22,7 +22,7 @@ Acceptance from `task-cards.md`:
 
 Test: `BackgroundProtectionAcceptanceTests/testHundredSyntheticBackgrounds`.
 
-Corpus: 100 cases, `240 × 180`→`160 × 120` synthetic edge masks, split across
+Corpus: 100 cases, `160 × 120` synthetic edge masks, split across
 door frames, floor-tile grids and table edges; 50 % include a synthetic subject
 mask; four deterministic warp families (horizontal sine, vertical sine,
 Gaussian bump, constant shift); amplitude `0.015...0.030`; warp grid `32 × 32`.
@@ -35,19 +35,26 @@ The corpus measures the same properties a human would rate:
 - **Detection success**: door frame → ≥ 3 lines + ≥ 1 rectangle; tiles → ≥ 4
   lines + ≥ 1 rectangle; table edge → ≥ 1 line.
 
-Recorded result (CI run, fill after green):
+Line samples whose bilinear cell touches a subject vertex (`support ≥ 0.5`) are
+excluded: the silhouette transition band is dominated by subject motion, not by
+background structure. Structure-displacement metrics use core vertices
+(`protection ≥ 0.75`).
+
+Recorded result — CI run
+[40162439838](https://github.com/JHub-Wei/StyleTone/actions/runs/40162439838),
+commit `bf51ab2`, macOS 15 arm64 debug build (2026-10-25):
 
 | Metric | Value |
 |---|---|
 | Cases | 100 |
-| Obvious distortion | `TBD` |
-| Detection failures | `TBD` |
-| Cases whose source field visibly bent a line | `TBD` |
-| Max line deviation before | `TBD` |
-| Max line deviation after | `TBD` |
-| Max structure displacement after | `TBD` |
-| Min subject retention | `TBD` |
-| Mean background retention | `TBD` |
+| Obvious distortion | **0** (0 %) |
+| Detection failures | 0 |
+| Cases whose source field visibly bent a line | 51 |
+| Max line deviation before | `0.029927451` |
+| Max line deviation after | `0.00092601025` |
+| Max structure displacement after | `0.0051221033` |
+| Min subject retention | `0.99796325` |
+| Mean background retention | `0.42517295` |
 
 The proxy is **not** a substitute for human review. It cannot judge aesthetics,
 text legibility, faces at the person silhouette, or real optical blur.
