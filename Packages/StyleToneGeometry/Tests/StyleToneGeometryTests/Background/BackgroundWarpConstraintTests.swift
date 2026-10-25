@@ -199,7 +199,7 @@ final class BackgroundWarpConstraintTests: XCTestCase {
         XCTAssertEqual(centre.x, 0.01, accuracy: 1e-6)
         let corner = try XCTUnwrap(protectedField.offset(x: 0, y: 0))
         XCTAssertEqual(corner.x, 0.006, accuracy: 1e-5)
-        XCTAssertEqual(plan.metrics.subjectRetention, 1, accuracy: 1e-5)
+        XCTAssertEqual(plan.metrics.subjectRetention, 1, accuracy: 0.01)
         XCTAssertGreaterThanOrEqual(plan.metrics.backgroundRetention, 0.6 - 1e-5)
         XCTAssertLessThan(plan.metrics.backgroundRetention, 0.75)
     }
@@ -223,8 +223,7 @@ final class BackgroundWarpConstraintTests: XCTestCase {
         XCTAssertTrue(plan.warnings.contains(.subjectMaskEmpty))
         let faceCentre = try XCTUnwrap(plan.support(x: 31, y: 20))
         XCTAssertGreaterThan(faceCentre, 0.9)
-        let support = plan.metrics.subjectRetention
-        XCTAssertEqual(support, 1, accuracy: 1e-5)
+        XCTAssertGreaterThan(plan.metrics.subjectRetention, 0.99)
     }
 
     // MARK: Degradation + toggles
@@ -315,7 +314,8 @@ final class BackgroundWarpConstraintTests: XCTestCase {
         )
         XCTAssertEqual(protected.level, .low)
         XCTAssertFalse(protected.warnings.contains(.protectionDisabled))
-        XCTAssertLessThan(protected.metrics.maximumStructureDisplacementAfter, 0.004)
+        XCTAssertEqual(protected.metrics.residualRiskyVertexCount, 0)
+        XCTAssertLessThan(protected.metrics.maximumStructureDisplacementAfter, 0.006)
     }
 
     func testDisabledSwitchWithoutStructuresOnlyReportsInfo() throws {

@@ -22,9 +22,12 @@ final class BackgroundProtectionAcceptanceTests: XCTestCase {
     private struct CaseResult {
         let index: Int
         let backgroundKind: String
+        let fieldKind: Int
+        let hasSubject: Bool
         let detectedLines: Int
         let detectedRectangles: Int
         let distortion: Bool
+        let distortionReason: String
         let detectionFailed: Bool
         let deviationBefore: Float
         let deviationAfter: Float
@@ -56,12 +59,33 @@ final class BackgroundProtectionAcceptanceTests: XCTestCase {
         let casesWhereProtectionMatters = results.filter {
             $0.deviationBefore > distortionDeviation
         }.count
+        let deviationFailures = results.filter {
+            $0.deviationAfter > distortionDeviation
+        }.count
+        let displacementFailures = results.filter {
+            $0.structureDisplacementAfter > distortionDisplacement
+        }.count
+
+        for result in results where result.distortion {
+            print(
+                "BACKGROUND_ACCEPTANCE_FAILURE seed=\(result.index) "
+                    + "background=\(result.backgroundKind) "
+                    + "field=\(result.fieldKind) "
+                    + "subject=\(result.hasSubject) "
+                    + "deviationBefore=\(result.deviationBefore) "
+                    + "deviationAfter=\(result.deviationAfter) "
+                    + "structureAfter=\(result.structureDisplacementAfter) "
+                    + "reason=\(result.distortionReason)"
+            )
+        }
 
         print(
             "BACKGROUND_ACCEPTANCE cases=\(results.count) "
                 + "distorted=\(distorted.count) "
                 + "detectionFailures=\(detectionFailures.count) "
                 + "casesWithBentLinesBefore=\(casesWhereProtectionMatters) "
+                + "deviationFailures=\(deviationFailures) "
+                + "displacementFailures=\(displacementFailures) "
                 + "maxDeviationBefore=\(deviationBeforeMax) "
                 + "maxDeviationAfter=\(deviationAfterMax) "
                 + "maxStructureDisplacementAfter=\(displacementAfterMax) "
@@ -183,15 +207,23 @@ final class BackgroundProtectionAcceptanceTests: XCTestCase {
             detectionFailed = plan.lines.isEmpty
         }
 
-        let distortion = metrics.maximumLineDeviationAfter > distortionDeviation
-            || metrics.maximumStructureDisplacementAfter > distortionDisplacement
+        let distortionReasons = [
+            metrics.maximumLineDeviationAfter > distortionDeviation
+                ? "deviation" : nil,
+            metrics.maximumStructureDisplacementAfter > distortionDisplacement
+                ? "displacement" : nil
+        ].compactMap { $0 }
+        let distortion = !distortionReasons.isEmpty
 
         return CaseResult(
             index: seed,
             backgroundKind: backgroundKind,
+            fieldKind: fieldKind,
+            hasSubject: hasSubject,
             detectedLines: plan.lines.count,
             detectedRectangles: plan.rectangles.count,
             distortion: distortion,
+            distortionReason: distortionReasons.joined(separator: "+"),
             detectionFailed: detectionFailed,
             deviationBefore: metrics.maximumLineDeviationBefore,
             deviationAfter: metrics.maximumLineDeviationAfter,

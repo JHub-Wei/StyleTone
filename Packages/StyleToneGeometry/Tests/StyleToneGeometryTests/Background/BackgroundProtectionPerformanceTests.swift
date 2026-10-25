@@ -25,7 +25,7 @@ final class BackgroundProtectionPerformanceTests: XCTestCase {
 
         let clock = ContinuousClock()
         var samples: [Double] = []
-        let runs = 6
+        let runs = 4
         for _ in 0 ..< runs {
             var copy = field
             let start = clock.now

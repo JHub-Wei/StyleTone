@@ -142,6 +142,7 @@ struct BackgroundProtectionPlanner: Sendable {
         )
 
         var lineProtection = [Float](repeating: 0, count: vertexCount)
+        var lineRigidityWeights = [Float](repeating: 0, count: vertexCount)
         var edgeProtection = [Float](repeating: 0, count: vertexCount)
         var rectangleProtection = [Float](repeating: 0, count: vertexCount)
         var combinedProtection = [Float](repeating: 0, count: vertexCount)
@@ -169,6 +170,7 @@ struct BackgroundProtectionPlanner: Sendable {
                         lineWeight = weighted
                     }
                 }
+                lineRigidityWeights[index] = clamp01(lineWeight)
 
                 var rectangleWeight: Float = 0
                 for rectangle in rectangles where shouldFill(rectangle) {
@@ -253,8 +255,13 @@ struct BackgroundProtectionPlanner: Sendable {
 
             for index in 0 ..< vertexCount {
                 guard targetWeight[index] > 0 else { continue }
-                let blend = smoothstep(0.35, 0.90, lineProtection[index]) *
-                    configuration.lineRigidity
+                // Rigidity uses the *ungated* line falloff: the visible
+                // background side of a line stays rigid even when the subject
+                // support is already tapering off at the silhouette. Inside the
+                // subject (support > 0.85) the line follows the subject instead.
+                let backgroundSide = 1 - smoothstep(0.35, 0.85, support[index])
+                let blend = smoothstep(0.35, 0.90, lineRigidityWeights[index]) *
+                    backgroundSide * configuration.lineRigidity
                 guard blend > 0 else { continue }
                 let target = targetSum[index] * (1 / targetWeight[index])
                 let damped = constrained[index]
