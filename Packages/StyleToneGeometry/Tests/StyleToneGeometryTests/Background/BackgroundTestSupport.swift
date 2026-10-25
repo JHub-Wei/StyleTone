@@ -19,7 +19,7 @@ enum BackgroundTestSupport {
     ///
     /// Tuples are `(position, start, end)` in normalized top-left coordinates.
     static func edgeMask(
-        size: PixelSize = size,
+        size: PixelSize = BackgroundTestSupport.size,
         horizontal: [(Double, Double, Double)] = [],
         vertical: [(Double, Double, Double)] = [],
         thickness: Int = 2,
@@ -62,7 +62,7 @@ enum BackgroundTestSupport {
 
     /// A regular floor-tile / window-grid pattern.
     static func gridMask(
-        size: PixelSize = size,
+        size: PixelSize = BackgroundTestSupport.size,
         spacing: Double = 0.2,
         inset: Double = 0.1,
         thickness: Int = 2
@@ -84,7 +84,7 @@ enum BackgroundTestSupport {
     }
 
     /// Door frame: two full-height jambs, a lintel and a threshold.
-    static func doorFrameMask(size: PixelSize = size) throws -> MaskBuffer {
+    static func doorFrameMask(size: PixelSize = BackgroundTestSupport.size) throws -> MaskBuffer {
         try edgeMask(
             size: size,
             horizontal: [(0.10, 0.22, 0.78), (0.90, 0.22, 0.78)],
@@ -93,7 +93,7 @@ enum BackgroundTestSupport {
     }
 
     /// A single table edge running across the lower half of the frame.
-    static func tableEdgeMask(size: PixelSize = size) throws -> MaskBuffer {
+    static func tableEdgeMask(size: PixelSize = BackgroundTestSupport.size) throws -> MaskBuffer {
         try edgeMask(
             size: size,
             horizontal: [(0.58, 0.12, 0.88)],
@@ -102,7 +102,7 @@ enum BackgroundTestSupport {
     }
 
     /// A diagonal edge (not detected as a line, must still get edge damping).
-    static func diagonalMask(size: PixelSize = size) throws -> MaskBuffer {
+    static func diagonalMask(size: PixelSize = BackgroundTestSupport.size) throws -> MaskBuffer {
         var bytes = [UInt8](repeating: 0, count: size.width * size.height)
         let steps = size.width * 3
         for step in 0 ... steps {
@@ -123,7 +123,7 @@ enum BackgroundTestSupport {
 
     /// Dense texture: every pixel is an edge. A line detector must reject it
     /// because there is no thin ridge.
-    static func denseTextureMask(size: PixelSize = size) throws -> MaskBuffer {
+    static func denseTextureMask(size: PixelSize = BackgroundTestSupport.size) throws -> MaskBuffer {
         try MaskBuffer(
             width: size.width,
             height: size.height,
@@ -132,7 +132,7 @@ enum BackgroundTestSupport {
     }
 
     /// Sparse isolated edges: edges exist but no long run.
-    static func sparseEdgeMask(size: PixelSize = size) throws -> MaskBuffer {
+    static func sparseEdgeMask(size: PixelSize = BackgroundTestSupport.size) throws -> MaskBuffer {
         var bytes = [UInt8](repeating: 0, count: size.width * size.height)
         for index in 0 ..< 90 {
             let x = (index * 37 + 11) % size.width
@@ -144,7 +144,7 @@ enum BackgroundTestSupport {
 
     /// A soft elliptical person mask (no real person image).
     static func personMask(
-        size: PixelSize = size,
+        size: PixelSize = BackgroundTestSupport.size,
         rect: NormalizedRect = NormalizedRect(x: 0.14, y: 0.08, width: 0.72, height: 0.84),
         feather: Double = 0.10
     ) throws -> MaskBuffer {
@@ -154,7 +154,7 @@ enum BackgroundTestSupport {
     // MARK: Analysis
 
     static func analysis(
-        size: PixelSize = size,
+        size: PixelSize = BackgroundTestSupport.size,
         faces: [FaceObservation] = [],
         body: BodyObservation? = nil,
         personMask: MaskBuffer? = nil,
@@ -191,7 +191,7 @@ enum BackgroundTestSupport {
 
     /// Builds a field from a closure over normalized `(x, y)`.
     static func field(
-        dimension: Int = defaultGrid,
+        dimension: Int = BackgroundTestSupport.defaultGrid,
         offset: (Double, Double) -> SIMD2<Float>
     ) throws -> WarpField {
         var field = try WarpField(width: dimension, height: dimension)
@@ -208,7 +208,7 @@ enum BackgroundTestSupport {
 
     /// Horizontal sine wave: a vertical background line would bend with it.
     static func horizontalWaveField(
-        dimension: Int = defaultGrid,
+        dimension: Int = BackgroundTestSupport.defaultGrid,
         amplitude: Float = 0.02,
         cycles: Double = 1,
         phase: Double = 0
@@ -221,7 +221,7 @@ enum BackgroundTestSupport {
 
     /// Vertical Gaussian bump: a horizontal background line would bend with it.
     static func verticalBumpField(
-        dimension: Int = defaultGrid,
+        dimension: Int = BackgroundTestSupport.defaultGrid,
         amplitude: Float = 0.02,
         centerX: Double = 0.5,
         centerY: Double = 0.58,
@@ -237,7 +237,7 @@ enum BackgroundTestSupport {
 
     /// A constant horizontal shift, used for retention ratios.
     static func constantField(
-        dimension: Int = defaultGrid,
+        dimension: Int = BackgroundTestSupport.defaultGrid,
         offset: SIMD2<Float> = SIMD2<Float>(0.01, 0)
     ) throws -> WarpField {
         try field(dimension: dimension) { _, _ in offset }

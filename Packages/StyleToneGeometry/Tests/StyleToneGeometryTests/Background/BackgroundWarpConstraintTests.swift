@@ -383,7 +383,7 @@ final class BackgroundWarpConstraintTests: XCTestCase {
         let plan = try constraint.makePlan(field: field, analysis: analysis)
         var other = try WarpField(width: 16, height: 16)
         XCTAssertThrowsError(try plan.applyingConstraint(to: &other)) { error in
-            guard case GeometryError.invalidGrid = error else {
+            guard case GeometryError.invalidGrid(_, _) = error else {
                 return XCTFail("unexpected error: \(error)")
             }
         }

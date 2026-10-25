@@ -32,9 +32,14 @@ print(plan.warnings)
 print(plan.metrics.maximumLineDeviationBefore, plan.metrics.maximumLineDeviationAfter)
 
 // Toggle-off warning for the editor. The engine skips the constraint when the
-// switch is off, so the editor asks for a risk assessment explicitly.
+// switch is off, so build the field with backgroundProtection == false and ask
+// for a risk assessment explicitly.
+let unprotectedField = try engine.makeField(
+    analysis: analysis,
+    geometry: GeometryParameters(backgroundProtection: false)
+)
 let risk = try BackgroundWarpConstraint().assessRisk(
-    field: field,
+    field: unprotectedField,
     analysis: analysis,
     protectionEnabled: false
 )

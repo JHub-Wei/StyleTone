@@ -1,4 +1,5 @@
 import Foundation
+import StyleToneCore
 
 /// Converts coarse edge-evidence coverage into straight lines and axis-aligned
 /// rectangles.

@@ -234,7 +234,7 @@ struct BackgroundProtectionPlanner: Sendable {
                     }
                 }
                 guard weightSum > 0 else { continue }
-                let target = (weightedSum / weightSum) * configuration.lineRetention
+                let target = (weightedSum * (1 / weightSum)) * configuration.lineRetention
 
                 for y in 0 ..< gridHeight {
                     let ny = Float(y) / Float(gridHeight - 1)
@@ -256,7 +256,7 @@ struct BackgroundProtectionPlanner: Sendable {
                 let blend = smoothstep(0.35, 0.90, lineProtection[index]) *
                     configuration.lineRigidity
                 guard blend > 0 else { continue }
-                let target = targetSum[index] / targetWeight[index]
+                let target = targetSum[index] * (1 / targetWeight[index])
                 let damped = constrained[index]
                 constrained[index] = damped + (target - damped) * blend
             }
