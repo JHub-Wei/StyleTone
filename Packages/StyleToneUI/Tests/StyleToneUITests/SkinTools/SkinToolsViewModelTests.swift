@@ -454,13 +454,22 @@ final class SkinToolsViewModelTests: XCTestCase {
         await model.waitForRendering()
         model.addBlemish(at: NormalizedPoint(x: 0.8, y: 0.7))
         await model.waitForRendering()
+
+        // Each successful add recomposes the whole list: the first mark costs
+        // one call, the second replays the first and adds the second.
+        let callsBeforeLimit = await remover.callCount()
+
         model.addBlemish(at: NormalizedPoint(x: 0.5, y: 0.5))
         await model.waitForRendering()
 
         XCTAssertEqual(model.blemishes.count, 2)
         XCTAssertEqual(model.notice, .blemishLimitReached)
-        let calls = await remover.callCount()
-        XCTAssertEqual(calls, 2)
+        let callsAfterLimit = await remover.callCount()
+        XCTAssertEqual(
+            callsAfterLimit,
+            callsBeforeLimit,
+            "A blocked mark must not call the engine"
+        )
 
         XCTAssertEqual(
             model.skinParameters,
