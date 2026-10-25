@@ -589,6 +589,10 @@ private struct BodyWarpWarningCollector {
         seen.contains(warning)
     }
 
+    var isEmpty: Bool {
+        values.isEmpty
+    }
+
     var ordered: [BodyWarpWarning] {
         values
     }
