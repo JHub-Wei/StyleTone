@@ -179,6 +179,24 @@ final class SettingsDiagnosticsTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(logClearCount, 1)
     }
 
+    func testUserDefaultsOptInPersistsAndClears() async throws {
+        let suite = "SettingsDiagnostics-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+
+        let preferences = UserDefaultsSettingsDiagnosticsPreferences(suiteName: suite)
+        var enabled = await preferences.diagnosticsOptIn()
+        XCTAssertFalse(enabled)
+
+        try await preferences.setDiagnosticsOptIn(true)
+        enabled = await preferences.diagnosticsOptIn()
+        XCTAssertTrue(enabled)
+
+        try await preferences.clear()
+        enabled = await preferences.diagnosticsOptIn()
+        XCTAssertFalse(enabled)
+    }
+
     // MARK: Diagnostic code
 
     func testCodeEmbedsOnlyBuildAndStateInformation() {

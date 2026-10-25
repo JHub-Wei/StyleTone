@@ -243,6 +243,21 @@ final class SettingsLocalDataDeletionTests: XCTestCase {
         XCTAssertEqual(partial.failedComponents, [.appFiles])
     }
 
+    func testUserDefaultsLocalPreferencesClearTheWholeDomain() async throws {
+        let suite = "SettingsDeletion-\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+
+        defaults.set(true, forKey: "onboarding.completed")
+        defaults.set(true, forKey: SettingsPreferenceKeys.diagnosticsOptIn)
+
+        let preferences = UserDefaultsSettingsLocalPreferences(suiteName: suite)
+        try await preferences.clearLocalPreferences()
+
+        XCTAssertNil(defaults.object(forKey: "onboarding.completed"))
+        XCTAssertNil(defaults.object(forKey: SettingsPreferenceKeys.diagnosticsOptIn))
+    }
+
     // MARK: Helpers
 
     private struct Layout {
