@@ -78,7 +78,7 @@ public final class EditorViewModel {
     public var hasImage: Bool { image != nil }
 
     public var canEdit: Bool {
-        image != nil && isReadyForEditing
+        image != nil && isReadyForEditing && !exportState.isBusy
     }
 
     public var canUndo: Bool { undoCount > 0 }
