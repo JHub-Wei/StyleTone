@@ -3,7 +3,7 @@ import StyleToneCore
 
 // MARK: - Tool areas
 
-/// The four editor tool areas frozen by contracts §8.
+/// The four editor tool areas frozen by contracts 搂8.
 ///
 /// Each area owns at most five sliders. Face and skin require a detected face;
 /// body requires a detected body; tone is always available because it does not
@@ -182,7 +182,7 @@ public enum EditorAdjustment: String, CaseIterable, Identifiable, Sendable {
         }
     }
 
-    /// One slider per row in the selected area, capped by `contracts §8`.
+    /// One slider per row in the selected area, capped by `contracts 搂8`.
     public static func all(in area: EditorToolArea) -> [EditorAdjustment] {
         allCases.filter { $0.area == area }
     }
@@ -286,7 +286,7 @@ public enum EditorRenderState: Sendable, Equatable {
     case failed
 
     public var isRendering: Bool {
-        if case .rendering = self { return true }
+        if case .rendering(_) = self { return true }
         return false
     }
 
@@ -529,9 +529,11 @@ public struct EditorWarning: Identifiable, Sendable, Hashable {
     public static func merge(_ groups: [[EditorWarning]]) -> [EditorWarning] {
         var seen = Set<Kind>()
         var merged: [EditorWarning] = []
-        for warning in groups.flatMap({ $0 }) where !seen.contains(warning.kind) {
-            seen.insert(warning.kind)
-            merged.append(warning)
+        for group in groups {
+            for warning in group where !seen.contains(warning.kind) {
+                seen.insert(warning.kind)
+                merged.append(warning)
+            }
         }
         return merged
     }

@@ -131,7 +131,10 @@ public final class EditorViewModel {
             groups.append([.backgroundRisk])
         }
 
-        groups.append(renderWarnings)
+        // Background risk is derived from the current plan above, so an older
+        // render result must not keep the warning alive after protection is
+        // switched back on.
+        groups.append(renderWarnings.filter { $0.kind != .backgroundRisk })
         return EditorWarning.merge(groups)
     }
 
@@ -425,7 +428,7 @@ public final class EditorViewModel {
     /// Cancels queued and in-flight renders, keeping the last committed image.
     public func cancelRendering() {
         pipeline.cancelAll()
-        if case .rendering = renderState {
+        if case .rendering(_) = renderState {
             renderState = .ready(displayedQuality)
         }
     }
@@ -556,7 +559,7 @@ public final class EditorViewModel {
             analysis = PortraitAnalysis.empty(imageSize: image.pixelSize)
             isAnalyzing = false
             issue = EditorIssue(
-                error: AppError.map(Self.renderError(error), diagnosticCode: "ST-EDITOR-ANALYZE"),
+                error: AppError.map(Self.analysisError(error), diagnosticCode: "ST-EDITOR-ANALYZE"),
                 recovery: .retryAnalysis
             )
             await loadStyle(token: token)
@@ -688,7 +691,7 @@ public final class EditorViewModel {
         case .cancelled:
             // The previous committed image stays on screen. Never commit a
             // partially rendered result.
-            if case .rendering = renderState {
+            if case .rendering(_) = renderState {
                 renderState = .ready(displayedQuality)
             }
         case let .failure(error):
@@ -774,6 +777,16 @@ public final class EditorViewModel {
             return .cancelled
         }
         return .renderingFailed
+    }
+
+    private static func analysisError(_ error: Error) -> StyleToneError {
+        if let error = error as? StyleToneError {
+            return error
+        }
+        if error is CancellationError {
+            return .cancelled
+        }
+        return .imageAnalysisFailed
     }
 
     private static func exportError(_ error: Error) -> StyleToneError {

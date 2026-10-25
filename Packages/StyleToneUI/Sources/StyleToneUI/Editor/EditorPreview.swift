@@ -167,9 +167,9 @@ public struct CoreGraphicsPreviewScaler: EditorPreviewScaling {
 
     private static func scale(_ analysis: PortraitAnalysis, to size: PixelSize) throws -> PortraitAnalysis {
         let needsResize = analysis.imageSize != size
-            || analysis.personMask.map { $0.width != size.width || $0.height != size.height } ?? false
-            || analysis.skinMask.map { $0.width != size.width || $0.height != size.height } ?? false
-            || analysis.backgroundEdgeMask.map { $0.width != size.width || $0.height != size.height } ?? false
+            || (analysis.personMask.map { $0.width != size.width || $0.height != size.height } ?? false)
+            || (analysis.skinMask.map { $0.width != size.width || $0.height != size.height } ?? false)
+            || (analysis.backgroundEdgeMask.map { $0.width != size.width || $0.height != size.height } ?? false)
 
         guard needsResize else { return analysis }
 

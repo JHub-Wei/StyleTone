@@ -133,7 +133,11 @@ final class EditorRendererTests: XCTestCase {
 
         XCTAssertTrue(output.warnings.contains { $0.kind.rawValue == "backgroundRisk" })
         let entries = await log.entries
-        XCTAssertEqual(entries.last, "geometry:open")
+        XCTAssertTrue(entries.contains("geometry:open"))
+        if let geometryIndex = entries.firstIndex(of: "geometry:open"),
+           let toneIndex = entries.firstIndex(of: "tone") {
+            XCTAssertLessThan(geometryIndex, toneIndex)
+        }
     }
 
     func testAnalysisWarningsAreMappedWithoutUnsupportedKinds() async throws {

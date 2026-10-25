@@ -202,7 +202,8 @@ final class EditorViewModelTests: XCTestCase {
 
     func testRenderFailureKeepsPreviousImageAndRecoveryRendersFullQuality() async throws {
         let renderer = EditorRecordingRenderer()
-        await renderer.setErrors([.renderingFailed, nil])
+        let errors: [StyleToneError?] = [.renderingFailed, nil]
+        await renderer.setErrors(errors)
         let (model, image, _) = try await loaded(renderer: renderer)
 
         model.beginInteraction()
@@ -223,9 +224,11 @@ final class EditorViewModelTests: XCTestCase {
 
     func testExportDoesNotReachExporterWhenRenderFails() async throws {
         let renderer = EditorRecordingRenderer()
-        await renderer.setErrors(
-            Array(repeating: StyleToneError.renderingFailed, count: 10)
+        let errors: [StyleToneError?] = Array(
+            repeating: Optional(StyleToneError.renderingFailed),
+            count: 10
         )
+        await renderer.setErrors(errors)
         let exporter = EditorRecordingExporter()
         let (model, _, _) = try await loaded(renderer: renderer, exporter: exporter)
 
@@ -403,7 +406,7 @@ final class EditorViewModelTests: XCTestCase {
 
         var requests = await renderer.requests
         XCTAssertEqual(requests.last?.blemishPoints.count, 1)
-        XCTAssertEqual(requests.last?.blemishPoints.first?.point.x, 0.4)
+        XCTAssertEqual(requests.last?.blemishPoints.first?.point.x ?? -1, 0.4, accuracy: 0.0001)
 
         // The same point twice is a no-op.
         model.addBlemishPoint(at: NormalizedPoint(x: 0.401, y: 0.401), radius: 0.02)

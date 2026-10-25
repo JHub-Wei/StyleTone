@@ -79,13 +79,17 @@ public struct EditorDependencies: Sendable {
         logger: any AppLogging = NoopLogger()
     ) {
         self.analyzer = analyzer
-        self.renderer = renderer ?? EditorRenderer(
-            retoucher: retoucher,
-            blemishRemover: blemishRemover,
-            geometryRenderer: geometryRenderer,
-            toneRenderer: toneRenderer,
-            dateProvider: dateProvider
-        )
+        if let renderer {
+            self.renderer = renderer
+        } else {
+            self.renderer = EditorRenderer(
+                retoucher: retoucher,
+                blemishRemover: blemishRemover,
+                geometryRenderer: geometryRenderer,
+                toneRenderer: toneRenderer,
+                dateProvider: dateProvider
+            )
+        }
         self.exporter = exporter
         self.previewPreparer = previewPreparer
         self.styleProvider = styleProvider
