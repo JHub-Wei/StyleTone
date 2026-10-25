@@ -178,8 +178,8 @@ swift test --filter SettingsPrivacyAuditTests
 | `SettingsCopyTests` | 11 | 110 key 合法/唯一/前缀；无中文/占位；隐私、订阅、删除、诊断文案准确性；无账号 CTA；无绝对化承诺 |
 | `SettingsAccessibilityTests` | 7 | 标识合法/唯一/settings 域；根 = route；冻结 ID 复用；删除/诊断标识层级 |
 | `SettingsVersionTests` + `SettingsSupportTests` | 7 | 版本显示/token 清洗；Bundle/静态 provider；邮箱校验、mailto、隐私政策 URL |
-| `SettingsDiagnosticsTests` | 19 | 默认关闭；关闭不收集；开启持久化；关闭清日志；失败回滚；孤儿清理；环形上限；文件 roundtrip/损坏/超大/清理；诊断码格式/确定性/无路径 |
-| `SettingsLocalDataDeletionTests` | 10 | 完整删除 + 文件/preferences/diagnostics/profile 验证；重启空状态；幂等；profile/diagnostics/preferences/文件失败；residue；报告语义 |
+| `SettingsDiagnosticsTests` | 20 | 默认关闭；关闭不收集；开启持久化；关闭清日志；失败回滚；孤儿清理；环形上限；文件 roundtrip/损坏/超大/清理；真实 UserDefaults opt-in；诊断码格式/确定性/无路径 |
+| `SettingsLocalDataDeletionTests` | 11 | 完整删除 + 文件/preferences/diagnostics/profile 验证；重启空状态；幂等；profile/diagnostics/preferences/文件失败；residue；真实 UserDefaults domain 清除；报告语义 |
 | `SettingsViewModelTests` | 21 | 加载、诊断开关、复制、两段确认/取消/返回、删除成功/失败/重试、删除后 onboarding 信号 |
 | `SettingsScreenTests` | 5 | placeholder 构造、各删除阶段构造、客服邮箱/许可/版本可见状态 |
 | `SettingsPrivacyAuditTests` | 8 | 静态扫描无网络/账号/照片 API；import 白名单；诊断无自由文本；record 门禁；删除走 WP-08；无中文；交互标识全部接线；无账号入口 |
@@ -204,10 +204,10 @@ swift test --filter SettingsPrivacyAuditTests
 - 已做静态核对：源码与测试全部 ASCII、单行 ≤120、无重复文案 key/无障碍 ID、无禁用 API/import、
   所有 110 条文案进入 `all`、所有交互标识在视图中接线。
 - **macOS CI：success** —
-  [run 40162419900](https://github.com/JHub-Wei/StyleTone/actions/runs/40162419900)
-  （commit `6086d097`）：
+  [run 40163062806](https://github.com/JHub-Wei/StyleTone/actions/runs/40163062806)
+  （commit `1a05599`；代码提交 `6086d097`）：
   - XcodeGen、`swift test`、模拟器 build、App tests、xcresult 上传全部 success；
-  - `swift test`：**709 tests，4 skipped，0 failures**；其中 Settings **88 tests**（9 个 suite）全部通过；
+  - `swift test`：**711 tests，4 skipped，0 failures**；其中 Settings **90 tests**（9 个 suite）全部通过；
   - iOS App target 编译通过（含 `UIPasteboard`、`FileProtectionType`、`presentationDetents` 等 iOS 分支）。
 - 说明：该 CI 基线基于 WP-14 `392dc00` + 本 WP 提交；并行 WP-15 Background 的 4 个失败用例不在本分支内。
 
