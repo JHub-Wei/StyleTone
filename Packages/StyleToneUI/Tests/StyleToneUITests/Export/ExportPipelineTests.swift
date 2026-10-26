@@ -722,6 +722,7 @@ final class ExportPipelineTests: XCTestCase {
         )
 
         await model.start()
+        model.saveToLibrary()
         let wait = Task { await model.waitForCompletion() }
         await gate.waitUntilEntered()
         XCTAssertEqual(model.stage, .rendering)
@@ -773,6 +774,7 @@ final class ExportPipelineTests: XCTestCase {
         )
 
         await model.start()
+        model.saveToLibrary()
         let wait = Task { await model.waitForCompletion() }
         await gate.waitUntilEntered()
         XCTAssertEqual(model.stage, .savingToLibrary)
@@ -1128,6 +1130,7 @@ final class ExportPipelineTests: XCTestCase {
         )
 
         await model.start()
+        model.saveToLibrary()
         let wait = Task { await model.waitForCompletion() }
         await gate.waitUntilEntered()
 
