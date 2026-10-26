@@ -47,7 +47,21 @@ final class ExportScreenTests: XCTestCase {
         )
     }
 
-    func testPlaceholderDependenciesFailClosedUntilQuotaServiceIsInjected() async throws {
+    func testPlaceholderDependenciesFailClosedUntilQuotaServiceIsInjected() {
+        let done = expectation(description: "testPlaceholderDependenciesFailClosedUntilQuotaServiceIsInjected")
+        Task { @MainActor in
+            do {
+                try await Self.run_testPlaceholderDependenciesFailClosedUntilQuotaServiceIsInjected()
+            } catch {
+                XCTFail("testPlaceholderDependenciesFailClosedUntilQuotaServiceIsInjected threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testPlaceholderDependenciesFailClosedUntilQuotaServiceIsInjected() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportFailClosed")
         defer { temp.remove() }
 
@@ -79,7 +93,21 @@ final class ExportScreenTests: XCTestCase {
         XCTAssertEqual(ExportAcceptance.staleTemporaryFileAge, 600)
     }
 
-    func testFlowScriptSaveThenShareCountsEachDeliveredExport() async throws {
+    func testFlowScriptSaveThenShareCountsEachDeliveredExport() {
+        let done = expectation(description: "testFlowScriptSaveThenShareCountsEachDeliveredExport")
+        Task { @MainActor in
+            do {
+                try await Self.run_testFlowScriptSaveThenShareCountsEachDeliveredExport()
+            } catch {
+                XCTFail("testFlowScriptSaveThenShareCountsEachDeliveredExport threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testFlowScriptSaveThenShareCountsEachDeliveredExport() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportScreenFlow")
         defer { temp.remove() }
 
@@ -127,7 +155,21 @@ final class ExportScreenTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testFlowScriptPermissionDeniedShareThenRetrySave() async throws {
+    func testFlowScriptPermissionDeniedShareThenRetrySave() {
+        let done = expectation(description: "testFlowScriptPermissionDeniedShareThenRetrySave")
+        Task { @MainActor in
+            do {
+                try await Self.run_testFlowScriptPermissionDeniedShareThenRetrySave()
+            } catch {
+                XCTFail("testFlowScriptPermissionDeniedShareThenRetrySave threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testFlowScriptPermissionDeniedShareThenRetrySave() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportScreenPermission")
         defer { temp.remove() }
 
@@ -171,7 +213,21 @@ final class ExportScreenTests: XCTestCase {
         XCTAssertEqual(count, 2)
     }
 
-    func testFlowScriptQuotaExhaustedOffersUpgrade() async throws {
+    func testFlowScriptQuotaExhaustedOffersUpgrade() {
+        let done = expectation(description: "testFlowScriptQuotaExhaustedOffersUpgrade")
+        Task { @MainActor in
+            do {
+                try await Self.run_testFlowScriptQuotaExhaustedOffersUpgrade()
+            } catch {
+                XCTFail("testFlowScriptQuotaExhaustedOffersUpgrade threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testFlowScriptQuotaExhaustedOffersUpgrade() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportScreenQuota")
         defer { temp.remove() }
 
@@ -193,7 +249,21 @@ final class ExportScreenTests: XCTestCase {
         XCTAssertTrue(model.failure?.recoveries.contains(.upgrade) ?? false)
     }
 
-    func testCloseAfterFailureRemovesTheStagedFile() async throws {
+    func testCloseAfterFailureRemovesTheStagedFile() {
+        let done = expectation(description: "testCloseAfterFailureRemovesTheStagedFile")
+        Task { @MainActor in
+            do {
+                try await Self.run_testCloseAfterFailureRemovesTheStagedFile()
+            } catch {
+                XCTFail("testCloseAfterFailureRemovesTheStagedFile threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testCloseAfterFailureRemovesTheStagedFile() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportScreenClose")
         defer { temp.remove() }
 

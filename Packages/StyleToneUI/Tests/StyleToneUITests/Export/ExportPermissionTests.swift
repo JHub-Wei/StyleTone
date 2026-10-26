@@ -8,7 +8,21 @@ import XCTest
 /// denied, restricted or unavailable.
 @MainActor
 final class ExportPermissionTests: XCTestCase {
-    func testNotDeterminedRequestsAddOnlyOnceAndSaves() async throws {
+    func testNotDeterminedRequestsAddOnlyOnceAndSaves() {
+        let done = expectation(description: "testNotDeterminedRequestsAddOnlyOnceAndSaves")
+        Task { @MainActor in
+            do {
+                try await Self.run_testNotDeterminedRequestsAddOnlyOnceAndSaves()
+            } catch {
+                XCTFail("testNotDeterminedRequestsAddOnlyOnceAndSaves threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testNotDeterminedRequestsAddOnlyOnceAndSaves() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportPermissionGrant")
         defer { temp.remove() }
 
@@ -42,7 +56,21 @@ final class ExportPermissionTests: XCTestCase {
         XCTAssertEqual(count, 1)
     }
 
-    func testDeniedPromptFailsBeforeRenderingAndOffersExits() async throws {
+    func testDeniedPromptFailsBeforeRenderingAndOffersExits() {
+        let done = expectation(description: "testDeniedPromptFailsBeforeRenderingAndOffersExits")
+        Task { @MainActor in
+            do {
+                try await Self.run_testDeniedPromptFailsBeforeRenderingAndOffersExits()
+            } catch {
+                XCTFail("testDeniedPromptFailsBeforeRenderingAndOffersExits threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testDeniedPromptFailsBeforeRenderingAndOffersExits() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportPermissionDeny")
         defer { temp.remove() }
 
@@ -98,7 +126,21 @@ final class ExportPermissionTests: XCTestCase {
         XCTAssertTrue(remaining.isEmpty)
     }
 
-    func testRestrictedLibraryOffersOnlyShareAndDismiss() async throws {
+    func testRestrictedLibraryOffersOnlyShareAndDismiss() {
+        let done = expectation(description: "testRestrictedLibraryOffersOnlyShareAndDismiss")
+        Task { @MainActor in
+            do {
+                try await Self.run_testRestrictedLibraryOffersOnlyShareAndDismiss()
+            } catch {
+                XCTFail("testRestrictedLibraryOffersOnlyShareAndDismiss threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testRestrictedLibraryOffersOnlyShareAndDismiss() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportPermissionRestricted")
         defer { temp.remove() }
 
@@ -129,7 +171,21 @@ final class ExportPermissionTests: XCTestCase {
         XCTAssertEqual(model.stage, .awaitingShare)
     }
 
-    func testUnavailableLibraryOffersShareExit() async throws {
+    func testUnavailableLibraryOffersShareExit() {
+        let done = expectation(description: "testUnavailableLibraryOffersShareExit")
+        Task { @MainActor in
+            do {
+                try await Self.run_testUnavailableLibraryOffersShareExit()
+            } catch {
+                XCTFail("testUnavailableLibraryOffersShareExit threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testUnavailableLibraryOffersShareExit() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportPermissionUnavailable")
         defer { temp.remove() }
 
@@ -167,7 +223,21 @@ final class ExportPermissionTests: XCTestCase {
         XCTAssertEqual(count, 1)
     }
 
-    func testDeniedAtStartSucceedsAfterSettingsAreOpenedAndRetried() async throws {
+    func testDeniedAtStartSucceedsAfterSettingsAreOpenedAndRetried() {
+        let done = expectation(description: "testDeniedAtStartSucceedsAfterSettingsAreOpenedAndRetried")
+        Task { @MainActor in
+            do {
+                try await Self.run_testDeniedAtStartSucceedsAfterSettingsAreOpenedAndRetried()
+            } catch {
+                XCTFail("testDeniedAtStartSucceedsAfterSettingsAreOpenedAndRetried threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testDeniedAtStartSucceedsAfterSettingsAreOpenedAndRetried() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportPermissionSettings")
         defer { temp.remove() }
 
@@ -201,7 +271,21 @@ final class ExportPermissionTests: XCTestCase {
         XCTAssertEqual(count, 1)
     }
 
-    func testPhotoKitSaveRejectionKeepsFileAndRetriesWithoutReencoding() async throws {
+    func testPhotoKitSaveRejectionKeepsFileAndRetriesWithoutReencoding() {
+        let done = expectation(description: "testPhotoKitSaveRejectionKeepsFileAndRetriesWithoutReencoding")
+        Task { @MainActor in
+            do {
+                try await Self.run_testPhotoKitSaveRejectionKeepsFileAndRetriesWithoutReencoding()
+            } catch {
+                XCTFail("testPhotoKitSaveRejectionKeepsFileAndRetriesWithoutReencoding threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testPhotoKitSaveRejectionKeepsFileAndRetriesWithoutReencoding() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportPermissionSaveRetry")
         defer { temp.remove() }
 
@@ -240,7 +324,21 @@ final class ExportPermissionTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testCanShareEvenWhenLibraryAccessIsDenied() async throws {
+    func testCanShareEvenWhenLibraryAccessIsDenied() {
+        let done = expectation(description: "testCanShareEvenWhenLibraryAccessIsDenied")
+        Task { @MainActor in
+            do {
+                try await Self.run_testCanShareEvenWhenLibraryAccessIsDenied()
+            } catch {
+                XCTFail("testCanShareEvenWhenLibraryAccessIsDenied threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testCanShareEvenWhenLibraryAccessIsDenied() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportPermissionShare")
         defer { temp.remove() }
 

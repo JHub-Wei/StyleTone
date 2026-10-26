@@ -15,7 +15,21 @@ import XCTest
 /// final device measurement of the complete WP-17 render + export pipeline.
 @MainActor
 final class ExportPerformanceTests: XCTestCase {
-    func testTwelveMegapixelExportStaysWithinBudget() async throws {
+    func testTwelveMegapixelExportStaysWithinBudget() {
+        let done = expectation(description: "testTwelveMegapixelExportStaysWithinBudget")
+        Task { @MainActor in
+            do {
+                try await Self.run_testTwelveMegapixelExportStaysWithinBudget()
+            } catch {
+                XCTFail("testTwelveMegapixelExportStaysWithinBudget threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testTwelveMegapixelExportStaysWithinBudget() async throws {
         let identifiers = CGImageDestinationCopyTypeIdentifiers() as? [String] ?? []
         let format: ExportFormat = identifiers.contains("public.heic") ? .heic : .jpeg
         let size = PixelSize(width: 4_032, height: 3_024)
@@ -88,7 +102,9 @@ final class ExportPerformanceTests: XCTestCase {
             string: "12MP \(format.rawValue) durations (s): [\(summary)], p95=\(String(format: "%.3f", p95))"
         )
         attachment.lifetime = .keepAlways
-        add(attachment)
+        XCTContext.runActivity(named: "12MP export timings") { activity in
+            activity.add(attachment)
+        }
 
         XCTAssertLessThanOrEqual(
             p95,
@@ -101,7 +117,7 @@ final class ExportPerformanceTests: XCTestCase {
     }
 
     /// Linear-interpolated percentile over an already sorted sample.
-    private func percentile(_ sorted: [Double], _ p: Double) -> Double {
+    private static func percentile(_ sorted: [Double], _ p: Double) -> Double {
         guard !sorted.isEmpty else { return 0 }
         let clamped = min(max(p, 0), 1)
         let position = clamped * Double(sorted.count - 1)
@@ -158,7 +174,7 @@ final class ExportPerformanceTests: XCTestCase {
 
     // MARK: - Fixture
 
-    private func makeImageAsset(size: PixelSize) throws -> ImageAsset {
+    private static func makeImageAsset(size: PixelSize) throws -> ImageAsset {
         let colorSpace = try XCTUnwrap(CGColorSpace(name: CGColorSpace.sRGB))
         let context = try XCTUnwrap(
             CGContext(

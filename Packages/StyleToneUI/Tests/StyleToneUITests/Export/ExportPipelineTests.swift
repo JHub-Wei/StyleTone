@@ -13,7 +13,21 @@ import XCTest
 /// temporary file left behind.
 @MainActor
 final class ExportPipelineTests: XCTestCase {
-    func testSaveExportsFullResolutionSavesTheSameFileAndCleansUp() async throws {
+    func testSaveExportsFullResolutionSavesTheSameFileAndCleansUp() {
+        let done = expectation(description: "testSaveExportsFullResolutionSavesTheSameFileAndCleansUp")
+        Task { @MainActor in
+            do {
+                try await Self.run_testSaveExportsFullResolutionSavesTheSameFileAndCleansUp()
+            } catch {
+                XCTFail("testSaveExportsFullResolutionSavesTheSameFileAndCleansUp threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testSaveExportsFullResolutionSavesTheSameFileAndCleansUp() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportSave")
         defer { temp.remove() }
 
@@ -59,7 +73,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty, "temporary file must be removed after saving")
     }
 
-    func testShareWaitsForSystemCompletionBeforeCounting() async throws {
+    func testShareWaitsForSystemCompletionBeforeCounting() {
+        let done = expectation(description: "testShareWaitsForSystemCompletionBeforeCounting")
+        Task { @MainActor in
+            do {
+                try await Self.run_testShareWaitsForSystemCompletionBeforeCounting()
+            } catch {
+                XCTFail("testShareWaitsForSystemCompletionBeforeCounting threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testShareWaitsForSystemCompletionBeforeCounting() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportShare")
         defer { temp.remove() }
 
@@ -95,7 +123,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(filesAfter.isEmpty)
     }
 
-    func testCancelledShareDoesNotCountAndRemovesTheFile() async throws {
+    func testCancelledShareDoesNotCountAndRemovesTheFile() {
+        let done = expectation(description: "testCancelledShareDoesNotCountAndRemovesTheFile")
+        Task { @MainActor in
+            do {
+                try await Self.run_testCancelledShareDoesNotCountAndRemovesTheFile()
+            } catch {
+                XCTFail("testCancelledShareDoesNotCountAndRemovesTheFile threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testCancelledShareDoesNotCountAndRemovesTheFile() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportShareCancel")
         defer { temp.remove() }
 
@@ -122,7 +164,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testShareCompletionSurvivesSwiftUIClearingTheSheetItem() async throws {
+    func testShareCompletionSurvivesSwiftUIClearingTheSheetItem() {
+        let done = expectation(description: "testShareCompletionSurvivesSwiftUIClearingTheSheetItem")
+        Task { @MainActor in
+            do {
+                try await Self.run_testShareCompletionSurvivesSwiftUIClearingTheSheetItem()
+            } catch {
+                XCTFail("testShareCompletionSurvivesSwiftUIClearingTheSheetItem threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testShareCompletionSurvivesSwiftUIClearingTheSheetItem() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportShareRace")
         defer { temp.remove() }
 
@@ -152,7 +208,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testPrepareForClosePreservesAPendingShareUntilCompletion() async throws {
+    func testPrepareForClosePreservesAPendingShareUntilCompletion() {
+        let done = expectation(description: "testPrepareForClosePreservesAPendingShareUntilCompletion")
+        Task { @MainActor in
+            do {
+                try await Self.run_testPrepareForClosePreservesAPendingShareUntilCompletion()
+            } catch {
+                XCTFail("testPrepareForClosePreservesAPendingShareUntilCompletion threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testPrepareForClosePreservesAPendingShareUntilCompletion() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportCloseShare")
         defer { temp.remove() }
 
@@ -183,7 +253,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testAbandoningADismissedShareCleansUpWithoutCounting() async throws {
+    func testAbandoningADismissedShareCleansUpWithoutCounting() {
+        let done = expectation(description: "testAbandoningADismissedShareCleansUpWithoutCounting")
+        Task { @MainActor in
+            do {
+                try await Self.run_testAbandoningADismissedShareCleansUpWithoutCounting()
+            } catch {
+                XCTFail("testAbandoningADismissedShareCleansUpWithoutCounting threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testAbandoningADismissedShareCleansUpWithoutCounting() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportAbandonShare")
         defer { temp.remove() }
 
@@ -217,7 +301,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testRenderFailureIsRetryableAndDoesNotCount() async throws {
+    func testRenderFailureIsRetryableAndDoesNotCount() {
+        let done = expectation(description: "testRenderFailureIsRetryableAndDoesNotCount")
+        Task { @MainActor in
+            do {
+                try await Self.run_testRenderFailureIsRetryableAndDoesNotCount()
+            } catch {
+                XCTFail("testRenderFailureIsRetryableAndDoesNotCount threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testRenderFailureIsRetryableAndDoesNotCount() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportRenderFail")
         defer { temp.remove() }
 
@@ -253,7 +351,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testEncodeFailureIsRetryableAndDoesNotCount() async throws {
+    func testEncodeFailureIsRetryableAndDoesNotCount() {
+        let done = expectation(description: "testEncodeFailureIsRetryableAndDoesNotCount")
+        Task { @MainActor in
+            do {
+                try await Self.run_testEncodeFailureIsRetryableAndDoesNotCount()
+            } catch {
+                XCTFail("testEncodeFailureIsRetryableAndDoesNotCount threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testEncodeFailureIsRetryableAndDoesNotCount() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportEncodeFail")
         defer { temp.remove() }
 
@@ -283,7 +395,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertEqual(calls, 2)
     }
 
-    func testSaveFailureKeepsTheFileForShareInsteadAndDoesNotCount() async throws {
+    func testSaveFailureKeepsTheFileForShareInsteadAndDoesNotCount() {
+        let done = expectation(description: "testSaveFailureKeepsTheFileForShareInsteadAndDoesNotCount")
+        Task { @MainActor in
+            do {
+                try await Self.run_testSaveFailureKeepsTheFileForShareInsteadAndDoesNotCount()
+            } catch {
+                XCTFail("testSaveFailureKeepsTheFileForShareInsteadAndDoesNotCount threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testSaveFailureKeepsTheFileForShareInsteadAndDoesNotCount() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportSaveFail")
         defer { temp.remove() }
 
@@ -322,7 +448,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testDismissFailureRemovesAStagedFile() async throws {
+    func testDismissFailureRemovesAStagedFile() {
+        let done = expectation(description: "testDismissFailureRemovesAStagedFile")
+        Task { @MainActor in
+            do {
+                try await Self.run_testDismissFailureRemovesAStagedFile()
+            } catch {
+                XCTFail("testDismissFailureRemovesAStagedFile threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testDismissFailureRemovesAStagedFile() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportDismiss")
         defer { temp.remove() }
 
@@ -346,7 +486,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testProxySizedRenderIsRejectedBeforeEncoding() async throws {
+    func testProxySizedRenderIsRejectedBeforeEncoding() {
+        let done = expectation(description: "testProxySizedRenderIsRejectedBeforeEncoding")
+        Task { @MainActor in
+            do {
+                try await Self.run_testProxySizedRenderIsRejectedBeforeEncoding()
+            } catch {
+                XCTFail("testProxySizedRenderIsRejectedBeforeEncoding threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testProxySizedRenderIsRejectedBeforeEncoding() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportProxy")
         defer { temp.remove() }
 
@@ -376,7 +530,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testExporterSizeMismatchFailsAndCleansTheFile() async throws {
+    func testExporterSizeMismatchFailsAndCleansTheFile() {
+        let done = expectation(description: "testExporterSizeMismatchFailsAndCleansTheFile")
+        Task { @MainActor in
+            do {
+                try await Self.run_testExporterSizeMismatchFailsAndCleansTheFile()
+            } catch {
+                XCTFail("testExporterSizeMismatchFailsAndCleansTheFile threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testExporterSizeMismatchFailsAndCleansTheFile() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportSize")
         defer { temp.remove() }
 
@@ -402,7 +570,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testLyingExporterMetadataIsCaughtByReadingTheEncodedFile() async throws {
+    func testLyingExporterMetadataIsCaughtByReadingTheEncodedFile() {
+        let done = expectation(description: "testLyingExporterMetadataIsCaughtByReadingTheEncodedFile")
+        Task { @MainActor in
+            do {
+                try await Self.run_testLyingExporterMetadataIsCaughtByReadingTheEncodedFile()
+            } catch {
+                XCTFail("testLyingExporterMetadataIsCaughtByReadingTheEncodedFile threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testLyingExporterMetadataIsCaughtByReadingTheEncodedFile() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportLyingMetadata")
         defer { temp.remove() }
 
@@ -427,7 +609,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty, "proxy-sized file must be deleted")
     }
 
-    func testMissingEncodedOutputFailsAndDoesNotCount() async throws {
+    func testMissingEncodedOutputFailsAndDoesNotCount() {
+        let done = expectation(description: "testMissingEncodedOutputFailsAndDoesNotCount")
+        Task { @MainActor in
+            do {
+                try await Self.run_testMissingEncodedOutputFailsAndDoesNotCount()
+            } catch {
+                XCTFail("testMissingEncodedOutputFailsAndDoesNotCount threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testMissingEncodedOutputFailsAndDoesNotCount() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportMissing")
         defer { temp.remove() }
 
@@ -451,7 +647,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testFormatQualityAndLocationOptionsAreForwarded() async throws {
+    func testFormatQualityAndLocationOptionsAreForwarded() {
+        let done = expectation(description: "testFormatQualityAndLocationOptionsAreForwarded")
+        Task { @MainActor in
+            do {
+                try await Self.run_testFormatQualityAndLocationOptionsAreForwarded()
+            } catch {
+                XCTFail("testFormatQualityAndLocationOptionsAreForwarded threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testFormatQualityAndLocationOptionsAreForwarded() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportOptions")
         defer { temp.remove() }
 
@@ -482,7 +692,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertEqual(model.outcome?.format, .jpeg)
     }
 
-    func testCancellingDuringRenderLeavesNoFileAndDoesNotCount() async throws {
+    func testCancellingDuringRenderLeavesNoFileAndDoesNotCount() {
+        let done = expectation(description: "testCancellingDuringRenderLeavesNoFileAndDoesNotCount")
+        Task { @MainActor in
+            do {
+                try await Self.run_testCancellingDuringRenderLeavesNoFileAndDoesNotCount()
+            } catch {
+                XCTFail("testCancellingDuringRenderLeavesNoFileAndDoesNotCount threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testCancellingDuringRenderLeavesNoFileAndDoesNotCount() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportCancelRender")
         defer { temp.remove() }
 
@@ -519,7 +743,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testCancelDuringLibrarySaveIsIgnoredAfterHandoff() async throws {
+    func testCancelDuringLibrarySaveIsIgnoredAfterHandoff() {
+        let done = expectation(description: "testCancelDuringLibrarySaveIsIgnoredAfterHandoff")
+        Task { @MainActor in
+            do {
+                try await Self.run_testCancelDuringLibrarySaveIsIgnoredAfterHandoff()
+            } catch {
+                XCTFail("testCancelDuringLibrarySaveIsIgnoredAfterHandoff threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testCancelDuringLibrarySaveIsIgnoredAfterHandoff() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportCancelSave")
         defer { temp.remove() }
 
@@ -558,7 +796,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(files.isEmpty)
     }
 
-    func testFreeQuotaDecrementsOnlyAfterEachSuccess() async throws {
+    func testFreeQuotaDecrementsOnlyAfterEachSuccess() {
+        let done = expectation(description: "testFreeQuotaDecrementsOnlyAfterEachSuccess")
+        Task { @MainActor in
+            do {
+                try await Self.run_testFreeQuotaDecrementsOnlyAfterEachSuccess()
+            } catch {
+                XCTFail("testFreeQuotaDecrementsOnlyAfterEachSuccess threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testFreeQuotaDecrementsOnlyAfterEachSuccess() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportQuotaDecrement")
         defer { temp.remove() }
 
@@ -585,7 +837,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertEqual(count, 2)
     }
 
-    func testExhaustedQuotaBlocksBeforeRenderingAndOffersUpgrade() async throws {
+    func testExhaustedQuotaBlocksBeforeRenderingAndOffersUpgrade() {
+        let done = expectation(description: "testExhaustedQuotaBlocksBeforeRenderingAndOffersUpgrade")
+        Task { @MainActor in
+            do {
+                try await Self.run_testExhaustedQuotaBlocksBeforeRenderingAndOffersUpgrade()
+            } catch {
+                XCTFail("testExhaustedQuotaBlocksBeforeRenderingAndOffersUpgrade threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testExhaustedQuotaBlocksBeforeRenderingAndOffersUpgrade() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportQuotaExhausted")
         defer { temp.remove() }
 
@@ -615,7 +881,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertEqual(count, 0)
     }
 
-    func testQuotaLoadFailureFailsClosedAndCanBeRetried() async throws {
+    func testQuotaLoadFailureFailsClosedAndCanBeRetried() {
+        let done = expectation(description: "testQuotaLoadFailureFailsClosedAndCanBeRetried")
+        Task { @MainActor in
+            do {
+                try await Self.run_testQuotaLoadFailureFailsClosedAndCanBeRetried()
+            } catch {
+                XCTFail("testQuotaLoadFailureFailsClosedAndCanBeRetried threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testQuotaLoadFailureFailsClosedAndCanBeRetried() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportQuotaLoad")
         defer { temp.remove() }
 
@@ -646,7 +926,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertEqual(model.quotaText, "2 free exports left")
     }
 
-    func testQuotaRecordFailureDoesNotTurnDeliveredPhotoIntoAFailure() async throws {
+    func testQuotaRecordFailureDoesNotTurnDeliveredPhotoIntoAFailure() {
+        let done = expectation(description: "testQuotaRecordFailureDoesNotTurnDeliveredPhotoIntoAFailure")
+        Task { @MainActor in
+            do {
+                try await Self.run_testQuotaRecordFailureDoesNotTurnDeliveredPhotoIntoAFailure()
+            } catch {
+                XCTFail("testQuotaRecordFailureDoesNotTurnDeliveredPhotoIntoAFailure threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testQuotaRecordFailureDoesNotTurnDeliveredPhotoIntoAFailure() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportQuotaRecord")
         defer { temp.remove() }
 
@@ -681,7 +975,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertTrue(model.canExport)
     }
 
-    func testShareUnavailableOffersSaveInstead() async throws {
+    func testShareUnavailableOffersSaveInstead() {
+        let done = expectation(description: "testShareUnavailableOffersSaveInstead")
+        Task { @MainActor in
+            do {
+                try await Self.run_testShareUnavailableOffersSaveInstead()
+            } catch {
+                XCTFail("testShareUnavailableOffersSaveInstead threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testShareUnavailableOffersSaveInstead() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportNoShare")
         defer { temp.remove() }
 
@@ -711,7 +1019,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertEqual(model.stage, .finished)
     }
 
-    func testStartIsIdempotent() async throws {
+    func testStartIsIdempotent() {
+        let done = expectation(description: "testStartIsIdempotent")
+        Task { @MainActor in
+            do {
+                try await Self.run_testStartIsIdempotent()
+            } catch {
+                XCTFail("testStartIsIdempotent threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testStartIsIdempotent() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportStart")
         defer { temp.remove() }
 
@@ -734,7 +1056,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertEqual(authorizationCount, 1)
     }
 
-    func testSecondExportAfterExhaustionIsBlocked() async throws {
+    func testSecondExportAfterExhaustionIsBlocked() {
+        let done = expectation(description: "testSecondExportAfterExhaustionIsBlocked")
+        Task { @MainActor in
+            do {
+                try await Self.run_testSecondExportAfterExhaustionIsBlocked()
+            } catch {
+                XCTFail("testSecondExportAfterExhaustionIsBlocked threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testSecondExportAfterExhaustionIsBlocked() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportLastFree")
         defer { temp.remove() }
 
@@ -764,7 +1100,21 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertEqual(count, 1)
     }
 
-    func testChangingFormatWhileBusyIsIgnored() async throws {
+    func testChangingFormatWhileBusyIsIgnored() {
+        let done = expectation(description: "testChangingFormatWhileBusyIsIgnored")
+        Task { @MainActor in
+            do {
+                try await Self.run_testChangingFormatWhileBusyIsIgnored()
+            } catch {
+                XCTFail("testChangingFormatWhileBusyIsIgnored threw: \(error)")
+            }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 30)
+    }
+
+    @MainActor
+    private static func run_testChangingFormatWhileBusyIsIgnored() async throws {
         let temp = try TemporaryDirectory(prefix: "StyleToneExportBusy")
         defer { temp.remove() }
 
