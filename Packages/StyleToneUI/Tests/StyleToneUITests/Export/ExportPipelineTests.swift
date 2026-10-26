@@ -46,8 +46,8 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertFalse(model.outcomeCountPending)
         XCTAssertNil(model.failure)
 
-        let receivedSizes = await exporter.receivedPixelSizes
-        let written = await exporter.writtenURLs
+        let receivedSizes = exporter.receivedPixelSizes
+        let written = exporter.writtenURLs
         let saved = await library.savedFiles
         let recordCount = await quota.recordCount
         XCTAssertEqual(receivedSizes, [ExportTestFactory.defaultSize])
@@ -279,7 +279,7 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertEqual(model.stage, .finished)
         count = await quota.recordCount
         XCTAssertEqual(count, 1)
-        let calls = await exporter.callCount
+        let calls = exporter.callCount
         XCTAssertEqual(calls, 2)
     }
 
@@ -368,7 +368,7 @@ final class ExportPipelineTests: XCTestCase {
 
         XCTAssertEqual(model.failure?.kind, .resolutionMismatch)
         XCTAssertTrue(model.failure?.isRetryable ?? false)
-        let exportCalls = await exporter.callCount
+        let exportCalls = exporter.callCount
         XCTAssertEqual(exportCalls, 0)
         let count = await quota.recordCount
         XCTAssertEqual(count, 0)
@@ -381,7 +381,7 @@ final class ExportPipelineTests: XCTestCase {
         defer { temp.remove() }
 
         let exporter = FileWritingExporter(directory: temp.url)
-        await exporter.setSizeOverride(PixelSize(width: 320, height: 240))
+        exporter.setSizeOverride(PixelSize(width: 320, height: 240))
         let quota = FakeExportQuota(.free(remaining: 3))
         let model = try ExportTestFactory.model(
             directory: temp.url,
@@ -394,7 +394,7 @@ final class ExportPipelineTests: XCTestCase {
         await model.waitForCompletion()
 
         XCTAssertEqual(model.failure?.kind, .encodeFailed)
-        let calls = await exporter.callCount
+        let calls = exporter.callCount
         XCTAssertEqual(calls, 1)
         let count = await quota.recordCount
         XCTAssertEqual(count, 0)
@@ -407,8 +407,8 @@ final class ExportPipelineTests: XCTestCase {
         defer { temp.remove() }
 
         let exporter = FileWritingExporter(directory: temp.url)
-        await exporter.setSizeOverride(PixelSize(width: 320, height: 240))
-        await exporter.setReportedSizeOverride(ExportTestFactory.defaultSize)
+        exporter.setSizeOverride(PixelSize(width: 320, height: 240))
+        exporter.setReportedSizeOverride(ExportTestFactory.defaultSize)
         let quota = FakeExportQuota(.free(remaining: 3))
         let model = try ExportTestFactory.model(
             directory: temp.url,
@@ -432,7 +432,7 @@ final class ExportPipelineTests: XCTestCase {
         defer { temp.remove() }
 
         let exporter = FileWritingExporter(directory: temp.url)
-        await exporter.setRemovesOutput(true)
+        exporter.setRemovesOutput(true)
         let quota = FakeExportQuota(.free(remaining: 3))
         let model = try ExportTestFactory.model(
             directory: temp.url,
@@ -471,13 +471,13 @@ final class ExportPipelineTests: XCTestCase {
         model.saveToLibrary()
         await model.waitForCompletion()
 
-        let options = await exporter.receivedOptions
+        let options = exporter.receivedOptions
         let received = try XCTUnwrap(options.last)
         XCTAssertEqual(received.format, .jpeg)
         XCTAssertEqual(received.quality, ExportQuality.standard.value, accuracy: 0.0001)
         XCTAssertTrue(received.stripLocation)
 
-        let written = await exporter.writtenURLs
+        let written = exporter.writtenURLs
         XCTAssertEqual(written.last?.pathExtension, "jpg")
         XCTAssertEqual(model.outcome?.format, .jpeg)
     }
@@ -513,7 +513,7 @@ final class ExportPipelineTests: XCTestCase {
         XCTAssertNil(model.failure)
         let count = await quota.recordCount
         XCTAssertEqual(count, 0)
-        let exportCalls = await exporter.callCount
+        let exportCalls = exporter.callCount
         XCTAssertEqual(exportCalls, 0)
         let files = try ExportTestFactory.directoryContents(temp.url)
         XCTAssertTrue(files.isEmpty)

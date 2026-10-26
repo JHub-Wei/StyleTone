@@ -243,7 +243,11 @@ actor FakeExportQuota: ExportQuotaServicing {
 /// file that is written; `setReportedSizeOverride` changes only the metadata the
 /// exporter returns, which lets a test prove the inspector catches a lying
 /// exporter.
-actor FileWritingExporter: ImageExporting {
+///
+/// A plain lock-free reference type is deliberate: the double is only driven
+/// from the main actor in these tests, and avoiding an actor removes an
+/// additional executor from the async test teardown path.
+final class FileWritingExporter: ImageExporting, @unchecked Sendable {
     private let directory: URL
     private var failures: [StyleToneError?]
     private var writeSizeOverride: PixelSize?

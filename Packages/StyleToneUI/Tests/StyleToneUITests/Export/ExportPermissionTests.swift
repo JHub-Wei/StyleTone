@@ -230,7 +230,7 @@ final class ExportPermissionTests: XCTestCase {
         await model.waitForCompletion()
 
         XCTAssertEqual(model.stage, .finished)
-        let exportCalls = await exporter.callCount
+        let exportCalls = exporter.callCount
         let saves = await library.saveCount
         let count = await quota.recordCount
         XCTAssertEqual(exportCalls, 1, "retry should save the staged file, not re-encode")
