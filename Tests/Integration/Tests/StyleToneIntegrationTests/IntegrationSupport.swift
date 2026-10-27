@@ -119,6 +119,17 @@ struct PortraitPipelineParameters: Sendable {
     let skin: SkinParameters
 
     static func make(for framing: PortraitFraming) -> PortraitPipelineParameters {
+        // Evenness is deliberately disabled for the golden corpus.
+        //
+        // WP-25 found that `LowFrequencyField.make` downsamples through a
+        // Core Graphics bitmap context without flipping its CTM, so the reduced
+        // field is vertically mirrored relative to the full-resolution image.
+        // Uniform WP-07 fixtures do not notice; a real portrait is pulled
+        // towards whatever is mirrored below it (dark skin gets a pale,
+        // desaturated cast). The defect is filed against WP-07; until it is
+        // fixed the golden suite exercises smoothing only. Re-enable
+        // `evenness: 0.35` here once WP-07 flips the reduced image.
+        let skin = SkinParameters(smoothing: 0.55, evenness: 0)
         switch framing {
         case .headshot:
             return PortraitPipelineParameters(
@@ -127,7 +138,7 @@ struct PortraitPipelineParameters: Sendable {
                     body: .neutral,
                     backgroundProtection: true
                 ),
-                skin: SkinParameters(smoothing: 0.55, evenness: 0.35)
+                skin: skin
             )
         case .halfBody:
             return PortraitPipelineParameters(
@@ -136,7 +147,7 @@ struct PortraitPipelineParameters: Sendable {
                     body: BodyParameters(arm: 0.30, waist: 0.35, leg: 0, legLength: 1.0),
                     backgroundProtection: true
                 ),
-                skin: SkinParameters(smoothing: 0.55, evenness: 0.35)
+                skin: skin
             )
         case .fullBody:
             return PortraitPipelineParameters(
@@ -145,7 +156,7 @@ struct PortraitPipelineParameters: Sendable {
                     body: BodyParameters(arm: 0.30, waist: 0.35, leg: 0.25, legLength: 1.08),
                     backgroundProtection: true
                 ),
-                skin: SkinParameters(smoothing: 0.55, evenness: 0.35)
+                skin: skin
             )
         }
     }

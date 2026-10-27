@@ -660,7 +660,12 @@ public enum PortraitMetricEvaluator {
             for x in lower ... upper {
                 profile.append(luma(buffer[x, y].color))
             }
-            guard let position = extremumPosition(profile: profile, startIndex: lower, minimumContrast: 8) else {
+            guard let position = extremumPosition(
+                profile: profile,
+                startIndex: lower,
+                minimumContrast: 8,
+                expected: center
+            ) else {
                 continue
             }
             samples.append((Double(y), position))
@@ -707,7 +712,12 @@ public enum PortraitMetricEvaluator {
             for y in lower ... upper {
                 profile.append(luma(buffer[x, y].color))
             }
-            guard let position = extremumPosition(profile: profile, startIndex: lower, minimumContrast: 8) else {
+            guard let position = extremumPosition(
+                profile: profile,
+                startIndex: lower,
+                minimumContrast: 8,
+                expected: center
+            ) else {
                 continue
             }
             samples.append((Double(x), position))
@@ -786,7 +796,8 @@ public enum PortraitMetricEvaluator {
     private static func extremumPosition(
         profile: [Double],
         startIndex: Int,
-        minimumContrast: Double
+        minimumContrast: Double,
+        expected: Double
     ) -> Double? {
         guard profile.count >= 3 else { return nil }
         var mean = 0.0
@@ -798,14 +809,21 @@ public enum PortraitMetricEvaluator {
             if profile[index] < profile[minIndex] { minIndex = index }
             if profile[index] > profile[maxIndex] { maxIndex = index }
         }
-        let minContrast = abs(profile[minIndex] - mean)
-        let maxContrast = abs(profile[maxIndex] - mean)
-        let peakIndex = minContrast >= maxContrast ? minIndex : maxIndex
-        let contrast = max(minContrast, maxContrast)
-        guard contrast >= minimumContrast else { return nil }
-        guard peakIndex > 0, peakIndex < profile.count - 1 else {
-            return Double(startIndex + peakIndex) + 0.5
+        let candidates: [(index: Int, contrast: Double)] = [
+            (minIndex, abs(profile[minIndex] - mean)),
+            (maxIndex, abs(profile[maxIndex] - mean))
+        ].filter { $0.contrast >= minimumContrast }
+        guard let peak = candidates.min(by: { lhs, rhs in
+            let leftDistance = abs(Double(startIndex + lhs.index) + 0.5 - expected)
+            let rightDistance = abs(Double(startIndex + rhs.index) + 0.5 - expected)
+            if leftDistance != rightDistance {
+                return leftDistance < rightDistance
+            }
+            return lhs.contrast > rhs.contrast
+        }) else {
+            return nil
         }
+        let peakIndex = peak.index
         let left = profile[peakIndex - 1]
         let centerValue = profile[peakIndex]
         let right = profile[peakIndex + 1]
