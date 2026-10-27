@@ -663,36 +663,12 @@ public enum PortraitMetricEvaluator {
 
         var samples: [(t: Double, position: Double)] = []
         for y in startY ... endY {
-            if line.label == "door.right", y % 20 == 0 {
-                portraitTrace("vline door.right y \(y) pre")
+            if line.label == "door.right" {
+                portraitTrace("dr y \(y)")
             }
             if hasPerson(person: person, width: width, xRange: (lower - 2)...(upper + 2), yRange: y...y) {
                 continue
             }
-            if line.label == "door.right", y % 20 == 0 {
-                portraitTrace("vline door.right y \(y) person done")
-            }
-            var profile: [Double] = []
-            profile.reserveCapacity(upper - lower + 1)
-            for x in lower ... upper {
-                profile.append(luma(buffer[x, y].color))
-            }
-            if line.label == "door.right", y % 20 == 0 {
-                portraitTrace("vline door.right y \(y) profile \(profile.count)")
-            }
-            guard let position = extremumPosition(
-                profile: profile,
-                startIndex: lower,
-                minimumContrast: 8,
-                expected: center
-            ) else {
-                continue
-            }
-            if line.label == "door.right", y % 20 == 0 {
-                portraitTrace("vline door.right y \(y) extremum \(position)")
-            }
-            samples.append((Double(y), position))
-        }
         if line.label == "door.right" {
             portraitTrace("vline \(line.label) samples \(samples.count)")
         }
