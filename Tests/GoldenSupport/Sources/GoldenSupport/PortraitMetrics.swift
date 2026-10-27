@@ -663,6 +663,10 @@ public enum PortraitMetricEvaluator {
 
         var samples: [(t: Double, position: Double)] = []
         for y in startY ... endY {
+            if y == startY {
+                portraitTrace("vline \(line.label) first row \(y) lower=\(lower) upper=\(upper)")
+                portraitTrace("person count \(person.count) width \(width) height \(height)")
+            }
             if hasPerson(person: person, width: width, xRange: (lower - 2)...(upper + 2), yRange: y...y) {
                 continue
             }
@@ -680,6 +684,9 @@ public enum PortraitMetricEvaluator {
                 continue
             }
             samples.append((Double(y), position))
+        }
+        if line.label == "door.right" {
+            portraitTrace("vline \(line.label) samples \(samples.count)")
         }
         return makeMeasurement(
             line: line,
