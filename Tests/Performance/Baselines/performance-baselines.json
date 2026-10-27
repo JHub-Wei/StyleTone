@@ -1,0 +1,7 @@
+{
+  "schemaVersion" : 1,
+  "generatedAt" : "2026-10-27T00:00:00Z",
+  "referenceDevice" : "iPhone 13",
+  "notes" : "Wp-24 baseline file. CI entries are recorded from the macOS CI run that introduced the gate; iPhone 13 entries are recorded on the reference device before release. A run is only compared with an entry for the same environment id and build configuration.",
+  "entries" : []
+}
