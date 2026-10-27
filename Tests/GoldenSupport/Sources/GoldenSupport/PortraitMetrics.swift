@@ -459,6 +459,7 @@ public enum PortraitMetricEvaluator {
         }
 
         let background = try measureBackground(scene: scene, output: output, thresholds: thresholds)
+        print("PORTRAIT_TRACE background done")
         let skin = try measureSkin(
             scene: scene,
             source: source,
@@ -466,15 +467,20 @@ public enum PortraitMetricEvaluator {
             output: output,
             thresholds: thresholds
         )
+        print("PORTRAIT_TRACE skin done")
         let edge = try measureEdges(
             scene: scene,
             source: source,
             output: output,
             thresholds: thresholds
         )
+        print("PORTRAIT_TRACE edges done")
         let coverage = try coverageDeltaE(source: source, output: output)
+        print("PORTRAIT_TRACE coverage done")
         let ssim = ImageComparator.structuralSimilarity(source, output)
+        print("PORTRAIT_TRACE ssim done")
         let signature = try signature(of: output)
+        print("PORTRAIT_TRACE signature done")
 
         let metrics = PortraitSampleMetrics(
             backgroundMeasuredLines: background.measuredLineCount,
@@ -1153,29 +1159,35 @@ public enum PortraitMetricEvaluator {
                 normal: normal
             )
             guard abs(sourceContrast) > 6 else { continue }
-            var candidates: [(shift: Int, contrast: Double)] = []
-            for shift in -6 ... 6 {
-                let value = contrast(
-                    output,
-                    x: Double(point.x) + 0.5 + normal.x * Double(shift),
-                    y: Double(point.y) + 0.5 + normal.y * Double(shift),
-                    normal: normal
-                )
-                if value * sourceContrast > 0 {
-                    candidates.append((shift: shift, contrast: value))
-                }
-            }
+            let extendedRadius = max(10, min(output.width, output.height) / 20)
+            let local = bestEdgeCandidate(
+                output: output,
+                pointX: Double(point.x) + 0.5,
+                pointY: Double(point.y) + 0.5,
+                normal: normal,
+                sourceContrast: sourceContrast,
+                shifts: -6 ... 6
+            )
             used += 1
-            guard let strongest = candidates.max(by: { abs($0.contrast) < abs($1.contrast) }) else {
+            let chosen: (shift: Int, contrast: Double)?
+            if let local, abs(local.contrast) / abs(sourceContrast) >= 0.5 {
+                chosen = local
+            } else {
+                chosen = bestEdgeCandidate(
+                    output: output,
+                    pointX: Double(point.x) + 0.5,
+                    pointY: Double(point.y) + 0.5,
+                    normal: normal,
+                    sourceContrast: sourceContrast,
+                    shifts: -extendedRadius ... extendedRadius
+                ) ?? local
+            }
+            guard let chosen else {
                 ratios.append(0)
                 degraded += 1
                 signFlips += 1
                 continue
             }
-            let threshold = abs(strongest.contrast) * 0.90
-            let chosen = candidates
-                .filter { abs($0.contrast) >= threshold }
-                .min { abs($0.shift) < abs($1.shift) } ?? strongest
             let ratio = abs(chosen.contrast) / abs(sourceContrast)
             ratios.append(ratio)
             if ratio < 0.5 { degraded += 1 }
@@ -1233,6 +1245,42 @@ public enum PortraitMetricEvaluator {
             gradientEnergyRatio: gradientRatio,
             failures: failures
         )
+    }
+
+    /// Picks a same-sign edge candidate near the expected silhouette point.
+    ///
+    /// The strongest candidate is reduced to the closest shift that still has at
+    /// least 90 % of its contrast, so a nearby stronger fold cannot win just by
+    /// being stronger. Large intentional moves (leg lengthening) are found by
+    /// the caller's second, wider search.
+    private static func bestEdgeCandidate(
+        output: PixelBuffer,
+        pointX: Double,
+        pointY: Double,
+        normal: SIMD2<Double>,
+        sourceContrast: Double,
+        shifts: ClosedRange<Int>
+    ) -> (shift: Int, contrast: Double)? {
+        var candidates: [(shift: Int, contrast: Double)] = []
+        candidates.reserveCapacity(shifts.count)
+        for shift in shifts {
+            let value = contrast(
+                output,
+                x: pointX + normal.x * Double(shift),
+                y: pointY + normal.y * Double(shift),
+                normal: normal
+            )
+            if value * sourceContrast > 0 {
+                candidates.append((shift: shift, contrast: value))
+            }
+        }
+        guard let strongest = candidates.max(by: { abs($0.contrast) < abs($1.contrast) }) else {
+            return nil
+        }
+        let threshold = abs(strongest.contrast) * 0.90
+        return candidates
+            .filter { abs($0.contrast) >= threshold }
+            .min { abs($0.shift) < abs($1.shift) } ?? strongest
     }
 
     private static func outwardNormal(
