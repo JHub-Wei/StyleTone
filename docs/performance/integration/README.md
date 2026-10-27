@@ -51,3 +51,17 @@ git diff --stat Tests/Performance
 
 预期：`StyleTonePerformanceTests` 在 macOS CI 上执行；Metal 缺失时相关场景
 `XCTSkip`，不失败。
+
+## 6. 已验证的 CI run
+
+验证分支 `wp-24-verify` 临时包含 `Package.swift` 补丁，跑通：
+
+- CI run [40537768171](https://github.com/JHub-Wei/StyleTone/actions/runs/40537768171)
+  （commit `e110c74`，**绿色**）：`swift test` 全绿、XcodeGen、App build、
+  simulator app tests、xcresult 上传全部 success。
+- 同一 run 中 `StyleTonePerformanceTests` 与 `PerformanceKitTests` 均执行；
+  结果见 `docs/performance/baseline.md`。
+
+交付分支 `wp-24-performance` 不包含 `Package.swift` / CI 改动（所有权属于
+WP-00）；WP-00 owner 合入本目录两个补丁后，普通 PR 的 `swift test` 会自动执行
+同一套门禁。
