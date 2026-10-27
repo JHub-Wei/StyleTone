@@ -628,7 +628,9 @@ public struct PortraitRegressionReport: Codable, Sendable, Equatable {
     }
 
     public var isPassing: Bool {
-        summary.failed == 0 && gates.allSatisfy { $0.passed || $0.skipped }
+        summary.failedSamples == 0
+            && summary.failedGates == 0
+            && gates.allSatisfy { $0.passed || $0.skipped }
     }
 
     public func jsonData() throws -> Data {

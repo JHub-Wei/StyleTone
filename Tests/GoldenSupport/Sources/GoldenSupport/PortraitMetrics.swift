@@ -839,13 +839,27 @@ public enum PortraitMetricEvaluator {
         thresholds: PortraitMetricThresholds
     ) throws -> SkinToneReport {
         let eroded = try MaskOperations.eroded(scene.groundTruth.skinMask, radius: 2)
-        let interior = try MaskOperations.eroded(scene.groundTruth.skinMask, radius: 3)
         let skinBytes = MaskOperations.bytes(eroded)
-        let interiorBytes = MaskOperations.bytes(interior)
         let skinMaskBytes = MaskOperations.bytes(scene.groundTruth.skinMask)
         let personBytes = MaskOperations.bytes(scene.groundTruth.personMask)
         let width = source.width
         let height = source.height
+        var finalRegion = [Bool](repeating: false, count: width * height)
+        if let face = scene.groundTruth.primaryFaceBox {
+            let insetX = face.width * 0.12
+            let insetY = face.height * 0.12
+            let minX = max(0, Int((face.x + insetX) * Double(width)))
+            let maxX = min(width - 1, Int((face.maxX - insetX) * Double(width)))
+            let minY = max(0, Int((face.y + insetY) * Double(height)))
+            let maxY = min(height - 1, Int((face.maxY - insetY) * Double(height)))
+            if minX < maxX, minY < maxY {
+                for y in minY ... maxY {
+                    for x in minX ... maxX {
+                        finalRegion[y * width + x] = true
+                    }
+                }
+            }
+        }
 
         var skinPixelCount = 0
         var deltaValues: [Double] = []
@@ -898,7 +912,7 @@ public enum PortraitMetricEvaluator {
                 if isClipped(sourcePixel.color) { sourceClip += 1 }
                 if isClipped(retouchedPixel.color) { retouchedClip += 1 }
 
-                if interiorBytes[index] > 0 {
+                if finalRegion[index], skinMaskBytes[index] > 0 {
                     let finalLab = ColorScience.lab(output[x, y].color)
                     finalDeltaValues.append(ColorScience.deltaE00(sourceLab, finalLab))
                     finalDeltaLTotal += finalLab.l - sourceLab.l

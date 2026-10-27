@@ -1,4 +1,5 @@
 import Foundation
+import StyleToneCore
 
 /// A simple opaque RGBA raster with per-pixel person/skin/structure masks.
 ///
@@ -95,7 +96,7 @@ struct PortraitCanvas {
 
     mutating func updateColor(x: Int, y: Int, mutate: (RGB8) -> RGB8) {
         guard let current = color(x: x, y: y) else { return }
-        updateColor(x: x, y: y, mutate: mutate(current))
+        updateColor(x: x, y: y, mutate(current))
     }
 
     // MARK: Shapes

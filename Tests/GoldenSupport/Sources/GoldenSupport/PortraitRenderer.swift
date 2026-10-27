@@ -59,10 +59,13 @@ public enum PortraitRenderer {
         let personMask = try canvas.personMask()
         let skinMask = try canvas.skinMask()
         let rawStructure = try canvas.structureMask()
+        let personBytes = MaskOperations.bytes(personMask)
         let protectedZone = try MaskOperations.dilated(personMask, radius: 2)
         var structure = MaskOperations.bytes(rawStructure)
         let protectedBytes = MaskOperations.bytes(protectedZone)
-        for index in 0 ..< structure.count where protectedBytes[index] > 0 {
+        for index in 0 ..< structure.count
+            where personBytes[index] > 0 || protectedBytes[index] > 0
+        {
             structure[index] = 0
         }
         let edgeMask = try MaskOperations.make(
@@ -275,7 +278,7 @@ private struct SubjectLayout {
             SIMD2<Double>(centerX, headCenterY + headHeight * 0.02),
             SIMD2<Double>(centerX - headRadiusX * 0.10, noseBaseY),
             SIMD2<Double>(centerX + headRadiusX * 0.10, noseBaseY)
-        ].map(normalized)
+        ].map { normalized($0) }
         landmarks[.outerLips] = ellipsePoints(
             center: SIMD2<Double>(centerX, lipY),
             radiusX: headRadiusX * 0.22,
@@ -283,7 +286,7 @@ private struct SubjectLayout {
             count: 8,
             startAngle: 0,
             endAngle: 360
-        ).map(normalized)
+        ).map { normalized($0) }
         landmarks[.innerLips] = ellipsePoints(
             center: SIMD2<Double>(centerX, lipY),
             radiusX: headRadiusX * 0.13,
@@ -291,7 +294,7 @@ private struct SubjectLayout {
             count: 6,
             startAngle: 0,
             endAngle: 360
-        ).map(normalized)
+        ).map { normalized($0) }
         landmarks[.faceContour] = ellipsePoints(
             center: SIMD2<Double>(centerX, headCenterY),
             radiusX: headRadiusX * 0.96,
@@ -299,7 +302,7 @@ private struct SubjectLayout {
             count: 16,
             startAngle: -30,
             endAngle: 210
-        ).map(normalized)
+        ).map { normalized($0) }
         return landmarks
     }
 
@@ -311,7 +314,7 @@ private struct SubjectLayout {
             count: 4,
             startAngle: 0,
             endAngle: 360
-        ).map(normalized)
+        ).map { normalized($0) }
     }
 
     private func linePoints(

@@ -199,7 +199,7 @@
           "scale": 0.74,
           "seed": 3114,
           "skinTone": 4,
-          "xOffset": -0.3
+          "xOffset": 0.3
         }
       ],
       "width": 360
@@ -310,7 +310,7 @@
           "scale": 0.74,
           "seed": 3190,
           "skinTone": 2,
-          "xOffset": -0.3
+          "xOffset": 0.3
         }
       ],
       "width": 360
@@ -805,7 +805,7 @@
           "scale": 0.74,
           "seed": 3589,
           "skinTone": 5,
-          "xOffset": 0.3
+          "xOffset": -0.3
         }
       ],
       "width": 360
@@ -1081,7 +1081,7 @@
           "scale": 0.74,
           "seed": 3798,
           "skinTone": 4,
-          "xOffset": -0.3
+          "xOffset": 0.3
         }
       ],
       "width": 360
@@ -1171,7 +1171,7 @@
           "scale": 0.74,
           "seed": 3855,
           "skinTone": 1,
-          "xOffset": 0.3
+          "xOffset": -0.3
         }
       ],
       "width": 360
@@ -1444,7 +1444,7 @@
           "scale": 0.74,
           "seed": 4045,
           "skinTone": 5,
-          "xOffset": 0.3
+          "xOffset": -0.3
         }
       ],
       "width": 360
@@ -1753,7 +1753,7 @@
           "scale": 0.74,
           "seed": 4292,
           "skinTone": 6,
-          "xOffset": -0.3
+          "xOffset": 0.3
         }
       ],
       "width": 360
@@ -1981,7 +1981,7 @@
           "scale": 0.74,
           "seed": 4482,
           "skinTone": 4,
-          "xOffset": -0.3
+          "xOffset": 0.3
         }
       ],
       "width": 360
@@ -2041,7 +2041,7 @@
           "scale": 0.74,
           "seed": 4520,
           "skinTone": 6,
-          "xOffset": -0.3
+          "xOffset": 0.3
         }
       ],
       "width": 360
@@ -2080,7 +2080,7 @@
           "scale": 0.74,
           "seed": 4539,
           "skinTone": 1,
-          "xOffset": 0.3
+          "xOffset": -0.3
         }
       ],
       "width": 360

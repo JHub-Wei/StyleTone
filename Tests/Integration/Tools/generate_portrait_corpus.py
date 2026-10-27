@@ -137,7 +137,7 @@ def build_corpus() -> dict:
                     "skinTone": extra_tone,
                     "bodyType": BODY_TYPES[(index + 5) % len(BODY_TYPES)],
                     "occlusion": "none",
-                    "xOffset": -0.30 if index % 2 == 0 else 0.30,
+                    "xOffset": -0.30 * side,
                     "scale": 0.74,
                     "seed": 3000 + index * 19,
                 }
