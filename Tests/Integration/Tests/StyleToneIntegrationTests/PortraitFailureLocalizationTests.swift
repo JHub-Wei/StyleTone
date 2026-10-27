@@ -111,10 +111,12 @@ final class PortraitFailureLocalizationTests: XCTestCase {
     }
 
     func testBaselineComparatorNamesEveryRegression() throws {
+        FileHandle.standardError.write(Data("TEST render start\n".utf8))
         let environment = try IntegrationEnvironment()
         let (corpus, _) = try environment.loadCorpus()
         let sample = try XCTUnwrap(corpus.samples.first)
         let scene = try PortraitRenderer.render(sample)
+        FileHandle.standardError.write(Data("TEST render done\n".utf8))
         let identity = try PortraitMetricEvaluator.evaluate(
             scene: scene,
             source: scene.pixels,

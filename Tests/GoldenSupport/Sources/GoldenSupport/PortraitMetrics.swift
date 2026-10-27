@@ -1,6 +1,10 @@
 import Foundation
 import StyleToneCore
 
+private func portraitTrace(_ message: String) {
+    FileHandle.standardError.write(Data((message + "\n").utf8))
+}
+
 // MARK: - Thresholds
 
 /// Thresholds for the absolute quality gates.
@@ -459,7 +463,7 @@ public enum PortraitMetricEvaluator {
         }
 
         let background = try measureBackground(scene: scene, output: output, thresholds: thresholds)
-        print("PORTRAIT_TRACE background done")
+        portraitTrace("PORTRAIT_TRACE background done")
         let skin = try measureSkin(
             scene: scene,
             source: source,
@@ -467,20 +471,20 @@ public enum PortraitMetricEvaluator {
             output: output,
             thresholds: thresholds
         )
-        print("PORTRAIT_TRACE skin done")
+        portraitTrace("PORTRAIT_TRACE skin done")
         let edge = try measureEdges(
             scene: scene,
             source: source,
             output: output,
             thresholds: thresholds
         )
-        print("PORTRAIT_TRACE edges done")
+        portraitTrace("PORTRAIT_TRACE edges done")
         let coverage = try coverageDeltaE(source: source, output: output)
-        print("PORTRAIT_TRACE coverage done")
+        portraitTrace("PORTRAIT_TRACE coverage done")
         let ssim = ImageComparator.structuralSimilarity(source, output)
-        print("PORTRAIT_TRACE ssim done")
+        portraitTrace("PORTRAIT_TRACE ssim done")
         let signature = try signature(of: output)
-        print("PORTRAIT_TRACE signature done")
+        portraitTrace("PORTRAIT_TRACE signature done")
 
         let metrics = PortraitSampleMetrics(
             backgroundMeasuredLines: background.measuredLineCount,
@@ -589,6 +593,7 @@ public enum PortraitMetricEvaluator {
         let radius = max(4, Int(0.02 * Double(min(width, height)).rounded()))
         var measurements: [BackgroundLineMeasurement] = []
         for line in scene.groundTruth.lines {
+            portraitTrace("line \(line.label)")
             let measurement: BackgroundLineMeasurement?
             switch line.orientation {
             case .vertical:
@@ -869,6 +874,7 @@ public enum PortraitMetricEvaluator {
         output: PixelBuffer,
         thresholds: PortraitMetricThresholds
     ) throws -> SkinToneReport {
+        portraitTrace("skin start")
         let eroded = try MaskOperations.eroded(scene.groundTruth.skinMask, radius: 2)
         let skinBytes = MaskOperations.bytes(eroded)
         let skinMaskBytes = MaskOperations.bytes(scene.groundTruth.skinMask)
@@ -1124,6 +1130,7 @@ public enum PortraitMetricEvaluator {
         output: PixelBuffer,
         thresholds: PortraitMetricThresholds
     ) throws -> EdgePreservationReport {
+        portraitTrace("edges start")
         let mask = scene.groundTruth.personMask
         let boundary = MaskOperations.boundaryPoints(mask)
         if source.isIdentical(to: output) {
