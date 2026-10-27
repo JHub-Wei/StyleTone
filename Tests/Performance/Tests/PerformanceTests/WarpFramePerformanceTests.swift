@@ -31,10 +31,13 @@ final class WarpFramePerformanceTests: XCTestCase {
             allowsIdentityShortcut: false
         )
 
+        // 20 samples so the nearest-rank p95 is the second-slowest frame, not
+        // the single worst frame. The 8-sample version was too sensitive to one
+        // CI scheduler hiccup (a 55 ms outlier in an otherwise 30 ms run).
         let measurement = try PerformanceClock.measure(
             scenario: scenario,
-            iterations: 8,
-            warmUpIterations: 3
+            iterations: 20,
+            warmUpIterations: 5
         ) {
             _ = try backend.renderTexture(
                 image,
