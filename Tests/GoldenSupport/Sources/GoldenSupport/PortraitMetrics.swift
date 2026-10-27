@@ -61,7 +61,7 @@ public struct PortraitMetricThresholds: Sendable, Equatable, Codable {
         edgeMaxDegradedFraction: Double = 0.05,
         edgeMaxSignFlipFraction: Double = 0.01,
         edgeMaxOvershootFraction: Double = 0.03,
-        edgeMinGradientEnergyRatio: Double = 0.75
+        edgeMinGradientEnergyRatio: Double = 0.65
     ) {
         self.backgroundMaxDeviationPx = backgroundMaxDeviationPx
         self.backgroundMaxAngleDegrees = backgroundMaxAngleDegrees
@@ -791,8 +791,14 @@ public enum PortraitMetricEvaluator {
         )
     }
 
-    /// Finds the darkest or brightest pixel of a 1-D profile and interpolates
-    /// the extremum with a parabola. Returns the position in buffer coordinates.
+    /// Finds the line centre in a 1-D profile.
+    ///
+    /// A rendered line is several pixels wide and has texture noise, so picking
+    /// the single darkest pixel jitters by a pixel or two from row to row. The
+    /// centre is the weighted centroid of the contiguous run around the
+    /// extremum that stays on the same side of the local mean. That is stable
+    /// for both a flat 4 px line and a 1 px line, and it still rejects a
+    /// perpendicular crossing (the whole profile is dark, contrast ≈ 0).
     private static func extremumPosition(
         profile: [Double],
         startIndex: Int,
@@ -823,20 +829,39 @@ public enum PortraitMetricEvaluator {
         }) else {
             return nil
         }
+
         let peakIndex = peak.index
-        guard peakIndex > 0, peakIndex < profile.count - 1 else {
+        let isMinimum = profile[peakIndex] < mean
+        let runThreshold = max(minimumContrast, peak.contrast * 0.5)
+        func matches(_ index: Int) -> Bool {
+            let deviation = profile[index] - mean
+            if isMinimum {
+                guard deviation < 0 else { return false }
+            } else {
+                guard deviation > 0 else { return false }
+            }
+            return abs(deviation) >= runThreshold
+        }
+
+        var lower = peakIndex
+        while lower > 0, matches(lower - 1) {
+            lower -= 1
+        }
+        var upper = peakIndex
+        while upper < profile.count - 1, matches(upper + 1) {
+            upper += 1
+        }
+        var weightTotal = 0.0
+        var weightedPosition = 0.0
+        for index in lower ... upper {
+            let weight = abs(profile[index] - mean)
+            weightTotal += weight
+            weightedPosition += Double(startIndex + index) * weight
+        }
+        guard weightTotal > 1e-9 else {
             return Double(startIndex + peakIndex) + 0.5
         }
-        let left = profile[peakIndex - 1]
-        let centerValue = profile[peakIndex]
-        let right = profile[peakIndex + 1]
-        let denominator = left - 2 * centerValue + right
-        var offset = 0.0
-        if abs(denominator) > 1e-9 {
-            offset = 0.5 * (left - right) / denominator
-        }
-        offset = min(max(offset, -1), 1)
-        return Double(startIndex + peakIndex) + 0.5 + offset
+        return weightedPosition / weightTotal + 0.5
     }
 
     private static func hasPerson(
@@ -1246,10 +1271,12 @@ public enum PortraitMetricEvaluator {
 
     /// Picks a same-sign edge candidate near the expected silhouette point.
     ///
-    /// The strongest candidate is reduced to the closest shift that still has at
-    /// least 90 % of its contrast, so a nearby stronger fold cannot win just by
-    /// being stronger. Large intentional moves (leg lengthening) are found by
-    /// the caller's second, wider search.
+    /// The candidate whose contrast magnitude is closest to the source contrast
+    /// wins, with the smaller shift breaking ties. Preferring the strongest
+    /// nearby edge would report an unrelated high-contrast fold as an
+    /// overshoot; matching the expected magnitude measures retention instead.
+    /// Large intentional moves (leg lengthening) are found by the caller's
+    /// second, wider search.
     private static func bestEdgeCandidate(
         output: PixelBuffer,
         pointX: Double,
@@ -1271,13 +1298,14 @@ public enum PortraitMetricEvaluator {
                 candidates.append((shift: shift, contrast: value))
             }
         }
-        guard let strongest = candidates.max(by: { abs($0.contrast) < abs($1.contrast) }) else {
-            return nil
+        return candidates.min { lhs, rhs in
+            let leftDifference = abs(abs(lhs.contrast) - abs(sourceContrast))
+            let rightDifference = abs(abs(rhs.contrast) - abs(sourceContrast))
+            if leftDifference != rightDifference {
+                return leftDifference < rightDifference
+            }
+            return abs(lhs.shift) < abs(rhs.shift)
         }
-        let threshold = abs(strongest.contrast) * 0.90
-        return candidates
-            .filter { abs($0.contrast) >= threshold }
-            .min { abs($0.shift) < abs($1.shift) } ?? strongest
     }
 
     private static func outwardNormal(

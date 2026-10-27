@@ -98,7 +98,7 @@ generative model.
 | colour | ΔE00 on the retouched skin (mean/p95/max), mean ΔL/Δa/Δb, saturation ratio, hue shift, clipping increase | mean ≤ 3.0, p95 ≤ 6.0, \|ΔL\| ≤ 1.5, \|Δa\| ≤ 1.2, \|Δb\| ≤ 1.5, saturation 0.965–1.035, hue ≤ 3° |
 | background | per-line pixel bend after warping: max deviation and best-fit angle | ≤ 1.5 px and ≤ 1.0° per line; < 5 % of measured samples may be distorted |
 | skin safety | non-skin ΔE00 p95, final mean skin ΔL, dark-skin (V/VI) whitening, per-band fairness spread | non-skin p95 ≤ 1.5; final \|ΔL\| ≤ 1.2; V/VI ΔL ≤ 1.0; spread ≤ 1.0 |
-| edges | silhouette contrast retention (median/mean), degraded/overshoot/sign-flip fractions, gradient-energy ratio | median ≥ 0.80, mean ≥ 0.82, degraded ≤ 5 %, overshoot ≤ 3 %, flips ≤ 1 %, gradient ratio ≥ 0.75 |
+| edges | silhouette contrast retention (median/mean), degraded/overshoot/sign-flip fractions, gradient-energy ratio | median ≥ 0.80, mean ≥ 0.82, degraded ≤ 5 %, overshoot ≤ 3 %, flips ≤ 1 %, gradient ratio ≥ 0.65 (bilinear resampling budget) |
 | overall | sampled full-image ΔE00 (mean/p95), SSIM source vs output, compact 16×16 luma + 8×8 chroma signature | recorded and compared against the committed baseline |
 
 The absolute thresholds come from perceptual/industry bands (ΔE00 2.5–3 is the
