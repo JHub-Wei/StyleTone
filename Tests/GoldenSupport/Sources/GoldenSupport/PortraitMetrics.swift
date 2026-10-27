@@ -446,6 +446,7 @@ public enum PortraitMetricEvaluator {
         source: PixelBuffer,
         retouched: PixelBuffer,
         output: PixelBuffer,
+        renderedPersonMask: MaskBuffer? = nil,
         thresholds: PortraitMetricThresholds = .standard
     ) throws -> PortraitEvaluation {
         guard source.pixelSize == scene.spec.pixelSize,
@@ -458,7 +459,12 @@ public enum PortraitMetricEvaluator {
             )
         }
 
-        let background = try measureBackground(scene: scene, output: output, thresholds: thresholds)
+        let background = try measureBackground(
+            scene: scene,
+            output: output,
+            renderedPersonMask: renderedPersonMask,
+            thresholds: thresholds
+        )
         let skin = try measureSkin(
             scene: scene,
             source: source,
@@ -575,11 +581,21 @@ public enum PortraitMetricEvaluator {
     private static func measureBackground(
         scene: PortraitScene,
         output: PixelBuffer,
+        renderedPersonMask: MaskBuffer?,
         thresholds: PortraitMetricThresholds
     ) throws -> BackgroundLineReport {
         let width = output.width
         let height = output.height
-        let person = MaskOperations.bytes(scene.groundTruth.personMask)
+        let mask = renderedPersonMask ?? scene.groundTruth.personMask
+        guard mask.width == width, mask.height == height else {
+            throw GoldenSupportError.imageSizeMismatch(
+                expected: output.pixelSize,
+                actual: mask.width > 0 && mask.height > 0
+                    ? PixelSize(width: mask.width, height: mask.height)
+                    : output.pixelSize
+            )
+        }
+        let person = MaskOperations.bytes(mask)
         let radius = max(4, Int(0.02 * Double(min(width, height)).rounded()))
         var measurements: [BackgroundLineMeasurement] = []
         for line in scene.groundTruth.lines {
@@ -743,31 +759,64 @@ public enum PortraitMetricEvaluator {
         let last = samples.last?.t ?? 0
         guard last - first >= axisSpan * 0.12 else { return nil }
 
-        var sumT = 0.0
-        var sumV = 0.0
-        for sample in samples {
-            sumT += sample.t
-            sumV += sample.position
+        func fit(_ indices: [Int]) -> (slope: Double, intercept: Double)? {
+            guard indices.count >= 3 else { return nil }
+            var sumT = 0.0
+            var sumV = 0.0
+            for index in indices {
+                sumT += samples[index].t
+                sumV += samples[index].position
+            }
+            let count = Double(indices.count)
+            let meanT = sumT / count
+            let meanV = sumV / count
+            var covariance = 0.0
+            var variance = 0.0
+            for index in indices {
+                let dt = samples[index].t - meanT
+                covariance += dt * (samples[index].position - meanV)
+                variance += dt * dt
+            }
+            guard variance > 1e-9 else { return nil }
+            let slope = covariance / variance
+            return (slope: slope, intercept: meanV - slope * meanT)
         }
-        let count = Double(samples.count)
-        let meanT = sumT / count
-        let meanV = sumV / count
-        var covariance = 0.0
-        var variance = 0.0
-        for sample in samples {
-            let dt = sample.t - meanT
-            covariance += dt * (sample.position - meanV)
-            variance += dt * dt
+
+        var active = Array(0 ..< samples.count)
+        guard var fitted = fit(active) else { return nil }
+        // Two rounds of MAD-based outlier rejection. A subject silhouette that
+        // was warped over a background line produces sparse large residuals;
+        // a genuinely bowed line produces many medium residuals, so its MAD is
+        // large and nothing is rejected.
+        for _ in 0 ..< 2 {
+            var residuals: [Double] = []
+            residuals.reserveCapacity(active.count)
+            for index in active {
+                residuals.append(
+                    abs(samples[index].position - (fitted.slope * samples[index].t + fitted.intercept))
+                )
+            }
+            let median = medianValue(residuals)
+            let deviationsFromMedian = residuals.map { abs($0 - median) }
+            let mad = medianValue(deviationsFromMedian)
+            let threshold = max(2.0, 3.5 * 1.4826 * mad)
+            let kept = zip(active, residuals)
+                .filter { $0.1 <= threshold }
+                .map(\.0)
+            guard kept.count >= max(8, samples.count / 2) else { break }
+            guard kept.count < active.count else { break }
+            guard let next = fit(kept) else { break }
+            active = kept
+            fitted = next
         }
-        guard variance > 1e-9 else { return nil }
-        let slope = covariance / variance
-        let intercept = meanV - slope * meanT
+
         var deviations: [Double] = []
-        deviations.reserveCapacity(samples.count)
+        deviations.reserveCapacity(active.count)
         var displacement = 0.0
-        for sample in samples {
-            let fitted = slope * sample.t + intercept
-            deviations.append(abs(sample.position - fitted))
+        for index in active {
+            let sample = samples[index]
+            let fittedPosition = fitted.slope * sample.t + fitted.intercept
+            deviations.append(abs(sample.position - fittedPosition))
             displacement += sample.position - expected
         }
         deviations.sort()
@@ -776,14 +825,14 @@ public enum PortraitMetricEvaluator {
         // percentile: a genuinely bowed line deviates on most samples, while an
         // isolated crossing must not fail a sample.
         let robustMaxDeviation = percentile(deviations, fraction: 0.95)
-        displacement /= count
-        let angle = atan(slope) * 180 / Double.pi
+        displacement /= Double(max(1, active.count))
+        let angle = atan(fitted.slope) * 180 / Double.pi
         let distorted = robustMaxDeviation > thresholds.backgroundMaxDeviationPx
             || abs(angle) > thresholds.backgroundMaxAngleDegrees
         return BackgroundLineMeasurement(
             label: line.label,
             orientation: line.orientation.rawValue,
-            sampleCount: samples.count,
+            sampleCount: active.count,
             maxDeviationPx: robustMaxDeviation,
             angleDegrees: angle,
             meanDisplacementPx: displacement,
@@ -1474,5 +1523,10 @@ public enum PortraitMetricEvaluator {
         let rank = Int((clamped * Double(sortedValues.count)).rounded(.up))
         let index = min(max(rank - 1, 0), sortedValues.count - 1)
         return sortedValues[index]
+    }
+
+    private static func medianValue(_ values: [Double]) -> Double {
+        guard !values.isEmpty else { return 0 }
+        return percentile(values.sorted(), fraction: 0.5)
     }
 }

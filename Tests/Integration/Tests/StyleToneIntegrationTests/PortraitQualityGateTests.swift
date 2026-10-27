@@ -42,6 +42,7 @@ final class PortraitQualityGateTests: XCTestCase {
                 source: pipeline.source,
                 retouched: pipeline.retouched,
                 output: pipeline.output,
+                renderedPersonMask: pipeline.renderedPersonMask,
                 thresholds: .standard
             )
 

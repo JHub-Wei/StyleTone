@@ -166,6 +166,10 @@ struct PortraitPipelineOutput: Sendable {
     let source: PixelBuffer
     let retouched: PixelBuffer
     let output: PixelBuffer
+    /// Person mask in output coordinates (the ground-truth mask warped through
+    /// the same field as the image). Background measurements must use it: the
+    /// source mask no longer matches a warped silhouette.
+    let renderedPersonMask: MaskBuffer
     let durationSeconds: Double
 }
 
@@ -198,19 +202,64 @@ struct PortraitPipelineRunner: Sendable {
             analysis: scene.analysis,
             parameters: parameters.skin
         )
-        let outputAsset = try await engine.warp(
-            retouchedAsset,
+        let field = try await engine.makeField(
             analysis: scene.analysis,
             geometry: parameters.geometry,
             quality: .preview
+        )
+        let outputAsset = try CPUGeometryWarp().warp(
+            retouchedAsset,
+            field: field,
+            configuration: .preview
+        )
+        let renderedPersonMask = try Self.warpMask(
+            scene.groundTruth.personMask,
+            field: field
         )
         let duration = Date().timeIntervalSince(start)
         return PortraitPipelineOutput(
             source: scene.pixels,
             retouched: try PixelBuffer(image: retouchedAsset),
             output: try PixelBuffer(image: outputAsset),
+            renderedPersonMask: renderedPersonMask,
             durationSeconds: duration
         )
+    }
+
+    /// Warps a binary mask through the same mesh as the image.
+    static func warpMask(_ mask: MaskBuffer, field: WarpField) throws -> MaskBuffer {
+        let width = mask.width
+        let height = mask.height
+        let source = MaskOperations.bytes(mask)
+        var output = [UInt8](repeating: 0, count: width * height)
+        for y in 0 ..< height {
+            let normalizedY = (Float(y) + 0.5) / Float(height)
+            for x in 0 ..< width {
+                let normalizedX = (Float(x) + 0.5) / Float(width)
+                let sourcePosition = MeshWarpSampler.sourcePosition(
+                    for: SIMD2<Float>(normalizedX, normalizedY),
+                    field: field
+                )
+                let sampleX = Double(sourcePosition.x) * Double(width) - 0.5
+                let sampleY = Double(sourcePosition.y) * Double(height) - 0.5
+                let clampedX = min(max(sampleX, 0), Double(width - 1))
+                let clampedY = min(max(sampleY, 0), Double(height - 1))
+                let x0 = Int(clampedX.rounded(.down))
+                let y0 = Int(clampedY.rounded(.down))
+                let x1 = min(width - 1, x0 + 1)
+                let y1 = min(height - 1, y0 + 1)
+                let fx = clampedX - Double(x0)
+                let fy = clampedY - Double(y0)
+                let top = Double(source[y0 * width + x0]) * (1 - fx)
+                    + Double(source[y0 * width + x1]) * fx
+                let bottom = Double(source[y1 * width + x0]) * (1 - fx)
+                    + Double(source[y1 * width + x1]) * fx
+                output[y * width + x] = UInt8(
+                    min(max((top * (1 - fy) + bottom * fy).rounded(), 0), 255)
+                )
+            }
+        }
+        return try MaskOperations.make(width: width, height: height, values: output)
     }
 }
 
