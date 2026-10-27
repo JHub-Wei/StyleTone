@@ -117,6 +117,14 @@ public struct PerformanceMeasurement: Codable, Sendable, Equatable {
         return 1 / p95
     }
 
+    /// Returns the requested statistic.
+    public func value(for statistic: PerformanceStatistic) -> Double {
+        switch statistic {
+        case .p50: return p50
+        case .p95: return p95
+        }
+    }
+
     /// One-line report summary.
     public var summary: String {
         "\(scenarioID): n=\(sampleCount) "

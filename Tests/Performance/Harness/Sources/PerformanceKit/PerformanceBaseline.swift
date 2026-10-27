@@ -7,9 +7,12 @@ public struct PerformanceBaselineEntry: Codable, Sendable, Equatable, Identifiab
 
     public let scenarioID: String
     public let environmentID: String
-    /// Recorded p95 in `unit`.
+    /// Recorded statistic in `unit` (p50 for CI-noisy scenarios, p95 otherwise).
     public let value: Double
     public let unit: PerformanceUnit
+    /// Statistic represented by `value`; must match the scenario's regression
+    /// statistic. Contract budgets still use p95 independently.
+    public let statistic: PerformanceStatistic
     /// Number of samples behind `value`.
     public let sampleCount: Int
     /// ISO-8601 timestamp of the recording.
@@ -27,6 +30,7 @@ public struct PerformanceBaselineEntry: Codable, Sendable, Equatable, Identifiab
         environmentID: String,
         value: Double,
         unit: PerformanceUnit,
+        statistic: PerformanceStatistic = .p95,
         sampleCount: Int,
         recordedAt: String,
         commit: String,
@@ -38,6 +42,7 @@ public struct PerformanceBaselineEntry: Codable, Sendable, Equatable, Identifiab
         self.environmentID = environmentID
         self.value = value
         self.unit = unit
+        self.statistic = statistic
         self.sampleCount = max(0, sampleCount)
         self.recordedAt = recordedAt
         self.commit = commit
@@ -174,6 +179,12 @@ public struct PerformanceBaselineFile: Codable, Sendable, Equatable {
                 throw PerformanceKitError.invalidBaseline(
                     "\(entry.id) uses \(entry.unit.rawValue) but the scenario uses "
                         + scenario.unit.rawValue
+                )
+            }
+            guard scenario.regressionStatistic == entry.statistic else {
+                throw PerformanceKitError.invalidBaseline(
+                    "\(entry.id) records \(entry.statistic.rawValue) but the scenario "
+                        + "regresses on \(scenario.regressionStatistic.rawValue)"
                 )
             }
             guard seen.insert(entry.id).inserted else {

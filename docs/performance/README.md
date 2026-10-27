@@ -9,22 +9,23 @@
 | 契约 §10 | 目标 | 当前证据 | 状态 |
 |---|---|---|---|
 | 冷启动 | ≤2 s | 签名 + Instruments 采集流程已定义 | **待真机** |
-| 首帧 | p95 ≤1.5 s | CI **1.129 s**（12MP → 2048 → 1280） | **CI 已测；真机待测** |
-| 形变预览 | ≥30 fps（iPhone 13） | CI 1080p p95 **34.9 ms / 28.7 fps**（debug） | **CI 已测；真机待测** |
-| 滑杆响应 | ≤100 ms | CI 端到端 **52.4 ms** | **CI 已测；真机待测** |
-| 5 组学习 | ≤90 s | CI **2.948 s**（160×160 合成） | **CI 已测；真机待测** |
-| 12MP 导出 | p95 ≤6 s | CI **0.379 s**（Metal + JPEG；替身算法） | **CI 已测；真机待测** |
-| 预览内存 | ≤300 MB | CI 峰值增量 **10.78 MB** | **CI 已测；真机待测** |
-| 导出内存 | ≤500 MB | CI 峰值增量 **50.99 MB** | **CI 已测；真机待测** |
+| 首帧 | p95 ≤1.5 s | CI **1.021 s**（12MP → 2048 → 1280） | **CI 已测；真机待测** |
+| 形变预览 | ≥30 fps（iPhone 13） | CI 1080p p50 **28.9 ms**（p95 51.5 ms，debug 尾延迟） | **CI 已测；真机待测** |
+| 滑杆响应 | ≤100 ms | CI 端到端 **32.4 ms** | **CI 已测；真机待测** |
+| 5 组学习 | ≤90 s | CI **2.964 s**（160×160 合成） | **CI 已测；真机待测** |
+| 12MP 导出 | p95 ≤6 s | CI **0.344 s**（Metal + JPEG；替身算法） | **CI 已测；真机待测** |
+| 预览内存 | ≤300 MB | CI 峰值增量 **14.47 MB** | **CI 已测；真机待测** |
+| 导出内存 | ≤500 MB | CI 峰值增量 **50.94 MB** | **CI 已测；真机待测** |
 
 > **诚实边界**：WP-24 会话在 Windows 上完成代码与协议，真实设备（iPhone 13 /
 > SE 3）的 Instruments 结果尚未采集。没有真机数据时，文档不会写“真机达标”。
 > 设备采集步骤见 [`instruments.md`](instruments.md)，签核矩阵见
 > [`acceptance.md`](acceptance.md)。
 >
-> CI 基线来源：[run 40528609160](https://github.com/JHub-Wei/StyleTone/actions/runs/40528609160)，
-> commit `135e721`，环境 `ci.macos.arm64`，debug。完整数据见
-> [`baseline.md`](baseline.md) 与 `Tests/Performance/Baselines/performance-baselines.json`。
+> CI 基线来源：[run 40531729843](https://github.com/JHub-Wei/StyleTone/actions/runs/40531729843)
+> （绿色，commit `6d4fea8`）以及引入门禁的两次 run；环境 `ci.macos.arm64`，debug。
+> 完整数据与“最差回归统计量”方法见 [`baseline.md`](baseline.md) 与
+> `Tests/Performance/Baselines/performance-baselines.json`。
 
 ## 2. 目录
 
@@ -75,7 +76,8 @@ ST_PERF_REFERENCE=1 ST_PERF_HEAVY=1 ST_PERF_REQUIRE_BASELINE=1 \
 
 ## 4. 门禁摘要
 
-- 每个场景记录 p95；与 **同环境、同构建配置** 的基线比较。
+- 每个场景记录 p95；与 **同环境、同构建配置** 的基线比较。契约预算固定用 p95；
+  `preview.frameTime` 的 CI 回归用更稳的 p50（尾延迟不作为共享 runner 结论）。
 - 慢于基线 **10% 以上**（或 fps 低于基线 10% 以上）→ `regression` → 退出码 1。
 - 契约 §10 的绝对预算在参考设备/低端机（或 `ST_PERF_STRICT=1`）上强制执行。
 - 样本数低于场景要求 → `insufficientSamples`，也阻断。

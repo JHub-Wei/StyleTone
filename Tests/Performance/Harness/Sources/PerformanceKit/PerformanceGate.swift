@@ -62,6 +62,8 @@ public struct PerformanceVerdict: Codable, Sendable, Equatable {
     public let status: PerformanceGateStatus
     public let scenarioID: String
     public let unit: PerformanceUnit
+    /// Statistic represented by ``measuredValue`` / ``baselineValue``.
+    public let statistic: PerformanceStatistic
     public let measuredValue: Double?
     public let baselineValue: Double?
     public let limitValue: Double?
@@ -77,6 +79,7 @@ public struct PerformanceVerdict: Codable, Sendable, Equatable {
         status: PerformanceGateStatus,
         scenarioID: String,
         unit: PerformanceUnit,
+        statistic: PerformanceStatistic = .p95,
         measuredValue: Double? = nil,
         baselineValue: Double? = nil,
         limitValue: Double? = nil,
@@ -89,6 +92,7 @@ public struct PerformanceVerdict: Codable, Sendable, Equatable {
         self.status = status
         self.scenarioID = scenarioID
         self.unit = unit
+        self.statistic = statistic
         self.measuredValue = measuredValue
         self.baselineValue = baselineValue
         self.limitValue = limitValue
@@ -226,6 +230,16 @@ public struct PerformanceGate: Sendable {
                     + scenario.unit.rawValue
             )
         }
+        guard baseline.statistic == scenario.regressionStatistic else {
+            return verdict(
+                .invalidBaseline,
+                scenario: scenario,
+                measurement: measurement,
+                baseline: baseline,
+                message: "baseline statistic \(baseline.statistic.rawValue) does not match "
+                    + scenario.regressionStatistic.rawValue
+            )
+        }
         guard baseline.value.isFinite, baseline.value > 0 else {
             return verdict(
                 .invalidBaseline,
@@ -246,14 +260,16 @@ public struct PerformanceGate: Sendable {
         }
 
         let limit = regressionLimit(baseline: baseline.value, scenario: scenario)
+        let regressionMeasured = measurement.value(for: scenario.regressionStatistic)
+        let statisticName = scenario.regressionStatistic.rawValue
         let delta = directionalDelta(
-            measured: measurement.p95,
+            measured: regressionMeasured,
             baseline: baseline.value,
             scenario: scenario
         )
         let deviation = delta / baseline.value
         let exceedsLimit = directionalWorse(
-            measured: measurement.p95,
+            measured: regressionMeasured,
             limit: limit,
             scenario: scenario
         )
@@ -267,12 +283,14 @@ public struct PerformanceGate: Sendable {
                 baseline: baseline,
                 limit: limit,
                 deviation: deviation,
+                statistic: scenario.regressionStatistic,
                 message: String(
-                    format: "%@ regressed %.1f%% (p95 %.4f %@ vs baseline %.4f; "
+                    format: "%@ regressed %.1f%% (%@ %.4f %@ vs baseline %.4f; "
                         + "limit %.4f, noise floor %.4f)",
                     scenario.displayName,
                     deviation * 100,
-                    measurement.p95,
+                    statisticName,
+                    regressionMeasured,
                     scenario.unit.symbol,
                     baseline.value,
                     limit,
@@ -288,10 +306,12 @@ public struct PerformanceGate: Sendable {
             baseline: baseline,
             limit: limit,
             deviation: deviation,
+            statistic: scenario.regressionStatistic,
             message: String(
-                format: "%@ p95 %.4f %@ within %.4f limit (baseline %.4f)",
+                format: "%@ %@ %.4f %@ within %.4f limit (baseline %.4f)",
                 scenario.displayName,
-                measurement.p95,
+                statisticName,
+                regressionMeasured,
                 scenario.unit.symbol,
                 limit,
                 baseline.value
@@ -376,13 +396,15 @@ public struct PerformanceGate: Sendable {
         baseline: PerformanceBaselineEntry? = nil,
         limit: Double? = nil,
         deviation: Double? = nil,
+        statistic: PerformanceStatistic = .p95,
         message: String
     ) -> PerformanceVerdict {
         PerformanceVerdict(
             status: status,
             scenarioID: scenario.id,
             unit: scenario.unit,
-            measuredValue: measurement.p95,
+            statistic: statistic,
+            measuredValue: measurement.value(for: statistic),
             baselineValue: baseline?.value,
             limitValue: limit,
             contractTarget: scenario.contractTarget,

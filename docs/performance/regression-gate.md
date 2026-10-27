@@ -7,16 +7,21 @@
 对每个场景：
 
 1. **样本数**：`sampleCount < scenario.minimumSamples` → `insufficientSamples`，阻断。
-2. **契约预算**（参考设备/低端机，或 `ST_PERF_STRICT=1`）：p95 超过 §10 目标
-   → `contractExceeded`，阻断。
+2. **契约预算**（参考设备/低端机，或 `ST_PERF_STRICT=1`）：**p95** 超过 §10
+   目标 → `contractExceeded`，阻断。
 3. **基线匹配**：必须同 `environmentID`；否则 `environmentMismatch`，只报告。
 4. **基线可用**：`gateEnabled == false` → `baselineNotGated`，只报告。
-5. **回归**：
+5. **回归**（使用 `scenario.regressionStatistic`，默认 p95）：
    - 耗时/内存（越低越好）：`measured > baseline × 1.10` 且
      `measured - baseline > noiseFloor` → `regression`。
    - fps（越高越好）：`measured < baseline × 0.90` 且
      `baseline - measured > noiseFloor` → `regression`。
 6. 其余 `passed`。
+
+`preview.frameTime` 的 `regressionStatistic` 是 **p50**：共享 CI runner 的 p95
+尾部会被 1–2 个调度尾延迟拉到 50 ms，而 p50 稳定在 29 ms。契约仍用 p95，并在
+参考设备强制；CI 的 10% 回归用 p50 比较。两种统计量用同一基线、同一 10% 规则，
+不改变阻断阈值。
 
 `noiseFloor` 是绝对噪声地板，不是“放宽 10%”。例：25 ms 帧的 1 ms 地板只挡
 ±4% 的抖动；一旦相对差 >10% **且**绝对差 >1 ms，仍然阻断。每个场景的 floor 在

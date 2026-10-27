@@ -18,7 +18,8 @@
 
 **已有基线**：WP-06 CI，1080p 预览 p95 **25.3 ms / 39.6 fps**，其中包含
 “per-frame source texture upload and allocation”。30 fps 预算 33.3 ms，余量
-约 24%。
+约 24%。WP-24 的 20 样本场景在 debug CI 上 p50 **28.9 ms**、p95 51.5 ms
+（两个调度尾延迟）；p50 与 WP-06 同量级，尾延迟不作为设备结论。
 
 **优化**（[`patches/wp-06-metal-frame-resource-cache.patch`](patches/wp-06-metal-frame-resource-cache.patch)）：
 1. 按 `ObjectIdentifier(cgImage)` + 尺寸缓存源纹理；

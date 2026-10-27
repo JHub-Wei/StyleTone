@@ -7,11 +7,14 @@ final class PerformanceBaselineTests: XCTestCase {
         environmentID: String = "ci.macos.arm64",
         value: Double = 0.42
     ) -> PerformanceBaselineEntry {
+        // preview.firstFrame regresses on p50; the helper mirrors that so the
+        // round-trip and duplicate tests exercise a valid document.
         PerformanceBaselineEntry(
             scenarioID: scenarioID,
             environmentID: environmentID,
             value: value,
             unit: .seconds,
+            statistic: .p50,
             sampleCount: 5,
             recordedAt: "2026-10-27T12:00:00Z",
             commit: "abcdef0",

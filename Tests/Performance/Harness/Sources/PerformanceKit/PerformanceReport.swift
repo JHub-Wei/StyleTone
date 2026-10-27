@@ -71,18 +71,20 @@ public struct PerformanceReport: Codable, Sendable, Equatable {
         lines.append("- Commit: `\(commit)`")
         lines.append("- Toolchain: \(toolchain)")
         lines.append("- Generated: \(generatedAt)")
-        lines.append("- Gate: p95 regression >10 % blocks; noise floors are documented per scenario.")
+        lines.append("- Gate: contract budgets use p95; regression >10 % blocks; "
+            + "noise floors are documented per scenario.")
         lines.append("")
 
         if verdicts.isEmpty {
             lines.append("_No performance verdicts recorded._")
         } else {
-            lines.append("| Scenario | p95 | Baseline | Limit | Samples | Status |")
-            lines.append("|---|---:|---:|---:|---:|---|")
+            lines.append("| Scenario | Value | Stat | Baseline | Limit | Samples | Status |")
+            lines.append("|---|---:|---|---:|---:|---:|---|")
             for verdict in verdicts {
                 lines.append(
                     "| `\(verdict.scenarioID)` "
                         + "| \(format(verdict.measuredValue, unit: verdict.unit)) "
+                        + "| \(verdict.statistic.rawValue) "
                         + "| \(format(verdict.baselineValue, unit: verdict.unit)) "
                         + "| \(format(verdict.limitValue, unit: verdict.unit)) "
                         + "| \(verdict.sampleCount) "

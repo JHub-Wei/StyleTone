@@ -55,6 +55,7 @@ final class PerformanceGateTests: XCTestCase {
             environmentID: environmentID,
             value: value,
             unit: scenario.unit,
+            statistic: scenario.regressionStatistic,
             sampleCount: 5,
             recordedAt: "2026-10-27T00:00:00Z",
             commit: "unit",
@@ -279,5 +280,51 @@ final class PerformanceGateTests: XCTestCase {
             environment: environment
         )
         XCTAssertEqual(verdict.status, .passed)
+    }
+
+    func testMedianRegressionStatisticIgnoresASingleTailOutlier() throws {
+        let scenario = PerformanceScenario(
+            id: "unit.median",
+            displayName: "Median",
+            unit: .seconds,
+            direction: .lowerIsBetter,
+            regressionStatistic: .p50,
+            minimumSamples: 5,
+            noiseFloor: 0,
+            method: "unit test"
+        )
+        let baselineEntry = baseline(0.030, scenario: scenario)
+
+        // Median is 30 ms; one 50 ms scheduler hiccup must not block.
+        let withOutlier = try PerformanceMeasurement(
+            scenarioID: scenario.id,
+            unit: .seconds,
+            values: [0.030, 0.030, 0.030, 0.030, 0.030, 0.050]
+        )
+        let outlierVerdict = PerformanceGate().evaluate(
+            measurement: withOutlier,
+            scenario: scenario,
+            baseline: baselineEntry,
+            environment: environment
+        )
+        XCTAssertEqual(outlierVerdict.status, .passed)
+        XCTAssertEqual(outlierVerdict.statistic, .p50)
+        XCTAssertEqual(outlierVerdict.measuredValue, 0.030)
+
+        // A real 13 % median regression still blocks.
+        let regression = try PerformanceMeasurement(
+            scenarioID: scenario.id,
+            unit: .seconds,
+            values: [0.034, 0.034, 0.034, 0.034, 0.034]
+        )
+        XCTAssertEqual(
+            PerformanceGate().evaluate(
+                measurement: regression,
+                scenario: scenario,
+                baseline: baselineEntry,
+                environment: environment
+            ).status,
+            .regression
+        )
     }
 }

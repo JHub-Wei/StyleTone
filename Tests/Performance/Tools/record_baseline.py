@@ -102,11 +102,18 @@ def collect_entries(
             scenario = measurement.get("scenarioID")
             if not scenario:
                 continue
+            statistic = "p95"
+            if index < len(verdicts):
+                statistic = verdicts[index].get("statistic", "p95")
+            if statistic not in {"p50", "p95"}:
+                statistic = "p95"
+            value = float(measurement[statistic])
             entries.append({
                 "scenarioID": scenario,
                 "environmentID": environment,
-                "value": float(measurement["p95"]),
+                "value": value,
                 "unit": measurement["unit"],
+                "statistic": statistic,
                 "sampleCount": sample_count,
                 "recordedAt": report.get("generatedAt") or _now(),
                 "commit": commit if commit != "unknown" else report.get("commit", "unknown"),

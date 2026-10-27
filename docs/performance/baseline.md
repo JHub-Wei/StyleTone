@@ -23,7 +23,7 @@
 | 场景 | 工作 | 迭代 | 说明 |
 |---|---|---:|---|
 | `preview.firstFrame` | 4032×3024 JPEG → `ImageLoader(.preview)` 2048 长边 → `CoreGraphicsPreviewScaler` 1280 代理 | 5 | 不含 UI 提交；显示赋值在解码后同步发生 |
-| `preview.frameTime` | 1080p、32×32 网格、`MetalGeometryWarp.renderTexture`（无 CPU 回读） | 8 | 与 WP-06 的 `MetalGeometryWarpTests` 同一路径 |
+| `preview.frameTime` | 1080p、32×32 网格、`MetalGeometryWarp.renderTexture`（无 CPU 回读） | 20 | 与 WP-06 的 `MetalGeometryWarpTests` 同一路径 |
 | `preview.sliderResponse` | 12MP 源 → 1280 代理 → 真实 Metal 形变 → `EditorViewModel` 投递 | 12 | 端到端，仅分析/修饰/tone 为替身 |
 | `learning.fivePairs` | 5 × 160×160 合成人像对，`StyleLearningEngine` | 3 | 无缓存、无 I/O |
 | `export.twelveMegapixel` | 4032×3024、64×64 网格、`EditorRenderer` + `FileImageExporter`（JPEG） | 3 | 含编码与临时文件写入/清理 |
@@ -40,35 +40,43 @@
 
 ## 3. CI 基线
 
-**记录状态**：2026-10-27，commit `135e721`，CI run
-[40528609160](https://github.com/JHub-Wei/StyleTone/actions/runs/40528609160)，
-环境 `ci.macos.arm64`（`arm64-apple-macosx15.0`，debug `swift test`，
-Apple Paravirtual GPU）。
+**记录状态**：2026-10-27，CI runs
+[40528609160](https://github.com/JHub-Wei/StyleTone/actions/runs/40528609160)、
+[40530394608](https://github.com/JHub-Wei/StyleTone/actions/runs/40530394608)、
+[40531729843](https://github.com/JHub-Wei/StyleTone/actions/runs/40531729843)
+（最终绿色 run 的 commit `6d4fea8`），环境 `ci.macos.arm64`
+（`arm64-apple-macosx15.0`，debug `swift test`，Apple Paravirtual GPU）。
+基线取三次的最差回归统计量。
 
-| 场景 | 样本 | p95 | 契约/说明 |
-|---|---:|---:|---|
-| `preview.firstFrame` | 5 | **1.129 s** | ≤1.5 s；其中代理缩放占 0.82 s |
-| `preview.frameTime` | 8 | **34.9 ms（28.7 fps）** | 30 fps 目标 33.3 ms；debug CI 不强制 |
-| `preview.sliderResponse` | 12 | **52.4 ms** | ≤100 ms |
-| `learning.fivePairs` | 3 | **2.948 s** | ≤90 s |
-| `export.twelveMegapixel` | 3 | **0.379 s** | ≤6 s；retouch/tone 为替身 |
-| `preview.memoryPeak` | 1 | **10.78 MB 增量** | 绝对目标 300 MB；增量不代表绝对占用 |
-| `export.memoryPeak` | 1 | **50.99 MB 增量** | 绝对目标 500 MB；增量不代表绝对占用 |
-| `preview.proxyScale` | 5 | **0.823 s** | 内部场景；2048 + 3 masks → 1280 |
-| `preview.proxyCacheHit` | 10 | **0.000001 s** | 缓存命中；缩放器只跑 1 次 |
-| `cancellation.latency` | 5 | **0.699 ms** | cancelAll → idle |
+| 场景 | 样本 | 基线（回归统计量） | 最近 p95 | 契约/说明 |
+|---|---:|---:|---:|---|
+| `preview.firstFrame` | 5 | **0.9496 s (p50)** | 1.021 s | ≤1.5 s；代理缩放占大头 |
+| `preview.frameTime` | 20 | **0.0299 s (p50)** | 51.5 ms | 30 fps 目标 33.3 ms；debug CI 尾延迟 |
+| `preview.sliderResponse` | 12 | **0.0386 s (p50)** | 32.4 ms | ≤100 ms |
+| `learning.fivePairs` | 3 | **2.917 s (p50)** | 2.964 s | ≤90 s |
+| `export.twelveMegapixel` | 3 | **0.3554 s (p50)** | 0.344 s | ≤6 s；retouch/tone 为替身 |
+| `preview.memoryPeak` | 1 | **14.47 MB (p95)** | 14.47 MB | 绝对目标 300 MB；增量不代表绝对占用 |
+| `export.memoryPeak` | 1 | **50.99 MB (p95)** | 50.94 MB | 绝对目标 500 MB；增量不代表绝对占用 |
+| `preview.proxyScale` | 5 | **0.7363 s (p50)** | 0.788 s | 内部场景；2048 + 3 masks → 1280 |
+| `preview.proxyCacheHit` | 10 | —（提示性） | 0.000002 s | 缓存命中；缩放器只跑 1 次 |
+| `cancellation.latency` | 5 | **0.000268 s (p50)** | 0.000736 s | cancelAll → idle |
+
+> 基线取三次 CI run 的**最差回归统计量**（p50；单样本内存用 p95），以吸收共享
+> runner 抖动；契约仍用 p95。CI 回归比较 p50，参考设备签核同时比较 p50 回归与
+> p95 契约。
 
 解释：
 
-- **首帧接近预算但瓶颈明确**：`preview.proxyScale` 0.823 s 占首帧 73%。
-  这是 3 个 mask 的纯 Swift 逐像素缩放；WP-17 mask 缩放补丁是 P0/P1
-  优化项（findings #2）。
-- **形变帧 34.9 ms** 略高于 30 fps（33.3 ms），与 WP-06 记录的 25.3 ms 同量级
-  差异来自本次使用非零合成 field、禁用 identity shortcut，并包含每帧源纹理
-  上传；这正是 WP-06 纹理缓存补丁的收益点（findings #1）。
+- **首帧接近预算但瓶颈明确**：`preview.proxyScale` 最新 p95 0.788 s，首帧
+  1.021 s 中约占 77%。这是 3 个 mask 的纯 Swift 逐像素缩放；WP-17 mask 缩放
+  补丁是 P0/P1 优化项（findings #2）。
+- **形变帧** p50 28.9 ms 低于 30 fps（33.3 ms），但 20 个样本的 p95 被 2 个
+  调度尾延迟拉到 51.5 ms。CI 回归因此比较 p50（同样的 10% 规则）；契约 p95 仍在
+  参考设备上强制执行。与 WP-06 记录的 25.3 ms 差异来自非零合成 field、禁用
+  identity shortcut，并包含每帧源纹理上传（findings #1）。
 - **内存数字是峰值增量**：CI 进程本身已有 XCTest 基线，不能与设备绝对
   `phys_footprint` 直接比；设备签核必须重录绝对值。
-- **导出 0.379 s** 只证明“Metal 形变 + 编码 + 临时文件”组合在本 runner 上远低于
+- **导出 0.344 s** 只证明“Metal 形变 + 编码 + 临时文件”组合在本 runner 上远低于
   6 s；不等于 iPhone 13 + 真实 retouch/tone 的完整耗时。
 
 > 在 CI 上，debug 构建不强制契约绝对预算（除学习/导出这两个宽松预算由测试直接
