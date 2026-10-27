@@ -153,6 +153,11 @@ let package = Package(
                 "TestShared"
             ],
             path: "Tests/Performance/Tests/PerformanceTests"
+        ),
+        .testTarget(
+            name: "PerformanceKitTests",
+            dependencies: ["PerformanceKit"],
+            path: "Tests/Performance/Harness/Tests/PerformanceKitTests"
         )
     ],
     swiftLanguageModes: [.v6]

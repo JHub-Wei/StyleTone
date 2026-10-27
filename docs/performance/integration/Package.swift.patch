@@ -1,5 +1,5 @@
 ﻿diff --git a/Package.swift b/Package.swift
-index 566e2fc..2e93106 100644
+index 566e2fc..cdf1958 100644
 --- a/Package.swift
 +++ b/Package.swift
 @@ -37,6 +37,12 @@ let package = Package(
@@ -15,7 +15,7 @@ index 566e2fc..2e93106 100644
          .target(
              name: "StyleToneImaging",
              dependencies: ["StyleToneCore"],
-@@ -133,6 +139,20 @@ let package = Package(
+@@ -133,6 +139,25 @@ let package = Package(
              name: "TestSharedTests",
              dependencies: ["TestShared", "StyleToneCore"],
              path: "Tests/Shared/Tests/TestSharedTests"
@@ -33,6 +33,11 @@ index 566e2fc..2e93106 100644
 +                "TestShared"
 +            ],
 +            path: "Tests/Performance/Tests/PerformanceTests"
++        ),
++        .testTarget(
++            name: "PerformanceKitTests",
++            dependencies: ["PerformanceKit"],
++            path: "Tests/Performance/Harness/Tests/PerformanceKitTests"
          )
      ],
      swiftLanguageModes: [.v6]
