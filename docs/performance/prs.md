@@ -42,8 +42,8 @@
 ## PR-3 · WP-17/WP-23：热 / 低电 / 低端机预览降级与提示
 
 - **文件**：新增 `Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorThermalPolicy.swift`；
-  修改 `EditorViewModel.swift`、`EditorCanvasView.swift`（提示 UI），
-  `Localizable.xcstrings`（WP-26）。
+  修改 `EditorViewModel.swift` 与 `EditorPerformanceGovernor.swift`；提示 UI 由 owner
+  使用 `model.performanceNoticeKey` 接入，`Localizable.xcstrings` 由 WP-26 添加。
 - **补丁**：[`patches/wp-17-thermal-degradation.patch`](patches/wp-17-thermal-degradation.patch)
 - **问题**：`EditorPerformanceGovernor` 只看 preview 时长；thermal/lowPower/
   deviceClass 未接入，serious/critical 时仍按 1280 代理跑。
@@ -62,7 +62,7 @@
 
 ## PR-4 · WP-02/WP-19：导出流式写文件
 
-- **文件**：`Packages/StyleToneImaging/Sources/StyleToneImaging/FileImageExporter.swift`
+- **文件**：`Packages/StyleToneImaging/Sources/StyleToneImaging/ImageWriter.swift`
 - **补丁**：[`patches/wp-02-streaming-export.patch`](patches/wp-02-streaming-export.patch)
 - **问题**：`ImageWriter.data` 先编码到内存 `Data`，再原子写，多一份编码结果。
 - **改动**：`CGImageDestinationCreateWithURL` 写临时文件 → rename；失败清理；

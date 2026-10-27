@@ -13,7 +13,7 @@ final class CancellationPerformanceTests: XCTestCase {
             PerformanceScenario.scenario(id: "cancellation.latency")
         )
         let session = try PerformanceSession(source: "CancellationPerformanceTests")
-        defer { session.finish() }
+        defer { session.finish(test: self) }
 
         let size = PixelSize(width: 128, height: 128)
         let image = try PerformanceFixtures.gradientImage(size: size)

@@ -71,7 +71,7 @@ public enum PreviewQualityTier: String, Codable, Sendable, CaseIterable, Compara
 }
 
 /// Why the preview was degraded.
-public enum DegradationReason: String, Codable, Sendable, CaseIterable {
+public enum DegradationReason: String, Codable, Sendable, Hashable, CaseIterable {
     case lowEndDevice
     case lowPowerMode
     case thermalFair

@@ -18,7 +18,7 @@ final class FirstFramePerformanceTests: XCTestCase {
             PerformanceScenario.scenario(id: "preview.firstFrame")
         )
         let session = try PerformanceSession(source: "FirstFramePerformanceTests")
-        defer { session.finish() }
+        defer { session.finish(test: self) }
 
         let temp = try TemporaryDirectory(prefix: "StyleTonePerfFirstFrame")
         defer { temp.remove() }
@@ -71,7 +71,7 @@ final class FirstFramePerformanceTests: XCTestCase {
             PerformanceScenario.scenario(id: "preview.firstFrame")
         )
         let session = try PerformanceSession(source: "FirstFrameColdDecode")
-        defer { session.finish() }
+        defer { session.finish(test: self) }
 
         let temp = try TemporaryDirectory(prefix: "StyleTonePerfCold")
         defer { temp.remove() }

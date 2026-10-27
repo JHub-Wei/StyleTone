@@ -24,7 +24,7 @@ final class SliderResponsePerformanceTests: XCTestCase {
             PerformanceScenario.scenario(id: "preview.sliderResponse")
         )
         let session = try PerformanceSession(source: "SliderResponsePerformanceTests")
-        defer { session.finish() }
+        defer { session.finish(test: self) }
 
         let size = PixelSize(width: 4_032, height: 3_024)
         let image = try PerformanceFixtures.gradientImage(size: size)

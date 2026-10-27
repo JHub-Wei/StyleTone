@@ -18,7 +18,7 @@ final class MemoryPerformanceTests: XCTestCase {
             PerformanceScenario.scenario(id: "preview.memoryPeak")
         )
         let session = try PerformanceSession(source: "MemoryPerformanceTests")
-        defer { session.finish() }
+        defer { session.finish(test: self) }
 
         let temp = try TemporaryDirectory(prefix: "StyleTonePerfMemory")
         defer { temp.remove() }

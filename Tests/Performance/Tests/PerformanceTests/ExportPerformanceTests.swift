@@ -27,7 +27,7 @@ final class ExportPerformanceTests: XCTestCase {
             PerformanceScenario.scenario(id: "export.memoryPeak")
         )
         let session = try PerformanceSession(source: "ExportPerformanceTests")
-        defer { session.finish() }
+        defer { session.finish(test: self) }
 
         let temp = try TemporaryDirectory(prefix: "StyleTonePerfExport")
         defer { temp.remove() }

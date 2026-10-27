@@ -20,7 +20,7 @@ final class WarpFramePerformanceTests: XCTestCase {
             PerformanceScenario.scenario(id: "preview.frameTime")
         )
         let session = try PerformanceSession(source: "WarpFramePerformanceTests")
-        defer { session.finish() }
+        defer { session.finish(test: self) }
 
         let image = try PerformanceFixtures.gradientImage(
             size: PixelSize(width: 1_920, height: 1_080)

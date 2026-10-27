@@ -126,7 +126,11 @@ final class PerformanceSession: @unchecked Sendable {
 
     /// Builds the report, attaches it to the XCTest result and blocks on any
     /// regression or contract failure.
-    func finish(file: StaticString = #filePath, line: UInt = #line) {
+    func finish(
+        test: XCTestCase,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
         let report = PerformanceReport(
             generatedAt: Self.timestamp(),
             environment: environment,
@@ -139,17 +143,15 @@ final class PerformanceSession: @unchecked Sendable {
         let attachment = XCTAttachment(string: report.markdown())
         attachment.name = "performance-\(Self.sanitized(source))"
         attachment.lifetime = .keepAlways
-        XCTContext.runActivity(named: "Performance report") { activity in
-            activity.add(attachment)
-            if let data = try? report.jsonData() {
-                let json = XCTAttachment(
-                    data: data,
-                    uniformTypeIdentifier: "public.json"
-                )
-                json.name = "performance-\(Self.sanitized(source)).json"
-                json.lifetime = .keepAlways
-                activity.add(json)
-            }
+        test.add(attachment)
+        if let data = try? report.jsonData() {
+            let json = XCTAttachment(
+                data: data,
+                uniformTypeIdentifier: "public.json"
+            )
+            json.name = "performance-\(Self.sanitized(source)).json"
+            json.lifetime = .keepAlways
+            test.add(json)
         }
 
         if let directory = ProcessInfo.processInfo.environment["ST_PERF_REPORT_DIR"],

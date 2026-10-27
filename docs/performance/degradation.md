@@ -56,15 +56,15 @@ tier = max(deviceBase, thermalBase, lowPowerBase, governorTier)
 
 ## 4. 档位
 
-| 档位 | 长边 | 典型网格 | 用途 |
+| 档位 | 长边 | 当前网格 | 用途 |
 |---|---:|---:|---|
 | full | 1280 | 32×32 | 参考设备正常 |
-| reduced | 960 | 32×32（建议 24，见 patch） | 低端机/低电/fair |
-| minimal | 640 | 24×24（建议；当前仍 32） | serious/critical |
+| reduced | 960 | 32×32 | 低端机/低电/fair |
+| minimal | 640 | 32×32 | serious/critical |
 
 当前 `EditorPerformanceGovernor` 只改代理长边，不改网格。网格降级是 WP-06
-owner 的补丁（[`patches/wp-06-metal-frame-resource-cache.patch`](patches/wp-06-metal-frame-resource-cache.patch)
-同时给出 24×24 的配置建议），未合入前不得声称已生效。
+owner 的后续工作（需要新增 24×24 档位并验证边界/画质）；WP-24 的
+`wp-06-metal-frame-resource-cache.patch` 只做资源缓存，**不**声称网格降级已生效。
 
 ## 5. 提示文案（提案，需 UI owner 合入）
 

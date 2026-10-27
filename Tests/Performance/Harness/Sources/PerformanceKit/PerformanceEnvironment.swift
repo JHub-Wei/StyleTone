@@ -7,7 +7,7 @@ import Foundation
 /// `debug` baseline with a `release` build.
 public struct PerformanceEnvironment: Codable, Sendable, Hashable, Identifiable {
     /// Broad category of the run.
-    public enum Kind: String, Codable, Sendable, CaseIterable {
+    public enum Kind: String, Codable, Sendable, Hashable, CaseIterable {
         /// The product reference device (iPhone 13 class).
         case referenceDevice
         /// A device in the low-end degradation matrix.
@@ -21,7 +21,7 @@ public struct PerformanceEnvironment: Codable, Sendable, Hashable, Identifiable 
     }
 
     /// Swift build configuration of the code under test.
-    public enum BuildConfiguration: String, Codable, Sendable, CaseIterable {
+    public enum BuildConfiguration: String, Codable, Sendable, Hashable, CaseIterable {
         case debug
         case release
     }

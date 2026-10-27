@@ -14,7 +14,7 @@ final class LearningPerformanceTests: XCTestCase {
             PerformanceScenario.scenario(id: "learning.fivePairs")
         )
         let session = try PerformanceSession(source: "LearningPerformanceTests")
-        defer { session.finish() }
+        defer { session.finish(test: self) }
 
         let pairs = try (0 ..< 5).map { _ in
             try PerformanceFixtures.portraitPair()
@@ -49,7 +49,7 @@ final class LearningPerformanceTests: XCTestCase {
             PerformanceScenario.scenario(id: "learning.eightPairs")
         )
         let session = try PerformanceSession(source: "LearningPerformanceTests8")
-        defer { session.finish() }
+        defer { session.finish(test: self) }
 
         let pairs = try (0 ..< 8).map { _ in
             try PerformanceFixtures.portraitPair(editedExposure: 1.12)

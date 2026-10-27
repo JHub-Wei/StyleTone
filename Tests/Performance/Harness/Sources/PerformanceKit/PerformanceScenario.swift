@@ -3,7 +3,7 @@ import Foundation
 // MARK: - Units and direction
 
 /// Unit of one performance measurement.
-public enum PerformanceUnit: String, Codable, Sendable, CaseIterable {
+public enum PerformanceUnit: String, Codable, Sendable, Hashable, CaseIterable {
     /// Wall-clock seconds (lower is better).
     case seconds
     /// Frames per second (higher is better).
@@ -30,7 +30,7 @@ public enum PerformanceUnit: String, Codable, Sendable, CaseIterable {
 }
 
 /// Direction in which a metric improves.
-public enum PerformanceDirection: String, Codable, Sendable {
+public enum PerformanceDirection: String, Codable, Sendable, Hashable {
     case lowerIsBetter
     case higherIsBetter
 }

@@ -16,7 +16,7 @@ final class PreviewCachePerformanceTests: XCTestCase {
             PerformanceScenario.scenario(id: "preview.proxyCacheHit")
         )
         let session = try PerformanceSession(source: "PreviewCachePerformanceTests")
-        defer { session.finish() }
+        defer { session.finish(test: self) }
 
         let image = try PerformanceFixtures.gradientImage(
             size: PixelSize(width: 2_048, height: 1_536)
@@ -65,7 +65,7 @@ final class PreviewCachePerformanceTests: XCTestCase {
             PerformanceScenario.scenario(id: "preview.proxyScale")
         )
         let session = try PerformanceSession(source: "PreviewScalePerformanceTests")
-        defer { session.finish() }
+        defer { session.finish(test: self) }
 
         let image = try PerformanceFixtures.gradientImage(
             size: PixelSize(width: 2_048, height: 1_536)
