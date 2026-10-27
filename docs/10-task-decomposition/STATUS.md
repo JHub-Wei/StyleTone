@@ -117,5 +117,29 @@
   - WP-19 导出
   - WP-21 设置
 
+---
+
+## WP-15 ~ WP-21（A4）· done（2026-10-27 拉取）
+
+- 本地 `main` 已从 `392dc00` 快进到 `b005dd7`（Merge PR #16，WP-21）。
+- 已完成并合并：
+  - WP-15 背景保护
+  - WP-16 皮肤工具 UI + 点选去瑕疵
+  - WP-17 编辑器 / 预览 / 撤销 / 导出编排
+  - WP-19 全分辨率导出 / PhotoKit / 分享
+  - WP-21 设置 / 隐私 / 诊断 / 删除本地数据
+- CI 结果：
+  - Run：https://github.com/JHub-Wei/StyleTone/actions/runs/40481035914
+  - `b005dd7`，所有步骤 success：XcodeGen、SwiftPM 测试、模拟器构建、App 测试。
+- 当前 Phase A 剩余：
+  - WP-23 错误/离线/边界态
+  - WP-24 性能/内存/热
+  - WP-25 黄金图/质量回归
+- 本地 stash：
+  - `stash@{0}`：A4 的 Export/SkinTools 未跟踪产物
+  - `stash@{1}`：WP-09/10/11 未跟踪产物
+  - 远程已有对应源码，暂不恢复。
+
+
 
 
