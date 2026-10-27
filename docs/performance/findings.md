@@ -40,15 +40,21 @@
 双重循环；1280×960 每个 mask ≈1.23M 次迭代，3 个 ≈3.7M 次，且带边界
 `min`/乘法。它在 actor 上，不阻塞主线程，但计入滑杆响应/首帧。
 
+**实测（WP-24 CI，2026-10-27，commit `135e721`）**：
+`preview.proxyScale` p95 **0.823 s**（2048 图 + 3 个 mask → 1280），
+`preview.firstFrame` p95 **1.129 s**，即 proxy 缩放占首帧 **73%**。这是当前
+最大的可优化项；`preview.sliderResponse` 0.052 s 因为代理有缓存，未重复缩放。
+
 **优化**（[`patches/wp-17-preview-mask-scaling.patch`](patches/wp-17-preview-mask-scaling.patch)）：
-1. 用 Accelerate `vImageScale_Planar8`（最近邻/线性）或
-2. 至少按行 `DispatchQueue.concurrentPerform` 并行；
+1. 用 Accelerate `vImageScale_Planar8`（当前补丁实现）；
+2. 无 Accelerate 时回退原逐像素路径；
 3. 加 `needsResize == false` 快速路径（已有）。
 
-**期望**：3 个 mask 的缩放从 O(n) 单线程变多核/vImage，预计降 50–70% 的 mask
-缩放时间（1280 档约省 20–60 ms）。**风险**：vImage 与手写最近邻的采样点可能
-差半个像素；只影响预览，不影响导出；需要 `EditorPreviewTests` 的 mask 尺寸/
-边界断言更新。**验证**：`PreviewCachePerformanceTests` + 预览画质肉眼/黄金图。
+**期望**：3 个 mask 的缩放从 O(n) 单线程变 vImage，按 3–8× 估算，1280 档
+预计从 0.82 s 降到 0.1–0.25 s；首帧有望降到 0.4–0.6 s。**风险**：vImage 与
+手写最近邻的采样点可能差半个像素；只影响预览，不影响导出；需要
+`EditorPreviewTests` 的 mask 尺寸/边界断言更新。**验证**：
+`PreviewCachePerformanceTests` + 预览画质肉眼/黄金图。
 
 ## 3. 首帧：完整 12MP 解码 + 全尺寸 mask（WP-02/05/17 集成）
 

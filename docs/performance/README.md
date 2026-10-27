@@ -9,18 +9,22 @@
 | 契约 §10 | 目标 | 当前证据 | 状态 |
 |---|---|---|---|
 | 冷启动 | ≤2 s | 签名 + Instruments 采集流程已定义 | **待真机** |
-| 首帧 | p95 ≤1.5 s | 12MP → 2048 解码 → 1280 代理，CI 有门禁 | **CI 已测** |
-| 形变预览 | ≥30 fps（iPhone 13） | 1080p Metal 预览帧 32×32，CI 有门禁 | **CI 已测；真机待测** |
-| 滑杆响应 | ≤100 ms | 12MP → 1280 代理 → Metal，端到端 CI 门禁 | **CI 已测** |
-| 5 组学习 | ≤90 s | 160×160 合成对，CI 约 5 s 量级 | **CI 已测** |
-| 12MP 导出 | p95 ≤6 s | 真实 Metal 形变 + `EditorRenderer` + JPEG/HEIC | **CI 已测** |
-| 预览内存 | ≤300 MB | `phys_footprint` 峰值；CI 用峰值增量 | **CI 已测；真机待测** |
-| 导出内存 | ≤500 MB | `phys_footprint` 峰值；CI 用峰值增量 | **CI 已测；真机待测** |
+| 首帧 | p95 ≤1.5 s | CI **1.129 s**（12MP → 2048 → 1280） | **CI 已测；真机待测** |
+| 形变预览 | ≥30 fps（iPhone 13） | CI 1080p p95 **34.9 ms / 28.7 fps**（debug） | **CI 已测；真机待测** |
+| 滑杆响应 | ≤100 ms | CI 端到端 **52.4 ms** | **CI 已测；真机待测** |
+| 5 组学习 | ≤90 s | CI **2.948 s**（160×160 合成） | **CI 已测；真机待测** |
+| 12MP 导出 | p95 ≤6 s | CI **0.379 s**（Metal + JPEG；替身算法） | **CI 已测；真机待测** |
+| 预览内存 | ≤300 MB | CI 峰值增量 **10.78 MB** | **CI 已测；真机待测** |
+| 导出内存 | ≤500 MB | CI 峰值增量 **50.99 MB** | **CI 已测；真机待测** |
 
 > **诚实边界**：WP-24 会话在 Windows 上完成代码与协议，真实设备（iPhone 13 /
 > SE 3）的 Instruments 结果尚未采集。没有真机数据时，文档不会写“真机达标”。
 > 设备采集步骤见 [`instruments.md`](instruments.md)，签核矩阵见
 > [`acceptance.md`](acceptance.md)。
+>
+> CI 基线来源：[run 40528609160](https://github.com/JHub-Wei/StyleTone/actions/runs/40528609160)，
+> commit `135e721`，环境 `ci.macos.arm64`，debug。完整数据见
+> [`baseline.md`](baseline.md) 与 `Tests/Performance/Baselines/performance-baselines.json`。
 
 ## 2. 目录
 

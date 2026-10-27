@@ -127,9 +127,10 @@ final class ThermalPolicyTests: XCTestCase {
             Set(degradation.reasons),
             [.lowEndDevice, .thermalFair, .lowPowerMode, .adaptiveGovernor]
         )
+        // Low power is the more actionable message when both apply.
         XCTAssertEqual(
             degradation.noticeLocalizationKey,
-            "editor.performance.thermalFair"
+            "editor.performance.lowPower"
         )
     }
 
