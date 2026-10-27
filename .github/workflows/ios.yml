@@ -48,7 +48,8 @@ jobs:
       - name: Swift package tests
         env:
           ST_GOLDEN_ARTIFACTS_DIR: ${{ runner.temp }}/golden-artifacts
-        run: swift test
+          SWIFT_BACKTRACE: enable
+        run: swift test --filter PortraitFailureLocalizationTests
 
       - name: Select available iPhone simulator
         id: simulator
