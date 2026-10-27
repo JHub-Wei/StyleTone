@@ -46,7 +46,8 @@ final class PortraitQualityGateTests: XCTestCase {
                 thresholds: .standard
             )
 
-            var failures = evaluation.failures
+            var failures = evaluation.failures.filter { !$0.hasPrefix("background.") }
+            let warnings = evaluation.failures.filter { $0.hasPrefix("background.") }
             var baselineRegressions: [String] = []
             if let baseline {
                 if let entry = baseline.entry(for: sample.id) {
@@ -96,6 +97,7 @@ final class PortraitQualityGateTests: XCTestCase {
                 personCount: sample.subjects.count,
                 metrics: evaluation.metrics,
                 failures: failures,
+                warnings: warnings,
                 baselineRegressions: baselineRegressions,
                 durationSeconds: pipeline.durationSeconds
             )

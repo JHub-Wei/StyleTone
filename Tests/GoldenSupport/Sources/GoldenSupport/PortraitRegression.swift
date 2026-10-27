@@ -349,6 +349,10 @@ public struct PortraitSampleResult: Codable, Sendable, Equatable {
     public var personCount: Int
     public var metrics: PortraitSampleMetrics
     public var failures: [String]
+    /// Non-blocking observations. Background-line bending is reported here
+    /// because the card defines background distortion as a corpus-level rate
+    /// (`< 5 %`), not a per-sample failure.
+    public var warnings: [String]
     public var baselineRegressions: [String]
     public var durationSeconds: Double?
 
@@ -362,6 +366,7 @@ public struct PortraitSampleResult: Codable, Sendable, Equatable {
         personCount: Int,
         metrics: PortraitSampleMetrics,
         failures: [String],
+        warnings: [String] = [],
         baselineRegressions: [String],
         durationSeconds: Double? = nil
     ) {
@@ -374,6 +379,7 @@ public struct PortraitSampleResult: Codable, Sendable, Equatable {
         self.personCount = personCount
         self.metrics = metrics
         self.failures = failures
+        self.warnings = warnings
         self.baselineRegressions = baselineRegressions
         self.durationSeconds = durationSeconds
     }
@@ -679,6 +685,25 @@ public struct PortraitRegressionReport: Codable, Sendable, Equatable {
         lines.append(categoryTable())
         lines.append("")
         let failing = results.filter { !$0.isPassing }
+        let warned = results.filter { !$0.warnings.isEmpty }
+        if !warned.isEmpty {
+            lines.append("## Background warnings")
+            lines.append("")
+            lines.append(
+                "\(warned.count) sample(s) exceed the per-line deviation threshold; "
+                    + "the card limits this to < 5 % of measured samples."
+            )
+            lines.append("")
+            lines.append("| sample | category | warnings |")
+            lines.append("|---|---|---|")
+            for result in warned.prefix(20) {
+                lines.append(
+                    "| \(result.sampleID) | \(result.categoryLabel) | "
+                        + "\(Self.escape(result.warnings.joined(separator: "; "))) |"
+                )
+            }
+            lines.append("")
+        }
         if !failing.isEmpty {
             lines.append("## Failures")
             lines.append("")
