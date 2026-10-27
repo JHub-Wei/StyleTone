@@ -156,7 +156,9 @@ contact sheet with source / output / amplified difference triplets.
 
 The baseline and the 12 visual goldens were recorded from the green CI run
 [40548163906](https://github.com/JHub-Wei/StyleTone/actions/runs/40548163906)
-on macOS 15 arm64 (2026-10-28), commit `26d13f7`:
+on macOS 15 arm64 (2026-10-28), commit `26d13f7`, and re-validated in comparison
+mode by [40552973565](https://github.com/JHub-Wei/StyleTone/actions/runs/40552973565)
+(940 tests, 0 failures, 12/12 goldens, 0 baseline regressions):
 
 | gate | value | target |
 |---|---|---|
