@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  WP-19 / WP-00 integration fragment.
+
+  The export flow only requests add-only photo-library access. The app target
+  must merge this key into App/Info.plist; without it, PhotoKit would terminate
+  the app when the system permission prompt is shown. `PhotoKitExportPhotoLibrary`
+  checks for the key and fails closed (`PhotoLibraryAccess.unavailable`) instead,
+  but that is a guard rail, not a substitute for the real declaration.
+
+  WP-26 owns the zh-Hans copy. Add a matching InfoPlist.strings entry with the
+  same key when the localized catalog lands.
+-->
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>StyleTone saves your exported photos to your library. It only adds photos; it never reads or uploads them.</string>
