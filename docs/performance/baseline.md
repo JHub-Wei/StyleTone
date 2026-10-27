@@ -61,9 +61,10 @@
 | `preview.proxyCacheHit` | 10 | —（提示性） | 0.000002 s | 缓存命中；缩放器只跑 1 次 |
 | `cancellation.latency` | 5 | **0.000268 s (p50)** | 0.000736 s | cancelAll → idle |
 
-> 基线取三次 CI run 的**最差回归统计量**（p50；单样本内存用 p95），以吸收共享
-> runner 抖动；契约仍用 p95。CI 回归比较 p50，参考设备签核同时比较 p50 回归与
-> p95 契约。
+> 基线取多次 CI run 的**最差回归统计量**（p50；单样本内存用 p95），以吸收共享
+> runner 抖动；契约仍用 p95。**CI 计时条目 `gateEnabled=false` 只记录**：五次
+> run 的计时方差 40–70%，不足以做 10% 门禁；`preview.memoryPeak` /
+> `export.memoryPeak` 仍 `gateEnabled=true`。参考设备/低端机记录并启用全部条目。
 
 解释：
 

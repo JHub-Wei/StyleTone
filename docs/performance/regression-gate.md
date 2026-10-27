@@ -18,10 +18,27 @@
      `baseline - measured > noiseFloor` → `regression`。
 6. 其余 `passed`。
 
-`preview.frameTime` 的 `regressionStatistic` 是 **p50**，但在共享 CI 上连 p50
-都在 29–38 ms 间波动，因此 **CI 基线 `gateEnabled=false`，只记录不阻断**；
-参考设备使用 p50 基线门禁 + p95 契约。其余稳定场景（学习/导出/内存/首帧/
-滑杆/代理缩放）在 CI 上保持 `gateEnabled=true`。
+### 1.1 CI 与真机的差别（重要）
+
+GitHub macOS runner 的**运行间方差**在 2026-10-27 的五次 run 中达到 40–70%
+（同一提交、同一测试：首帧 0.92–1.35 s、代理缩放 0.72–1.25 s、学习 2.7–4.1 s、
+导出 0.30–0.51 s）。这不是产品回归，而是共享 runner 的邻居负载/调度。
+
+因此当前基线文件按环境区分：
+
+- `ci.macos.arm64`：**计时候选项 `gateEnabled=false`，只记录**；
+  内存条目（`preview.memoryPeak`、`export.memoryPeak`）`gateEnabled=true`，
+  因为峰值增量稳定（约 10–14 MB / 50.9 MB）。
+- `device.iphone13` / `device.*`：**所有条目 `gateEnabled=true`**，
+  由参考设备/低端机执行 10% 回归 + p95 契约。
+
+WP-24 在 CI 上实际观察到一次 58% 的 warp 回归并被门禁阻断（run 40530394608），
+证明门禁逻辑生效；随后因为 runner 方差把 CI 计时条目改为记录模式。产品发布
+不能只看 CI：真机签核必须重新记录并启用全部设备基线。
+
+`preview.frameTime` 的 `regressionStatistic` 是 **p50**（比 p95 稳），但仍不足以
+抵消共享 GPU runner 的方差，所以 CI 也只记录；参考设备使用 p50 基线门禁 +
+p95 契约。
 
 `noiseFloor` 是绝对噪声地板，不是“放宽 10%”。例：25 ms 帧的 1 ms 地板只挡
 ±4% 的抖动；一旦相对差 >10% **且**绝对差 >1 ms，仍然阻断。每个场景的 floor 在

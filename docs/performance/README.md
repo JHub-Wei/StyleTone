@@ -77,8 +77,10 @@ ST_PERF_REFERENCE=1 ST_PERF_HEAVY=1 ST_PERF_REQUIRE_BASELINE=1 \
 ## 4. 门禁摘要
 
 - 每个场景记录 p95；与 **同环境、同构建配置** 的基线比较。契约预算固定用 p95；
-  `preview.frameTime` 的 CI 回归用更稳的 p50（尾延迟不作为共享 runner 结论）。
-- 慢于基线 **10% 以上**（或 fps 低于基线 10% 以上）→ `regression` → 退出码 1。
+  CI 计时基线与设备基线分开。
+- 真机上慢于基线 **10% 以上**（或 fps 低于基线 10% 以上）→ `regression` →
+  退出码 1。共享 CI runner 的计时方差 40–70%，CI 计时条目只记录；CI 的内存
+  条目仍按 10% 门禁。
 - 契约 §10 的绝对预算在参考设备/低端机（或 `ST_PERF_STRICT=1`）上强制执行。
 - 样本数低于场景要求 → `insufficientSamples`，也阻断。
 - 没有基线 → 只记录、不阻断（首次采集）；发布签核要求
