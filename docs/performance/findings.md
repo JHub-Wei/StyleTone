@@ -42,8 +42,8 @@
 `min`/乘法。它在 actor 上，不阻塞主线程，但计入滑杆响应/首帧。
 
 **实测（WP-24 CI，2026-10-27，commit `135e721`）**：
-`preview.proxyScale` p95 **0.823 s**（2048 图 + 3 个 mask → 1280），
-`preview.firstFrame` p95 **1.129 s**，即 proxy 缩放占首帧 **73%**。这是当前
+`preview.proxyScale` p95 **0.788 s**（2048 图 + 3 个 mask → 1280），
+`preview.firstFrame` p95 **1.021 s**，即 proxy 缩放占首帧 **77%**。这是当前
 最大的可优化项；`preview.sliderResponse` 0.052 s 因为代理有缓存，未重复缩放。
 
 **优化**（[`patches/wp-17-preview-mask-scaling.patch`](patches/wp-17-preview-mask-scaling.patch)）：

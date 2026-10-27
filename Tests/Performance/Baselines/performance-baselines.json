@@ -68,8 +68,8 @@
     {
       "commit": "6d4fea8",
       "environmentID": "ci.macos.arm64",
-      "gateEnabled": true,
-      "notes": "worst observed value; see docs/performance/baseline.md",
+      "gateEnabled": false,
+      "notes": "CI recording only: shared-runner p50 varied 28.9-38.2 ms across four runs. The 10% gate for warp frame time is enabled on the reference device, where p95 is also enforced.",
       "recordedAt": "2026-10-27T15:37:53Z",
       "sampleCount": 20,
       "scenarioID": "preview.frameTime",

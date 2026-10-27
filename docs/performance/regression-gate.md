@@ -18,10 +18,10 @@
      `baseline - measured > noiseFloor` → `regression`。
 6. 其余 `passed`。
 
-`preview.frameTime` 的 `regressionStatistic` 是 **p50**：共享 CI runner 的 p95
-尾部会被 1–2 个调度尾延迟拉到 50 ms，而 p50 稳定在 29 ms。契约仍用 p95，并在
-参考设备强制；CI 的 10% 回归用 p50 比较。两种统计量用同一基线、同一 10% 规则，
-不改变阻断阈值。
+`preview.frameTime` 的 `regressionStatistic` 是 **p50**，但在共享 CI 上连 p50
+都在 29–38 ms 间波动，因此 **CI 基线 `gateEnabled=false`，只记录不阻断**；
+参考设备使用 p50 基线门禁 + p95 契约。其余稳定场景（学习/导出/内存/首帧/
+滑杆/代理缩放）在 CI 上保持 `gateEnabled=true`。
 
 `noiseFloor` 是绝对噪声地板，不是“放宽 10%”。例：25 ms 帧的 1 ms 地板只挡
 ±4% 的抖动；一旦相对差 >10% **且**绝对差 >1 ms，仍然阻断。每个场景的 floor 在

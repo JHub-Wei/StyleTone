@@ -51,7 +51,7 @@
 | 场景 | 样本 | 基线（回归统计量） | 最近 p95 | 契约/说明 |
 |---|---:|---:|---:|---|
 | `preview.firstFrame` | 5 | **0.9496 s (p50)** | 1.021 s | ≤1.5 s；代理缩放占大头 |
-| `preview.frameTime` | 20 | **0.0299 s (p50)** | 51.5 ms | 30 fps 目标 33.3 ms；debug CI 尾延迟 |
+| `preview.frameTime` | 20 | **0.0299 s (p50，CI 仅记录)** | 51.5 ms | 30 fps 目标 33.3 ms；debug CI p50 波动 29–38 ms，真机门禁 |
 | `preview.sliderResponse` | 12 | **0.0386 s (p50)** | 32.4 ms | ≤100 ms |
 | `learning.fivePairs` | 3 | **2.917 s (p50)** | 2.964 s | ≤90 s |
 | `export.twelveMegapixel` | 3 | **0.3554 s (p50)** | 0.344 s | ≤6 s；retouch/tone 为替身 |
