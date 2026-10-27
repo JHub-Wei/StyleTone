@@ -1,0 +1,82 @@
+﻿diff --git a/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorPreview.swift b/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorPreview.swift
+index a65aa0b..48ae52a 100644
+--- a/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorPreview.swift
++++ b/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorPreview.swift
+@@ -2,6 +2,10 @@ import CoreGraphics
+ import Foundation
+ import StyleToneCore
+ 
++#if canImport(Accelerate)
++import Accelerate
++#endif
++
+ // MARK: - Preview context
+ 
+ /// A downscaled image paired with an analysis of exactly the same pixel size.
+@@ -193,6 +197,12 @@ public struct CoreGraphicsPreviewScaler: EditorPreviewScaling {
+             return nil
+         }
+ 
++        #if canImport(Accelerate)
++        if let accelerated = scaleWithAccelerate(mask, to: size) {
++            return accelerated
++        }
++        #endif
++
+         var bytes = [UInt8](repeating: 0, count: size.width * size.height)
+         for y in 0..<size.height {
+             let sourceY = min(mask.height - 1, y * mask.height / size.height)
+@@ -203,4 +213,53 @@ public struct CoreGraphicsPreviewScaler: EditorPreviewScaling {
+         }
+         return try MaskBuffer(width: size.width, height: size.height, bytes: Data(bytes))
+     }
++
++    #if canImport(Accelerate)
++    /// Nearest/linear mask resample through vImage.
++    ///
++    /// Masks are preview-only data; the full-resolution export path never uses
++    /// this function. `vImageScale_Planar8` removes the per-pixel Swift loop
++    /// from the slider hot path on 12 MP sources.
++    private static func scaleWithAccelerate(
++        _ mask: MaskBuffer,
++        to size: PixelSize
++    ) -> MaskBuffer? {
++        var destination = [UInt8](repeating: 0, count: size.width * size.height)
++        let error: vImage_Error = mask.bytes.withUnsafeBytes { sourceRaw in
++            destination.withUnsafeMutableBytes { destinationRaw in
++                guard let sourceBase = sourceRaw.baseAddress,
++                      let destinationBase = destinationRaw.baseAddress
++                else {
++                    return kvImageNullPointerArgument
++                }
++                var source = vImage_Buffer(
++                    data: UnsafeMutableRawPointer(mutating: sourceBase),
++                    height: vImagePixelCount(mask.height),
++                    width: vImagePixelCount(mask.width),
++                    rowBytes: mask.width
++                )
++                var target = vImage_Buffer(
++                    data: destinationBase,
++                    height: vImagePixelCount(size.height),
++                    width: vImagePixelCount(size.width),
++                    rowBytes: size.width
++                )
++                return vImageScale_Planar8(
++                    &source,
++                    &target,
++                    nil,
++                    vImage_Flags(kvImageHighQualityResampling)
++                )
++            }
++        }
++        guard error == kvImageNoError else {
++            return nil
++        }
++        return try? MaskBuffer(
++            width: size.width,
++            height: size.height,
++            bytes: Data(destination)
++        )
++    }
++    #endif
+ }

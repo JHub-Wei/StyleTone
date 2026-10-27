@@ -1,0 +1,24 @@
+﻿diff --git a/.github/workflows/ios.yml b/.github/workflows/ios.yml
+index 9f0e216..bdbd1b2 100644
+--- a/.github/workflows/ios.yml
++++ b/.github/workflows/ios.yml
+@@ -46,8 +46,19 @@ jobs:
+         run: xcodegen generate
+ 
+       - name: Swift package tests
++        env:
++          ST_PERF_REPORT_DIR: ${{ runner.temp }}/performance
+         run: swift test
+ 
++      - name: Upload performance reports
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: performance-reports-${{ github.run_id }}
++          path: ${{ runner.temp }}/performance
++          if-no-files-found: ignore
++          retention-days: 14
++
+       - name: Select available iPhone simulator
+         id: simulator
+         run: |

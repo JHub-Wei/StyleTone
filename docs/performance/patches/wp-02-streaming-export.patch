@@ -1,0 +1,51 @@
+﻿diff --git a/Packages/StyleToneImaging/Sources/StyleToneImaging/ImageWriter.swift b/Packages/StyleToneImaging/Sources/StyleToneImaging/ImageWriter.swift
+index d9bd400..8f6833f 100644
+--- a/Packages/StyleToneImaging/Sources/StyleToneImaging/ImageWriter.swift
++++ b/Packages/StyleToneImaging/Sources/StyleToneImaging/ImageWriter.swift
+@@ -42,6 +42,9 @@ public struct ImageWriter: Sendable {
+ 
+     /// Encodes an image and writes it atomically to `url`.
+     ///
++    /// The destination is written directly (no intermediate `Data` copy), then
++    /// moved into place. A failed encode removes the temporary file.
++    ///
+     /// - Throws: `StyleToneError.exportFailed` when encoding fails or the file
+     ///   cannot be written.
+     public func write(
+@@ -49,10 +52,34 @@ public struct ImageWriter: Sendable {
+         to url: URL,
+         options: ImageWriteOptions = ImageWriteOptions()
+     ) throws -> ExportResult {
+-        let encoded = try data(for: image, options: options)
++        guard isFormatSupported(options.format) else {
++            throw StyleToneError.exportFailed
++        }
++        let prepared = try Self.preparedImage(image, colorSpace: options.colorSpace)
++        let opaque = try Self.compositedOverWhite(prepared)
++
++        let temporaryURL = url.deletingLastPathComponent()
++            .appendingPathComponent(".styletone-\(UUID().uuidString).tmp")
++        guard let destination = CGImageDestinationCreateWithURL(
++            temporaryURL as CFURL,
++            options.format.typeIdentifier as CFString,
++            1,
++            nil
++        ) else {
++            throw StyleToneError.exportFailed
++        }
++        let properties: [CFString: Any] = [
++            kCGImageDestinationLossyCompressionQuality: min(max(options.quality, 0), 1)
++        ]
++        CGImageDestinationAddImage(destination, opaque, properties as CFDictionary)
++        guard CGImageDestinationFinalize(destination) else {
++            try? FileManager.default.removeItem(at: temporaryURL)
++            throw StyleToneError.exportFailed
++        }
+         do {
+-            try encoded.write(to: url, options: .atomic)
++            try FileManager.default.moveItem(at: temporaryURL, to: url)
+         } catch {
++            try? FileManager.default.removeItem(at: temporaryURL)
+             throw StyleToneError.exportFailed
+         }
+         return ExportResult(url: url, pixelSize: image.pixelSize, format: options.format)
