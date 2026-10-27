@@ -193,7 +193,10 @@ final class PortraitCorpusTests: XCTestCase {
             for identifier in PortraitGoldenSelection.sampleIDs {
                 let sample = try XCTUnwrap(corpus.samples.first { $0.id == identifier })
                 let golden = try XCTUnwrap(
-                    PortraitGoldenComparison.load(identifier, from: environment.goldensDirectory)
+                    try PortraitGoldenComparison.load(
+                        identifier,
+                        from: environment.goldensDirectory
+                    )
                 )
                 XCTAssertEqual(golden.pixelSize, sample.pixelSize, identifier)
             }

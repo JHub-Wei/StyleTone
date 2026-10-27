@@ -159,7 +159,8 @@ final class PortraitSupportTests: XCTestCase {
             results: [result],
             gates: gates
         )
-        XCTAssertTrue(report.markdown().contains(scene.spec.id))
+        let reportJSON = String(decoding: try report.jsonData(), as: UTF8.self)
+        XCTAssertTrue(reportJSON.contains(scene.spec.id))
         XCTAssertTrue(
             report.categoryTable().contains("tone \(scene.spec.primarySubject.skinTone.roman)")
         )

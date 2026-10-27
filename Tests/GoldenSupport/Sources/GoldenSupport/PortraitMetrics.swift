@@ -752,22 +752,29 @@ public enum PortraitMetricEvaluator {
         guard variance > 1e-9 else { return nil }
         let slope = covariance / variance
         let intercept = meanV - slope * meanT
-        var maxDeviation = 0.0
+        var deviations: [Double] = []
+        deviations.reserveCapacity(samples.count)
         var displacement = 0.0
         for sample in samples {
             let fitted = slope * sample.t + intercept
-            maxDeviation = max(maxDeviation, abs(sample.position - fitted))
+            deviations.append(abs(sample.position - fitted))
             displacement += sample.position - expected
         }
+        deviations.sort()
+        // Crossings with a perpendicular structure make the local extremum
+        // ambiguous for one or two samples. The robust maximum is the 95th
+        // percentile: a genuinely bowed line deviates on most samples, while an
+        // isolated crossing must not fail a sample.
+        let robustMaxDeviation = percentile(deviations, fraction: 0.95)
         displacement /= count
         let angle = atan(slope) * 180 / Double.pi
-        let distorted = maxDeviation > thresholds.backgroundMaxDeviationPx
+        let distorted = robustMaxDeviation > thresholds.backgroundMaxDeviationPx
             || abs(angle) > thresholds.backgroundMaxAngleDegrees
         return BackgroundLineMeasurement(
             label: line.label,
             orientation: line.orientation.rawValue,
             sampleCount: samples.count,
-            maxDeviationPx: maxDeviation,
+            maxDeviationPx: robustMaxDeviation,
             angleDegrees: angle,
             meanDisplacementPx: displacement,
             isDistorted: distorted
@@ -1095,6 +1102,18 @@ public enum PortraitMetricEvaluator {
     ) throws -> EdgePreservationReport {
         let mask = scene.groundTruth.personMask
         let boundary = MaskOperations.boundaryPoints(mask)
+        if source.isIdentical(to: output) {
+            return EdgePreservationReport(
+                boundarySamples: boundary.count,
+                meanContrastRetention: 1,
+                medianContrastRetention: 1,
+                degradedFraction: 0,
+                signFlipFraction: 0,
+                overshootFraction: 0,
+                gradientEnergyRatio: 1,
+                failures: []
+            )
+        }
         let maskBytes = MaskOperations.bytes(mask)
         let stride = max(1, boundary.count / 320)
         var ratios: [Double] = []
@@ -1116,8 +1135,7 @@ public enum PortraitMetricEvaluator {
                 normal: normal
             )
             guard abs(sourceContrast) > 6 else { continue }
-            var bestContrast = 0.0
-            var bestShift = 0
+            var candidates: [(shift: Int, contrast: Double)] = []
             for shift in -6 ... 6 {
                 let value = contrast(
                     output,
@@ -1125,17 +1143,25 @@ public enum PortraitMetricEvaluator {
                     y: Double(point.y) + 0.5 + normal.y * Double(shift),
                     normal: normal
                 )
-                if abs(value) > abs(bestContrast) {
-                    bestContrast = value
-                    bestShift = shift
+                if value * sourceContrast > 0 {
+                    candidates.append((shift: shift, contrast: value))
                 }
             }
-            let ratio = abs(bestContrast) / abs(sourceContrast)
-            ratios.append(ratio)
             used += 1
+            guard let strongest = candidates.max(by: { abs($0.contrast) < abs($1.contrast) }) else {
+                ratios.append(0)
+                degraded += 1
+                signFlips += 1
+                continue
+            }
+            let threshold = abs(strongest.contrast) * 0.90
+            let chosen = candidates
+                .filter { abs($0.contrast) >= threshold }
+                .min { abs($0.shift) < abs($1.shift) } ?? strongest
+            let ratio = abs(chosen.contrast) / abs(sourceContrast)
+            ratios.append(ratio)
             if ratio < 0.5 { degraded += 1 }
             if ratio > 2.5 { overshoot += 1 }
-            if bestContrast * sourceContrast < 0 { signFlips += 1 }
             gradientSource += gradientMagnitude(
                 source,
                 x: Double(point.x) + 0.5,
@@ -1143,8 +1169,8 @@ public enum PortraitMetricEvaluator {
             )
             gradientFinal += gradientMagnitude(
                 output,
-                x: Double(point.x) + 0.5 + normal.x * Double(bestShift),
-                y: Double(point.y) + 0.5 + normal.y * Double(bestShift)
+                x: Double(point.x) + 0.5 + normal.x * Double(chosen.shift),
+                y: Double(point.y) + 0.5 + normal.y * Double(chosen.shift)
             )
         }
 

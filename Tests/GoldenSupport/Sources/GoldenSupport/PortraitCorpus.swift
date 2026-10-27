@@ -564,13 +564,11 @@ public struct PortraitCorpus: Codable, Sendable, Equatable {
             for subject in sample.subjects where subject.occlusion != .none {
                 occlusions[subject.occlusion.rawValue, default: 0] += 1
             }
-            switch sample.background {
-            case .doorFrame, .doorFrameAndTiles:
+            if sample.background == .doorFrame || sample.background == .doorFrameAndTiles {
                 doorFrameSamples += 1
-            case .floorTiles, .doorFrameAndTiles:
+            }
+            if sample.background == .floorTiles || sample.background == .doorFrameAndTiles {
                 floorTileSamples += 1
-            default:
-                break
             }
             if sample.background.hasStraightStructure {
                 straightStructureSamples += 1
