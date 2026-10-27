@@ -141,6 +141,15 @@ final class PerformanceSession: @unchecked Sendable {
         attachment.lifetime = .keepAlways
         XCTContext.runActivity(named: "Performance report") { activity in
             activity.add(attachment)
+            if let data = try? report.jsonData() {
+                let json = XCTAttachment(
+                    data: data,
+                    uniformTypeIdentifier: "public.json"
+                )
+                json.name = "performance-\(Self.sanitized(source)).json"
+                json.lifetime = .keepAlways
+                activity.add(json)
+            }
         }
 
         if let directory = ProcessInfo.processInfo.environment["ST_PERF_REPORT_DIR"],

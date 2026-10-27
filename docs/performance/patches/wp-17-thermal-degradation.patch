@@ -1,0 +1,409 @@
+﻿diff --git a/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorPerformanceGovernor.swift b/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorPerformanceGovernor.swift
+index 8ee7b01..0078170 100644
+--- a/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorPerformanceGovernor.swift
++++ b/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorPerformanceGovernor.swift
+@@ -61,14 +61,31 @@ public struct EditorPerformanceGovernor: Sendable, Equatable {
+     public private(set) var previewSampleCount: Int
+     private var slowStreak: Int
+     private var fastStreak: Int
++    /// External lower bound (thermal/low power/low-end). The governor may
++    /// degrade further but never recovers above this floor.
++    private var externalFloor: EditorPerformanceLevel
+ 
+     public init(level: EditorPerformanceLevel = .full) {
+         self.level = level
++        self.externalFloor = level
+         self.previewSampleCount = 0
+         self.slowStreak = 0
+         self.fastStreak = 0
+     }
+ 
++    /// Applies an external minimum degradation (from `EditorThermalPolicy`).
++    ///
++    /// Degrades immediately when the floor is worse than the current level and
++    /// clears the streaks so the new floor is not undone by old samples.
++    public mutating func applyFloor(_ floor: EditorPerformanceLevel) {
++        externalFloor = floor
++        if Self.severity(floor) > Self.severity(level) {
++            level = floor
++        }
++        slowStreak = 0
++        fastStreak = 0
++    }
++
+     public var previewLongEdge: Int {
+         level.previewLongEdge
+     }
+@@ -97,7 +114,10 @@ public struct EditorPerformanceGovernor: Sendable, Equatable {
+             slowStreak = 0
+             if fastStreak >= Self.fastSamplesBeforeRecovering {
+                 fastStreak = 0
+-                level = level.recovered
++                let recovered = level.recovered
++                level = Self.severity(recovered) >= Self.severity(externalFloor)
++                    ? recovered
++                    : externalFloor
+             }
+             return
+         }
+@@ -107,9 +127,17 @@ public struct EditorPerformanceGovernor: Sendable, Equatable {
+     }
+ 
+     public mutating func reset() {
+-        level = .full
++        level = externalFloor
+         previewSampleCount = 0
+         slowStreak = 0
+         fastStreak = 0
+     }
++
++    private static func severity(_ level: EditorPerformanceLevel) -> Int {
++        switch level {
++        case .full: return 0
++        case .reduced: return 1
++        case .minimal: return 2
++        }
++    }
+ }
+diff --git a/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorThermalPolicy.swift b/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorThermalPolicy.swift
+new file mode 100644
+index 0000000..5071bcf
+--- /dev/null
++++ b/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorThermalPolicy.swift
+@@ -0,0 +1,254 @@
++import Foundation
++
++#if canImport(Darwin)
++import Darwin
++#endif
++
++/// Thermal pressure mapped from `ProcessInfo.thermalState`.
++public enum EditorThermalPressure: String, Sendable, CaseIterable {
++    case nominal
++    case fair
++    case serious
++    case critical
++
++    var rank: Int {
++        switch self {
++        case .nominal: return 0
++        case .fair: return 1
++        case .serious: return 2
++        case .critical: return 3
++        }
++    }
++}
++
++/// Battery saver state.
++public enum EditorPowerReserve: String, Sendable {
++    case normal
++    case lowPower
++}
++
++/// Coarse hardware class for the preview degradation matrix.
++public enum EditorDeviceClass: String, Sendable, CaseIterable {
++    case reference
++    case lowEnd
++    case unknown
++}
++
++/// Reason a preview tier was reduced.
++public enum EditorDegradationReason: String, Sendable, CaseIterable {
++    case lowEndDevice
++    case lowPowerMode
++    case thermalFair
++    case thermalSerious
++    case thermalCritical
++    case adaptiveGovernor
++}
++
++/// Effective degradation for the editor, including the user-facing notice key.
++public struct EditorThermalDegradation: Sendable, Equatable {
++    public static let none = EditorThermalDegradation(
++        level: .full,
++        reasons: [],
++        allowsHighQualityRender: true,
++        showsExportWarning: false,
++        noticeKey: nil
++    )
++
++    public let level: EditorPerformanceLevel
++    public let reasons: [EditorDegradationReason]
++    public let allowsHighQualityRender: Bool
++    public let showsExportWarning: Bool
++    /// Localization key for the one-line notice; `nil` when nothing changed.
++    public let noticeKey: String?
++
++    public init(
++        level: EditorPerformanceLevel,
++        reasons: [EditorDegradationReason],
++        allowsHighQualityRender: Bool,
++        showsExportWarning: Bool,
++        noticeKey: String?
++    ) {
++        self.level = level
++        self.reasons = reasons
++        self.allowsHighQualityRender = allowsHighQualityRender
++        self.showsExportWarning = showsExportWarning
++        self.noticeKey = noticeKey
++    }
++
++    public var previewLongEdge: Int {
++        level.previewLongEdge
++    }
++
++    public var isDegraded: Bool {
++        level != .full
++    }
++}
++
++/// Production counterpart of WP-24's tested `ThermalPerformancePolicy`.
++///
++/// WP-24 cannot edit the UI module, so this file is delivered as a reviewable
++/// patch. The policy is intentionally identical to the tested reference in
++/// `Tests/Performance/Harness/Sources/PerformanceKit/ThermalPolicy.swift`.
++public struct EditorThermalPolicy: Sendable {
++    public init() {}
++
++    /// Resolves the effective preview level.
++    public func degradation(
++        thermal: EditorThermalPressure,
++        power: EditorPowerReserve,
++        deviceClass: EditorDeviceClass,
++        governorLevel: EditorPerformanceLevel
++    ) -> EditorThermalDegradation {
++        var reasons: [EditorDegradationReason] = []
++        var level = governorLevel
++        if governorLevel != .full {
++            reasons.append(.adaptiveGovernor)
++        }
++
++        if deviceClass == .lowEnd {
++            reasons.append(.lowEndDevice)
++            level = maxLevel(level, .reduced)
++        }
++
++        switch thermal {
++        case .nominal:
++            break
++        case .fair:
++            reasons.append(.thermalFair)
++            level = maxLevel(level, .reduced)
++        case .serious:
++            reasons.append(.thermalSerious)
++            level = maxLevel(level, .minimal)
++        case .critical:
++            reasons.append(.thermalCritical)
++            level = maxLevel(level, .minimal)
++        }
++
++        if power == .lowPower {
++            reasons.append(.lowPowerMode)
++            level = maxLevel(level, .reduced)
++        }
++
++        return EditorThermalDegradation(
++            level: level,
++            reasons: reasons,
++            allowsHighQualityRender: thermal != .critical,
++            showsExportWarning: thermal.rank >= EditorThermalPressure.serious.rank,
++            noticeKey: noticeKey(thermal: thermal, power: power, deviceClass: deviceClass)
++        )
++    }
++
++    /// Notice key for the most severe active state.
++    public func noticeKey(
++        thermal: EditorThermalPressure,
++        power: EditorPowerReserve,
++        deviceClass: EditorDeviceClass
++    ) -> String? {
++        switch thermal {
++        case .critical:
++            return "editor.performance.thermalCritical"
++        case .serious:
++            return "editor.performance.thermalSerious"
++        case .fair:
++            return power == .lowPower
++                ? "editor.performance.lowPower"
++                : "editor.performance.thermalFair"
++        case .nominal:
++            if power == .lowPower {
++                return "editor.performance.lowPower"
++            }
++            if deviceClass == .lowEnd {
++                return "editor.performance.lowEnd"
++            }
++            return nil
++        }
++    }
++
++    // MARK: - Current host state
++
++    public static func currentThermalPressure() -> EditorThermalPressure {
++        switch ProcessInfo.processInfo.thermalState {
++        case .nominal: return .nominal
++        case .fair: return .fair
++        case .serious: return .serious
++        case .critical: return .critical
++        @unknown default: return .fair
++        }
++    }
++
++    public static func currentPowerReserve() -> EditorPowerReserve {
++        ProcessInfo.processInfo.isLowPowerModeEnabled ? .lowPower : .normal
++    }
++
++    public static func currentDeviceClass() -> EditorDeviceClass {
++        #if canImport(Darwin)
++        var info = utsname()
++        guard uname(&info) == 0 else { return .unknown }
++        let model = withUnsafeBytes(of: &info.machine) { raw -> String in
++            guard let base = raw.baseAddress else { return "" }
++            return String(cString: base.assumingMemoryBound(to: CChar.self))
++        }
++        switch model {
++        case "iPhone14,5", "iPhone14,2", "iPhone14,3", "iPhone14,4":
++            return .reference
++        case "iPhone12,8", "iPhone14,6", "iPhone13,1", "iPhone12,1",
++             "iPhone12,3", "iPhone12,5", "iPhone11,2", "iPhone11,4",
++             "iPhone11,6", "iPhone11,8":
++            return .lowEnd
++        default:
++            return ProcessInfo.processInfo.physicalMemory < 3_500_000_000
++                ? .lowEnd
++                : .unknown
++        }
++        #else
++        return .unknown
++        #endif
++    }
++
++    // MARK: - Helpers
++
++    private func maxLevel(
++        _ lhs: EditorPerformanceLevel,
++        _ rhs: EditorPerformanceLevel
++    ) -> EditorPerformanceLevel {
++        rank(lhs) >= rank(rhs) ? lhs : rhs
++    }
++
++    private func rank(_ level: EditorPerformanceLevel) -> Int {
++        switch level {
++        case .full: return 0
++        case .reduced: return 1
++        case .minimal: return 2
++        }
++    }
++}
++
++/// Removes its process notifications when the view model is released.
++final class EditorThermalObserver: @unchecked Sendable {
++    private var tokens: [NSObjectProtocol] = []
++
++    init(onChange: @escaping @Sendable () -> Void) {
++        let center = NotificationCenter.default
++        tokens.append(
++            center.addObserver(
++                forName: ProcessInfo.thermalStateDidChangeNotification,
++                object: nil,
++                queue: .main
++            ) { _ in onChange() }
++        )
++        tokens.append(
++            center.addObserver(
++                forName: Notification.Name("NSProcessInfoPowerStateDidChange"),
++                object: nil,
++                queue: .main
++            ) { _ in onChange() }
++        )
++    }
++
++    deinit {
++        let center = NotificationCenter.default
++        for token in tokens {
++            center.removeObserver(token)
++        }
++    }
++}
+diff --git a/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorViewModel.swift b/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorViewModel.swift
+index c6f8dbb..6bb9705 100644
+--- a/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorViewModel.swift
++++ b/Packages/StyleToneUI/Sources/StyleToneUI/Editor/EditorViewModel.swift
+@@ -31,6 +31,8 @@ public final class EditorViewModel {
+     public private(set) var exportState: EditorExportState = .idle
+     public private(set) var lastExport: ExportResult?
+     public private(set) var performanceLevel: EditorPerformanceLevel = .full
++    public private(set) var thermalDegradation: EditorThermalDegradation = .none
++    public private(set) var performanceNoticeKey: String?
+     public private(set) var lastRenderDuration: TimeInterval?
+     public private(set) var isAnalyzing = false
+     public private(set) var isLoadingStyle = false
+@@ -48,6 +50,7 @@ public final class EditorViewModel {
+     @ObservationIgnored private var renderGeneration = 0
+     @ObservationIgnored private var sessionID = UUID()
+     @ObservationIgnored private var governor = EditorPerformanceGovernor()
++    @ObservationIgnored private var thermalObserver: EditorThermalObserver?
+     @ObservationIgnored private var lastFullRenderedEdits: EditorEditState?
+     @ObservationIgnored private var lastExportOptions: ExportOptions?
+ 
+@@ -71,6 +74,8 @@ public final class EditorViewModel {
+         self.dependencies = dependencies
+         self.style = .editorNaturalDefault
+         self.edits = .initial
++        startThermalMonitoring()
++        refreshThermalState()
+     }
+ 
+     // MARK: Derived state
+@@ -173,7 +178,7 @@ public final class EditorViewModel {
+         self.splitPosition = 0.5
+         self.zoom = EditorZoomState()
+         self.governor.reset()
+-        self.performanceLevel = .full
++        self.refreshThermalState()
+         self.selectedArea = .face
+         self.history.clear()
+         self.syncHistoryCounts()
+@@ -209,6 +214,32 @@ public final class EditorViewModel {
+         scheduleFullRender()
+     }
+ 
++    // MARK: - Thermal / power policy
++
++    private func startThermalMonitoring() {
++        guard thermalObserver == nil else { return }
++        thermalObserver = EditorThermalObserver { [weak self] in
++            Task { @MainActor [weak self] in
++                self?.refreshThermalState()
++            }
++        }
++    }
++
++    /// Recomputes the external preview floor from the current thermal, power
++    /// and hardware state. Called on the two notifications and after `load`.
++    private func refreshThermalState() {
++        let degradation = EditorThermalPolicy().degradation(
++            thermal: EditorThermalPolicy.currentThermalPressure(),
++            power: EditorThermalPolicy.currentPowerReserve(),
++            deviceClass: EditorThermalPolicy.currentDeviceClass(),
++            governorLevel: governor.level
++        )
++        thermalDegradation = degradation
++        governor.applyFloor(degradation.level)
++        performanceLevel = governor.level
++        performanceNoticeKey = degradation.noticeKey
++    }
++
+     public func dismissIssue() {
+         issue = nil
+     }
+@@ -681,6 +712,9 @@ public final class EditorViewModel {
+             if completion.quality == .preview {
+                 governor.record(duration: output.duration, quality: .preview)
+                 performanceLevel = governor.level
++                performanceNoticeKey = governor.level.isDegraded
++                    ? (thermalDegradation.noticeKey ?? "editor.performance.reducedPreview")
++                    : nil
+             } else {
+                 lastFullRenderedEdits = edits
+             }
