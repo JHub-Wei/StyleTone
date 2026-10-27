@@ -152,6 +152,33 @@ compact signatures, so spatial drift is covered for every sample; the 12 PNGs
 make a representative diff directly reviewable. Every run attaches a 100-tile
 contact sheet with source / output / amplified difference triplets.
 
+## Recorded baseline
+
+The baseline and the 12 visual goldens were recorded from the green CI run
+[40548163906](https://github.com/JHub-Wei/StyleTone/actions/runs/40548163906)
+on macOS 15 arm64 (2026-10-28), commit `26d13f7`:
+
+| gate | value | target |
+|---|---|---|
+| background distortion | **3.37 %** (3 of 89 measured samples, all warnings only) | < 5 % |
+| skin incidents | **0** samples | 0 |
+| silhouette/edge failures | **0** samples | 0 |
+| I–VI fairness spread | **0.106 ΔL** | ≤ 1.0 |
+| dark-skin mean ΔL (V/VI) | **0.061** | ≤ 1.0 |
+| golden images | **12** compared | 0 failures |
+| pipeline time | 143 s for 100 × 360×480 frames | — |
+
+The three background warnings are ps-051, ps-082 and ps-094 (table top and
+floor horizon, 1.6–1.9 px deviation). They are reported in the artifact and by
+the aggregate gate, which still passes because the card limits distortion to
+`< 5 %` of samples, not to zero. Any increase that pushes the rate to 5 % blocks
+the build.
+
+`Baselines/portrait-baseline.json` stores per-sample metrics and signatures;
+`Goldens/*.png` stores the 12 representative outputs. Re-record both together
+when an algorithm change is intentional, and never raise a threshold to make a
+new failure disappear.
+
 ## CI artifact
 
 `.github/workflows/ios.yml` sets `ST_GOLDEN_ARTIFACTS_DIR` for `swift test` and
