@@ -67,13 +67,6 @@ struct LowFrequencyField: Sendable {
         }
         context.interpolationQuality = .medium
         context.setBlendMode(.copy)
-        // Core Graphics bitmap contexts use a bottom-left origin, while
-        // `LowFrequencyField.sample(x:y:)` indexes rows top-to-bottom like the
-        // source image. Flip the CTM before drawing so the reduced field keeps
-        // the source orientation; otherwise evenness pulls color from the
-        // vertically mirrored region.
-        context.translateBy(x: 0, y: CGFloat(smallHeight))
-        context.scaleBy(x: 1, y: -1)
         context.draw(
             image.cgImage,
             in: CGRect(x: 0, y: 0, width: smallWidth, height: smallHeight)
