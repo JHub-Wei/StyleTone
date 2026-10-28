@@ -134,12 +134,14 @@
 
 - **WP-00 工程骨架已完成，状态 `done`**：XcodeGen 工程源、9 个 SwiftPM target、占位 App、CI、Makefile、模块占位测试均已提交。
 - **WP-01 Core 契约已完成，状态 `done`**：类型/协议/错误/JSON 编解码/测试与 Mock 已落地；Tag `core-v1`。
-- **WP-02 ~ WP-21 已合并到 `main`（`b005dd7`）**：图像、设计/Shell、测试 Harness、Vision、Geometry、Retouch、Persistence、Pairing、Calibration、Learning、脸/身材/腿形变、背景保护、皮肤工具、编辑器、导出、设置均已落地。
+- **WP-02 ~ WP-25 已合并到 `main`（`36b94ef`）**：A1–A5 代码全部合并，包含错误态、性能 Harness、黄金图与质量回归。
 - **macOS CI 已通过**：
   - WP-00：https://github.com/JHub-Wei/StyleTone/actions/runs/40090672908
   - WP-01：https://github.com/JHub-Wei/StyleTone/actions/runs/40091414979
   - WP-02~11 `main`：https://github.com/JHub-Wei/StyleTone/actions/runs/40110565858
   - WP-14 `main`（手动 dispatch）：https://github.com/JHub-Wei/StyleTone/actions/runs/40159268015
   - WP-21 `main`（A4）：https://github.com/JHub-Wei/StyleTone/actions/runs/40481035914
+- **A5 `main` CI 仍在运行**：https://github.com/JHub-Wei/StyleTone/actions/runs/40681827712
+  - XcodeGen、SwiftPM 测试、模拟器 Build 已通过；App tests 仍在跑。
 - 构建说明见 [BUILD.md](BUILD.md)；Windows 上获取 macOS CI 结果见 [CI-SETUP.md](CI-SETUP.md)。
-- 下一步：Phase A 只剩 **WP-23 边界态、WP-24 性能、WP-25 黄金图**；之后进入 Phase B（WP-18/22/27）。
+- 下一步：A5 main CI 通过后，Phase A 闭环；进入 Phase B（WP-18/22/27）。
