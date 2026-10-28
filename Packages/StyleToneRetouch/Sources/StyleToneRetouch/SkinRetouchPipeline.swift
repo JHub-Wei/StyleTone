@@ -218,7 +218,10 @@ struct SkinRetouchPipeline: Sendable {
                         chroma: targetChroma
                     )
                     let safe = evennessStrength > 0.0005
-                        ? RetouchMath.clampHeadroom(reconstructed)
+                        ? RetouchMath.clampHeadroom(
+                            reconstructed,
+                            source: SIMD3<Float>(original.x, original.y, original.z)
+                        )
                         : reconstructed
                     guard safe.x.isFinite,
                           safe.y.isFinite,

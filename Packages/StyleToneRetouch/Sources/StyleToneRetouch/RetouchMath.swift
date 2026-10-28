@@ -36,18 +36,17 @@ enum RetouchMath {
         return SIMD3<Float>(red, green, blue)
     }
 
-    /// Keeps reconstructed skin away from the 8-bit clipping rails.
-    ///
-    /// `evenness` can raise a channel while normalising a local tone; without
-    /// headroom the encode would quantise it to 250+ and the golden corpus
-    /// counts that as a skin-clipping incident. The limits leave one code value
-    /// of margin for rounding in the linear-to-sRGB encode.
+    /// Keeps reconstructed skin from adding new clipping while preserving
+    /// channels that were already clipped in the source.
     @inline(__always)
-    static func clampHeadroom(_ rgb: SIMD3<Float>) -> SIMD3<Float> {
+    static func clampHeadroom(
+        _ rgb: SIMD3<Float>,
+        source: SIMD3<Float>
+    ) -> SIMD3<Float> {
         SIMD3<Float>(
-            min(max(rgb.x, 0.003), 0.94),
-            min(max(rgb.y, 0.003), 0.94),
-            min(max(rgb.z, 0.003), 0.94)
+            min(max(rgb.x, min(0.003, source.x)), max(0.94, source.x)),
+            min(max(rgb.y, min(0.003, source.y)), max(0.94, source.y)),
+            min(max(rgb.z, min(0.003, source.z)), max(0.94, source.z))
         )
     }
 
