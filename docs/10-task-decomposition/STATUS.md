@@ -157,6 +157,28 @@
   - 23 个 Phase A WP 全部 `done`。
 - 下一步：
   - 进入 Phase B（WP-18 风格卡、WP-22 引导、WP-27 TestFlight）。
+
+---
+
+## Issue #19 · fixed（2026-10-28）
+
+- 结论：issue 描述的 **V/VI 肤色漂移是真实问题**，但“CTM 未翻转导致上下镜像”的诊断不成立。
+- 回归验证：
+  - 不加 CTM flip，低频场保持 top-down，方向测试通过；
+  - 加上 issue 建议的 `translate`/`scale` flip，低频场反而镜像（32 px 场 luma 质心 27.4，期望 <8）。
+- 实际根因：
+  - `LowFrequencyField` 用整张图构建 luma/chroma；evenness 会从皮肤边界外的背景/头发/衣服借色，导致深肤色被提亮、去饱和。
+- 修复：
+  - 低频场按 skin alpha 加权（降采样到 field grid）。
+  - 全 coverage mask 走原始 three-blur 快路径，保住 512×512 预览性能预算。
+  - 新增方向回归 + 暗肤色/亮背景边界回归。
+- 合并：
+  - PR #23，squash commit `711aed4`。
+  - PR CI：https://github.com/JHub-Wei/StyleTone/actions/runs/40697662632 （success）
+  - Issue 已关闭。
+- 后续：
+  - WP-25 可重新启用 `evenness: 0.35` 并重录 golden baseline；本次未改 committed baseline。
+
   - Phase C（WP-20/26/28/29）在 Phase B 验证后启动。
 
 

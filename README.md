@@ -134,7 +134,8 @@
 
 - **WP-00 工程骨架已完成，状态 `done`**：XcodeGen 工程源、9 个 SwiftPM target、占位 App、CI、Makefile、模块占位测试均已提交。
 - **WP-01 Core 契约已完成，状态 `done`**：类型/协议/错误/JSON 编解码/测试与 Mock 已落地；Tag `core-v1`。
-- **WP-02 ~ WP-25 已合并到 `main`（`36b94ef`）**：A1–A5 代码全部合并；Phase A 23 个 WP 全部完成。
+- **WP-02 ~ WP-25 已合并到 `main`（`711aed4`）**：A1–A5 代码全部合并；Phase A 23 个 WP 全部完成。
+- **Issue #19 已修复**：evenness 低频场改为按 skin alpha 加权，修复深肤色被背景提亮/去饱和；方向诊断被回归测试证伪。PR #23。
 - **macOS CI 已通过**：
   - WP-00：https://github.com/JHub-Wei/StyleTone/actions/runs/40090672908
   - WP-01：https://github.com/JHub-Wei/StyleTone/actions/runs/40091414979
@@ -142,5 +143,6 @@
   - WP-14 `main`（手动 dispatch）：https://github.com/JHub-Wei/StyleTone/actions/runs/40159268015
   - WP-21 `main`（A4）：https://github.com/JHub-Wei/StyleTone/actions/runs/40481035914
   - WP-25 `main`（A5）：https://github.com/JHub-Wei/StyleTone/actions/runs/40681827712
+  - Issue #19 修复 PR：https://github.com/JHub-Wei/StyleTone/actions/runs/40697662632
 - 构建说明见 [BUILD.md](BUILD.md)；Windows 上获取 macOS CI 结果见 [CI-SETUP.md](CI-SETUP.md)。
 - 下一步：进入 Phase B（WP-18 风格卡、WP-22 引导、WP-27 TestFlight）；Phase C 在 Phase B 验证后启动。
