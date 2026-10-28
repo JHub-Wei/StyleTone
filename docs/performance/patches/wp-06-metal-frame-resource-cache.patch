@@ -1,0 +1,181 @@
+﻿diff --git a/Packages/StyleToneGeometry/Sources/StyleToneGeometry/Core/MetalGeometryWarp.swift b/Packages/StyleToneGeometry/Sources/StyleToneGeometry/Core/MetalGeometryWarp.swift
+index 0e30458..2ed5a0e 100644
+--- a/Packages/StyleToneGeometry/Sources/StyleToneGeometry/Core/MetalGeometryWarp.swift
++++ b/Packages/StyleToneGeometry/Sources/StyleToneGeometry/Core/MetalGeometryWarp.swift
+@@ -21,10 +21,12 @@ import StyleToneImaging
+ /// texels. Boundary pinning makes the outer ring exactly identity, which keeps
+ /// the frame edge stable in addition to the clamp.
+ ///
+-/// The class is immutable after `init` (device, queue, pipelines and sampler)
+-/// and creates all per-frame resources locally, so concurrent calls are safe;
+-/// the unchecked `Sendable` conformance records that reasoning. The rendering
+-/// engine still serialises calls through its actor.
++/// The class is immutable after `init` except for bounded, lock-protected
++/// texture/index caches (source upload is the dominant per-frame cost at
++/// 1080p). Cached source textures are keyed by the identity of the immutable
++/// `CGImage`; per-call output textures are still allocated so a caller can keep
++/// displaying a previous frame. The rendering engine still serialises calls
++/// through its actor.
+ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
+     public let identifier = "geometry.metal"
+     public let isGPUAccelerated = true
+@@ -36,6 +38,10 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
+     private let buildPipeline: MTLComputePipelineState
+     private let meshPipeline: MTLRenderPipelineState
+     private let sampler: MTLSamplerState
++    /// Bounded cache for the source upload; 1080p RGBA is 8.3 MB per texture.
++    private let sourceTextureCache = GeometryTextureCache(costLimit: 64 * 1024 * 1024)
++    /// Index buffers are immutable for a given grid dimension.
++    private let indexBufferCache = GeometryIndexBufferCache()
+ 
+     /// Returns a backend when Metal is available, otherwise `nil`.
+     public static func makeIfAvailable() -> MetalGeometryWarp? {
+@@ -155,20 +161,10 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
+         guard width > 0, height > 0 else {
+             throw GeometryError.imageTooSmall(width: width, height: height)
+         }
+-        let sourceTexture = try makeSourceTexture(from: image)
++        let sourceTexture = try cachedSourceTexture(from: image)
+         let outputTexture = try makeOutputTexture(width: width, height: height)
+         let offsetBuffer = try makeOffsetBuffer(field)
+-        let indexData = Self.makeIndexData(width: field.width, height: field.height)
+-        guard let indexBuffer = indexData.withUnsafeBytes({ raw -> MTLBuffer? in
+-            guard let baseAddress = raw.baseAddress else { return nil }
+-            return device.makeBuffer(
+-                bytes: baseAddress,
+-                length: raw.count,
+-                options: .storageModeShared
+-            )
+-        }) else {
+-            throw GeometryError.resourceCreationFailed
+-        }
++        let index = try cachedIndexBuffer(width: field.width, height: field.height)
+ 
+         let vertexCount = field.vertexCount
+         let vertexBuffer = device.makeBuffer(
+@@ -240,9 +236,9 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
+         )
+         renderEncoder.drawIndexedPrimitives(
+             type: .triangle,
+-            indexCount: indexData.count,
++            indexCount: index.indexCount,
+             indexType: .uint32,
+-            indexBuffer: indexBuffer,
++            indexBuffer: index.buffer,
+             indexBufferOffset: 0
+         )
+         renderEncoder.endEncoding()
+@@ -333,6 +329,36 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
+         return texture
+     }
+ 
++    private func cachedSourceTexture(from image: ImageAsset) throws -> MTLTexture {
++        let key = ObjectIdentifier(image.cgImage)
++        if let cached = sourceTextureCache.texture(for: key) {
++            return cached
++        }
++        let texture = try makeSourceTexture(from: image)
++        sourceTextureCache.insert(texture, for: key)
++        return texture
++    }
++
++    private func cachedIndexBuffer(width: Int, height: Int) throws -> GeometryIndexBuffer {
++        if let cached = indexBufferCache.buffer(width: width, height: height) {
++            return cached
++        }
++        let indices = Self.makeIndexData(width: width, height: height)
++        guard let buffer = indices.withUnsafeBytes({ raw -> MTLBuffer? in
++            guard let baseAddress = raw.baseAddress else { return nil }
++            return device.makeBuffer(
++                bytes: baseAddress,
++                length: raw.count,
++                options: .storageModeShared
++            )
++        }) else {
++            throw GeometryError.resourceCreationFailed
++        }
++        let entry = GeometryIndexBuffer(buffer: buffer, indexCount: indices.count)
++        indexBufferCache.insert(entry, width: width, height: height)
++        return entry
++    }
++
+     private func makeOutputTexture(width: Int, height: Int) throws -> MTLTexture {
+         let descriptor = MTLTextureDescriptor.texture2DDescriptor(
+             pixelFormat: .rgba8Unorm_srgb,
+@@ -494,4 +520,76 @@ public final class MetalGeometryWarp: GeometryWarpBackend, @unchecked Sendable {
+     }
+     """#
+ }
++
++/// Immutable index buffer for one mesh grid.
++private struct GeometryIndexBuffer {
++    let buffer: MTLBuffer
++    let indexCount: Int
++}
++
++/// LRU cache for uploaded source textures.
++///
++/// The cache is bounded by bytes so a burst of 12 MP images cannot retain an
++/// unbounded amount of GPU memory. The key is the identity of the immutable
++/// `CGImage`, not its pixels.
++private final class GeometryTextureCache: @unchecked Sendable {
++    private let lock = NSLock()
++    private let costLimit: Int
++    private var entries: [ObjectIdentifier: (texture: MTLTexture, cost: Int, stamp: UInt64)] = [:]
++    private var clock: UInt64 = 0
++
++    init(costLimit: Int) {
++        self.costLimit = max(1, costLimit)
++    }
++
++    func texture(for key: ObjectIdentifier) -> MTLTexture? {
++        lock.lock()
++        defer { lock.unlock() }
++        guard var entry = entries[key] else { return nil }
++        clock &+= 1
++        entry.stamp = clock
++        entries[key] = entry
++        return entry.texture
++    }
++
++    func insert(_ texture: MTLTexture, for key: ObjectIdentifier) {
++        lock.lock()
++        defer { lock.unlock() }
++        clock &+= 1
++        let cost = texture.width * texture.height * 4
++        entries[key] = (texture, max(1, cost), clock)
++
++        var total = entries.values.reduce(0) { $0 + $1.cost }
++        while total > costLimit, entries.count > 1 {
++            guard let oldest = entries.min(by: { $0.value.stamp < $1.value.stamp }) else {
++                break
++            }
++            total -= oldest.value.cost
++            entries.removeValue(forKey: oldest.key)
++        }
++    }
++}
++
++/// Index buffers only depend on the grid dimensions and are immutable.
++private final class GeometryIndexBufferCache: @unchecked Sendable {
++    private struct Key: Hashable {
++        let width: Int
++        let height: Int
++    }
++
++    private let lock = NSLock()
++    private var entries: [Key: GeometryIndexBuffer] = [:]
++
++    func buffer(width: Int, height: Int) -> GeometryIndexBuffer? {
++        lock.lock()
++        defer { lock.unlock() }
++        return entries[Key(width: width, height: height)]
++    }
++
++    func insert(_ buffer: GeometryIndexBuffer, width: Int, height: Int) {
++        lock.lock()
++        defer { lock.unlock() }
++        entries[Key(width: width, height: height)] = buffer
++    }
++}
+ #endif
