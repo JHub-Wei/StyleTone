@@ -124,6 +124,14 @@ let package = Package(
             dependencies: ["StyleToneUI", "GoldenSupport", "TestShared"],
             path: "Packages/StyleToneUI/Tests/StyleToneUITests"
         ),
+        // WP-23 edge-case matrix: offline, permissions, storage, low power and
+        // interruption paths. Kept separate from the feature UI tests so the
+        // shared error surface can be audited on its own.
+        .testTarget(
+            name: "EdgeCasesTests",
+            dependencies: ["StyleToneUI", "StyleToneCore"],
+            path: "Tests/EdgeCases"
+        ),
         .testTarget(
             name: "GoldenSupportTests",
             dependencies: ["GoldenSupport", "TestShared", "StyleToneCore"],
