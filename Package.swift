@@ -141,6 +141,20 @@ let package = Package(
             name: "TestSharedTests",
             dependencies: ["TestShared", "StyleToneCore"],
             path: "Tests/Shared/Tests/TestSharedTests"
+        ),
+        // WP-25 golden portrait corpus. It runs the real retouch + geometry
+        // modules (CPU backend) over 100 deterministic synthetic portraits.
+        .testTarget(
+            name: "StyleToneIntegrationTests",
+            dependencies: [
+                "StyleToneCore",
+                "StyleToneImaging",
+                "StyleToneGeometry",
+                "StyleToneRetouch",
+                "GoldenSupport",
+                "TestShared"
+            ],
+            path: "Tests/Integration/Tests/StyleToneIntegrationTests"
         )
     ],
     swiftLanguageModes: [.v6]

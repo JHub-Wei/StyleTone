@@ -1,0 +1,2468 @@
+{
+  "corpusVersion": "2026.10.27",
+  "description": "100 deterministic synthetic portraits for WP-25. Metadata only: pixels are rendered by GoldenSupport; no photographs are stored.",
+  "generator": "Tests/Integration/Tools/generate_portrait_corpus.py",
+  "samples": [
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-001",
+      "lighting": "backlit",
+      "note": "tone I / slim / headshot / doorFrameAndTiles / hairOverFace / 2p",
+      "seed": 5000,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "hairOverFace",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1000,
+          "skinTone": 1,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2000,
+          "skinTone": 2,
+          "xOffset": -0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-002",
+      "lighting": "lowKey",
+      "note": "tone II / average / headshot / window / none / 1p",
+      "seed": 5031,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1013,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-003",
+      "lighting": "sideKey",
+      "note": "tone III / curvy / halfBody / tableEdge / armAcrossTorso / 2p",
+      "seed": 5062,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "armAcrossTorso",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1026,
+          "skinTone": 3,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2034,
+          "skinTone": 4,
+          "xOffset": -0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-004",
+      "lighting": "softKey",
+      "note": "tone IV / plus / halfBody / doorFrame / none / 2p",
+      "seed": 5093,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1039,
+          "skinTone": 4,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2051,
+          "skinTone": 5,
+          "xOffset": 0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-005",
+      "lighting": "sideKey",
+      "note": "tone V / tall / fullBody / doorFrame / none / 1p",
+      "seed": 5124,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1052,
+          "skinTone": 5,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-006",
+      "lighting": "softKey",
+      "note": "tone VI / petite / fullBody / doorFrame / hairOverFace / 2p",
+      "seed": 5155,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "hairOverFace",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1065,
+          "skinTone": 6,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2085,
+          "skinTone": 1,
+          "xOffset": 0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-007",
+      "lighting": "mixed",
+      "note": "tone I / slim / headshot / floorTiles / none / 3p",
+      "seed": 5186,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1078,
+          "skinTone": 1,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2102,
+          "skinTone": 2,
+          "xOffset": -0.24
+        },
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "extra",
+          "scale": 0.74,
+          "seed": 3114,
+          "skinTone": 4,
+          "xOffset": 0.3
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-008",
+      "lighting": "lowKey",
+      "note": "tone II / average / halfBody / floorTiles / armAcrossTorso / 1p",
+      "seed": 5217,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "armAcrossTorso",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1091,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-009",
+      "lighting": "sideKey",
+      "note": "tone III / curvy / fullBody / floorTiles / none / 1p",
+      "seed": 5248,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1104,
+          "skinTone": 3,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-010",
+      "lighting": "highKey",
+      "note": "tone IV / plus / fullBody / tableEdge / armAcrossTorso / 2p",
+      "seed": 5279,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "armAcrossTorso",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1117,
+          "skinTone": 4,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2153,
+          "skinTone": 5,
+          "xOffset": 0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-011",
+      "lighting": "sideKey",
+      "note": "tone V / tall / headshot / tableEdge / none / 3p",
+      "seed": 5310,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1130,
+          "skinTone": 5,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2170,
+          "skinTone": 6,
+          "xOffset": -0.24
+        },
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "extra",
+          "scale": 0.74,
+          "seed": 3190,
+          "skinTone": 2,
+          "xOffset": 0.3
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-012",
+      "lighting": "backlit",
+      "note": "tone VI / petite / headshot / floorTiles / none / 1p",
+      "seed": 5341,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1143,
+          "skinTone": 6,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-013",
+      "lighting": "softKey",
+      "note": "tone I / slim / headshot / tableEdge / handAtChin / 1p",
+      "seed": 5372,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "handAtChin",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1156,
+          "skinTone": 1,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-014",
+      "lighting": "highKey",
+      "note": "tone II / average / headshot / doorFrameAndTiles / none / 1p",
+      "seed": 5403,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1169,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-015",
+      "lighting": "softKey",
+      "note": "tone III / curvy / halfBody / doorFrame / none / 1p",
+      "seed": 5434,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1182,
+          "skinTone": 3,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-016",
+      "lighting": "backlit",
+      "note": "tone IV / plus / halfBody / doorFrame / none / 1p",
+      "seed": 5465,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1195,
+          "skinTone": 4,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-017",
+      "lighting": "softKey",
+      "note": "tone V / tall / fullBody / floorTiles / none / 1p",
+      "seed": 5496,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1208,
+          "skinTone": 5,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-018",
+      "lighting": "highKey",
+      "note": "tone VI / petite / headshot / window / handAtChin / 1p",
+      "seed": 5527,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "handAtChin",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1221,
+          "skinTone": 6,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-019",
+      "lighting": "sideKey",
+      "note": "tone I / slim / halfBody / window / none / 1p",
+      "seed": 5558,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1234,
+          "skinTone": 1,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-020",
+      "lighting": "highKey",
+      "note": "tone II / average / fullBody / floorTiles / hairOverFace / 1p",
+      "seed": 5589,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "hairOverFace",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1247,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-021",
+      "lighting": "highKey",
+      "note": "tone III / curvy / headshot / floorTiles / none / 1p",
+      "seed": 5620,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1260,
+          "skinTone": 3,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "plain",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-022",
+      "lighting": "mixed",
+      "note": "tone IV / plus / fullBody / plain / looseSleeves / 2p",
+      "seed": 5651,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "looseSleeves",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1273,
+          "skinTone": 4,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2357,
+          "skinTone": 5,
+          "xOffset": 0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-023",
+      "lighting": "backlit",
+      "note": "tone V / tall / halfBody / tableEdge / none / 2p",
+      "seed": 5682,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1286,
+          "skinTone": 5,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2374,
+          "skinTone": 6,
+          "xOffset": -0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-024",
+      "lighting": "sideKey",
+      "note": "tone VI / petite / fullBody / doorFrameAndTiles / looseSleeves / 1p",
+      "seed": 5713,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "looseSleeves",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1299,
+          "skinTone": 6,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-025",
+      "lighting": "backlit",
+      "note": "tone I / slim / headshot / doorFrameAndTiles / none / 2p",
+      "seed": 5744,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1312,
+          "skinTone": 1,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2408,
+          "skinTone": 2,
+          "xOffset": -0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-026",
+      "lighting": "sideKey",
+      "note": "tone II / average / halfBody / tableEdge / objectInFront / 1p",
+      "seed": 5775,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "objectInFront",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1325,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "plain",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-027",
+      "lighting": "backlit",
+      "note": "tone III / curvy / halfBody / plain / handAtChin / 1p",
+      "seed": 5806,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "handAtChin",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1338,
+          "skinTone": 3,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-028",
+      "lighting": "highKey",
+      "note": "tone IV / plus / headshot / doorFrameAndTiles / scarf / 1p",
+      "seed": 5837,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "scarf",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1351,
+          "skinTone": 4,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-029",
+      "lighting": "mixed",
+      "note": "tone V / tall / headshot / doorFrameAndTiles / none / 1p",
+      "seed": 5868,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1364,
+          "skinTone": 5,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-030",
+      "lighting": "softKey",
+      "note": "tone VI / petite / halfBody / floorTiles / none / 2p",
+      "seed": 5899,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1377,
+          "skinTone": 6,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2493,
+          "skinTone": 1,
+          "xOffset": 0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-031",
+      "lighting": "lowKey",
+      "note": "tone I / slim / halfBody / doorFrameAndTiles / none / 1p",
+      "seed": 5930,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1390,
+          "skinTone": 1,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-032",
+      "lighting": "sideKey",
+      "note": "tone II / average / fullBody / doorFrame / armAcrossTorso / 3p",
+      "seed": 5961,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "armAcrossTorso",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1403,
+          "skinTone": 2,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2527,
+          "skinTone": 3,
+          "xOffset": 0.24
+        },
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "extra",
+          "scale": 0.74,
+          "seed": 3589,
+          "skinTone": 5,
+          "xOffset": -0.3
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "plain",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-033",
+      "lighting": "softKey",
+      "note": "tone III / curvy / halfBody / plain / armAcrossTorso / 1p",
+      "seed": 5992,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "armAcrossTorso",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1416,
+          "skinTone": 3,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "plain",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-034",
+      "lighting": "softKey",
+      "note": "tone IV / plus / halfBody / plain / none / 1p",
+      "seed": 6023,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1429,
+          "skinTone": 4,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-035",
+      "lighting": "softKey",
+      "note": "tone V / tall / fullBody / doorFrame / none / 2p",
+      "seed": 6054,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1442,
+          "skinTone": 5,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2578,
+          "skinTone": 6,
+          "xOffset": -0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-036",
+      "lighting": "backlit",
+      "note": "tone VI / petite / halfBody / doorFrameAndTiles / none / 1p",
+      "seed": 6085,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1455,
+          "skinTone": 6,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-037",
+      "lighting": "softKey",
+      "note": "tone I / slim / headshot / doorFrame / hairOverFace / 1p",
+      "seed": 6116,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "hairOverFace",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1468,
+          "skinTone": 1,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-038",
+      "lighting": "softKey",
+      "note": "tone II / average / fullBody / doorFrame / scarf / 1p",
+      "seed": 6147,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "scarf",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1481,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "plain",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-039",
+      "lighting": "softKey",
+      "note": "tone III / curvy / fullBody / plain / looseSleeves / 2p",
+      "seed": 6178,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "looseSleeves",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1494,
+          "skinTone": 3,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2646,
+          "skinTone": 4,
+          "xOffset": -0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-040",
+      "lighting": "backlit",
+      "note": "tone IV / plus / halfBody / doorFrame / none / 1p",
+      "seed": 6209,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1507,
+          "skinTone": 4,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-041",
+      "lighting": "softKey",
+      "note": "tone V / tall / fullBody / tableEdge / hairOverFace / 1p",
+      "seed": 6240,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "hairOverFace",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1520,
+          "skinTone": 5,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-042",
+      "lighting": "backlit",
+      "note": "tone VI / petite / halfBody / window / handAtChin / 2p",
+      "seed": 6271,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "handAtChin",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1533,
+          "skinTone": 6,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2697,
+          "skinTone": 1,
+          "xOffset": 0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-043",
+      "lighting": "lowKey",
+      "note": "tone I / slim / halfBody / doorFrameAndTiles / none / 3p",
+      "seed": 6302,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1546,
+          "skinTone": 1,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2714,
+          "skinTone": 2,
+          "xOffset": -0.24
+        },
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "extra",
+          "scale": 0.74,
+          "seed": 3798,
+          "skinTone": 4,
+          "xOffset": 0.3
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-044",
+      "lighting": "sideKey",
+      "note": "tone II / average / headshot / floorTiles / handAtChin / 2p",
+      "seed": 6333,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "handAtChin",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1559,
+          "skinTone": 2,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2731,
+          "skinTone": 3,
+          "xOffset": 0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-045",
+      "lighting": "backlit",
+      "note": "tone III / curvy / headshot / window / none / 1p",
+      "seed": 6364,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1572,
+          "skinTone": 3,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-046",
+      "lighting": "highKey",
+      "note": "tone IV / plus / fullBody / window / none / 3p",
+      "seed": 6395,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1585,
+          "skinTone": 4,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2765,
+          "skinTone": 5,
+          "xOffset": 0.24
+        },
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "extra",
+          "scale": 0.74,
+          "seed": 3855,
+          "skinTone": 1,
+          "xOffset": -0.3
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "plain",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-047",
+      "lighting": "sideKey",
+      "note": "tone V / tall / halfBody / plain / objectInFront / 1p",
+      "seed": 6426,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "objectInFront",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1598,
+          "skinTone": 5,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "plain",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-048",
+      "lighting": "softKey",
+      "note": "tone VI / petite / halfBody / plain / objectInFront / 1p",
+      "seed": 6457,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "objectInFront",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1611,
+          "skinTone": 6,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-049",
+      "lighting": "highKey",
+      "note": "tone I / slim / fullBody / window / none / 2p",
+      "seed": 6488,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1624,
+          "skinTone": 1,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2816,
+          "skinTone": 2,
+          "xOffset": -0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "plain",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-050",
+      "lighting": "softKey",
+      "note": "tone II / average / halfBody / plain / none / 1p",
+      "seed": 6519,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1637,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-051",
+      "lighting": "highKey",
+      "note": "tone III / curvy / fullBody / tableEdge / hairOverFace / 2p",
+      "seed": 6550,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "hairOverFace",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1650,
+          "skinTone": 3,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2850,
+          "skinTone": 4,
+          "xOffset": -0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-052",
+      "lighting": "sideKey",
+      "note": "tone IV / plus / halfBody / doorFrameAndTiles / armAcrossTorso / 1p",
+      "seed": 6581,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "armAcrossTorso",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1663,
+          "skinTone": 4,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-053",
+      "lighting": "highKey",
+      "note": "tone V / tall / halfBody / window / none / 2p",
+      "seed": 6612,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1676,
+          "skinTone": 5,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2884,
+          "skinTone": 6,
+          "xOffset": -0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-054",
+      "lighting": "highKey",
+      "note": "tone VI / petite / fullBody / doorFrame / armAcrossTorso / 2p",
+      "seed": 6643,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "armAcrossTorso",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1689,
+          "skinTone": 6,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2901,
+          "skinTone": 1,
+          "xOffset": 0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "plain",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-055",
+      "lighting": "softKey",
+      "note": "tone I / slim / halfBody / plain / armAcrossTorso / 2p",
+      "seed": 6674,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "armAcrossTorso",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1702,
+          "skinTone": 1,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2918,
+          "skinTone": 2,
+          "xOffset": -0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "plain",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-056",
+      "lighting": "highKey",
+      "note": "tone II / average / halfBody / plain / handAtChin / 3p",
+      "seed": 6705,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "handAtChin",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1715,
+          "skinTone": 2,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2935,
+          "skinTone": 3,
+          "xOffset": 0.24
+        },
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "extra",
+          "scale": 0.74,
+          "seed": 4045,
+          "skinTone": 5,
+          "xOffset": -0.3
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-057",
+      "lighting": "sideKey",
+      "note": "tone III / curvy / halfBody / tableEdge / armAcrossTorso / 1p",
+      "seed": 6736,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "armAcrossTorso",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1728,
+          "skinTone": 3,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-058",
+      "lighting": "sideKey",
+      "note": "tone IV / plus / halfBody / doorFrameAndTiles / none / 2p",
+      "seed": 6767,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1741,
+          "skinTone": 4,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 2969,
+          "skinTone": 5,
+          "xOffset": 0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-059",
+      "lighting": "sideKey",
+      "note": "tone V / tall / headshot / floorTiles / none / 1p",
+      "seed": 6798,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1754,
+          "skinTone": 5,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-060",
+      "lighting": "highKey",
+      "note": "tone VI / petite / halfBody / doorFrame / none / 1p",
+      "seed": 6829,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1767,
+          "skinTone": 6,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-061",
+      "lighting": "sideKey",
+      "note": "tone I / slim / headshot / window / none / 1p",
+      "seed": 6860,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1780,
+          "skinTone": 1,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-062",
+      "lighting": "softKey",
+      "note": "tone II / average / fullBody / doorFrame / none / 1p",
+      "seed": 6891,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1793,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-063",
+      "lighting": "lowKey",
+      "note": "tone III / curvy / headshot / floorTiles / hairOverFace / 1p",
+      "seed": 6922,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "hairOverFace",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1806,
+          "skinTone": 3,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-064",
+      "lighting": "backlit",
+      "note": "tone IV / plus / fullBody / doorFrameAndTiles / looseSleeves / 2p",
+      "seed": 6953,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "looseSleeves",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1819,
+          "skinTone": 4,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 3071,
+          "skinTone": 5,
+          "xOffset": 0.24
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-065",
+      "lighting": "mixed",
+      "note": "tone V / tall / fullBody / doorFrame / none / 1p",
+      "seed": 6984,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1832,
+          "skinTone": 5,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-066",
+      "lighting": "backlit",
+      "note": "tone VI / petite / headshot / floorTiles / scarf / 1p",
+      "seed": 7015,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "scarf",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1845,
+          "skinTone": 6,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-067",
+      "lighting": "backlit",
+      "note": "tone I / slim / headshot / window / hairOverFace / 1p",
+      "seed": 7046,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "hairOverFace",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1858,
+          "skinTone": 1,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-068",
+      "lighting": "softKey",
+      "note": "tone II / average / fullBody / tableEdge / none / 1p",
+      "seed": 7077,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1871,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-069",
+      "lighting": "backlit",
+      "note": "tone III / curvy / headshot / floorTiles / none / 3p",
+      "seed": 7108,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1884,
+          "skinTone": 3,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 3156,
+          "skinTone": 4,
+          "xOffset": -0.24
+        },
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "extra",
+          "scale": 0.74,
+          "seed": 4292,
+          "skinTone": 6,
+          "xOffset": 0.3
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-070",
+      "lighting": "mixed",
+      "note": "tone IV / plus / headshot / tableEdge / none / 1p",
+      "seed": 7139,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1897,
+          "skinTone": 4,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-071",
+      "lighting": "lowKey",
+      "note": "tone V / tall / halfBody / floorTiles / scarf / 1p",
+      "seed": 7170,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "scarf",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1910,
+          "skinTone": 5,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-072",
+      "lighting": "softKey",
+      "note": "tone VI / petite / fullBody / doorFrame / none / 1p",
+      "seed": 7201,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1923,
+          "skinTone": 6,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-073",
+      "lighting": "mixed",
+      "note": "tone I / slim / halfBody / doorFrameAndTiles / objectInFront / 1p",
+      "seed": 7232,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "objectInFront",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1936,
+          "skinTone": 1,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-074",
+      "lighting": "softKey",
+      "note": "tone II / average / halfBody / doorFrame / scarf / 1p",
+      "seed": 7263,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "scarf",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1949,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-075",
+      "lighting": "lowKey",
+      "note": "tone III / curvy / halfBody / doorFrameAndTiles / handAtChin / 1p",
+      "seed": 7294,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "handAtChin",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1962,
+          "skinTone": 3,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-076",
+      "lighting": "softKey",
+      "note": "tone IV / plus / halfBody / doorFrameAndTiles / none / 1p",
+      "seed": 7325,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1975,
+          "skinTone": 4,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-077",
+      "lighting": "lowKey",
+      "note": "tone V / tall / fullBody / doorFrameAndTiles / none / 1p",
+      "seed": 7356,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 1988,
+          "skinTone": 5,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-078",
+      "lighting": "lowKey",
+      "note": "tone VI / petite / fullBody / floorTiles / hairOverFace / 1p",
+      "seed": 7387,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "hairOverFace",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2001,
+          "skinTone": 6,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-079",
+      "lighting": "sideKey",
+      "note": "tone I / slim / halfBody / floorTiles / none / 3p",
+      "seed": 7418,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2014,
+          "skinTone": 1,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 3326,
+          "skinTone": 2,
+          "xOffset": -0.24
+        },
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "extra",
+          "scale": 0.74,
+          "seed": 4482,
+          "skinTone": 4,
+          "xOffset": 0.3
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-080",
+      "lighting": "mixed",
+      "note": "tone II / average / headshot / window / none / 1p",
+      "seed": 7449,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2027,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-081",
+      "lighting": "softKey",
+      "note": "tone III / curvy / halfBody / doorFrameAndTiles / none / 3p",
+      "seed": 7480,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2040,
+          "skinTone": 3,
+          "xOffset": 0.1
+        },
+        {
+          "bodyType": "petite",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 3360,
+          "skinTone": 4,
+          "xOffset": -0.24
+        },
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "extra",
+          "scale": 0.74,
+          "seed": 4520,
+          "skinTone": 6,
+          "xOffset": 0.3
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-082",
+      "lighting": "lowKey",
+      "note": "tone IV / plus / fullBody / tableEdge / none / 3p",
+      "seed": 7511,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2053,
+          "skinTone": 4,
+          "xOffset": -0.1
+        },
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "partner",
+          "scale": 0.86,
+          "seed": 3377,
+          "skinTone": 5,
+          "xOffset": 0.24
+        },
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "extra",
+          "scale": 0.74,
+          "seed": 4539,
+          "skinTone": 1,
+          "xOffset": -0.3
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-083",
+      "lighting": "sideKey",
+      "note": "tone V / tall / halfBody / doorFrameAndTiles / none / 1p",
+      "seed": 7542,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2066,
+          "skinTone": 5,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-084",
+      "lighting": "lowKey",
+      "note": "tone VI / petite / fullBody / tableEdge / objectInFront / 1p",
+      "seed": 7573,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "objectInFront",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2079,
+          "skinTone": 6,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-085",
+      "lighting": "highKey",
+      "note": "tone I / slim / headshot / window / none / 1p",
+      "seed": 7604,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2092,
+          "skinTone": 1,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-086",
+      "lighting": "lowKey",
+      "note": "tone II / average / fullBody / window / objectInFront / 1p",
+      "seed": 7635,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "objectInFront",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2105,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-087",
+      "lighting": "sideKey",
+      "note": "tone III / curvy / fullBody / doorFrameAndTiles / none / 1p",
+      "seed": 7666,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2118,
+          "skinTone": 3,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-088",
+      "lighting": "highKey",
+      "note": "tone IV / plus / fullBody / window / none / 1p",
+      "seed": 7697,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2131,
+          "skinTone": 4,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "window",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-089",
+      "lighting": "lowKey",
+      "note": "tone V / tall / halfBody / window / none / 1p",
+      "seed": 7728,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2144,
+          "skinTone": 5,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-090",
+      "lighting": "softKey",
+      "note": "tone VI / petite / fullBody / floorTiles / armAcrossTorso / 1p",
+      "seed": 7759,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "armAcrossTorso",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2157,
+          "skinTone": 6,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-091",
+      "lighting": "mixed",
+      "note": "tone I / slim / halfBody / floorTiles / none / 1p",
+      "seed": 7790,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2170,
+          "skinTone": 1,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-092",
+      "lighting": "softKey",
+      "note": "tone II / average / fullBody / floorTiles / objectInFront / 1p",
+      "seed": 7821,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "objectInFront",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2183,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "headshot",
+      "height": 480,
+      "id": "ps-093",
+      "lighting": "mixed",
+      "note": "tone III / curvy / headshot / doorFrame / hairOverFace / 1p",
+      "seed": 7852,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "hairOverFace",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2196,
+          "skinTone": 3,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-094",
+      "lighting": "lowKey",
+      "note": "tone IV / plus / fullBody / doorFrame / none / 1p",
+      "seed": 7883,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2209,
+          "skinTone": 4,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-095",
+      "lighting": "softKey",
+      "note": "tone V / tall / halfBody / tableEdge / objectInFront / 1p",
+      "seed": 7914,
+      "subjects": [
+        {
+          "bodyType": "tall",
+          "occlusion": "objectInFront",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2222,
+          "skinTone": 5,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-096",
+      "lighting": "backlit",
+      "note": "tone VI / petite / halfBody / doorFrame / handAtChin / 1p",
+      "seed": 7945,
+      "subjects": [
+        {
+          "bodyType": "petite",
+          "occlusion": "handAtChin",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2235,
+          "skinTone": 6,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "tableEdge",
+      "framing": "halfBody",
+      "height": 480,
+      "id": "ps-097",
+      "lighting": "sideKey",
+      "note": "tone I / slim / halfBody / tableEdge / none / 1p",
+      "seed": 7976,
+      "subjects": [
+        {
+          "bodyType": "slim",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2248,
+          "skinTone": 1,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrame",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-098",
+      "lighting": "lowKey",
+      "note": "tone II / average / fullBody / doorFrame / none / 1p",
+      "seed": 8007,
+      "subjects": [
+        {
+          "bodyType": "average",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2261,
+          "skinTone": 2,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "doorFrameAndTiles",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-099",
+      "lighting": "sideKey",
+      "note": "tone III / curvy / fullBody / doorFrameAndTiles / none / 1p",
+      "seed": 8038,
+      "subjects": [
+        {
+          "bodyType": "curvy",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2274,
+          "skinTone": 3,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    },
+    {
+      "background": "floorTiles",
+      "framing": "fullBody",
+      "height": 480,
+      "id": "ps-100",
+      "lighting": "mixed",
+      "note": "tone IV / plus / fullBody / floorTiles / none / 1p",
+      "seed": 8069,
+      "subjects": [
+        {
+          "bodyType": "plus",
+          "occlusion": "none",
+          "role": "primary",
+          "scale": 1.0,
+          "seed": 2287,
+          "skinTone": 4,
+          "xOffset": 0.0
+        }
+      ],
+      "width": 360
+    }
+  ],
+  "schemaVersion": 1
+}

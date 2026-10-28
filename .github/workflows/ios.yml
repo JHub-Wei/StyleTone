@@ -46,6 +46,8 @@ jobs:
         run: xcodegen generate
 
       - name: Swift package tests
+        env:
+          ST_GOLDEN_ARTIFACTS_DIR: ${{ runner.temp }}/golden-artifacts
         run: swift test
 
       - name: Select available iPhone simulator
@@ -109,3 +111,12 @@ jobs:
           path: ${{ runner.temp }}/StyleTone-${{ github.run_id }}.xcresult
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Upload golden regression artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: golden-artifacts-${{ github.run_id }}
+          path: ${{ runner.temp }}/golden-artifacts
+          if-no-files-found: ignore
+          retention-days: 14

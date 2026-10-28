@@ -250,6 +250,39 @@ swift test
 These tests locate the repository by walking up from the test source; set
 `ST_REPO_ROOT` when the bundle runs elsewhere.
 
+## Golden portrait corpus (WP-25)
+
+`GoldenSupport` also owns the synthetic portrait corpus used by
+`Tests/Integration`:
+
+- `PortraitCorpus` / `PortraitSampleSpec` — the 100-sample metadata document
+  (`Tests/Integration/Corpus/portrait-corpus.json`) and coverage counts.
+- `PortraitRenderer` — deterministic cartoon studio portraits with person, skin
+  and background-structure masks, face landmarks, body joints and straight-line
+  ground truth. No photograph is read.
+- `PortraitMetricEvaluator` — ΔE00 on skin, sampled full-image ΔE00, SSIM,
+  background-line bend, skin-tone safety/fairness and silhouette metrics.
+- `PortraitImageSignature` — compact 16×16 luma / 8×8 chroma fingerprint used by
+  the committed baseline.
+- `PortraitBaseline` / `PortraitBaselineComparator` — per-metric regression
+  tolerances with human-readable failure messages.
+- `PortraitRegressionReport` / `PortraitArtifactBuilder` — CI report, contact
+  sheet and four-quadrant diagnostics image.
+
+```swift
+let scene = try PortraitRenderer.render(sample)
+let evaluation = try PortraitMetricEvaluator.evaluate(
+    scene: scene,
+    source: scene.pixels,
+    retouched: retouched,
+    output: output
+)
+XCTAssertTrue(evaluation.isPassing, evaluation.failures.joined(separator: "; "))
+```
+
+See `Tests/Integration/README.md` for the metrics, thresholds, gates, baseline
+recording flow and CI artifact layout.
+
 ## Limitations and intentionally omitted features
 
 - No perceptual hash, no GPU comparison and no streaming comparison for huge
