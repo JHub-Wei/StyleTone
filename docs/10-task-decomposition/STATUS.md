@@ -142,22 +142,23 @@
 
 ---
 
-## WP-23 ~ WP-25（A5）· merged / main CI running（2026-10-28 拉取）
+## WP-23 ~ WP-25（A5）· done（2026-10-28 拉取）
 
 - 本地 `main` 已从 `9a601df` 快进到 `36b94ef`（Merge PR #20，WP-25）。
-- 已合并：
+- 已完成并合并：
   - WP-23 错误/离线/边界态
   - WP-24 性能/内存/热
   - WP-25 黄金图/质量回归
 - main CI：
   - Run：https://github.com/JHub-Wei/StyleTone/actions/runs/40681827712
-  - 状态：**in_progress**
-  - 已通过：XcodeGen、SwiftPM 测试、模拟器 Build。
-  - `Run app tests` 仍在运行（性能/黄金图套件耗时较长）；尚未得到最终 conclusion。
-- 分支 PR CI：WP-23/24/25 各自 PR run 已通过。
+  - 结论：**success**
+  - 所有步骤通过：XcodeGen、SwiftPM 测试、模拟器 Build、App tests、golden artifacts 上传。
+- Phase A 状态：
+  - 23 个 Phase A WP 全部 `done`。
 - 下一步：
-  - 等 main CI 完成；通过后把 WP-23/24/25 从 `review` 改为 `done`。
-  - Phase A 代码已全部合并；之后进入 Phase B（WP-18/22/27）。
+  - 进入 Phase B（WP-18 风格卡、WP-22 引导、WP-27 TestFlight）。
+  - Phase C（WP-20/26/28/29）在 Phase B 验证后启动。
+
 
 
 
