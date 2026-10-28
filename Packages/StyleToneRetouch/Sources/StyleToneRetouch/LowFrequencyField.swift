@@ -44,7 +44,8 @@ struct LowFrequencyField: Sendable {
     static func make(
         image: ImageAsset,
         colorSpace: CGColorSpace,
-        regionalRadius: Int
+        regionalRadius: Int,
+        skinAlpha: [UInt8]? = nil
     ) throws -> LowFrequencyField? {
         guard image.width > 0, image.height > 0 else { return nil }
         let scale = max(
@@ -88,20 +89,37 @@ struct LowFrequencyField: Sendable {
         }
 
         let blurRadius = max(1, min(64, regionalRadius / max(scale, 1)))
+        let weights = Self.skinWeights(
+            alpha: skinAlpha,
+            imageSize: image.pixelSize,
+            width: smallWidth,
+            height: smallHeight,
+            scale: scale
+        )
+        let weightedLuma = zip(luma, weights).map { pair in pair.0 * pair.1 }
+        let weightedCb = zip(cb, weights).map { pair in pair.0 * pair.1 }
+        let weightedCr = zip(cr, weights).map { pair in pair.0 * pair.1 }
+
+        let blurredWeight = BoxBlur.apply(
+            weights,
+            width: smallWidth,
+            height: smallHeight,
+            radius: blurRadius
+        )
         let blurredLuma = BoxBlur.apply(
-            luma,
+            weightedLuma,
             width: smallWidth,
             height: smallHeight,
             radius: blurRadius
         )
         let blurredCb = BoxBlur.apply(
-            cb,
+            weightedCb,
             width: smallWidth,
             height: smallHeight,
             radius: blurRadius
         )
         let blurredCr = BoxBlur.apply(
-            cr,
+            weightedCr,
             width: smallWidth,
             height: smallHeight,
             radius: blurRadius
@@ -109,10 +127,12 @@ struct LowFrequencyField: Sendable {
 
         var samples = [SIMD3<Float>](repeating: SIMD3<Float>(0, 0, 0), count: count)
         for index in 0 ..< count {
+            let denominator = blurredWeight[index]
+            guard denominator > 1e-5 else { continue }
             samples[index] = SIMD3<Float>(
-                blurredLuma[index],
-                blurredCb[index],
-                blurredCr[index]
+                blurredLuma[index] / denominator,
+                blurredCb[index] / denominator,
+                blurredCr[index] / denominator
             )
         }
         return LowFrequencyField(
@@ -121,5 +141,45 @@ struct LowFrequencyField: Sendable {
             scale: scale,
             samples: samples
         )
+    }
+
+    /// Downsamples the skin coverage into the reduced field. Weighting the
+    /// blur by this mask stops evenness from borrowing luma/chroma from hair,
+    /// clothing or the background just outside the skin boundary.
+    private static func skinWeights(
+        alpha: [UInt8]?,
+        imageSize: PixelSize,
+        width: Int,
+        height: Int,
+        scale: Int
+    ) -> [Float] {
+        guard let alpha,
+              alpha.count == imageSize.width * imageSize.height
+        else {
+            return [Float](repeating: 1, count: width * height)
+        }
+
+        var weights = [Float](repeating: 0, count: width * height)
+        for y in 0 ..< height {
+            let sourceY = y * scale
+            let sourceYEnd = min(sourceY + scale, imageSize.height)
+            for x in 0 ..< width {
+                let sourceX = x * scale
+                let sourceXEnd = min(sourceX + scale, imageSize.width)
+                var sum = 0
+                var samples = 0
+                for sourceRow in sourceY ..< sourceYEnd {
+                    let row = sourceRow * imageSize.width
+                    for sourceColumn in sourceX ..< sourceXEnd {
+                        sum += Int(alpha[row + sourceColumn])
+                        samples += 1
+                    }
+                }
+                if samples > 0 {
+                    weights[y * width + x] = Float(sum) / (Float(samples) * 255)
+                }
+            }
+        }
+        return weights
     }
 }
