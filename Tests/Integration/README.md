@@ -45,15 +45,15 @@ instead of running Vision so the suite is deterministic across runners. Vision
 detection accuracy is covered by the WP-05 suites; here the subject is whether
 the pixels produced by the algorithm chain stay good.
 
-**Known defect (WP-07).** The corpus currently calls the retoucher with
-`evenness: 0`. `LowFrequencyField.make` reduces the image through a Core
-Graphics bitmap context without flipping the CTM, so the low-frequency field is
-vertically mirrored and evenness pulls skin towards whatever is below it
-(measured +23 L* and 0.43× saturation on Fitzpatrick VI). Uniform WP-07 fixtures
-cannot see it. Filed as [#19](https://github.com/JHub-Wei/StyleTone/issues/19);
-re-enable `evenness: 0.35` in `PortraitPipelineParameters` and re-record the
-baseline after WP-07 fixes the orientation. This is exactly the kind of
-regression the golden suite exists to catch.
+**Evenness status.** The corpus still calls the retoucher with `evenness: 0`.
+Issue [#19](https://github.com/JHub-Wei/StyleTone/issues/19) is fixed: the
+low-frequency field is now weighted by skin coverage, so it no longer borrows
+color from the background below the subject. Re-enabling `evenness: 0.35` still
+fails two absolute gates on this corpus: 4 samples exceed `skin.clipIncrease`
+(up to 0.0213) and 7 samples fall below `edge.gradientEnergyRatio` (down to
+0.559). The baseline and goldens therefore remain recorded with evenness off;
+re-enable it and re-record both after WP-07 tunes clipping and edge protection.
+Do not relax the thresholds to force it on.
 
 ## Corpus
 
