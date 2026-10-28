@@ -152,21 +152,20 @@ contact sheet with source / output / amplified difference triplets.
 
 ## Recorded baseline
 
-The baseline and the 12 visual goldens were recorded from the green CI run
-[40548163906](https://github.com/JHub-Wei/StyleTone/actions/runs/40548163906)
-on macOS 15 arm64 (2026-10-28), commit `26d13f7`, and re-validated in comparison
-mode by [40552973565](https://github.com/JHub-Wei/StyleTone/actions/runs/40552973565)
-(940 tests, 0 failures, 12/12 goldens, 0 baseline regressions):
+The baseline and the 12 visual goldens were recorded from the green bootstrap
+CI run
+[40735868266](https://github.com/JHub-Wei/StyleTone/actions/runs/40735868266)
+on macOS 15 arm64 (2026-10-29), commit `5381799`, with `evenness: 0.35`:
 
 | gate | value | target |
 |---|---|---|
 | background distortion | **3.37 %** (3 of 89 measured samples, all warnings only) | < 5 % |
 | skin incidents | **0** samples | 0 |
 | silhouette/edge failures | **0** samples | 0 |
-| I–VI fairness spread | **0.106 ΔL** | ≤ 1.0 |
-| dark-skin mean ΔL (V/VI) | **0.061** | ≤ 1.0 |
-| golden images | **12** compared | 0 failures |
-| pipeline time | 143 s for 100 × 360×480 frames | — |
+| I–VI fairness spread | **0.095 ΔL** | ≤ 1.0 |
+| dark-skin mean ΔL (V/VI) | **0.103** | ≤ 1.0 |
+| golden images | **12** recorded | — |
+| pipeline time | 245 s for 100 × 360×480 frames | — |
 
 The three background warnings are ps-051, ps-082 and ps-094 (table top and
 floor horizon, 1.6–1.9 px deviation). They are reported in the artifact and by
