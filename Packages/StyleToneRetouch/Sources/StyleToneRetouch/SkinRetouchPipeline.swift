@@ -72,7 +72,8 @@ struct SkinRetouchPipeline: Sendable {
                 lowFrequency = try LowFrequencyField.make(
                     image: image,
                     colorSpace: image.colorSpace,
-                    regionalRadius: regionalRadius
+                    regionalRadius: regionalRadius,
+                    skinAlpha: alpha
                 )
             } catch {
                 lowFrequency = nil
