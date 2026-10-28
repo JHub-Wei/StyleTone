@@ -192,13 +192,13 @@ struct SkinRetouchPipeline: Sendable {
                             detail: detail,
                             threshold: edgeThreshold
                         ) * silhouetteWeight
-                        let midFrequency = baseY - low.x
-                        let rawChange = midFrequency * (evennessRetain - 1) * edge
+                        let rawChange = (low.x - baseY) *
+                            (1 - evennessRetain) * edge
                         let change = min(
                             max(rawChange, -evennessLimit),
                             evennessLimit
                         )
-                        targetLuma = low.x + change + detail * fineRetain
+                        targetLuma = baseY + change + detail * fineRetain
 
                         let chromaBlend = alphaUnit * evennessStrength *
                             chromaStrength * edge
