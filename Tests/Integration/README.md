@@ -45,15 +45,13 @@ instead of running Vision so the suite is deterministic across runners. Vision
 detection accuracy is covered by the WP-05 suites; here the subject is whether
 the pixels produced by the algorithm chain stay good.
 
-**Evenness status.** The corpus still calls the retoucher with `evenness: 0`.
-Issue [#19](https://github.com/JHub-Wei/StyleTone/issues/19) is fixed: the
-low-frequency field is now weighted by skin coverage, so it no longer borrows
-color from the background below the subject. Re-enabling `evenness: 0.35` still
-fails two absolute gates on this corpus: 4 samples exceed `skin.clipIncrease`
-(up to 0.0213) and 7 samples fall below `edge.gradientEnergyRatio` (down to
-0.559). The baseline and goldens therefore remain recorded with evenness off;
-re-enable it and re-record both after WP-07 tunes clipping and edge protection.
-Do not relax the thresholds to force it on.
+**Evenness status.** The corpus runs with `evenness: 0.35`. The low-frequency
+field is weighted by the validated skin alpha, so it cannot pull luma or chroma
+from the background or hair outside the skin boundary. Evenness is also faded
+out in a 2 px band around the silhouette, and the reconstructed skin is kept off
+the 8-bit clipping rails. The baseline and the 12 visual goldens are re-recorded
+for this setting; do not disable evenness or relax a threshold to hide a future
+regression.
 
 ## Corpus
 

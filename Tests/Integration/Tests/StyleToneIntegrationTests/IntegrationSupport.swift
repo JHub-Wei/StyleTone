@@ -119,16 +119,10 @@ struct PortraitPipelineParameters: Sendable {
     let skin: SkinParameters
 
     static func make(for framing: PortraitFraming) -> PortraitPipelineParameters {
-        // Evenness is deliberately disabled for the golden corpus.
-        //
-        // Issue #19's background bleed is fixed: `LowFrequencyField` is weighted
-        // by the skin alpha and no longer pulls luma/chroma from below the
-        // subject. Re-enabling `evenness: 0.35` is still blocked by two absolute
-        // gates on the 100-sample corpus: 4 samples exceed `skin.clipIncrease`
-        // (up to 0.0213) and 7 samples fall below `edge.gradientEnergyRatio`
-        // (down to 0.559). Keep evenness at zero until WP-07 tunes clipping and
-        // edge protection; do not relax the thresholds.
-        let skin = SkinParameters(smoothing: 0.55, evenness: 0)
+        // The low-frequency field is weighted by skin coverage and evenness is
+        // faded out at the silhouette, so the golden corpus now exercises the
+        // production evenness strength instead of the old zero workaround.
+        let skin = SkinParameters(smoothing: 0.55, evenness: 0.35)
         switch framing {
         case .headshot:
             return PortraitPipelineParameters(

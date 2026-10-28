@@ -95,6 +95,13 @@ struct SkinRetouchPipeline: Sendable {
         let evennessLimit = Float(max(configuration.evennessChangeLimit, 0))
         let chromaStrength = Float(RetouchMath.unit(configuration.chromaEvenness))
         let evennessStrength = Float(effectiveEvenness)
+        let silhouetteGuard: [UInt8]? = effectiveEvenness > 0.0005
+            ? SilhouetteGuard.make(
+                alpha: alpha,
+                width: image.width,
+                height: image.height
+            )
+            : nil
 
         let width = image.width
         let height = image.height
@@ -178,10 +185,13 @@ struct SkinRetouchPipeline: Sendable {
 
                     if let lowFrequency, evennessStrength > 0.0005 {
                         let low = lowFrequency.sample(x: x, y: globalY)
+                        let silhouetteWeight = silhouetteGuard.map {
+                            Float($0[globalIndex]) * (1.0 / 255.0)
+                        } ?? 1
                         let edge = RetouchMath.edgeWeight(
                             detail: detail,
                             threshold: edgeThreshold
-                        )
+                        ) * silhouetteWeight
                         let midFrequency = baseY - low.x
                         let rawChange = midFrequency * (evennessRetain - 1) * edge
                         let change = min(
@@ -207,17 +217,20 @@ struct SkinRetouchPipeline: Sendable {
                         luma: outputLuma,
                         chroma: targetChroma
                     )
-                    guard reconstructed.x.isFinite,
-                          reconstructed.y.isFinite,
-                          reconstructed.z.isFinite
+                    let safe = evennessStrength > 0.0005
+                        ? RetouchMath.clampHeadroom(reconstructed)
+                        : reconstructed
+                    guard safe.x.isFinite,
+                          safe.y.isFinite,
+                          safe.z.isFinite
                     else {
                         output[globalIndex] = original
                         continue
                     }
                     output[globalIndex] = SIMD4<Float>(
-                        min(max(reconstructed.x, -0.5), 2),
-                        min(max(reconstructed.y, -0.5), 2),
-                        min(max(reconstructed.z, -0.5), 2),
+                        min(max(safe.x, -0.5), 2),
+                        min(max(safe.y, -0.5), 2),
+                        min(max(safe.z, -0.5), 2),
                         original.w
                     )
                 }
