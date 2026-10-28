@@ -45,9 +45,9 @@ enum RetouchMath {
     @inline(__always)
     static func clampHeadroom(_ rgb: SIMD3<Float>) -> SIMD3<Float> {
         SIMD3<Float>(
-            min(max(rgb.x, 0.02), 0.94),
-            min(max(rgb.y, 0.02), 0.94),
-            min(max(rgb.z, 0.02), 0.94)
+            min(max(rgb.x, 0.003), 0.94),
+            min(max(rgb.y, 0.003), 0.94),
+            min(max(rgb.z, 0.003), 0.94)
         )
     }
 

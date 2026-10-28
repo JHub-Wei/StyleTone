@@ -29,7 +29,7 @@ final class EvennessSafetyTests: XCTestCase {
     func testHeadroomClampKeepsChannelsOffClippingRails() {
         let clamped = RetouchMath.clampHeadroom(SIMD3<Float>(1.2, -0.2, 0.5))
         XCTAssertEqual(clamped.x, 0.94)
-        XCTAssertEqual(clamped.y, 0.02)
+        XCTAssertEqual(clamped.y, 0.003)
         XCTAssertEqual(clamped.z, 0.5)
     }
 }
