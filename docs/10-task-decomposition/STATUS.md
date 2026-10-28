@@ -176,10 +176,12 @@
   - PR #23，squash commit `711aed4`。
   - PR CI：https://github.com/JHub-Wei/StyleTone/actions/runs/40697662632 （success）
   - Issue 已关闭。
-- 后续：
-  - WP-25 尝试重新启用 `evenness: 0.35` 并 bootstrap：100 样本中仍有 4 个 `skin.clipIncrease` 失败（最高 0.0213）和 7 个 `edge.gradientEnergyRatio` 失败（最低 0.559），绝对 gates 未通过。
-  - 因此 baseline/goldens 继续按 `evenness: 0` 保留，未放宽阈值；PR #24 记录了该状态。
-  - 需要 WP-07 继续调 clipping / edge protection 后，再启用 evenness 并重录。
+- WP-25 后续（已完成）：
+  - WP-07 修正 evenness 混合方向（从 guided base 出发，不再越过低频场）、增加 2 px silhouette guard、加入 source-aware headroom clamp。
+  - bootstrap `evenness: 0.35`：100 样本 skin incidents **0**、edge failures **0**、background 3.37%、fairness 0.095 ΔL、dark-skin 0.103 ΔL。
+  - Run：https://github.com/JHub-Wei/StyleTone/actions/runs/40735868266 （success）
+  - 新 baseline + 12 goldens 已提交；comparison run：https://github.com/JHub-Wei/StyleTone/actions/runs/40740318152 （success）
+  - PR #25，merge commit `1a1d65c`。
 - Phase C（WP-20/26/28/29）在 Phase B 验证后启动。
 
 

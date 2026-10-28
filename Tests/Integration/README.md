@@ -173,6 +173,10 @@ the aggregate gate, which still passes because the card limits distortion to
 `< 5 %` of samples, not to zero. Any increase that pushes the rate to 5 % blocks
 the build.
 
+The recorded baseline was re-validated in comparison mode by
+[40740318152](https://github.com/JHub-Wei/StyleTone/actions/runs/40740318152)
+(0 baseline regressions, 12/12 goldens, all gates green).
+
 `Baselines/portrait-baseline.json` stores per-sample metrics and signatures;
 `Goldens/*.png` stores the 12 representative outputs. Re-record both together
 when an algorithm change is intentional, and never raise a threshold to make a

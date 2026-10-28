@@ -134,9 +134,9 @@
 
 - **WP-00 工程骨架已完成，状态 `done`**：XcodeGen 工程源、9 个 SwiftPM target、占位 App、CI、Makefile、模块占位测试均已提交。
 - **WP-01 Core 契约已完成，状态 `done`**：类型/协议/错误/JSON 编解码/测试与 Mock 已落地；Tag `core-v1`。
-- **WP-02 ~ WP-25 已合并到 `main`（`36cec52`）**：A1–A5 代码全部合并；Phase A 23 个 WP 全部完成。
-- **Issue #19 已修复**：evenness 低频场改为按 skin alpha 加权，修复深肤色被背景提亮/去饱和；方向诊断被回归测试证伪。PR #23。
-- **WP-25 evenness 暂不启用**：0.35 的 bootstrap 仍有 4 个 skin clipping、7 个 edge 失败；baseline 保持 `evenness: 0`，未放宽阈值。PR #24 记录 blocker。
+- **WP-02 ~ WP-25 已合并到 `main`（`1a1d65c`）**：A1–A5 代码全部合并；Phase A 23 个 WP 全部完成。
+- **Issue #19 已修复**：evenness 低频场改为按 skin alpha 加权；方向诊断被回归测试证伪。PR #23。
+- **WP-25 evenness 0.35 已启用**：WP-07 修正混合方向、silhouette guard、source-aware headroom clamp；baseline + 12 goldens 已重录并通过 comparison。PR #25。
 - **macOS CI 已通过**：
   - WP-00：https://github.com/JHub-Wei/StyleTone/actions/runs/40090672908
   - WP-01：https://github.com/JHub-Wei/StyleTone/actions/runs/40091414979
@@ -146,5 +146,7 @@
   - WP-25 `main`（A5）：https://github.com/JHub-Wei/StyleTone/actions/runs/40681827712
   - Issue #19 修复 PR：https://github.com/JHub-Wei/StyleTone/actions/runs/40697662632
   - WP-25 evenness 状态 PR：https://github.com/JHub-Wei/StyleTone/actions/runs/40709563088
+  - WP-25 evenness bootstrap：https://github.com/JHub-Wei/StyleTone/actions/runs/40735868266
+  - WP-25 baseline comparison：https://github.com/JHub-Wei/StyleTone/actions/runs/40740318152
 - 构建说明见 [BUILD.md](BUILD.md)；Windows 上获取 macOS CI 结果见 [CI-SETUP.md](CI-SETUP.md)。
 - 下一步：进入 Phase B（WP-18 风格卡、WP-22 引导、WP-27 TestFlight）；Phase C 在 Phase B 验证后启动。
