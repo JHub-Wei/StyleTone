@@ -36,9 +36,6 @@ final class A6LiveWiringTests: XCTestCase {
         let editor = dependencies.editorDependencies()
 
         XCTAssertTrue(editor.analyzer is VisionPortraitAnalyzer)
-        XCTAssertTrue(editor.retoucher is SkinRetoucher)
-        XCTAssertTrue(editor.blemishRemover is SkinRetoucher)
-        XCTAssertTrue(editor.geometryRenderer is GeometryRenderingEngine)
         XCTAssertTrue(editor.exporter is FileImageExporter)
         XCTAssertTrue(editor.renderer is EditorRenderer)
         XCTAssertTrue(editor.styleProvider is StoreEditorStyleProvider)

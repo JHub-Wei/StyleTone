@@ -94,7 +94,7 @@ final class A6AppModelTests: XCTestCase {
         await model.start()
         XCTAssertEqual(model.flow.stage, .editor)
 
-        await store.deleteAll()
+        try? await store.deleteAll()
         model.handleAllDataDeleted()
 
         XCTAssertEqual(model.flow.stage, .welcome)
