@@ -1,33 +1,16 @@
 import SwiftUI
 
-/// WP-00 application entry point.
+/// Phase A A6 application entry point.
 ///
-/// Business screens, navigation and dependency wiring are implemented by later
-/// work packages. This target exists so the project, package graph and CI can
-/// be validated before feature work starts.
+/// The self-use build boots into the real local-only flow in `A6RootView`:
+/// active profile → editor, or minimal welcome → pairing → calibration →
+/// editor. The WP-03 shell and placeholder screens remain in the target for
+/// previews, but they are no longer the entry point.
 @main
 struct StyleToneApp: App {
     var body: some Scene {
         WindowGroup {
-            WP00PlaceholderView()
+            A6RootView()
         }
-    }
-}
-
-private struct WP00PlaceholderView: View {
-    var body: some View {
-        VStack(spacing: 16) {
-            Text("私调")
-                .font(.largeTitle.bold())
-            Text("StyleTone")
-                .font(.headline)
-            Text("WP-00 工程骨架")
-                .font(.subheadline)
-            Text("业务功能由后续工作包实现")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-        }
-        .padding(24)
-        .accessibilityIdentifier("wp00.root")
     }
 }

@@ -1,0 +1,63 @@
+name: Unsigned IPA
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - a6/integration
+
+permissions:
+  contents: read
+
+concurrency:
+  group: unsigned-ipa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-unsigned-ipa:
+    runs-on: macos-15
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Archive without signing
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project StyleTone.xcodeproj \
+            -scheme StyleTone \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -archivePath "$RUNNER_TEMP/StyleTone.xcarchive" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM="" \
+            archive
+
+      - name: Package unsigned IPA
+        run: |
+          set -euo pipefail
+          APP="$RUNNER_TEMP/StyleTone.xcarchive/Products/Applications/StyleTone.app"
+          test -d "$APP"
+          mkdir -p "$RUNNER_TEMP/Payload"
+          ditto "$APP" "$RUNNER_TEMP/Payload/StyleTone.app"
+          cd "$RUNNER_TEMP"
+          /usr/bin/zip -qry StyleTone-unsigned.ipa Payload
+          shasum -a 256 StyleTone-unsigned.ipa
+
+      - name: Upload unsigned IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: StyleTone-unsigned-ipa
+          path: ${{ runner.temp }}/StyleTone-unsigned.ipa
+          if-no-files-found: error
+          retention-days: 14
