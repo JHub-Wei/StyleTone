@@ -137,6 +137,8 @@
 - **WP-02 ~ WP-25 已合并到 `main`（`1a1d65c`）**：A1–A5 代码全部合并；Phase A 23 个 WP 全部完成。
 - **Issue #19 已修复**：evenness 低频场改为按 skin alpha 加权；方向诊断被回归测试证伪。PR #23。
 - **WP-25 evenness 0.35 已启用**：WP-07 修正混合方向、silhouette guard、source-aware headroom clamp；baseline + 12 goldens 已重录并通过 comparison。PR #25。
+- **A6 App 组装已完成**：`A6RootView` 接管真实 Phase A 流程，接入 Vision/SwiftData/Learning/Retouch/Geometry/Export/PhotoKit。PR #26，merge `de07c35`。
+- **A6 真机安装成功**：免费 Apple ID + Sideloadly 安装到 iPhone，App 可启动。说明见 [sideloadly-validation.md](docs/beta/sideloadly-validation.md)。免费签名 7 天过期，Sideloadly auto-refresh daemon 运行中。
 - **macOS CI 已通过**：
   - WP-00：https://github.com/JHub-Wei/StyleTone/actions/runs/40090672908
   - WP-01：https://github.com/JHub-Wei/StyleTone/actions/runs/40091414979
@@ -148,5 +150,7 @@
   - WP-25 evenness 状态 PR：https://github.com/JHub-Wei/StyleTone/actions/runs/40709563088
   - WP-25 evenness bootstrap：https://github.com/JHub-Wei/StyleTone/actions/runs/40735868266
   - WP-25 baseline comparison：https://github.com/JHub-Wei/StyleTone/actions/runs/40740318152
+  - A6 app tests：https://github.com/JHub-Wei/StyleTone/actions/runs/41215018035
+  - A6 unsigned IPA：https://github.com/JHub-Wei/StyleTone/actions/runs/41213604810
 - 构建说明见 [BUILD.md](BUILD.md)；Windows 上获取 macOS CI 结果见 [CI-SETUP.md](CI-SETUP.md)。
 - 下一步：进入 Phase B（WP-18 风格卡、WP-22 引导、WP-27 TestFlight）；Phase C 在 Phase B 验证后启动。

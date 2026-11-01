@@ -184,6 +184,32 @@
   - PR #25，merge commit `1a1d65c`。
 - Phase C（WP-20/26/28/29）在 Phase B 验证后启动。
 
+---
+
+## A6 · App 集成与真机安装（2026-11-01）
+
+- 状态：**done（集成/安装）**，真机 Gate A Smoke 待执行。
+- PR #26，merge commit `de07c35`。
+- 内容：
+  - `A6RootView` 接管 App 入口，替换 WP-00 占位页。
+  - 真实依赖：Vision、SwiftData、StyleLearning、SkinRetoucher、Geometry、FileImageExporter、PhotoKit。
+  - 流程：最小欢迎 → 配对 → 校准 → 编辑器 → 导出 → 设置/删除数据。
+  - Info.plist 增加相册 add/read 权限说明与 export compliance。
+  - 新增 unsigned IPA workflow。
+- 验证：
+  - iOS CI（SwiftPM + app build + app tests）：https://github.com/JHub-Wei/StyleTone/actions/runs/41215018035 （success）
+  - unsigned IPA：https://github.com/JHub-Wei/StyleTone/actions/runs/41213604810 （success）
+  - 真机：iPhone15 / iOS 27.0.1，Sideloadly 免费签名安装成功，App 可打开。
+- 分发：
+  - Sideloadly 位于 `D:\Tools\Sideloadly\app`；IPA 位于 `D:\Tools\Sideloadly\A6`。
+  - Apple Mobile Device Support/iTunes 为系统组件，安装在 C 盘。
+  - 免费签名 7 天过期，auto-refresh daemon 已运行。
+- 下一步：
+  - 按 [sideloadly-validation.md](../beta/sideloadly-validation.md) 执行 Gate A Smoke。
+  - 重点验证配对/校准/编辑/导出/权限/删除数据。
+  - Phase B 继续冻结。
+
+
 
 
 
