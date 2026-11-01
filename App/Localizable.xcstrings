@@ -1,0 +1,6806 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "calibration.ab.detail.bodySlim.high": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轮廓更清晰"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.bodySlim.low": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自然身形"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.faceSlim.high": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "立体下颌线"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.faceSlim.low": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自然下颌线"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.legLength.high": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更修长的线条"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.legLength.low": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自然比例"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.naturalness.high": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "大片质感"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.naturalness.low": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "贴近真实"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.skinTone.high": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暖光感"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.skinTone.low": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "中性暖调"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.smoothing.high": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更细腻的肌肤"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.smoothing.low": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保留质感"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.tone.high": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更深的对比"
+          }
+        }
+      }
+    },
+    "calibration.ab.detail.tone.low": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更柔和的光线"
+          }
+        }
+      }
+    },
+    "calibration.ab.finish": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成并生成我的风格"
+          }
+        }
+      }
+    },
+    "calibration.ab.finishHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再完成 %d 张即可结束"
+          }
+        }
+      }
+    },
+    "calibration.ab.optionA": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "效果 A"
+          }
+        }
+      }
+    },
+    "calibration.ab.optionB": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "效果 B"
+          }
+        }
+      }
+    },
+    "calibration.ab.optionHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选这个效果"
+          }
+        }
+      }
+    },
+    "calibration.ab.progress": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d / %d"
+          }
+        }
+      }
+    },
+    "calibration.ab.progressLabel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A/B 进度"
+          }
+        }
+      }
+    },
+    "calibration.ab.ready": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 张已完成。可以现在结束，也可以继续，让风格更稳定。"
+          }
+        }
+      }
+    },
+    "calibration.ab.saveLater": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存，稍后继续"
+          }
+        }
+      }
+    },
+    "calibration.ab.skip": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拿不准，跳过这张"
+          }
+        }
+      }
+    },
+    "calibration.ab.skipAll": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跳过 A/B，使用自然默认"
+          }
+        }
+      }
+    },
+    "calibration.ab.skipAllHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不经过 A/B 选择，直接使用干净自然的风格。"
+          }
+        }
+      }
+    },
+    "calibration.ab.skipHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不会记录选择，进度会保留。"
+          }
+        }
+      }
+    },
+    "calibration.ab.subtitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "点选 A 或 B，每次选择都会让结果更贴近你。6 张就够了，也可以跳过任意一张。"
+          }
+        }
+      }
+    },
+    "calibration.ab.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "哪种效果更像你？"
+          }
+        }
+      }
+    },
+    "calibration.addPairsButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加照片配对"
+          }
+        }
+      }
+    },
+    "calibration.cancel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存，稍后继续"
+          }
+        }
+      }
+    },
+    "calibration.dimension.bodySlim": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身形"
+          }
+        }
+      }
+    },
+    "calibration.dimension.faceSlim": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "脸型"
+          }
+        }
+      }
+    },
+    "calibration.dimension.legLength": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "腿长"
+          }
+        }
+      }
+    },
+    "calibration.dimension.naturalness": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自然度"
+          }
+        }
+      }
+    },
+    "calibration.dimension.skinTone": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肤色"
+          }
+        }
+      }
+    },
+    "calibration.dimension.smoothing": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肌肤质感"
+          }
+        }
+      }
+    },
+    "calibration.dimension.tone": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "光线与色调"
+          }
+        }
+      }
+    },
+    "calibration.error.back": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "返回对比"
+          }
+        }
+      }
+    },
+    "calibration.error.learning": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的配对和选择都还在。可以重试、返回，或使用自然默认。"
+          }
+        }
+      }
+    },
+    "calibration.error.missingPairs": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已保存会话中的部分照片不可用，请重新添加或重新开始。"
+          }
+        }
+      }
+    },
+    "calibration.error.natural": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用自然默认"
+          }
+        }
+      }
+    },
+    "calibration.error.pairs": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "返回配对"
+          }
+        }
+      }
+    },
+    "calibration.error.pairsPreserved": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你选择的配对都还在。"
+          }
+        }
+      }
+    },
+    "calibration.error.restore": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取已保存的进度，配对还在。"
+          }
+        }
+      }
+    },
+    "calibration.error.retry": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重试"
+          }
+        }
+      }
+    },
+    "calibration.error.saving": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "风格已生成，但没能保存。请重试，或使用自然默认。"
+          }
+        }
+      }
+    },
+    "calibration.error.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "校准被中断了"
+          }
+        }
+      }
+    },
+    "calibration.learning.cancel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消并保留进度"
+          }
+        }
+      }
+    },
+    "calibration.learning.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在对比你的配对与选择，所有内容都留在本机。"
+          }
+        }
+      }
+    },
+    "calibration.learning.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在生成你的风格"
+          }
+        }
+      }
+    },
+    "calibration.naturalDefault": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用自然默认"
+          }
+        }
+      }
+    },
+    "calibration.naturalDefaultNote": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "先使用干净自然的风格，之后再校准。"
+          }
+        }
+      }
+    },
+    "calibration.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A/B 校准将在后续版本上线，校准数据只会留在本机。"
+          }
+        }
+      }
+    },
+    "calibration.notice.cancelled": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已取消学习，你的选择已保存。"
+          }
+        }
+      }
+    },
+    "calibration.notice.dismiss": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "忽略"
+          }
+        }
+      }
+    },
+    "calibration.notice.missingPairs": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已保存会话中的部分配对缺失。"
+          }
+        }
+      }
+    },
+    "calibration.notice.progressUnavailable": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "进度没能保存，但仍可继续。"
+          }
+        }
+      }
+    },
+    "calibration.notice.restored": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已从上次的进度继续。"
+          }
+        }
+      }
+    },
+    "calibration.pairTier.eight": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d 组配对"
+          }
+        }
+      }
+    },
+    "calibration.pairTier.five": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d 组配对"
+          }
+        }
+      }
+    },
+    "calibration.pairTier.three": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d 组配对"
+          }
+        }
+      }
+    },
+    "calibration.pairs.add": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加更多配对"
+          }
+        }
+      }
+    },
+    "calibration.pairs.count": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d 组配对已就绪"
+          }
+        }
+      }
+    },
+    "calibration.pairs.emptyMessage": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选一张原图和一张你喜欢的成片，3 组配对就够了。"
+          }
+        }
+      }
+    },
+    "calibration.pairs.emptyTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还没有配对"
+          }
+        }
+      }
+    },
+    "calibration.pairs.insufficient": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "至少添加 3 组良好或需留意的配对才能开始。"
+          }
+        }
+      }
+    },
+    "calibration.pairs.localOnly": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无需账号。配对与校准都留在这台设备上。"
+          }
+        }
+      }
+    },
+    "calibration.pairs.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只有良好和需留意的配对会参与风格学习。不可用的配对和原图都留在这台设备上。"
+          }
+        }
+      }
+    },
+    "calibration.pairs.quality": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d 组良好，%d 组需留意，%d 组不可用"
+          }
+        }
+      }
+    },
+    "calibration.pairs.recommended": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "推荐"
+          }
+        }
+      }
+    },
+    "calibration.pairs.saveLater": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存，稍后继续"
+          }
+        }
+      }
+    },
+    "calibration.pairs.start": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用 %d 组配对开始"
+          }
+        }
+      }
+    },
+    "calibration.pairs.subtitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 组配对就能开始；再加 2 组到 5 组，或再加 3 组到 8 组。3 组通常花 4 分钟左右。"
+          }
+        }
+      }
+    },
+    "calibration.pairs.target": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下一个目标：%d 组配对"
+          }
+        }
+      }
+    },
+    "calibration.pairs.tierHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择使用多少组配对。配对越多，风格越稳定。"
+          }
+        }
+      }
+    },
+    "calibration.pairs.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从配对开始"
+          }
+        }
+      }
+    },
+    "calibration.path": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "校准流程"
+          }
+        }
+      }
+    },
+    "calibration.progress": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "进度"
+          }
+        }
+      }
+    },
+    "calibration.recalibrateButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新校准"
+          }
+        }
+      }
+    },
+    "calibration.result.choices": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d 次选择"
+          }
+        }
+      }
+    },
+    "calibration.result.confidence": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "稳定度"
+          }
+        }
+      }
+    },
+    "calibration.result.confidence.stable": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "稳定"
+          }
+        }
+      }
+    },
+    "calibration.result.confidence.standard": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标准"
+          }
+        }
+      }
+    },
+    "calibration.result.confidence.trial": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "试用"
+          }
+        }
+      }
+    },
+    "calibration.result.naturalNote": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已跳过 A/B，随时可以重新校准。"
+          }
+        }
+      }
+    },
+    "calibration.result.naturalTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自然默认"
+          }
+        }
+      }
+    },
+    "calibration.result.openCard": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开风格卡片"
+          }
+        }
+      }
+    },
+    "calibration.result.pairs": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d 组配对"
+          }
+        }
+      }
+    },
+    "calibration.result.previewBadge": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "预览占位"
+          }
+        }
+      }
+    },
+    "calibration.result.previewNote": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "渲染接入前，风格预览暂时为占位内容。"
+          }
+        }
+      }
+    },
+    "calibration.result.recalibrate": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新校准"
+          }
+        }
+      }
+    },
+    "calibration.result.saved": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已保存在这台设备上。"
+          }
+        }
+      }
+    },
+    "calibration.result.subtitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从 %d 组配对和 %d 次选择中学到的专属效果。"
+          }
+        }
+      }
+    },
+    "calibration.result.tag.defined": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "立体"
+          }
+        }
+      }
+    },
+    "calibration.result.tag.editorial": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "大片感"
+          }
+        }
+      }
+    },
+    "calibration.result.tag.natural": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自然"
+          }
+        }
+      }
+    },
+    "calibration.result.tag.soft": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "柔和"
+          }
+        }
+      }
+    },
+    "calibration.result.tag.warm": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暖调"
+          }
+        }
+      }
+    },
+    "calibration.result.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的风格已就绪"
+          }
+        }
+      }
+    },
+    "calibration.result.use": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用这个风格"
+          }
+        }
+      }
+    },
+    "calibration.startButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始 A/B 校准"
+          }
+        }
+      }
+    },
+    "calibration.styleCard.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还没有风格档案。准备好就校准，也可以继续使用自然默认。"
+          }
+        }
+      }
+    },
+    "calibration.styleCard.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的风格卡片"
+          }
+        }
+      }
+    },
+    "calibration.styleCardButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看风格卡片"
+          }
+        }
+      }
+    },
+    "calibration.subtitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 组配对解锁试用风格，5 到 8 组让风格更稳定。"
+          }
+        }
+      }
+    },
+    "calibration.tier.available": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@，可用"
+          }
+        }
+      }
+    },
+    "calibration.tier.locked": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@，需要 %d 组配对"
+          }
+        }
+      }
+    },
+    "calibration.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "校准你的风格"
+          }
+        }
+      }
+    },
+    "calibration.toast.placeholder": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前版本尚未接入校准。"
+          }
+        }
+      }
+    },
+    "common.a6.cancel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
+        }
+      }
+    },
+    "common.a6.ok": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "好"
+          }
+        }
+      }
+    },
+    "common.closeButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭"
+          }
+        }
+      }
+    },
+    "common.dismissButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "忽略"
+          }
+        }
+      }
+    },
+    "editor.a6.importing": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在载入照片…"
+          }
+        }
+      }
+    },
+    "editor.a6.recalibrateStart": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始重新配对"
+          }
+        }
+      }
+    },
+    "editor.a6.recalibrateTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新校准风格"
+          }
+        }
+      }
+    },
+    "editor.addPhotoButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加照片"
+          }
+        }
+      }
+    },
+    "editor.area.body": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身体"
+          }
+        }
+      }
+    },
+    "editor.area.face": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "面部"
+          }
+        }
+      }
+    },
+    "editor.area.skin": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肤质"
+          }
+        }
+      }
+    },
+    "editor.area.tone": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "色调"
+          }
+        }
+      }
+    },
+    "editor.areaUnavailable.noBody": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有检测到身体，身体工具已关闭。"
+          }
+        }
+      }
+    },
+    "editor.areaUnavailable.noFace": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有检测到人脸，面部和肤质工具已关闭。"
+          }
+        }
+      }
+    },
+    "editor.backgroundProtection": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保护背景"
+          }
+        }
+      }
+    },
+    "editor.backgroundProtectionHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "调整人像时，让直线和边缘保持稳定。"
+          }
+        }
+      }
+    },
+    "editor.backgroundProtectionOff.confirm": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭"
+          }
+        }
+      }
+    },
+    "editor.backgroundProtectionOff.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "墙面、门框等直线可能会弯曲。"
+          }
+        }
+      }
+    },
+    "editor.backgroundProtectionOff.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭背景保护？"
+          }
+        }
+      }
+    },
+    "editor.blemishClear": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清除标记"
+          }
+        }
+      }
+    },
+    "editor.blemishEmpty": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还没有瑕疵点。"
+          }
+        }
+      }
+    },
+    "editor.blemishPoints": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "瑕疵点"
+          }
+        }
+      }
+    },
+    "editor.blemishRemove": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "撤销上一个点"
+          }
+        }
+      }
+    },
+    "editor.cancel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
+        }
+      }
+    },
+    "editor.canvas.emptyMessage": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选一张照片开始编辑，全程在本机处理。"
+          }
+        }
+      }
+    },
+    "editor.canvas.emptyTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选一张人像"
+          }
+        }
+      }
+    },
+    "editor.canvas.hint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "长按查看原图，双指捏合缩放。"
+          }
+        }
+      }
+    },
+    "editor.canvas.label": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片预览"
+          }
+        }
+      }
+    },
+    "editor.compareEdited": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成片"
+          }
+        }
+      }
+    },
+    "editor.compareHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "长按照片查看原图。"
+          }
+        }
+      }
+    },
+    "editor.compareOriginal": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "原图"
+          }
+        }
+      }
+    },
+    "editor.emptyState": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还没有照片"
+          }
+        }
+      }
+    },
+    "editor.export.button": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "立即导出"
+          }
+        }
+      }
+    },
+    "editor.export.cancelButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
+        }
+      }
+    },
+    "editor.export.diagnostic": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "支持代码：%@"
+          }
+        }
+      }
+    },
+    "editor.export.dismissButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "忽略"
+          }
+        }
+      }
+    },
+    "editor.export.doneButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成"
+          }
+        }
+      }
+    },
+    "editor.export.format.fileSize": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%.1f MB"
+          }
+        }
+      }
+    },
+    "editor.export.format.heic": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HEIC"
+          }
+        }
+      }
+    },
+    "editor.export.format.jpeg": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "JPEG"
+          }
+        }
+      }
+    },
+    "editor.export.format.label": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文件格式"
+          }
+        }
+      }
+    },
+    "editor.export.format.megapixels": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%.1f MP"
+          }
+        }
+      }
+    },
+    "editor.export.format.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HEIC 体积更小、保留细节更多；JPEG 兼容性更好。"
+          }
+        }
+      }
+    },
+    "editor.export.format.pixelSize": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d × %d"
+          }
+        }
+      }
+    },
+    "editor.export.format.sectionTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "格式"
+          }
+        }
+      }
+    },
+    "editor.export.largeNotice": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这张照片很大，导出可能需要 20 秒左右。"
+          }
+        }
+      }
+    },
+    "editor.export.library.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私调只会把照片添加到相册，绝不会读取或上传。"
+          }
+        }
+      }
+    },
+    "editor.export.loading": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在以全分辨率渲染…"
+          }
+        }
+      }
+    },
+    "editor.export.loadingToggle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "预览加载状态"
+          }
+        }
+      }
+    },
+    "editor.export.locationRemoved": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已移除位置信息"
+          }
+        }
+      }
+    },
+    "editor.export.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出流程与相册权限将在后续版本上线。"
+          }
+        }
+      }
+    },
+    "editor.export.outcome.cancelled": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已取消导出，没有保存任何内容，也不计入次数。"
+          }
+        }
+      }
+    },
+    "editor.export.outcome.countPending": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片已保存或分享，但免费导出次数没能更新。"
+          }
+        }
+      }
+    },
+    "editor.export.outcome.savedMessage": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全分辨率照片已存入「照片」。"
+          }
+        }
+      }
+    },
+    "editor.export.outcome.savedTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已保存到「照片」"
+          }
+        }
+      }
+    },
+    "editor.export.outcome.shareCancelled": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分享没有完成，未计入导出次数。"
+          }
+        }
+      }
+    },
+    "editor.export.outcome.sharedMessage": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全分辨率文件已交给分享面板。"
+          }
+        }
+      }
+    },
+    "editor.export.outcome.sharedTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片已分享"
+          }
+        }
+      }
+    },
+    "editor.export.permission.deniedMessage": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在「设置」中允许私调添加照片，或改为分享。"
+          }
+        }
+      }
+    },
+    "editor.export.permission.deniedTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片访问权限已关闭"
+          }
+        }
+      }
+    },
+    "editor.export.permission.restrictedMessage": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这台设备不允许 App 向相册添加照片，请改为分享。"
+          }
+        }
+      }
+    },
+    "editor.export.permission.restrictedTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加照片受限"
+          }
+        }
+      }
+    },
+    "editor.export.permission.retryButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新检查"
+          }
+        }
+      }
+    },
+    "editor.export.permission.settingsButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开设置"
+          }
+        }
+      }
+    },
+    "editor.export.permission.shareButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "改为分享"
+          }
+        }
+      }
+    },
+    "editor.export.permission.unavailable": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前版本无法保存到「照片」，请改为分享。"
+          }
+        }
+      }
+    },
+    "editor.export.preview.accessibilityLabel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出照片预览"
+          }
+        }
+      }
+    },
+    "editor.export.preview.emptyTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还没有可导出的内容"
+          }
+        }
+      }
+    },
+    "editor.export.previewTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "预览"
+          }
+        }
+      }
+    },
+    "editor.export.privacy.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "渲染与编码都在这台 iPhone 上完成，不会上传任何内容。"
+          }
+        }
+      }
+    },
+    "editor.export.progress.awaitingShare": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在等待分享面板…"
+          }
+        }
+      }
+    },
+    "editor.export.progress.cancelled": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已取消导出"
+          }
+        }
+      }
+    },
+    "editor.export.progress.encoding": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在编码照片…"
+          }
+        }
+      }
+    },
+    "editor.export.progress.failed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出失败"
+          }
+        }
+      }
+    },
+    "editor.export.progress.finished": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出完成"
+          }
+        }
+      }
+    },
+    "editor.export.progress.idle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可以导出了"
+          }
+        }
+      }
+    },
+    "editor.export.progress.preparing": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在准备导出…"
+          }
+        }
+      }
+    },
+    "editor.export.progress.rendering": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在以全分辨率渲染…"
+          }
+        }
+      }
+    },
+    "editor.export.progress.requestingAccess": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在检查照片权限…"
+          }
+        }
+      }
+    },
+    "editor.export.progress.savingToLibrary": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在保存到「照片」…"
+          }
+        }
+      }
+    },
+    "editor.export.quality.high": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高"
+          }
+        }
+      }
+    },
+    "editor.export.quality.label": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "画质"
+          }
+        }
+      }
+    },
+    "editor.export.quality.maximum": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最高"
+          }
+        }
+      }
+    },
+    "editor.export.quality.standard": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标准"
+          }
+        }
+      }
+    },
+    "editor.export.quota.exhausted": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "免费导出已用完"
+          }
+        }
+      }
+    },
+    "editor.export.quota.exhaustedMessage": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "订阅后可无限导出，不订阅也能继续编辑。"
+          }
+        }
+      }
+    },
+    "editor.export.quota.exhaustedTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "免费导出次数已用完"
+          }
+        }
+      }
+    },
+    "editor.export.quota.free": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还剩 %d 次免费导出"
+          }
+        }
+      }
+    },
+    "editor.export.quota.freeOne": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还剩 1 次免费导出"
+          }
+        }
+      }
+    },
+    "editor.export.quota.unlimited": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无限导出"
+          }
+        }
+      }
+    },
+    "editor.export.quota.upgradeButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看方案"
+          }
+        }
+      }
+    },
+    "editor.export.quotaLoad.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取免费导出次数，请在导出前重试。"
+          }
+        }
+      }
+    },
+    "editor.export.quotaLoad.retryButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新查询"
+          }
+        }
+      }
+    },
+    "editor.export.quotaLoad.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法查询导出次数"
+          }
+        }
+      }
+    },
+    "editor.export.recovery.dismiss": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "忽略"
+          }
+        }
+      }
+    },
+    "editor.export.recovery.openSettings": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开设置"
+          }
+        }
+      }
+    },
+    "editor.export.recovery.retry": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重试"
+          }
+        }
+      }
+    },
+    "editor.export.recovery.saveInstead": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "改为保存到照片"
+          }
+        }
+      }
+    },
+    "editor.export.recovery.shareInstead": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "改为分享"
+          }
+        }
+      }
+    },
+    "editor.export.recovery.upgrade": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看方案"
+          }
+        }
+      }
+    },
+    "editor.export.retryButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重试"
+          }
+        }
+      }
+    },
+    "editor.export.saveButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存到照片"
+          }
+        }
+      }
+    },
+    "editor.export.shareButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分享…"
+          }
+        }
+      }
+    },
+    "editor.export.subtitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全分辨率导出，可直接存入「照片」或分享，位置信息默认移除。"
+          }
+        }
+      }
+    },
+    "editor.export.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出"
+          }
+        }
+      }
+    },
+    "editor.export.toast.placeholder": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前版本尚未接入导出。"
+          }
+        }
+      }
+    },
+    "editor.exportButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出"
+          }
+        }
+      }
+    },
+    "editor.faceSlim": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "瘦脸"
+          }
+        }
+      }
+    },
+    "editor.issue.analysis.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片还在。可以重新分析，或只调整色调。"
+          }
+        }
+      }
+    },
+    "editor.issue.analysis.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "人像分析失败"
+          }
+        }
+      }
+    },
+    "editor.issue.dismiss": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "忽略"
+          }
+        }
+      }
+    },
+    "editor.issue.export.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有保存任何内容。请检查导出选项后重试。"
+          }
+        }
+      }
+    },
+    "editor.issue.export.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出失败"
+          }
+        }
+      }
+    },
+    "editor.issue.render.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "之前的预览没有改变。可以重试，或降低强度。"
+          }
+        }
+      }
+    },
+    "editor.issue.render.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "渲染失败"
+          }
+        }
+      }
+    },
+    "editor.issue.retry": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重试"
+          }
+        }
+      }
+    },
+    "editor.issue.style.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在使用自然默认。在你调整工具前，照片不会改变。"
+          }
+        }
+      }
+    },
+    "editor.issue.style.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "个人风格不可用"
+          }
+        }
+      }
+    },
+    "editor.issue.useNatural": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用自然强度"
+          }
+        }
+      }
+    },
+    "editor.jaw": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下颌线"
+          }
+        }
+      }
+    },
+    "editor.naturalPreset": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自然 70%"
+          }
+        }
+      }
+    },
+    "editor.naturalPresetHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一个保守的起点，之后仍可调整每一项工具。"
+          }
+        }
+      }
+    },
+    "editor.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片只保存在这台设备上。"
+          }
+        }
+      }
+    },
+    "editor.redo": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重做"
+          }
+        }
+      }
+    },
+    "editor.reset": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重置"
+          }
+        }
+      }
+    },
+    "editor.section.face": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "面部"
+          }
+        }
+      }
+    },
+    "editor.section.faceNote": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "瘦脸与下颌线，默认保持自然。"
+          }
+        }
+      }
+    },
+    "editor.section.skin": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肤质"
+          }
+        }
+      }
+    },
+    "editor.section.skinNote": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保留肌肤纹理的磨皮与匀肤，不美白。"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.applyAtCenter": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "修复画面中心的一处"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.canvasHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "点按瑕疵即可修复。双指缩放，拖动平移。"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.canvasLabel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "瑕疵预览"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.canvasValue": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d 处标记，%d 倍缩放"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.clearButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清除标记"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.count": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d 处标记"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.doneButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.empty": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还没有标记。点按瑕疵就能修复。"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.radius": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "笔刷大小"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.radiusHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "修复范围的大小，以照片短边为参照。"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.startButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "修复瑕疵"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.subtitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "点按小瑕疵就能修复。双指缩放，请避开眼睛和嘴唇。"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "瑕疵修复"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.undoAction": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "撤销上一处标记"
+          }
+        }
+      }
+    },
+    "editor.skin.blemish.undoButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "撤销标记"
+          }
+        }
+      }
+    },
+    "editor.skin.cancelButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
+        }
+      }
+    },
+    "editor.skin.error.blemish": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这处瑕疵没能修复，之前的效果没有改变。"
+          }
+        }
+      }
+    },
+    "editor.skin.error.code": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "代码 %@"
+          }
+        }
+      }
+    },
+    "editor.skin.error.dismissButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "忽略"
+          }
+        }
+      }
+    },
+    "editor.skin.error.retouch": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "磨皮没能应用，之前的效果没有改变。"
+          }
+        }
+      }
+    },
+    "editor.skin.error.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肤质调整失败"
+          }
+        }
+      }
+    },
+    "editor.skin.error.undo": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标记更改没能应用，你的标记没有改变。"
+          }
+        }
+      }
+    },
+    "editor.skin.evenness": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "匀肤"
+          }
+        }
+      }
+    },
+    "editor.skin.maskMissing": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这张照片没有生成肌肤蒙版，磨皮和匀肤可能没有效果。"
+          }
+        }
+      }
+    },
+    "editor.skin.notice.cancelled": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已取消渲染，上次的效果没有改变。"
+          }
+        }
+      }
+    },
+    "editor.skin.notice.dismissButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "忽略"
+          }
+        }
+      }
+    },
+    "editor.skin.notice.limit": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标记数量已达上限，撤销一处后才能继续添加。"
+          }
+        }
+      }
+    },
+    "editor.skin.originalBadge": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在显示原图"
+          }
+        }
+      }
+    },
+    "editor.skin.rendering": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在应用肤质调整…"
+          }
+        }
+      }
+    },
+    "editor.skin.resetButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重置"
+          }
+        }
+      }
+    },
+    "editor.skin.resetHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重置磨皮、匀肤和所有瑕疵标记。"
+          }
+        }
+      }
+    },
+    "editor.skin.retryButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重试"
+          }
+        }
+      }
+    },
+    "editor.skin.unavailable.analysisMismatch": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这张照片的分析结果与尺寸不匹配，请重新打开照片再试。"
+          }
+        }
+      }
+    },
+    "editor.skin.unavailable.noFace": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有检测到人脸。可以换一张人像，或改用光线与色调。"
+          }
+        }
+      }
+    },
+    "editor.skin.unavailable.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肤质工具不可用"
+          }
+        }
+      }
+    },
+    "editor.skin.zoom.accessibility": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缩放 %d 倍"
+          }
+        }
+      }
+    },
+    "editor.skin.zoom.inButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "放大"
+          }
+        }
+      }
+    },
+    "editor.skin.zoom.outButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缩小"
+          }
+        }
+      }
+    },
+    "editor.skin.zoom.resetButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重置缩放"
+          }
+        }
+      }
+    },
+    "editor.skin.zoom.value": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d×"
+          }
+        }
+      }
+    },
+    "editor.slider.arm": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手臂"
+          }
+        }
+      }
+    },
+    "editor.slider.blemish": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "瑕疵"
+          }
+        }
+      }
+    },
+    "editor.slider.contrast": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "对比度"
+          }
+        }
+      }
+    },
+    "editor.slider.evenness": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "匀肤"
+          }
+        }
+      }
+    },
+    "editor.slider.exposure": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "曝光"
+          }
+        }
+      }
+    },
+    "editor.slider.faceSlim": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "瘦脸"
+          }
+        }
+      }
+    },
+    "editor.slider.grain": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "颗粒"
+          }
+        }
+      }
+    },
+    "editor.slider.jaw": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下颌"
+          }
+        }
+      }
+    },
+    "editor.slider.leg": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "腿部"
+          }
+        }
+      }
+    },
+    "editor.slider.legLength": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "腿长"
+          }
+        }
+      }
+    },
+    "editor.slider.saturation": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "饱和度"
+          }
+        }
+      }
+    },
+    "editor.slider.smoothing": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "磨皮"
+          }
+        }
+      }
+    },
+    "editor.slider.temperature": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "色温"
+          }
+        }
+      }
+    },
+    "editor.slider.waist": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "腰部"
+          }
+        }
+      }
+    },
+    "editor.smoothing": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "磨皮"
+          }
+        }
+      }
+    },
+    "editor.splitComparison": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分屏"
+          }
+        }
+      }
+    },
+    "editor.splitComparisonHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拖动分隔线对比原图与成片。"
+          }
+        }
+      }
+    },
+    "editor.status.analysisLoading": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在识别人脸和身体"
+          }
+        }
+      }
+    },
+    "editor.status.degraded": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "预览画质已降低"
+          }
+        }
+      }
+    },
+    "editor.status.exportCompleted": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出已就绪"
+          }
+        }
+      }
+    },
+    "editor.status.exporting": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在导出"
+          }
+        }
+      }
+    },
+    "editor.status.preview": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "预览"
+          }
+        }
+      }
+    },
+    "editor.status.renderingFull": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在渲染高清画质"
+          }
+        }
+      }
+    },
+    "editor.status.renderingPreview": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在更新预览"
+          }
+        }
+      }
+    },
+    "editor.strength": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "总强度"
+          }
+        }
+      }
+    },
+    "editor.strengthHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "同时调整风格和所有手动调整。调为零即显示原图。"
+          }
+        }
+      }
+    },
+    "editor.styleButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "风格"
+          }
+        }
+      }
+    },
+    "editor.subtitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只调整你在意的质感与轮廓。"
+          }
+        }
+      }
+    },
+    "editor.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑"
+          }
+        }
+      }
+    },
+    "editor.toast.placeholder": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前版本尚未接入照片导入。"
+          }
+        }
+      }
+    },
+    "editor.undo": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "撤销"
+          }
+        }
+      }
+    },
+    "editor.warning.backgroundRisk": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "背景保护已关闭，直线可能会弯曲。"
+          }
+        }
+      }
+    },
+    "editor.warning.lowConfidence": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "人像识别把握较低，导出前请先检查效果。"
+          }
+        }
+      }
+    },
+    "editor.warning.lowLight": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "光线较暗，肤质和色调效果可能会有更多噪点。"
+          }
+        }
+      }
+    },
+    "editor.warning.multipleFaces": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检测到多张人脸。请以主体为准，并检查效果。"
+          }
+        }
+      }
+    },
+    "editor.warning.noBody": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有检测到身体，身体工具不可用。"
+          }
+        }
+      }
+    },
+    "editor.warning.noFace": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有检测到人脸，面部和肤质工具不可用。"
+          }
+        }
+      }
+    },
+    "editor.warning.occlusion": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "人像有部分被遮挡，效果可能不均匀。"
+          }
+        }
+      }
+    },
+    "editor.zoomReset": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "适应屏幕"
+          }
+        }
+      }
+    },
+    "error.a6.alertTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提示"
+          }
+        }
+      }
+    },
+    "error.action.chooseAnotherPhoto": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "换一张照片"
+          }
+        }
+      }
+    },
+    "error.action.continueAnyway": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "继续"
+          }
+        }
+      }
+    },
+    "error.action.continueOffline": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "继续编辑"
+          }
+        }
+      }
+    },
+    "error.action.dismiss": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "忽略"
+          }
+        }
+      }
+    },
+    "error.action.freeUpSpace": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清理空间"
+          }
+        }
+      }
+    },
+    "error.action.openSettings": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开设置"
+          }
+        }
+      }
+    },
+    "error.action.recalibrate": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新校准"
+          }
+        }
+      }
+    },
+    "error.action.reduceStrength": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "降低强度"
+          }
+        }
+      }
+    },
+    "error.action.restorePurchase": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢复购买"
+          }
+        }
+      }
+    },
+    "error.action.resume": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "继续"
+          }
+        }
+      }
+    },
+    "error.action.retry": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重试"
+          }
+        }
+      }
+    },
+    "error.action.saveInstead": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "改为保存到照片"
+          }
+        }
+      }
+    },
+    "error.action.shareInstead": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "改为分享"
+          }
+        }
+      }
+    },
+    "error.action.upgrade": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看方案"
+          }
+        }
+      }
+    },
+    "error.action.useNaturalStyle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用自然风格"
+          }
+        }
+      }
+    },
+    "error.analysis.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "人像分析没有完成，请重试。"
+          }
+        }
+      }
+    },
+    "error.analysis.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法分析这张照片"
+          }
+        }
+      }
+    },
+    "error.cancelled.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有做任何更改。"
+          }
+        }
+      }
+    },
+    "error.cancelled.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已取消"
+          }
+        }
+      }
+    },
+    "error.diagnosticLabel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "支持代码：%@"
+          }
+        }
+      }
+    },
+    "error.export.encode.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文件没能写入，请重试或换一种格式。"
+          }
+        }
+      }
+    },
+    "error.export.encode.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法处理这个文件"
+          }
+        }
+      }
+    },
+    "error.export.image.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片数据无效或无法读取，请换一张照片。"
+          }
+        }
+      }
+    },
+    "error.export.image.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法导出这张照片"
+          }
+        }
+      }
+    },
+    "error.export.libraryUnavailable.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前版本无法向相册添加照片，请改为分享全分辨率文件。"
+          }
+        }
+      }
+    },
+    "error.export.libraryUnavailable.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法保存到「照片」"
+          }
+        }
+      }
+    },
+    "error.export.permission.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私调只能添加照片，不会读取你的相册。请在「设置」中允许访问，或改为分享。"
+          }
+        }
+      }
+    },
+    "error.export.permission.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片访问权限已关闭"
+          }
+        }
+      }
+    },
+    "error.export.quota.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "免费导出已用完。订阅后可继续导出，也可以继续编辑。"
+          }
+        }
+      }
+    },
+    "error.export.quota.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "免费导出已用完"
+          }
+        }
+      }
+    },
+    "error.export.quotaUnavailable.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取导出次数，请稍后重试。"
+          }
+        }
+      }
+    },
+    "error.export.quotaUnavailable.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法查询导出次数"
+          }
+        }
+      }
+    },
+    "error.export.render.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全分辨率渲染失败，原图未受影响。请重试。"
+          }
+        }
+      }
+    },
+    "error.export.render.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法渲染这张照片"
+          }
+        }
+      }
+    },
+    "error.export.resolution.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没能导出完整尺寸的照片。请重试，或换一张照片、换一种格式。"
+          }
+        }
+      }
+    },
+    "error.export.resolution.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出分辨率偏低"
+          }
+        }
+      }
+    },
+    "error.export.restricted.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这台设备限制了相册更改，请改为分享。"
+          }
+        }
+      }
+    },
+    "error.export.restricted.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加照片受限"
+          }
+        }
+      }
+    },
+    "error.export.save.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片没能添加到相册。请重试，或改为分享。"
+          }
+        }
+      }
+    },
+    "error.export.save.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法保存到「照片」"
+          }
+        }
+      }
+    },
+    "error.export.share.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统分享面板打不开，请改为保存到「照片」。"
+          }
+        }
+      }
+    },
+    "error.export.share.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分享不可用"
+          }
+        }
+      }
+    },
+    "error.export.unavailable.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前版本导出引擎尚未就绪，请重新打开私调后重试。"
+          }
+        }
+      }
+    },
+    "error.export.unavailable.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出不可用"
+          }
+        }
+      }
+    },
+    "error.export.unknown.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "出了点问题，请重试。"
+          }
+        }
+      }
+    },
+    "error.export.unknown.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出失败"
+          }
+        }
+      }
+    },
+    "error.image.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "图片已损坏或格式不支持，请换一张照片。"
+          }
+        }
+      }
+    },
+    "error.image.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这张照片无法使用"
+          }
+        }
+      }
+    },
+    "error.imageTooSmall.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请选择长边更长的照片，细节才能保持清晰。"
+          }
+        }
+      }
+    },
+    "error.imageTooSmall.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片尺寸太小"
+          }
+        }
+      }
+    },
+    "error.interrupted.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的编辑已保留，准备好后继续即可。"
+          }
+        }
+      }
+    },
+    "error.interrupted.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "会话已中断"
+          }
+        }
+      }
+    },
+    "error.lowBattery.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "为省电，渲染可能会暂停。你的编辑不会丢失。"
+          }
+        }
+      }
+    },
+    "error.lowBattery.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "电量不足"
+          }
+        }
+      }
+    },
+    "error.mask.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主体蒙版无效，请重试或换一张照片。"
+          }
+        }
+      }
+    },
+    "error.mask.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法生成蒙版"
+          }
+        }
+      }
+    },
+    "error.networkUnavailable.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接超时，请检查网络后重试。"
+          }
+        }
+      }
+    },
+    "error.networkUnavailable.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法连接 App Store"
+          }
+        }
+      }
+    },
+    "error.noBody.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身体工具需要全身照。可以使用自然风格，或换一张照片。"
+          }
+        }
+      }
+    },
+    "error.noBody.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有检测到身体"
+          }
+        }
+      }
+    },
+    "error.noFace.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可以使用自然风格，或换一张面部清晰的照片。"
+          }
+        }
+      }
+    },
+    "error.noFace.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有检测到人脸"
+          }
+        }
+      }
+    },
+    "error.offline.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑、风格匹配和保存到「照片」仍可正常使用；购买和恢复需要联网。"
+          }
+        }
+      }
+    },
+    "error.offline.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前无网络"
+          }
+        }
+      }
+    },
+    "error.pairing.import.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请换一张 HEIC、JPEG 或 PNG 照片。"
+          }
+        }
+      }
+    },
+    "error.pairing.import.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法打开这张照片"
+          }
+        }
+      }
+    },
+    "error.pairing.noData.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择器返回了空照片，请重试。"
+          }
+        }
+      }
+    },
+    "error.pairing.noData.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有照片数据"
+          }
+        }
+      }
+    },
+    "error.pairing.session.corrupted.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存的会话已损坏。请新建会话，原文件不会被改动。"
+          }
+        }
+      }
+    },
+    "error.pairing.session.corrupted.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取已保存的配对"
+          }
+        }
+      }
+    },
+    "error.pairing.session.load.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请重新载入已保存的会话。"
+          }
+        }
+      }
+    },
+    "error.pairing.session.load.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法恢复配对"
+          }
+        }
+      }
+    },
+    "error.pairing.session.save.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配对还在，请重新保存。"
+          }
+        }
+      }
+    },
+    "error.pairing.session.save.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法保存配对"
+          }
+        }
+      }
+    },
+    "error.pairing.session.schema.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前版本无法读取已保存的会话，请新建会话继续。"
+          }
+        }
+      }
+    },
+    "error.pairing.session.schema.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已保存的配对需要更新版本"
+          }
+        }
+      }
+    },
+    "error.pairing.session.startFresh": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新建会话"
+          }
+        }
+      }
+    },
+    "error.pairing.tooSmall.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请使用长边至少 512 像素的照片。"
+          }
+        }
+      }
+    },
+    "error.pairing.tooSmall.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片尺寸太小"
+          }
+        }
+      }
+    },
+    "error.pairing.unsupported.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请选择 HEIC、JPEG 或 PNG 照片。"
+          }
+        }
+      }
+    },
+    "error.pairing.unsupported.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不支持的照片格式"
+          }
+        }
+      }
+    },
+    "error.photoLibraryUnavailable.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂时无法保存到「照片」，请改为分享。"
+          }
+        }
+      }
+    },
+    "error.photoLibraryUnavailable.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「照片」不可用"
+          }
+        }
+      }
+    },
+    "error.photoPermission.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在「设置」中开启「仅添加照片」权限，或改为分享。"
+          }
+        }
+      }
+    },
+    "error.photoPermission.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片访问权限已关闭"
+          }
+        }
+      }
+    },
+    "error.photoPermissionRestricted.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这台设备无法添加照片，但仍可分享文件。"
+          }
+        }
+      }
+    },
+    "error.photoPermissionRestricted.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片访问受限"
+          }
+        }
+      }
+    },
+    "error.purchase.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有产生扣费。请重试或恢复购买。"
+          }
+        }
+      }
+    },
+    "error.purchase.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "购买未完成"
+          }
+        }
+      }
+    },
+    "error.purchaseUnavailable.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store 暂时无法载入，你仍可免费继续编辑。"
+          }
+        }
+      }
+    },
+    "error.purchaseUnavailable.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store 不可用"
+          }
+        }
+      }
+    },
+    "error.purchaseVerification.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法验证 App Store 收据，请尝试恢复购买。"
+          }
+        }
+      }
+    },
+    "error.purchaseVerification.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法验证购买"
+          }
+        }
+      }
+    },
+    "error.render.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "渲染失败，上次正常的预览还在。可以调低强度再试。"
+          }
+        }
+      }
+    },
+    "error.render.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法应用这次编辑"
+          }
+        }
+      }
+    },
+    "error.restore.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有更改任何购买，请检查网络后重试。"
+          }
+        }
+      }
+    },
+    "error.restore.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢复未完成"
+          }
+        }
+      }
+    },
+    "error.schema.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这个风格由更新版本创建，请重新校准后继续。"
+          }
+        }
+      }
+    },
+    "error.schema.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "风格需要重新校准"
+          }
+        }
+      }
+    },
+    "error.settings.copyFailed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法复制到剪贴板。"
+          }
+        }
+      }
+    },
+    "error.state.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私调无法继续这个操作，请重试。"
+          }
+        }
+      }
+    },
+    "error.state.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "状态有点不对"
+          }
+        }
+      }
+    },
+    "error.storage.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地数据无法读取或保存，请重试。"
+          }
+        }
+      }
+    },
+    "error.storage.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法载入你的数据"
+          }
+        }
+      }
+    },
+    "error.storageFull.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请清理空间后重试，原图未受影响。"
+          }
+        }
+      }
+    },
+    "error.storageFull.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "存储空间不足"
+          }
+        }
+      }
+    },
+    "error.storageLow.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出大尺寸照片前，请先清理一些空间。"
+          }
+        }
+      }
+    },
+    "error.storageLow.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "存储空间快满了"
+          }
+        }
+      }
+    },
+    "error.storageUnavailable.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私调暂时无法读写本地数据，请重试。"
+          }
+        }
+      }
+    },
+    "error.storageUnavailable.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "存储不可用"
+          }
+        }
+      }
+    },
+    "error.storageWrite.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数据没能写入，请重试。"
+          }
+        }
+      }
+    },
+    "error.storageWrite.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法保存到本机"
+          }
+        }
+      }
+    },
+    "error.thermalPressure.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在手机降温前，预览画质可能会降低，但仍可继续编辑。"
+          }
+        }
+      }
+    },
+    "error.thermalPressure.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone 温度偏高"
+          }
+        }
+      }
+    },
+    "error.unknown.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "操作没有完成，请重试。如果反复出现，请分享支持代码。"
+          }
+        }
+      }
+    },
+    "error.unknown.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "出了点问题"
+          }
+        }
+      }
+    },
+    "onboarding.a6.naturalDefault": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用自然默认"
+          }
+        }
+      }
+    },
+    "onboarding.a6.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不需要账号，也不会上传。可以先导入配对，或直接使用自然默认，之后再校准。"
+          }
+        }
+      }
+    },
+    "onboarding.a6.startPairing": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始导入配对"
+          }
+        }
+      }
+    },
+    "onboarding.a6.subtitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用几组原图与成片，让私调学习你的修图风格。所有照片与风格只留在本机。"
+          }
+        }
+      }
+    },
+    "onboarding.a6.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "欢迎使用私调"
+          }
+        }
+      }
+    },
+    "onboarding.naturalDefaultButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用自然默认"
+          }
+        }
+      }
+    },
+    "onboarding.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不用账号，也不会上传。用几组修图前后对比来校准，或直接使用自然默认。"
+          }
+        }
+      }
+    },
+    "onboarding.startButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始校准"
+          }
+        }
+      }
+    },
+    "onboarding.subtitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 iPhone 上学会属于你的照片风格，并直接应用。"
+          }
+        }
+      }
+    },
+    "onboarding.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "欢迎使用私调"
+          }
+        }
+      }
+    },
+    "pairing.action.cancel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
+        }
+      }
+    },
+    "pairing.action.retry": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重试"
+          }
+        }
+      }
+    },
+    "pairing.addPairButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加配对"
+          }
+        }
+      }
+    },
+    "pairing.checklistTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该选哪些照片"
+          }
+        }
+      }
+    },
+    "pairing.continue.hint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "至少添加 3 组可用配对才能继续。"
+          }
+        }
+      }
+    },
+    "pairing.continue.ready": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可用配对已就绪，可以开始校准。"
+          }
+        }
+      }
+    },
+    "pairing.continueButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "继续"
+          }
+        }
+      }
+    },
+    "pairing.count.good": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "良好"
+          }
+        }
+      }
+    },
+    "pairing.count.good.accessibility": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "良好配对"
+          }
+        }
+      }
+    },
+    "pairing.count.rejected": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不可用"
+          }
+        }
+      }
+    },
+    "pairing.count.rejected.accessibility": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不能用于学习的配对"
+          }
+        }
+      }
+    },
+    "pairing.count.warning": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "需留意"
+          }
+        }
+      }
+    },
+    "pairing.count.warning.accessibility": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "需要留意的配对"
+          }
+        }
+      }
+    },
+    "pairing.empty.action": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加第一组配对"
+          }
+        }
+      }
+    },
+    "pairing.empty.hint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "先选原图，再选成片。"
+          }
+        }
+      }
+    },
+    "pairing.empty.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选一张你修过的照片和它的原图。3 组可用配对就够开始了。"
+          }
+        }
+      }
+    },
+    "pairing.empty.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还没有配对"
+          }
+        }
+      }
+    },
+    "pairing.import.hint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在选择器里先选原图，再选修好的成片。"
+          }
+        }
+      }
+    },
+    "pairing.loading": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在恢复你的配对…"
+          }
+        }
+      }
+    },
+    "pairing.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不用账号，也不会上传。配对只让私调在这台 iPhone 上学习。"
+          }
+        }
+      }
+    },
+    "pairing.notice.completed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这些配对已保存。"
+          }
+        }
+      }
+    },
+    "pairing.notice.dismiss": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "忽略"
+          }
+        }
+      }
+    },
+    "pairing.notice.keepEditing": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "继续编辑"
+          }
+        }
+      }
+    },
+    "pairing.notice.limitReached": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每次最多 12 组配对。"
+          }
+        }
+      }
+    },
+    "pairing.notice.restored": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已恢复上次的配对。"
+          }
+        }
+      }
+    },
+    "pairing.notice.stale": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭 App 后照片会被释放，重新选择即可继续使用这些配对。"
+          }
+        }
+      }
+    },
+    "pairing.pair.delete": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除配对"
+          }
+        }
+      }
+    },
+    "pairing.pair.label": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配对"
+          }
+        }
+      }
+    },
+    "pairing.permission.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片选择器在系统独立进程中运行，私调无法访问你的整个相册。"
+          }
+        }
+      }
+    },
+    "pairing.permission.unavailable.message": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统照片选择器暂时打不开，请检查设备限制后重试。"
+          }
+        }
+      }
+    },
+    "pairing.permission.unavailable.retry": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重试"
+          }
+        }
+      }
+    },
+    "pairing.permission.unavailable.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片选择器不可用"
+          }
+        }
+      }
+    },
+    "pairing.progress.accessibilityLabel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配对进度"
+          }
+        }
+      }
+    },
+    "pairing.progress.caption": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可用配对"
+          }
+        }
+      }
+    },
+    "pairing.quality.checking": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在检查这组配对…"
+          }
+        }
+      }
+    },
+    "pairing.quality.failed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "质量检查未完成"
+          }
+        }
+      }
+    },
+    "pairing.quality.failure.analysisFailed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检查没能完成。"
+          }
+        }
+      }
+    },
+    "pairing.quality.failure.analyzerUnavailable": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前版本无法进行质量检查。"
+          }
+        }
+      }
+    },
+    "pairing.quality.failure.cancelled": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检查已中断。"
+          }
+        }
+      }
+    },
+    "pairing.quality.failure.unknown": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检查时出了点问题。"
+          }
+        }
+      }
+    },
+    "pairing.quality.good": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配对良好"
+          }
+        }
+      }
+    },
+    "pairing.quality.goodHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "原图与成片对得很准。"
+          }
+        }
+      }
+    },
+    "pairing.quality.rejected": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不可用"
+          }
+        }
+      }
+    },
+    "pairing.quality.rejectedHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这组配对不会用于学习。"
+          }
+        }
+      }
+    },
+    "pairing.quality.retry": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新检查"
+          }
+        }
+      }
+    },
+    "pairing.quality.short.checking": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检查中"
+          }
+        }
+      }
+    },
+    "pairing.quality.short.failed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "失败"
+          }
+        }
+      }
+    },
+    "pairing.quality.short.good": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "良好"
+          }
+        }
+      }
+    },
+    "pairing.quality.short.rejected": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不可用"
+          }
+        }
+      }
+    },
+    "pairing.quality.short.waiting": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未完成"
+          }
+        }
+      }
+    },
+    "pairing.quality.short.warning": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "留意"
+          }
+        }
+      }
+    },
+    "pairing.quality.waiting": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请先选好两张照片"
+          }
+        }
+      }
+    },
+    "pairing.quality.warning": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可用，需留意"
+          }
+        }
+      }
+    },
+    "pairing.quality.warningHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这组配对可以用来学习，但两张照片的差异比平常大。"
+          }
+        }
+      }
+    },
+    "pairing.reason.analysisUnavailable": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私调无法细致对比这两张照片。"
+          }
+        }
+      }
+    },
+    "pairing.reason.aspectRatioChanged": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成片被裁成了不同的比例。"
+          }
+        }
+      }
+    },
+    "pairing.reason.aspectRatioMismatch": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "两张照片的画幅比例差别很大。"
+          }
+        }
+      }
+    },
+    "pairing.reason.dynamic": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这组配对还需要再仔细看看。"
+          }
+        }
+      }
+    },
+    "pairing.reason.misaligned": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成片有轻微位移或重新构图。"
+          }
+        }
+      }
+    },
+    "pairing.reason.notRegistered": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成片偏移太多，无法对比。"
+          }
+        }
+      }
+    },
+    "pairing.reason.resolutionReduced": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成片分辨率比原图低。"
+          }
+        }
+      }
+    },
+    "pairing.reason.resolutionTooLow": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成片比原图小很多。"
+          }
+        }
+      }
+    },
+    "pairing.reason.samePhoto": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "两个位置放的是同一张照片。"
+          }
+        }
+      }
+    },
+    "pairing.reason.semanticDrift": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "两张照片的画面可能有细微差别。"
+          }
+        }
+      }
+    },
+    "pairing.reason.semanticMismatch": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "两张照片看起来不像同一个场景。"
+          }
+        }
+      }
+    },
+    "pairing.reason.structureChanged": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这次修图改动的不只是色调和肤质。"
+          }
+        }
+      }
+    },
+    "pairing.reason.structureMismatch": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "修图对画面的改动太大，无法用来学习。"
+          }
+        }
+      }
+    },
+    "pairing.reason.unknown": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这组配对还需要再仔细看看。"
+          }
+        }
+      }
+    },
+    "pairing.save.failed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法保存配对"
+          }
+        }
+      }
+    },
+    "pairing.save.idle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配对只保存在这台设备上。"
+          }
+        }
+      }
+    },
+    "pairing.save.retry": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新保存"
+          }
+        }
+      }
+    },
+    "pairing.save.saved": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已保存"
+          }
+        }
+      }
+    },
+    "pairing.save.saving": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在保存…"
+          }
+        }
+      }
+    },
+    "pairing.skipButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂时跳过"
+          }
+        }
+      }
+    },
+    "pairing.slot.choose": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择"
+          }
+        }
+      }
+    },
+    "pairing.slot.chooseEdited": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择成片"
+          }
+        }
+      }
+    },
+    "pairing.slot.chooseOriginal": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择原图"
+          }
+        }
+      }
+    },
+    "pairing.slot.edited": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成片"
+          }
+        }
+      }
+    },
+    "pairing.slot.emptyHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还没有照片"
+          }
+        }
+      }
+    },
+    "pairing.slot.importing": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在载入照片…"
+          }
+        }
+      }
+    },
+    "pairing.slot.original": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "原图"
+          }
+        }
+      }
+    },
+    "pairing.slot.remove": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除"
+          }
+        }
+      }
+    },
+    "pairing.slot.removeEdited": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除成片"
+          }
+        }
+      }
+    },
+    "pairing.slot.removeOriginal": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除原图"
+          }
+        }
+      }
+    },
+    "pairing.slot.replace": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "替换"
+          }
+        }
+      }
+    },
+    "pairing.slot.replaceEdited": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "替换成片"
+          }
+        }
+      }
+    },
+    "pairing.slot.replaceOriginal": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "替换原图"
+          }
+        }
+      }
+    },
+    "pairing.slot.staleMessage": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭 App 后照片已释放，请重新选择以保留这组配对。"
+          }
+        }
+      }
+    },
+    "pairing.slot.staleTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新选择"
+          }
+        }
+      }
+    },
+    "pairing.subtitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "把你喜欢的修图前后对比放进来，私调会在这台设备上学会你的风格。"
+          }
+        }
+      }
+    },
+    "pairing.target.eight": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "8 组"
+          }
+        }
+      }
+    },
+    "pairing.target.five": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 组"
+          }
+        }
+      }
+    },
+    "pairing.target.label": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目标"
+          }
+        }
+      }
+    },
+    "pairing.target.three": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 组"
+          }
+        }
+      }
+    },
+    "pairing.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片配对"
+          }
+        }
+      }
+    },
+    "pairing.toast.placeholder": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前版本尚未接入配对导入。"
+          }
+        }
+      }
+    },
+    "pairing.undo.action": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "撤销"
+          }
+        }
+      }
+    },
+    "pairing.undo.pair": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已删除配对"
+          }
+        }
+      }
+    },
+    "pairing.undo.photo": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已移除照片"
+          }
+        }
+      }
+    },
+    "paywall.closeButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂不"
+          }
+        }
+      }
+    },
+    "paywall.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "月度方案、价格和恢复购买会在后续版本上线，当前版本不会产生任何扣费。"
+          }
+        }
+      }
+    },
+    "paywall.restoreButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢复购买"
+          }
+        }
+      }
+    },
+    "paywall.subscribeButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "订阅"
+          }
+        }
+      }
+    },
+    "paywall.subtitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 次免费导出后，可无限导出。"
+          }
+        }
+      }
+    },
+    "paywall.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "StyleTone Pro"
+          }
+        }
+      }
+    },
+    "paywall.toast.placeholder": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前版本尚未接入购买功能。"
+          }
+        }
+      }
+    },
+    "settings.a6.deleteConfirm": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除"
+          }
+        }
+      }
+    },
+    "settings.a6.deleteData": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除全部本地数据"
+          }
+        }
+      }
+    },
+    "settings.a6.deleteFailed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除没有完成，请重试。"
+          }
+        }
+      }
+    },
+    "settings.a6.deleteTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除全部本地数据？"
+          }
+        }
+      }
+    },
+    "settings.a6.privacyTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地数据与隐私"
+          }
+        }
+      }
+    },
+    "settings.about.build": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "构建号"
+          }
+        }
+      }
+    },
+    "settings.about.system": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统"
+          }
+        }
+      }
+    },
+    "settings.about.version": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "版本"
+          }
+        }
+      }
+    },
+    "settings.common.cancel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
+        }
+      }
+    },
+    "settings.common.close": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭"
+          }
+        }
+      }
+    },
+    "settings.common.copy": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "复制"
+          }
+        }
+      }
+    },
+    "settings.common.dismiss": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "忽略"
+          }
+        }
+      }
+    },
+    "settings.deleteData.back": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "返回"
+          }
+        }
+      }
+    },
+    "settings.deleteData.cancel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
+        }
+      }
+    },
+    "settings.deleteData.continue": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "继续"
+          }
+        }
+      }
+    },
+    "settings.deleteData.failedBody": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请重试。如果还是不行，请重新打开私调后再试。"
+          }
+        }
+      }
+    },
+    "settings.deleteData.failedTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "部分数据没能删除"
+          }
+        }
+      }
+    },
+    "settings.deleteData.finalConfirm": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全部删除"
+          }
+        }
+      }
+    },
+    "settings.deleteData.finalMessage": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私调的所有本地数据都会被永久删除，且无法恢复。"
+          }
+        }
+      }
+    },
+    "settings.deleteData.finalTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全部删除？"
+          }
+        }
+      }
+    },
+    "settings.deleteData.hint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "会清除风格、校准、历史、导出次数、诊断和偏好设置。"
+          }
+        }
+      }
+    },
+    "settings.deleteData.keepPhotos": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已存入相册的照片"
+          }
+        }
+      }
+    },
+    "settings.deleteData.keepPurchase": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的 Apple ID 购买与订阅"
+          }
+        }
+      }
+    },
+    "settings.deleteData.keepSubscription": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除数据不会取消订阅，请在 App Store 账号设置中管理。"
+          }
+        }
+      }
+    },
+    "settings.deleteData.keepTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "会保留"
+          }
+        }
+      }
+    },
+    "settings.deleteData.noticeDeleted": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地数据已全部删除。"
+          }
+        }
+      }
+    },
+    "settings.deleteData.noticeFailed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地数据没能完全删除。"
+          }
+        }
+      }
+    },
+    "settings.deleteData.progress": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在删除本地数据…"
+          }
+        }
+      }
+    },
+    "settings.deleteData.removeDiagnostics": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地诊断和偏好设置"
+          }
+        }
+      }
+    },
+    "settings.deleteData.removePairs": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已保存的配对信息与编辑历史"
+          }
+        }
+      }
+    },
+    "settings.deleteData.removeProfiles": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "风格档案与校准数据"
+          }
+        }
+      }
+    },
+    "settings.deleteData.removeQuota": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出次数与缓存"
+          }
+        }
+      }
+    },
+    "settings.deleteData.removeTemporary": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "临时文件"
+          }
+        }
+      }
+    },
+    "settings.deleteData.removeTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "会被删除"
+          }
+        }
+      }
+    },
+    "settings.deleteData.restartHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新打开私调即可重新开始。"
+          }
+        }
+      }
+    },
+    "settings.deleteData.retry": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重试"
+          }
+        }
+      }
+    },
+    "settings.deleteData.sheetIntro": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这会清除私调在这台 iPhone 上保存的数据，且无法恢复。"
+          }
+        }
+      }
+    },
+    "settings.deleteData.sheetTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除全部本地数据？"
+          }
+        }
+      }
+    },
+    "settings.deleteData.startOver": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新开始"
+          }
+        }
+      }
+    },
+    "settings.deleteData.successBody": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下次打开私调会从新手引导开始，订阅不会被取消。"
+          }
+        }
+      }
+    },
+    "settings.deleteData.successTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地数据已全部删除"
+          }
+        }
+      }
+    },
+    "settings.deleteData.toast": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前版本尚未接入数据删除。"
+          }
+        }
+      }
+    },
+    "settings.deleteDataButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除全部本地数据"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.clearButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清除本地诊断"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.clearFailed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法清除诊断，请重试。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.cleared": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地诊断已清除。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.codeHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "联系支持时请附上这个代码。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.codeLabel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "诊断代码"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.copied": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "诊断代码已复制。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.copyButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "复制诊断代码"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.copyFailed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法复制代码。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.dataBody": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "事件名称、错误码、时间戳、App 版本和系统版本。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.dataTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "收集的内容"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.disableFailed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法关闭诊断，请重试。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.disabledNotice": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地诊断已关闭，本地日志已删除。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.enableFailed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法开启诊断。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.enabledNotice": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地诊断已开启。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.entries": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这台 iPhone 上保存了 %d 条记录。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.neverBody": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片、文件名、相册标识、位置、通讯录、邮箱或账号信息。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.neverTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "绝不收集"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.offNote": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "诊断已关闭，不会收集任何内容。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.onNote": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "诊断已开启。关闭时会删除本地日志。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.statusOff": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已关闭"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.statusOn": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已开启"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.summary": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可选，仅保存在这台 iPhone 上。"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.toggle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "共享本地诊断"
+          }
+        }
+      }
+    },
+    "settings.diagnostics.toggleHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅 App 事件和错误码，绝不包含照片或文件名。"
+          }
+        }
+      }
+    },
+    "settings.footer.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无需账号，无需登录，没有云同步。照片都在这台 iPhone 上处理。"
+          }
+        }
+      }
+    },
+    "settings.licenses.appBody": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私调是专有软件。版权所有 © 2026 StyleTone，保留所有权利。"
+          }
+        }
+      }
+    },
+    "settings.licenses.applicationTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "应用"
+          }
+        }
+      }
+    },
+    "settings.licenses.detailTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "许可协议"
+          }
+        }
+      }
+    },
+    "settings.licenses.intro": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私调基于 Apple 系统框架构建。"
+          }
+        }
+      }
+    },
+    "settings.licenses.link": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "许可协议"
+          }
+        }
+      }
+    },
+    "settings.licenses.summary": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不含第三方运行时库。"
+          }
+        }
+      }
+    },
+    "settings.licenses.systemBody": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwiftUI、Foundation、Observation 和 StoreKit 由 Apple 依据 Apple SDK 许可提供。"
+          }
+        }
+      }
+    },
+    "settings.licenses.systemTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统框架"
+          }
+        }
+      }
+    },
+    "settings.licenses.thirdPartyNone": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前版本不含第三方运行时库。"
+          }
+        }
+      }
+    },
+    "settings.licenses.thirdPartyTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第三方组件"
+          }
+        }
+      }
+    },
+    "settings.localDataTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地数据"
+          }
+        }
+      }
+    },
+    "settings.note": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数据删除、诊断和法律说明会在后续版本上线。"
+          }
+        }
+      }
+    },
+    "settings.onboardingButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重看新手引导"
+          }
+        }
+      }
+    },
+    "settings.paywallButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "订阅"
+          }
+        }
+      }
+    },
+    "settings.privacy.body": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私调没有账号、没有云同步，也不会上传。风格、校准数据和编辑历史都保存在本机。"
+          }
+        }
+      }
+    },
+    "settings.privacy.collectBody": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "默认关闭。开启后，私调会在这台 iPhone 上保存 App 事件、错误码、时间戳、App 版本和系统版本，绝不会记录照片、文件名、相册标识、位置、通讯录或账号信息。"
+          }
+        }
+      }
+    },
+    "settings.privacy.collectTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "诊断"
+          }
+        }
+      }
+    },
+    "settings.privacy.controlsBody": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你可以随时关闭诊断，关闭时会删除本地诊断日志；也可以随时删除全部本地数据，删除后无法恢复。"
+          }
+        }
+      }
+    },
+    "settings.privacy.controlsTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的选择"
+          }
+        }
+      }
+    },
+    "settings.privacy.detailTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隐私"
+          }
+        }
+      }
+    },
+    "settings.privacy.intro": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私调完全在这台 iPhone 上处理人像照片，不会上传到任何服务器。"
+          }
+        }
+      }
+    },
+    "settings.privacy.leavesApple": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "购买、收据和订阅状态由 Apple 处理。"
+          }
+        }
+      }
+    },
+    "settings.privacy.leavesNothing": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私调不会收集或上传照片、编辑内容或风格数据。"
+          }
+        }
+      }
+    },
+    "settings.privacy.leavesTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "会离开这台 iPhone"
+          }
+        }
+      }
+    },
+    "settings.privacy.link": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数据如何处理"
+          }
+        }
+      }
+    },
+    "settings.privacy.localDiagnostics": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本地诊断（仅在你开启时）"
+          }
+        }
+      }
+    },
+    "settings.privacy.localHistory": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑历史与导出次数"
+          }
+        }
+      }
+    },
+    "settings.privacy.localPhotos": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你打开的原图与成片"
+          }
+        }
+      }
+    },
+    "settings.privacy.localStyle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "风格档案、校准选择和已保存的配对信息"
+          }
+        }
+      }
+    },
+    "settings.privacy.localTitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只留在这台 iPhone 上"
+          }
+        }
+      }
+    },
+    "settings.privacy.noAccount": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无需账号，无需登录。"
+          }
+        }
+      }
+    },
+    "settings.privacy.noAccountNote": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无需也不会创建账号，没有登录，也没有云同步。"
+          }
+        }
+      }
+    },
+    "settings.privacy.policy": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隐私政策"
+          }
+        }
+      }
+    },
+    "settings.privacy.policyUnavailable": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隐私政策将在 App Store 页面中提供。"
+          }
+        }
+      }
+    },
+    "settings.privacy.summary": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片只留在这台 iPhone 上。"
+          }
+        }
+      }
+    },
+    "settings.privacyNote": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片、编辑和风格都留在这台设备上，无需账号。"
+          }
+        }
+      }
+    },
+    "settings.section.about": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关于"
+          }
+        }
+      }
+    },
+    "settings.section.diagnostics": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "诊断"
+          }
+        }
+      }
+    },
+    "settings.section.privacy": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隐私"
+          }
+        }
+      }
+    },
+    "settings.section.subscription": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "订阅"
+          }
+        }
+      }
+    },
+    "settings.section.support": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "支持"
+          }
+        }
+      }
+    },
+    "settings.styleCardButton": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "风格卡片"
+          }
+        }
+      }
+    },
+    "settings.subscription.body": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "订阅由你的 Apple ID 管理。删除本地数据或卸载私调都不会取消订阅，请在 App Store 账号设置中管理或取消。"
+          }
+        }
+      }
+    },
+    "settings.subscription.hint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除后购买仍然有效，可在这台或其他设备的订阅页面恢复。"
+          }
+        }
+      }
+    },
+    "settings.subtitle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以本地为先的隐私、诊断和购买信息。"
+          }
+        }
+      }
+    },
+    "settings.support.body": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "发邮件给我们，并附上「诊断」里的诊断代码。这样不必提供照片，我们也能定位问题。"
+          }
+        }
+      }
+    },
+    "settings.support.copyEmail": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "复制邮箱地址"
+          }
+        }
+      }
+    },
+    "settings.support.diagnosticsHint": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请附上「诊断」里的诊断代码。"
+          }
+        }
+      }
+    },
+    "settings.support.emailCopied": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "支持邮箱已复制。"
+          }
+        }
+      }
+    },
+    "settings.support.emailLabel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "邮件支持"
+          }
+        }
+      }
+    },
+    "settings.support.response": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我们通常会在两个工作日内回复。"
+          }
+        }
+      }
+    },
+    "settings.support.summary": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有疑问或遇到问题？每封来信我们都会看。"
+          }
+        }
+      }
+    },
+    "settings.title": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置"
+          }
+        }
+      }
+    },
+    "shell.a6.launching": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在读取本机风格…"
+          }
+        }
+      }
+    },
+    "shell.a6.tab.editor": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑"
+          }
+        }
+      }
+    },
+    "shell.a6.tab.settings": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置"
+          }
+        }
+      }
+    },
+    "shell.placeholder.badge": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "占位页面 · 功能将在后续版本上线"
+          }
+        }
+      }
+    },
+    "shell.tab.editor": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑"
+          }
+        }
+      }
+    },
+    "shell.tab.settings": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置"
+          }
+        }
+      }
+    },
+    "shell.tab.style": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "风格"
+          }
+        }
+      }
+    },
+    "shell.toast.placeholder": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这个操作在当前版本中只是占位。"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
