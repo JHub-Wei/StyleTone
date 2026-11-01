@@ -168,16 +168,16 @@ struct A6Dependencies: Sendable {
 
     /// WP-17 editor graph.
     ///
-    /// `toneRenderer` is intentionally left at the package default
-    /// (`PassthroughToneRenderer`): no real tone engine exists in the packages
-    /// yet. Tone/finish sliders therefore render as a no-op in this build; see
-    /// the A6 report. Retouch, blemish and geometry are live.
+    /// Tone/finish uses the Core Image engine, so learned colour and finish
+    /// parameters are visible in both preview and export. Retouch, blemish and
+    /// geometry are live as well.
     func editorDependencies() -> EditorDependencies {
         EditorDependencies(
             analyzer: portraitAnalyzer,
             retoucher: retoucher,
             blemishRemover: blemishRemover,
             geometryRenderer: geometryRenderer,
+            toneRenderer: CoreImageToneRenderer(),
             exporter: exporter,
             styleProvider: StoreEditorStyleProvider(store: profileStore),
             dateProvider: dateProvider,
@@ -196,6 +196,7 @@ struct A6Dependencies: Sendable {
                 retoucher: retoucher,
                 blemishRemover: blemishRemover,
                 geometryRenderer: geometryRenderer,
+                toneRenderer: CoreImageToneRenderer(),
                 dateProvider: dateProvider
             ),
             exporter: exporter,
