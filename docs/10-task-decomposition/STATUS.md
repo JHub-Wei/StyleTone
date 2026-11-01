@@ -209,6 +209,24 @@
   - 重点验证配对/校准/编辑/导出/权限/删除数据。
   - Phase B 继续冻结。
 
+---
+
+## 中文本地化（2026-11-01）
+
+- 状态：**done**
+- 问题：App 没有 `Localizable.xcstrings`，所有功能页回退到英文。
+- 修复：
+  - 新增 `App/Localizable.xcstrings`，680 条 zh-Hans（覆盖全部 661 个英文 fallback key + A6 copy）。
+  - `L10n.resolve` 强制 zh-Hans；Info.plist 增加 `CFBundleLocalizations = zh-Hans`。
+  - `DEVELOPMENT_LANGUAGE = zh-Hans`；新增本地化回归测试。
+- 验证：
+  - iOS CI：https://github.com/JHub-Wei/StyleTone/actions/runs/41316549195 （success）
+  - 中文 unsigned IPA：https://github.com/JHub-Wei/StyleTone/actions/runs/41316548972 （success）
+  - 真机覆盖安装后确认中文界面。
+- PR #27，merge commit `a2dd26c`。
+- 报告：[zh-Hans-localization-report.md](../zh-Hans-localization-report.md)。
+
+
 
 
 

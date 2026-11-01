@@ -6,11 +6,13 @@
 - 设备：iPhone15，iOS 27.0.1
 - 安装方式：Sideloadly 0.72 + 免费 Apple ID
 - Sideloadly：`D:\Tools\Sideloadly\app`
-- IPA：`D:\Tools\Sideloadly\A6\StyleTone-unsigned.ipa`
+- IPA：`D:\Tools\Sideloadly\zh\StyleTone-unsigned.ipa`
 - A6 merge：`de07c35`（PR #26）
+- 中文本地化：PR #27，merge `a2dd26c`；`App/Localizable.xcstrings` 680 条 zh-Hans
 - App tests：https://github.com/JHub-Wei/StyleTone/actions/runs/41215018035
-- Unsigned IPA：https://github.com/JHub-Wei/StyleTone/actions/runs/41213604810
-- 结果：安装成功，App 可在 iPhone 上打开。
+- 中文本地化 CI：https://github.com/JHub-Wei/StyleTone/actions/runs/41316549195
+- Unsigned IPA：https://github.com/JHub-Wei/StyleTone/actions/runs/41316548972
+- 结果：中文版安装成功，App 可在 iPhone 上打开，界面为中文。
 
 ## Windows 依赖
 
