@@ -686,7 +686,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "只有良好和需留意的配对会调校风格。被拒绝的配对和原图都留在这台设备上。"
+            "value": "只有良好和需留意的配对会参与风格学习。不可用的配对和原图都留在这台设备上。"
           }
         }
       }
@@ -736,7 +736,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "3 组配对就能开始，加到 5 组，或再加 3 组到 8 组。3 组通常花 4 分钟左右。"
+            "value": "3 组配对就能开始；再加 2 组到 5 组，或再加 3 组到 8 组。3 组通常花 4 分钟左右。"
           }
         }
       }
@@ -2386,7 +2386,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "保留肤质的磨皮，不美白。"
+            "value": "保留肌肤纹理的磨皮与匀肤，不美白。"
           }
         }
       }
@@ -3126,7 +3126,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "光线较暗，肤质和色调效果可能噪点更多。"
+            "value": "光线较暗，肤质和色调效果可能会有更多噪点。"
           }
         }
       }
@@ -3766,7 +3766,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "无法连接商店"
+            "value": "无法连接 App Store"
           }
         }
       }
@@ -4026,7 +4026,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "请在「设置」中允许「仅添加」访问，或改为分享。"
+            "value": "请在「设置」中开启「仅添加照片」权限，或改为分享。"
           }
         }
       }
@@ -4096,7 +4096,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "商店不可用"
+            "value": "App Store 不可用"
           }
         }
       }
@@ -4986,7 +4986,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "这组配对可以用来学习，但两张照片的差异比通常大。"
+            "value": "这组配对可以用来学习，但两张照片的差异比平常大。"
           }
         }
       }
@@ -6346,7 +6346,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "默认关闭。开启后，私调会把这台 iPhone 上的 App 事件、错误码、时间戳、App 版本和系统版本保存下来，绝不会记录照片、文件名、相册标识、位置、通讯录或账号信息。"
+            "value": "默认关闭。开启后，私调会在这台 iPhone 上保存 App 事件、错误码、时间戳、App 版本和系统版本，绝不会记录照片、文件名、相册标识、位置、通讯录或账号信息。"
           }
         }
       }
