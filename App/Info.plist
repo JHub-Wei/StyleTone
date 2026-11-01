@@ -20,8 +20,14 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>用于把你主动保存的修图结果写入相册；不会读取你的相册。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>用于选择你要编辑的照片；照片只在本机处理，不会上传。</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
