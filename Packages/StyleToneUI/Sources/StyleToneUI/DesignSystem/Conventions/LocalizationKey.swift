@@ -257,7 +257,11 @@ public enum L10n {
     /// placeholder screens remain readable; zh-Hans copy arrives with the
     /// string catalog (WP-26).
     public static func resolve(_ key: LocalizationKey, fallback: String) -> String {
-        let localized = String(localized: String.LocalizationValue(key.rawValue))
+        let localized = String(
+            localized: String.LocalizationValue(key.rawValue),
+            bundle: .main,
+            locale: Locale(identifier: "zh-Hans")
+        )
         return localized == key.rawValue ? fallback : localized
     }
 }
