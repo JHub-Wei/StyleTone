@@ -86,7 +86,7 @@ public struct CoreImageToneRenderer: EditorToneRendering {
             let filter = CIFilter.vignette()
             filter.inputImage = output
             filter.intensity = Float(abs(finish.vignette) * 1.4)
-            filter.radius = Float(max(1, min(image.width, image.height)) * 0.55)
+            filter.radius = Float(Double(max(1, min(image.width, image.height))) * 0.55)
             output = filter.outputImage ?? output
         }
 
