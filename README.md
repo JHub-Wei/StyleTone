@@ -140,6 +140,7 @@
 - **A6 App 组装已完成**：`A6RootView` 接管真实 Phase A 流程，接入 Vision/SwiftData/Learning/Retouch/Geometry/Export/PhotoKit。PR #26，merge `de07c35`。
 - **A6 真机安装成功**：免费 Apple ID + Sideloadly 安装到 iPhone，App 可启动。说明见 [sideloadly-validation.md](docs/beta/sideloadly-validation.md)。免费签名 7 天过期，Sideloadly auto-refresh daemon 运行中。
 - **中文本地化已完成**：`App/Localizable.xcstrings` 覆盖 680 条 zh-Hans，强制中文解析并设置 `CFBundleLocalizations`。PR #27，merge `a2dd26c`；真机确认中文界面。
+- **Tone/风格强度修复已完成**：新增 Core Image tone/finish 渲染并接入预览/导出；放大 3 组 A/B 校准信号、提高 shrink 与学习代理图。PR #28，merge `74d3540`；真机重新校准后确认照片有变化。
 - **macOS CI 已通过**：
   - WP-00：https://github.com/JHub-Wei/StyleTone/actions/runs/40090672908
   - WP-01：https://github.com/JHub-Wei/StyleTone/actions/runs/40091414979
@@ -154,5 +155,6 @@
   - A6 app tests：https://github.com/JHub-Wei/StyleTone/actions/runs/41215018035
   - A6 unsigned IPA：https://github.com/JHub-Wei/StyleTone/actions/runs/41213604810
   - 中文本地化：https://github.com/JHub-Wei/StyleTone/actions/runs/41316549195
+  - Tone/校准修复：https://github.com/JHub-Wei/StyleTone/actions/runs/41458662966
 - 构建说明见 [BUILD.md](BUILD.md)；Windows 上获取 macOS CI 结果见 [CI-SETUP.md](CI-SETUP.md)。
 - 下一步：进入 Phase B（WP-18 风格卡、WP-22 引导、WP-27 TestFlight）；Phase C 在 Phase B 验证后启动。

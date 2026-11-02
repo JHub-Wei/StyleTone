@@ -226,6 +226,25 @@
 - PR #27，merge commit `a2dd26c`。
 - 报告：[zh-Hans-localization-report.md](../zh-Hans-localization-report.md)。
 
+---
+
+## Tone 渲染与校准强度修复（2026-11-02）
+
+- 状态：**done**
+- 问题：用户完成 3 组配对 + 8 张 A/B 后，照片仍接近原图。
+- 诊断：profile 被保存但几乎中性（`色温0 · 对比-2 · 饱和-1 · 磨皮0 · 瘦脸0`）。
+- 修复：
+  - 新增 `CoreImageToneRenderer`，接入预览和导出：曝光、对比、高光/阴影、色温/色调、饱和、颗粒、暗角。
+  - 3 组 A/B 影响力从“几乎不可见”提升到可见强度，仍受 `StyleSafetyRanges` 限制。
+  - 3 组 shrink 从 `0.35` 提高到 `0.50`；学习代理图从 `256px` 提高到 `384px`。
+  - 编辑器顶部新增“已学习 N 组 · 色温/对比/饱和/磨皮/瘦脸”摘要，便于确认真实 profile。
+- 验证：
+  - iOS CI：https://github.com/JHub-Wei/StyleTone/actions/runs/41458662966 （success）
+  - Unsigned IPA：https://github.com/JHub-Wei/StyleTone/actions/runs/41464081192 （success）
+  - 真机重新校准后确认照片有变化。
+- PR #28，merge commit `74d3540`。
+
+
 
 
 
