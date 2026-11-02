@@ -1,3 +1,4 @@
+import GoldenSupport
 import StyleToneCore
 import StyleToneLearning
 import TestShared
