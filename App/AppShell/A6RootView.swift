@@ -296,6 +296,9 @@ private struct A6EditorHostView: View {
             selection: $pickedPhoto,
             matching: .images
         )
+        .safeAreaInset(edge: .top, spacing: 0) {
+            A6StyleSummaryView(profile: model.profile)
+        }
         .onChange(of: pickedPhoto) { _, item in
             guard let item else { return }
             Task { @MainActor in
@@ -513,5 +516,48 @@ private struct A6FallbackSettingsView: View {
                 errorMessage = A6Copy.deleteFailed
             }
         }
+    }
+}
+
+/// Small validation strip showing the exact profile currently loaded by the
+/// editor. It makes "did calibration actually learn anything?" visible without
+/// opening a debugger.
+private struct A6StyleSummaryView: View {
+    let profile: StyleProfile?
+
+    var body: some View {
+        Text(verbatim: summary)
+            .font(.caption2)
+            .monospacedDigit()
+            .foregroundStyle(.white)
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 4)
+            .background(.black.opacity(0.55))
+            .accessibilityIdentifier("a6.styleSummary")
+    }
+
+    private var summary: String {
+        guard let profile else {
+            return "风格未加载"
+        }
+        if profile.isNeutral {
+            return "当前风格：自然默认（未学到明显参数） · \(profile.pairCount) 组"
+        }
+        let tone = profile.tone
+        let values = [
+            "色温 \(percent(tone.temperature))",
+            "对比 \(percent(tone.contrast))",
+            "饱和 \(percent(tone.saturation))",
+            "磨皮 \(percent(profile.skin.smoothing))",
+            "瘦脸 \(percent(profile.face.slim))",
+        ].joined(separator: " · ")
+        return "已学习 \(profile.pairCount) 组 · \(values)"
+    }
+
+    private func percent(_ value: Double) -> String {
+        "\(Int((value * 100).rounded()))"
     }
 }
