@@ -137,6 +137,23 @@ public struct CalibrationFlow: Sendable {
 
     // MARK: AB
 
+    /// Starts learning directly from the selected pairs.
+    ///
+    /// A/B is now a refinement, not a prerequisite: the automatic pair
+    /// analyzer extracts face/body/skin strengths before the learner runs.
+    @discardableResult
+    public mutating func startLearningFromPairs(now: Date = Date()) -> Bool {
+        guard phase == .comparisons,
+              selectedPairCount >= CalibrationLimits.minimumPairCount,
+              trainingSamples.count == selectedPairCount
+        else {
+            return false
+        }
+        phase = .learning
+        touch(now: now)
+        return true
+    }
+
     public var currentComparison: CalibrationComparison? {
         guard phase == .comparisons,
               comparisonIndex >= 0,

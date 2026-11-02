@@ -17,6 +17,7 @@ public enum CalibrationCopy {
     public static let pairsTarget = LocalizationKey("calibration.pairs.target")
     public static let pairsInsufficient = LocalizationKey("calibration.pairs.insufficient")
     public static let pairsStart = LocalizationKey("calibration.pairs.start")
+    public static let pairsLearnDirect = LocalizationKey("calibration.pairs.learnDirect")
     public static let pairsAdd = LocalizationKey("calibration.pairs.add")
     public static let pairsSaveLater = LocalizationKey("calibration.pairs.saveLater")
     public static let pairsLocalOnly = LocalizationKey("calibration.pairs.localOnly")
@@ -224,6 +225,7 @@ public enum CalibrationCopy {
         pairsTarget: "Next milestone: %d pairs",
         pairsInsufficient: "Add at least 3 good or warning pairs to start.",
         pairsStart: "Start with %d pairs",
+        pairsLearnDirect: "Learn directly — skip A/B",
         pairsAdd: "Add more pairs",
         pairsSaveLater: "Save and finish later",
         pairsLocalOnly: "No account needed. Pairs and calibration stay on this device.",
@@ -362,6 +364,7 @@ public extension AccessibilityID {
     static let calibrationAll: [AccessibilityID] = [
         calibrationRoot,
         calibrationStartButton,
+        calibrationLearnDirectButton,
         calibrationAddPairsButton,
         calibrationStyleCardButton,
         calibrationRecalibrateButton,

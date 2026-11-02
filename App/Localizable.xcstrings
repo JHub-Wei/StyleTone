@@ -671,6 +671,16 @@
         }
       }
     },
+    "calibration.pairs.learnDirect": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直接学习（跳过 A/B）"
+          }
+        }
+      }
+    },
     "calibration.pairs.localOnly": {
       "localizations": {
         "zh-Hans": {

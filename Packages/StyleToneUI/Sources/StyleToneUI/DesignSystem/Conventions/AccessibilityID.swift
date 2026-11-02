@@ -76,6 +76,7 @@ public extension AccessibilityID {
 
     // Calibration
     static let calibrationStartButton = AccessibilityID(.calibration, "startButton")
+    static let calibrationLearnDirectButton = AccessibilityID(.calibration, "learnDirectButton")
     static let calibrationAddPairsButton = AccessibilityID(.calibration, "addPairsButton")
     static let calibrationStyleCardButton = AccessibilityID(.calibration, "styleCardButton")
     static let calibrationRecalibrateButton = AccessibilityID(.calibration, "recalibrateButton")

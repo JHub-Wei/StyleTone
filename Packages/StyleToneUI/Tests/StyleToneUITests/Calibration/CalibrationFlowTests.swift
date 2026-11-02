@@ -51,6 +51,18 @@ final class CalibrationFlowTests: XCTestCase {
         }
     }
 
+    func testDirectLearningSkipsABAndUsesSelectedPairs() throws {
+        var flow = CalibrationFlow(samples: try CalibrationTestSupport.pairs(3))
+        XCTAssertTrue(flow.startComparisons())
+        XCTAssertTrue(flow.startLearningFromPairs())
+        XCTAssertEqual(flow.phase, .learning)
+        XCTAssertTrue(flow.answers.isEmpty)
+
+        let request = try XCTUnwrap(flow.learningRequest)
+        XCTAssertEqual(request.samples.count, 3)
+        XCTAssertTrue(request.answers.isEmpty)
+    }
+
     func testABAnswerDirectionFollowsTheVisibleOption() throws {
         var flow = CalibrationFlow(samples: try CalibrationTestSupport.pairs(3))
         XCTAssertTrue(flow.startComparisons())

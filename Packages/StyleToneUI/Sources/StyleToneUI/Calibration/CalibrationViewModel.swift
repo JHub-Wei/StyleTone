@@ -193,6 +193,21 @@ public final class CalibrationViewModel {
         return true
     }
 
+    /// Learns from the selected pairs without requiring A/B answers.
+    @discardableResult
+    public func learnDirectly(using tier: CalibrationPairTier? = nil) -> Bool {
+        guard !isBusy else { return false }
+        guard flow.startComparisons(using: tier, now: dateProvider.now),
+              flow.startLearningFromPairs(now: dateProvider.now)
+        else {
+            return false
+        }
+        notice = nil
+        schedulePersist()
+        startLearning()
+        return true
+    }
+
     // MARK: AB stage
 
     public func answerCurrent(choseA: Bool) {

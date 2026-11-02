@@ -27,6 +27,15 @@ struct CalibrationPairStageView: View {
                 action: start
             )
 
+            PrimaryButton(
+                CalibrationCopy.text(CalibrationCopy.pairsLearnDirect),
+                systemImage: "sparkles",
+                role: .secondary,
+                isEnabled: model.flow.canStartComparisons,
+                accessibilityID: AccessibilityID.calibrationLearnDirectButton.rawValue,
+                action: learnDirect
+            )
+
             if let addPairs {
                 PrimaryButton(
                     CalibrationCopy.text(CalibrationCopy.pairsAdd),
@@ -189,5 +198,10 @@ struct CalibrationPairStageView: View {
     private func start() {
         guard let tier = effectiveTier else { return }
         _ = model.beginComparisons(using: tier)
+    }
+
+    private func learnDirect() {
+        guard let tier = effectiveTier else { return }
+        _ = model.learnDirectly(using: tier)
     }
 }
