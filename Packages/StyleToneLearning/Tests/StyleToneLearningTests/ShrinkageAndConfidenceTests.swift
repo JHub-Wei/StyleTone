@@ -36,7 +36,7 @@ final class ShrinkageAndConfidenceTests: XCTestCase {
         XCTAssertEqual(eight.profile.pairCount, 8)
         XCTAssertEqual(three.profile.confidence, .trial)
         XCTAssertEqual(eight.profile.confidence, .stable)
-        XCTAssertLessThan(three.diagnostics.shrinkage, 0.45)
+        XCTAssertLessThan(three.diagnostics.shrinkage, 0.65)
         XCTAssertGreaterThan(eight.diagnostics.shrinkage, 0.85)
         XCTAssertLessThan(
             abs(three.profile.tone.exposure),

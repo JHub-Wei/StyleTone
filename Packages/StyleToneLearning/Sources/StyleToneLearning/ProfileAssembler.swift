@@ -18,9 +18,9 @@ enum ShrinkageModel {
         case ..<2:
             base = 0.15
         case 2:
-            base = 0.22
+            base = 0.30
         case 3:
-            base = 0.35
+            base = 0.50
         case 4:
             base = 0.55
         case 5:
