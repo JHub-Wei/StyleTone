@@ -3,6 +3,7 @@ import StyleToneCore
 import StyleToneGeometry
 import StyleToneImaging
 import StyleToneLearning
+import StyleTonePairAnalysis
 import StyleTonePersistence
 import StyleToneRetouch
 import StyleToneUI
@@ -21,7 +22,7 @@ final class A6LiveWiringTests: XCTestCase {
         let dependencies = Self.liveDependencies
 
         XCTAssertTrue(dependencies.profileStore is SwiftDataStyleProfileStore)
-        XCTAssertTrue(dependencies.learner is StyleLearningEngine)
+        XCTAssertTrue(dependencies.learner is AutoSignalStyleLearning)
         XCTAssertTrue(dependencies.pairQualityAnalyzer is VisionPairQualityAnalyzer)
         XCTAssertTrue(dependencies.portraitAnalyzer is VisionPortraitAnalyzer)
         XCTAssertTrue(dependencies.retoucher is SkinRetoucher)

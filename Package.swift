@@ -14,6 +14,7 @@ let package = Package(
         .library(name: "StyleToneGeometry", targets: ["StyleToneGeometry"]),
         .library(name: "StyleToneRetouch", targets: ["StyleToneRetouch"]),
         .library(name: "StyleToneLearning", targets: ["StyleToneLearning"]),
+        .library(name: "StyleTonePairAnalysis", targets: ["StyleTonePairAnalysis"]),
         .library(name: "StyleTonePersistence", targets: ["StyleTonePersistence"]),
         .library(name: "StyleToneCommerce", targets: ["StyleToneCommerce"]),
         .library(name: "StyleToneUI", targets: ["StyleToneUI"]),
@@ -63,6 +64,16 @@ let package = Package(
             path: "Packages/StyleToneLearning/Sources/StyleToneLearning"
         ),
         .target(
+            name: "StyleTonePairAnalysis",
+            dependencies: [
+                "StyleToneCore",
+                "StyleToneImaging",
+                "StyleToneLearning",
+                "StyleToneVision"
+            ],
+            path: "Packages/StyleTonePairAnalysis/Sources/StyleTonePairAnalysis"
+        ),
+        .target(
             name: "StyleTonePersistence",
             dependencies: ["StyleToneCore"],
             path: "Packages/StyleTonePersistence/Sources/StyleTonePersistence"
@@ -103,6 +114,17 @@ let package = Package(
             name: "StyleToneRetouchTests",
             dependencies: ["StyleToneRetouch", "GoldenSupport", "TestShared"],
             path: "Packages/StyleToneRetouch/Tests/StyleToneRetouchTests"
+        ),
+        .testTarget(
+            name: "StyleTonePairAnalysisTests",
+            dependencies: [
+                "StyleTonePairAnalysis",
+                "StyleToneCore",
+                "StyleToneLearning",
+                "GoldenSupport",
+                "TestShared"
+            ],
+            path: "Packages/StyleTonePairAnalysis/Tests/StyleTonePairAnalysisTests"
         ),
         .testTarget(
             name: "StyleToneLearningTests",

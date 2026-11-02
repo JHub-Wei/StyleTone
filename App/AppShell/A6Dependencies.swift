@@ -3,6 +3,7 @@ import StyleToneCore
 import StyleToneGeometry
 import StyleToneImaging
 import StyleToneLearning
+import StyleTonePairAnalysis
 import StyleTonePersistence
 import StyleToneRetouch
 import StyleToneUI
@@ -104,7 +105,10 @@ struct A6Dependencies: Sendable {
 
         return A6Dependencies(
             profileStore: profileStore,
-            learner: StyleLearningEngine(dateProvider: dateProvider),
+            learner: AutoSignalStyleLearning(
+                engine: StyleLearningEngine(dateProvider: dateProvider),
+                analyzer: VisionPairEditAnalyzer()
+            ),
             pairQualityAnalyzer: VisionPairQualityAnalyzer(),
             portraitAnalyzer: VisionPortraitAnalyzer(),
             retoucher: retoucher,
