@@ -112,6 +112,35 @@ final class ABPreferenceTests: XCTestCase {
         )
     }
 
+    func testThreePairCalibrationHighChoicesProduceVisibleStrengths() async throws {
+        let pairs = try SyntheticPairFactory.pairs(
+            count: 3,
+            edit: SyntheticEdit()
+        )
+        let answers = [
+            answer(.tone, 1),
+            answer(.skinTone, 1),
+            answer(.smoothing, 1),
+            answer(.faceSlim, 1),
+            answer(.bodySlim, 1),
+            answer(.legLength, 1),
+            answer(.naturalness, 1)
+        ]
+        let result = try await makeEngine().learn(
+            StyleLearningRequest(samples: pairs, answers: answers)
+        )
+
+        XCTAssertGreaterThanOrEqual(result.profile.face.slim, 0.08)
+        XCTAssertGreaterThanOrEqual(result.profile.skin.smoothing, 0.12)
+        XCTAssertGreaterThanOrEqual(result.profile.body.waist, 0.08)
+        XCTAssertGreaterThanOrEqual(result.profile.tone.contrast, 0.06)
+        XCTAssertGreaterThanOrEqual(result.profile.tone.saturation, 0.05)
+        XCTAssertTrue(
+            StyleSafetyRanges.standard.contains(result.profile),
+            "calibration must stay inside the safety envelope"
+        )
+    }
+
     func testABOnlyProducesTrialProfileWithinSafety() async throws {
         let answers = CalibrationDimension.allCases.map { answer($0, 1) }
         let engine = makeEngine()
@@ -138,8 +167,8 @@ final class ABPreferenceTests: XCTestCase {
             StyleLearningRequest(samples: [], answers: answers)
         )
 
-        XCTAssertGreaterThan(result.profile.face.slim, 0.03)
-        XCTAssertLessThan(result.profile.face.slim, 0.08)
+        XCTAssertGreaterThan(result.profile.face.slim, 0.15)
+        XCTAssertLessThan(result.profile.face.slim, 0.35)
         XCTAssertLessThan(
             result.profile.face.slim,
             StyleSafetyRanges.standard.faceSlim

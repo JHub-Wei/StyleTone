@@ -267,7 +267,7 @@ public struct SkinProtectionConfiguration: Sendable, Equatable {
 /// analysis proxy or tighten thresholds without changing production code.
 public struct StyleLearningConfiguration: Sendable, Equatable {
     /// Longest edge of the private analysis proxy. Pairs are downsampled to at
-    /// most this size before statistics are collected. `256` keeps a five-pair
+    /// most this size before statistics are collected. `384` keeps a five-pair
     /// analysis well inside the 90 s budget while retaining enough skin texture
     /// to estimate smoothing.
     public var maximumAnalysisEdge: Int
@@ -300,7 +300,7 @@ public struct StyleLearningConfiguration: Sendable, Equatable {
     public static let standard = StyleLearningConfiguration()
 
     public init(
-        maximumAnalysisEdge: Int = 256,
+        maximumAnalysisEdge: Int = 384,
         safety: StyleSafetyRanges = .standard,
         skinProtection: SkinProtectionConfiguration = .standard,
         stableHoldoutError: Double = 0.30,

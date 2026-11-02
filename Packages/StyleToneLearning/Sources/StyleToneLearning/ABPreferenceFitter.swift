@@ -37,9 +37,8 @@ struct ABAdjustment: Sendable, Equatable {
 /// `CalibrationAnswer.strengthDelta` is the signed preference for more (+) or
 /// less (−) strength. The UI is free to place either candidate on side A, so
 /// `choseA` is intentionally not used for direction. Six answers reach full
-/// influence; fewer choices are scaled down. Every nudge is small (at most a
-/// few hundredths of a parameter) and the safety envelope still applies, which
-/// keeps AB from producing an extreme profile.
+/// influence; fewer choices are scaled down. Each choice moves its dimension
+/// by a visible but bounded amount, and the safety envelope still applies.
 enum ABPreferenceFitter {
     static func adjustment(
         answers: [CalibrationAnswer],
@@ -81,37 +80,40 @@ enum ABPreferenceFitter {
         adjustment.ambiguousAnswerCount = ambiguous
 
         adjustment.tone = ToneParameters(
-            exposure: 0.03 * tonePreference * reliability,
-            contrast: (0.05 * tonePreference + 0.02 * naturalnessPreference) * reliability,
+            exposure: 0.10 * tonePreference * reliability,
+            contrast: 0.25 * tonePreference * reliability
+                + 0.08 * naturalnessPreference * reliability,
             highlights: 0,
             shadows: 0,
-            temperature: 0.05 * skinTonePreference * reliability,
-            tint: 0.025 * skinTonePreference * reliability,
-            saturation: (0.04 * tonePreference + 0.02 * naturalnessPreference) * reliability
+            temperature: 0.20 * skinTonePreference * reliability,
+            tint: 0.10 * skinTonePreference * reliability,
+            saturation: 0.22 * tonePreference * reliability
+                + 0.08 * naturalnessPreference * reliability
         )
 
         adjustment.skin = ABAdjustment.SkinDelta(
-            smoothing: 0.06 * smoothingPreference * reliability,
-            evenness: (0.03 * smoothingPreference + 0.02 * skinTonePreference) * reliability,
-            blemish: 0.02 * smoothingPreference * reliability
+            smoothing: 0.45 * smoothingPreference * reliability,
+            evenness: 0.20 * smoothingPreference * reliability
+                + 0.10 * skinTonePreference * reliability,
+            blemish: 0.12 * smoothingPreference * reliability
         )
 
         adjustment.face = ABAdjustment.FaceDelta(
-            slim: 0.06 * facePreference * reliability,
-            jaw: 0.04 * facePreference * reliability
+            slim: 0.30 * facePreference * reliability,
+            jaw: 0.18 * facePreference * reliability
         )
 
         adjustment.body = ABAdjustment.BodyDelta(
-            arm: 0.05 * bodyPreference * reliability,
-            waist: 0.05 * bodyPreference * reliability,
-            leg: 0.04 * bodyPreference * reliability,
-            legLength: 0.02 * legPreference * reliability
+            arm: 0.30 * bodyPreference * reliability,
+            waist: 0.30 * bodyPreference * reliability,
+            leg: 0.25 * bodyPreference * reliability,
+            legLength: 0.06 * legPreference * reliability
         )
 
         adjustment.naturalnessScale = LearningMath.clamp(
-            1 + 0.08 * naturalnessPreference * reliability,
-            0.85,
-            1.10
+            1 + 0.12 * naturalnessPreference * reliability,
+            0.80,
+            1.15
         )
 
         return adjustment
@@ -123,7 +125,7 @@ enum ABPreferenceFitter {
     ) -> Double {
         guard let values = buckets[dimension.rawValue], !values.isEmpty else { return 0 }
         let sum = values.reduce(0, +)
-        let denominator = max(2.0, Double(values.count).squareRoot())
+        let denominator = max(1.0, Double(values.count).squareRoot())
         return tanh(sum / denominator)
     }
 }
