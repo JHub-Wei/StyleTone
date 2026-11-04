@@ -553,6 +553,8 @@ private struct A6StyleSummaryView: View {
             "饱和 \(percent(tone.saturation))",
             "磨皮 \(percent(profile.skin.smoothing))",
             "瘦脸 \(percent(profile.face.slim))",
+            "瘦身 \(percent(profile.body.waist))",
+            "腿长 \(percent(profile.body.legLength - 1))",
         ].joined(separator: " · ")
         return "已学习 \(profile.pairCount) 组 · \(values)"
     }

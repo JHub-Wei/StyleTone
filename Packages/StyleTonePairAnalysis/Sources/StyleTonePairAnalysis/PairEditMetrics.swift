@@ -73,12 +73,12 @@ enum FaceEditMetrics {
         }
 
         let slim = PairEditMath.clamp(
-            PairEditMath.reduction(original: lhs.widthRatio, edited: rhs.widthRatio) * 8,
+            PairEditMath.reduction(original: lhs.widthRatio, edited: rhs.widthRatio) * 30,
             0,
             1
         )
         let jaw = PairEditMath.clamp(
-            PairEditMath.reduction(original: lhs.jawRatio, edited: rhs.jawRatio) * 9,
+            PairEditMath.reduction(original: lhs.jawRatio, edited: rhs.jawRatio) * 30,
             0,
             1
         )
@@ -172,9 +172,9 @@ enum BodyEditMetrics {
             return value >= 0.02 ? value : nil
         }
 
-        let waist = strength(at: 0.46, multiplier: 5)
-        let arm = strength(at: 0.29, multiplier: 4)
-        let leg = strength(at: 0.78, multiplier: 4)
+        let waist = strength(at: 0.46, multiplier: 10)
+        let arm = strength(at: 0.29, multiplier: 10)
+        let leg = strength(at: 0.78, multiplier: 10)
 
         var legLength: Double?
         if let originalLeg = legSpan(of: original, profile: lhs),
@@ -184,7 +184,7 @@ enum BodyEditMetrics {
                 edited: editedLeg
             )
             if change > 0.01 {
-                legLength = PairEditMath.clamp(1 + change * 0.8, 1, 1.08)
+                legLength = PairEditMath.clamp(1 + change * 1.5, 1, 1.08)
             }
         }
 
@@ -372,7 +372,7 @@ enum SkinEditMetrics {
         }
 
         let smoothing = PairEditMath.clamp(
-            PairEditMath.reduction(original: lhs.fineEnergy, edited: rhs.fineEnergy) * 3,
+            PairEditMath.reduction(original: lhs.fineEnergy, edited: rhs.fineEnergy) * 12,
             0,
             1
         )
@@ -380,12 +380,12 @@ enum SkinEditMetrics {
             PairEditMath.reduction(
                 original: lhs.regionalVariation,
                 edited: rhs.regionalVariation
-            ) * 2.5,
+            ) * 10,
             0,
             1
         )
         let blemish = PairEditMath.clamp(
-            PairEditMath.reduction(original: lhs.fineP99, edited: rhs.fineP99) * 2.5,
+            PairEditMath.reduction(original: lhs.fineP99, edited: rhs.fineP99) * 10,
             0,
             1
         )
