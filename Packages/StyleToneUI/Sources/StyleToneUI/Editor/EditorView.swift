@@ -160,6 +160,17 @@ public struct EditorView: View {
         VStack(alignment: .leading, spacing: theme.spacing.xs) {
             HStack(spacing: theme.spacing.sm) {
                 EditorPillButton(
+                    title: EditorCopy.text(EditorCopy.originalToggle),
+                    systemImage: "eye",
+                    isSelected: model.isShowingOriginal,
+                    isEnabled: model.canEdit,
+                    accessibilityID: EditorAccessibility.originalToggle.rawValue,
+                    accessibilityValue: nil
+                ) {
+                    model.setShowingOriginal(!model.isShowingOriginal)
+                }
+
+                EditorPillButton(
                     title: EditorCopy.text(EditorCopy.splitComparison),
                     systemImage: "rectangle.split.2x1",
                     isSelected: model.isSplitComparisonEnabled,

@@ -95,7 +95,18 @@ struct A6Dependencies: Sendable {
 
         let geometryRenderer = GeometryRenderingEngine(
             passes: [
-                GeometryPassEntry(phase: .face, pass: FaceWarpContributor()),
+                GeometryPassEntry(
+                    phase: .face,
+                    pass: FaceWarpContributor(
+                        configuration: FaceWarpConfiguration(
+                            minimumFaceConfidence: 0.20,
+                            slimDisplacementFraction: 0.12,
+                            jawDisplacementFraction: 0.09,
+                            maximumCombinedDisplacementFraction: 0.16,
+                            maximumAbsoluteDisplacement: 0.09
+                        )
+                    )
+                ),
                 GeometryPassEntry(phase: .body, pass: BodyWarpContributor()),
                 GeometryPassEntry(phase: .legs, pass: LegsWarpContributor())
             ],

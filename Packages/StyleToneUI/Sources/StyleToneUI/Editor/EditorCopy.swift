@@ -64,6 +64,7 @@ public enum EditorCopy {
     public static let compareHint = LocalizationKey("editor.compareHint")
     public static let compareOriginal = LocalizationKey("editor.compareOriginal")
     public static let compareEdited = LocalizationKey("editor.compareEdited")
+    public static let originalToggle = LocalizationKey("editor.originalToggle")
 
     // MARK: Background protection
 
@@ -126,7 +127,7 @@ public enum EditorCopy {
         addPhotoButton, exportButton, styleButton, emptyState,
         strength, strengthHint, naturalPreset, naturalPresetHint,
         undo, redo, reset,
-        splitComparison, splitComparisonHint, zoomReset, compareHint, compareOriginal, compareEdited,
+        splitComparison, splitComparisonHint, zoomReset, compareHint, compareOriginal, compareEdited, originalToggle,
         backgroundProtection, backgroundProtectionHint,
         backgroundProtectionOffTitle, backgroundProtectionOffMessage, backgroundProtectionOffConfirm, cancel,
         blemishPoints, blemishRemove, blemishClear, blemishEmpty,
@@ -193,6 +194,7 @@ public enum EditorCopy {
         "editor.compareHint": "Press and hold the photo to see the original.",
         "editor.compareOriginal": "Original",
         "editor.compareEdited": "Edited",
+        "editor.originalToggle": "View original",
 
         "editor.backgroundProtection": "Protect background",
         "editor.backgroundProtectionHint": "Keeps straight lines and edges stable while the portrait is reshaped.",
@@ -271,6 +273,7 @@ public enum EditorAccessibility {
     public static let splitHandle = AccessibilityID(.editor, "splitHandle")
     public static let zoomResetButton = AccessibilityID(.editor, "zoomResetButton")
     public static let compareHint = AccessibilityID(.editor, "compareHint")
+    public static let originalToggle = AccessibilityID(.editor, "originalToggle")
 
     public static let warningBanner = AccessibilityID(.editor, "warningBanner")
     public static let issueBanner = AccessibilityID(.editor, "issueBanner")
@@ -302,7 +305,7 @@ public enum EditorAccessibility {
         exposureSlider, contrastSlider, temperatureSlider, saturationSlider, grainSlider,
         strengthSlider, naturalButton, backgroundProtectionToggle,
         undoButton, redoButton, resetButton,
-        splitToggle, splitHandle, zoomResetButton, compareHint,
+        splitToggle, splitHandle, zoomResetButton, compareHint, originalToggle,
         warningBanner, issueBanner, issueRetryButton, issueDismissButton,
         renderingIndicator, exportProgress, emptyState,
         blemishRemoveButton, blemishClearButton,

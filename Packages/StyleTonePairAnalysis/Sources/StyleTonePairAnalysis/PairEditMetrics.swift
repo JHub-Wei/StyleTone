@@ -73,12 +73,12 @@ enum FaceEditMetrics {
         }
 
         let slim = PairEditMath.clamp(
-            PairEditMath.reduction(original: lhs.widthRatio, edited: rhs.widthRatio) * 30,
+            PairEditMath.reduction(original: lhs.widthRatio, edited: rhs.widthRatio) * 60,
             0,
             1
         )
         let jaw = PairEditMath.clamp(
-            PairEditMath.reduction(original: lhs.jawRatio, edited: rhs.jawRatio) * 30,
+            PairEditMath.reduction(original: lhs.jawRatio, edited: rhs.jawRatio) * 60,
             0,
             1
         )
@@ -172,9 +172,9 @@ enum BodyEditMetrics {
             return value >= 0.02 ? value : nil
         }
 
-        let waist = strength(at: 0.46, multiplier: 10)
-        let arm = strength(at: 0.29, multiplier: 10)
-        let leg = strength(at: 0.78, multiplier: 10)
+        let waist = strength(at: 0.46, multiplier: 20)
+        let arm = strength(at: 0.29, multiplier: 20)
+        let leg = strength(at: 0.78, multiplier: 20)
 
         var legLength: Double?
         if let originalLeg = legSpan(of: original, profile: lhs),
@@ -372,7 +372,7 @@ enum SkinEditMetrics {
         }
 
         let smoothing = PairEditMath.clamp(
-            PairEditMath.reduction(original: lhs.fineEnergy, edited: rhs.fineEnergy) * 12,
+            PairEditMath.reduction(original: lhs.fineEnergy, edited: rhs.fineEnergy) * 60,
             0,
             1
         )
@@ -380,12 +380,12 @@ enum SkinEditMetrics {
             PairEditMath.reduction(
                 original: lhs.regionalVariation,
                 edited: rhs.regionalVariation
-            ) * 10,
+            ) * 50,
             0,
             1
         )
         let blemish = PairEditMath.clamp(
-            PairEditMath.reduction(original: lhs.fineP99, edited: rhs.fineP99) * 10,
+            PairEditMath.reduction(original: lhs.fineP99, edited: rhs.fineP99) * 50,
             0,
             1
         )

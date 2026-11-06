@@ -2341,6 +2341,16 @@
         }
       }
     },
+    "editor.originalToggle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "看原图"
+          }
+        }
+      }
+    },
     "editor.redo": {
       "localizations": {
         "zh-Hans": {
