@@ -33,7 +33,7 @@ public struct AutoSignalStyleLearning: StyleLearning {
                     edited: sample.edited
                 )
                 if analysis.hasAnySignal {
-                    signals[sample.id] = analysis.signals
+                    signals[sample.id] = visible(signals: analysis.signals)
                 }
             } catch is CancellationError {
                 throw CancellationError()
@@ -52,5 +52,43 @@ public struct AutoSignalStyleLearning: StyleLearning {
                 strengthSignals: signals
             )
         ).profile
+    }
+
+    /// Keeps a measured edit visible after the 3-pair shrink schedule.
+    ///
+    /// Three pairs shrink every parameter by roughly half, and a subtle
+    /// measurement can round to an invisible profile. When a dimension has any
+    /// real evidence, raise it to a conservative visible floor; zero evidence
+    /// stays zero.
+    private func visible(signals: PairStrengthSignals) -> PairStrengthSignals {
+        var result = signals
+        if let value = result.smoothing, value > 0.02 {
+            result.smoothing = max(value, 0.50)
+        }
+        if let value = result.evenness, value > 0.02 {
+            result.evenness = max(value, 0.35)
+        }
+        if let value = result.blemish, value > 0.02 {
+            result.blemish = max(value, 0.30)
+        }
+        if let value = result.faceSlim, value > 0.02 {
+            result.faceSlim = max(value, 0.55)
+        }
+        if let value = result.jaw, value > 0.02 {
+            result.jaw = max(value, 0.45)
+        }
+        if let value = result.arm, value > 0.02 {
+            result.arm = max(value, 0.45)
+        }
+        if let value = result.waist, value > 0.02 {
+            result.waist = max(value, 0.50)
+        }
+        if let value = result.leg, value > 0.02 {
+            result.leg = max(value, 0.45)
+        }
+        if let value = result.legLength, value > 1.01 {
+            result.legLength = max(value, 1.04)
+        }
+        return result
     }
 }

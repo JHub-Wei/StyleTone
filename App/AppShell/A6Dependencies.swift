@@ -99,7 +99,7 @@ struct A6Dependencies: Sendable {
                     phase: .face,
                     pass: FaceWarpContributor(
                         configuration: FaceWarpConfiguration(
-                            minimumFaceConfidence: 0.10,
+                            minimumFaceConfidence: 0.15,
                             slimDisplacementFraction: 0.12,
                             jawDisplacementFraction: 0.09,
                             maximumCombinedDisplacementFraction: 0.16,
