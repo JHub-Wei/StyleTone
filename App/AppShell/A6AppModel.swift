@@ -120,8 +120,9 @@ final class A6AppModel {
         defer { isSavingProfile = false }
 
         do {
-            try await dependencies.profileStore.save(newProfile)
-            profile = newProfile
+            let visible = Self.visibleProfile(newProfile)
+            try await dependencies.profileStore.save(visible)
+            profile = visible
             guard flow.reduce(.completeCalibration) else { return }
             calibrationModel = nil
             samples = []
@@ -129,6 +130,39 @@ final class A6AppModel {
         } catch {
             report(A6Copy.profileSaveFailed)
         }
+    }
+
+    /// Keeps a real measured edit visible after 3-pair shrinkage.
+    ///
+    /// This is a product floor, not a replacement for learning: zero evidence
+    /// stays zero. It only lifts dimensions the analyzer actually detected.
+    static func visibleProfile(_ profile: StyleProfile) -> StyleProfile {
+        var result = profile
+        if result.skin.smoothing > 0.02 {
+            result.skin.smoothing = max(result.skin.smoothing, 0.22)
+        }
+        if result.skin.evenness > 0.02 {
+            result.skin.evenness = max(result.skin.evenness, 0.12)
+        }
+        if result.face.slim > 0.02 {
+            result.face.slim = max(result.face.slim, 0.25)
+        }
+        if result.face.jaw > 0.02 {
+            result.face.jaw = max(result.face.jaw, 0.18)
+        }
+        if result.body.waist > 0.02 {
+            result.body.waist = max(result.body.waist, 0.20)
+        }
+        if result.body.arm > 0.02 {
+            result.body.arm = max(result.body.arm, 0.15)
+        }
+        if result.body.leg > 0.02 {
+            result.body.leg = max(result.body.leg, 0.15)
+        }
+        if result.body.legLength > 1.01 {
+            result.body.legLength = max(result.body.legLength, 1.04)
+        }
+        return result
     }
 
     /// Calibration's "save for later" close button.

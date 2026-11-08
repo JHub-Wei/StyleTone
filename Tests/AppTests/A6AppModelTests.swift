@@ -88,6 +88,29 @@ final class A6AppModelTests: XCTestCase {
         XCTAssertEqual(saved.last, learned)
     }
 
+    func testCompleteCalibrationAppliesVisibleStyleFloor() async {
+        let store = A6MockProfileStore()
+        let model = A6AppModel(dependencies: .testing(profileStore: store))
+        await model.start()
+        model.beginPairing()
+        model.finishPairing([])
+
+        let learned = StyleProfile(
+            pairCount: 3,
+            confidence: .trial,
+            skin: SkinParameters(smoothing: 0.03),
+            face: FaceParameters(slim: 0.12),
+            body: BodyParameters(waist: 0.02)
+        )
+        await model.completeCalibration(learned)
+
+        XCTAssertEqual(model.profile?.skin.smoothing ?? 0, 0.22, accuracy: 0.0001)
+        XCTAssertEqual(model.profile?.face.slim ?? 0, 0.25, accuracy: 0.0001)
+        XCTAssertEqual(model.profile?.body.waist ?? 0, 0.20, accuracy: 0.0001)
+        let saved = await store.savedProfiles
+        XCTAssertEqual(saved.last, model.profile)
+    }
+
     func testDeleteAllDataResetsToWelcome() async {
         let store = A6MockProfileStore(active: StyleProfile(pairCount: 3))
         let model = A6AppModel(dependencies: .testing(profileStore: store))
